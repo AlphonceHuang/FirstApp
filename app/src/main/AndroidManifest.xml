@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapplication">
+
+    <uses-feature
+        android:name="android.bluetooth.le"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="true" />
+    <!--
+ 沒辦法用
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    /
+    -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.usb.host" />
+    <uses-feature
+        android:name="android.hardware.sensor.proximity"
+        android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.sensor.gyroscope"
+        android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.sensor.magnetic"
+        android:required="true"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@drawable/projector"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/projector"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".SensorActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".LocationActivity" />
+        <activity android:name=".FileManagerActivity" />
+        <activity
+            android:name=".SpeechToText3Activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SpeechToText2Activity" />
+        <activity
+            android:name=".SpeechToTextActivity"
+            android:theme="@style/AppTheme_TransBar" />
+        <activity android:name=".ImmersiveS7Activity" />
+        <activity android:name=".ImmersiveS6Activity" />
+        <activity android:name=".ImmersiveS5Activity" />
+        <activity android:name=".ImmersiveS4Activity" />
+        <activity android:name=".ImmersiveS3Activity" />
+        <activity android:name=".ImmersiveS2Activity" />
+        <activity android:name=".ImmersiveS1Activity" />
+        <activity
+            android:name=".OpenCVCamera1Activity"
+            android:theme="@style/AppTheme_TransBar" />
+        <activity
+            android:name=".Tutorial1Activity"
+            android:theme="@style/AppTheme_TransBar" />
+        <activity
+            android:name=".OpenCVCameraActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_TransBar" />
+        <activity
+            android:name=".ListView1Activity"
+            android:theme="@style/AppTheme_NoTitle" />
+        <activity
+            android:name=".OpenCVActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme_TransBar" />
+        <activity
+            android:name=".ListViewActivity"
+            android:theme="@style/AppTheme_NoTitle" />
+        <activity
+            android:name=".Camera3Activity"
+            android:theme="@style/AppTheme_NoTitle" />
+        <activity
+            android:name=".Camera2Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_NoTitle" />
+        <activity
+            android:name=".CameraActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_NoTitle" />
+        <activity
+            android:name=".ImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_TransBar" />
+        <activity
+            android:name=".GattActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BLEActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_NoTitle" />
+        <activity
+            android:name=".VideoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_NoTitle" />
+        <activity
+            android:name=".ReportActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar1" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.speech.action.VOICE_SEARCH_HANDS_FREE" />
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 註冊自定義靜態廣播接收器 -->
+        <receiver android:name=".StaticReceiver"
+            android:permission="true">
+            <intent-filter>
+                <action android:name="com.example.myapplication.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".LeService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".SpeechToTextService"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
+
+</manifest>

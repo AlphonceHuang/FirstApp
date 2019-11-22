@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/report_contencrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<android.support.constraint.ConstraintLayout
+    android:layout_width="388dp"
+    android:layout_height="718dp"
+    tools:context=".ReportActivity">
+
+    <LinearLayout
+        android:id="@+id/report_layout"
+        android:layout_width="387dp"
+        android:layout_height="713dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/reportTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/report"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/length"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weight"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/reportResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cal_result"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/reportSuggest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/suggest_empty"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/changeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/long_Press" />
+
+        <Button
+            android:id="@+id/reportBackbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/report_toast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdge="none"
+            android:text="@string/imageToast"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/largetextbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="clickLargeTextSize"
+            android:text="@string/large_text"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/smalltextbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="clickSmallTextSize"
+            android:text="@string/small_text"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/tolistviewpage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/show_logo_click"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/prev_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/prv_page"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/report_nextpage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_default"
+            android:text="@string/videoPlayer"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="401dp" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left" />
+</android.support.constraint.ConstraintLayout>
+</ScrollView>

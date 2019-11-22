@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sensor_contencrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/sensormenu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar"
+        tools:context=".SensorActivity">
+
+        <TextView
+            android:id="@+id/accelerometerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/accelerometer"
+            android:textColor="#8E24AA"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/accelero_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="TextView"
+            android:textColor="#8E24AA"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/accelerometerText1" />
+
+        <TextView
+            android:id="@+id/gyoscopesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/gyroscopes"
+            android:textColor="#43A047"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/accelero_value" />
+
+        <TextView
+            android:id="@+id/gyoscopesText2t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/rotation"
+            android:textColor="#20A226"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/gyoscopesText"
+            app:layout_constraintTop_toBottomOf="@+id/accelero_value" />
+
+        <TextView
+            android:id="@+id/gyoscopes_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="TextView"
+            android:textColor="#43A047"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gyoscopesText1" />
+
+        <TextView
+            android:id="@+id/magnetometerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/magnetometer"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gyoscopes_value" />
+
+        <TextView
+            android:id="@+id/magnetometer_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="TextView"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/magnetometerText1" />
+
+        <TextView
+            android:id="@+id/gyoscopes_value2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:text="TextView"
+            android:textColor="#20A226"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/gyoscopesText"
+            app:layout_constraintTop_toBottomOf="@+id/rotationText1" />
+
+        <TextView
+            android:id="@+id/ProximityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/Proximity"
+            android:textColor="#FB8C00"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/magnetometer_value" />
+
+        <ImageView
+            android:id="@+id/ProximityImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@+id/ProximityText1"
+            app:layout_constraintTop_toBottomOf="@+id/ProximityText"
+            app:srcCompat="@drawable/surprise" />
+
+        <TextView
+            android:id="@+id/Proximity_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="TextView"
+            android:textColor="#FB8C00"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ProximityText1" />
+
+        <TextView
+            android:id="@+id/lightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/lightSensor"
+            android:textColor="#00897B"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/ProximityText"
+            app:layout_constraintTop_toBottomOf="@+id/magnetometer_value" />
+
+        <TextView
+            android:id="@+id/light_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:text="TextView"
+            android:textColor="#00897B"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/ProximityText"
+            app:layout_constraintTop_toBottomOf="@+id/lightText1" />
+
+        <TextView
+            android:id="@+id/pressureText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/pressure"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Proximity_value" />
+
+        <TextView
+            android:id="@+id/pressure_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="TextView"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pressureText1" />
+
+        <TextView
+            android:id="@+id/stepText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/step_detect"
+            android:textColor="#3949AB"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/magnetometerText"
+            app:layout_constraintTop_toBottomOf="@+id/gyoscopes_value" />
+
+        <TextView
+            android:id="@+id/stepDetText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#3949AB"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/stepCountText"
+            app:layout_constraintTop_toBottomOf="@+id/stepText1" />
+
+        <TextView
+            android:id="@+id/stepCountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:text="TextView"
+            android:textColor="#3949AB"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/magnetometerText"
+            app:layout_constraintTop_toBottomOf="@+id/stepText1" />
+
+        <TextView
+            android:id="@+id/accelerometerText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/accelerometer_eng"
+            android:textColor="#8E24AA"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/accelerometerText" />
+
+        <TextView
+            android:id="@+id/gyoscopesText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/gyroscopes_eng"
+            android:textColor="#43A047"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gyoscopesText" />
+
+        <TextView
+            android:id="@+id/rotationText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:text="@string/rotation_eng"
+            android:textColor="#20A226"
+            app:layout_constraintStart_toEndOf="@+id/gyoscopesText"
+            app:layout_constraintTop_toBottomOf="@+id/gyoscopesText2t" />
+
+        <TextView
+            android:id="@+id/magnetometerText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/magnetometer_eng"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/magnetometerText" />
+
+        <TextView
+            android:id="@+id/ProximityText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/Proximity_eng"
+            android:textColor="#FB8C00"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ProximityText" />
+
+        <TextView
+            android:id="@+id/lightText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/light_eng"
+            android:textColor="#00897B"
+            app:layout_constraintStart_toEndOf="@+id/ProximityText"
+            app:layout_constraintTop_toBottomOf="@+id/lightText" />
+
+        <TextView
+            android:id="@+id/pressureText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/pressure_eng"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pressureText" />
+
+        <TextView
+            android:id="@+id/stepText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:text="@string/step_eng"
+            android:textColor="#3949AB"
+            app:layout_constraintStart_toEndOf="@+id/magnetometerText"
+            app:layout_constraintTop_toBottomOf="@+id/stepText" />
+
+        <TextView
+            android:id="@+id/LinearaccelerometerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:text="@string/linear_accelerometer"
+            android:textColor="#4F22AC"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/accelerometerText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/LinearaccelerometerText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:text="@string/linear_accelerometer_eng"
+            android:textColor="#4F22AC"
+            app:layout_constraintStart_toEndOf="@+id/accelerometerText"
+            app:layout_constraintTop_toBottomOf="@+id/LinearaccelerometerText" />
+
+        <TextView
+            android:id="@+id/Linearacceler_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:text="TextView"
+            android:textColor="#4F22AC"
+            app:layout_constraintStart_toEndOf="@+id/accelerometerText"
+            app:layout_constraintTop_toBottomOf="@+id/LinearaccelerometerText1" />
+
+        <TextView
+            android:id="@+id/wayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="TextView"
+            android:textColor="#F4511E"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pressure_value" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

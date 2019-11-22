@@ -1,0 +1,64 @@
+<resources>
+
+    <!-- Base application theme.
+        有定義 navigationBarColor
+        colorPrimaryDark 就是 status bar color
+        colorPrimary 是 action bar color
+    -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar1">
+        <item name="windowActionBar">true</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme_NoTitle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme_TransBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--action bar隱藏-->
+        <item name="windowNoTitle">true</item>
+        <!--status bar透明-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--Navi bar透明-->
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="MySwitch" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Active thumb color & Active track color(30% transparency)
+            switch 打开时的拇指按钮的颜色 轨迹颜色默认为30%这个颜色 -->
+        <item name="colorControlActivated">@color/colorBlue</item>
+        <!-- Inactive thumb color switch关闭时的拇指按钮的颜色
+            這個目前無作用，不知為何-->
+        <item name="colorSwitchThumbNormal">@color/colorPurple</item>
+        <!-- Inactive track color(30% transparency) switch关闭时的轨迹的颜色  30%这个颜色 -->
+        <item name="android:colorForeground">@color/colorDarkBlue</item>
+        <!--使用方法：
+        在布局中给需要自定義物件中增加android:theme="@style/MySwitch"-->
+    </style>
+
+</resources>

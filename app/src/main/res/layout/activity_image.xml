@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/ble_contencrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#BAF0A5"
+        android:fitsSystemWindows="true"
+        tools:context=".ImageActivity">
+
+        <Button
+            android:id="@+id/SDPrv_Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/Pre_Image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SDImage" />
+
+    <ImageView
+        android:id="@+id/SDImage"
+        android:layout_width="342dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="false"
+        android:background="#000000"
+        android:cropToPadding="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/projector" />
+
+        <Button
+            android:id="@+id/SDNext_Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Next_Image"
+            app:layout_constraintStart_toEndOf="@+id/SDPrv_Btn"
+            app:layout_constraintTop_toBottomOf="@+id/SDImage" />
+
+    <TextView
+        android:id="@+id/SDfilepath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="#F4511E"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SDPrv_Btn" />
+
+    <Button
+        android:id="@+id/SDCalBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cal_btn"
+        app:layout_constraintStart_toEndOf="@+id/SDNext_Btn"
+        app:layout_constraintTop_toBottomOf="@+id/SDImage" />
+
+    <TextView
+        android:id="@+id/SDResultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/Laplacian"
+        android:textColor="#5E35B1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SDfilepath" />
+
+    <Button
+        android:id="@+id/BrowserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filemanager"
+        app:layout_constraintStart_toEndOf="@+id/SDCalBtn"
+        app:layout_constraintTop_toBottomOf="@+id/SDImage" />
+</android.support.constraint.ConstraintLayout>

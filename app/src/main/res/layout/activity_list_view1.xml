@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAC1F5"
+    tools:context=".ListView1Activity">
+
+    <!--這裡的定義無效，主要是以list_view.item.xml為主-->
+    <!--
+    <TextView
+        android:id="@+id/txtR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/suggest_empty"
+        android:textSize="12sp" />
+    -->
+    <!--focusable=true才會有跑馬燈效果-->
+    <ListView
+        android:id="@+id/lsv1_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFFFF"
+        android:focusable="true" />
+
+</RelativeLayout>

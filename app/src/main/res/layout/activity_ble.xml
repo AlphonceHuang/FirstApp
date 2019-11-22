@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ble_contencrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/blemenu_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BLEActivity">
+
+    <Button
+        android:id="@+id/BLE_StartBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BLE_StopBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/stop"
+        app:layout_constraintStart_toEndOf="@+id/BLE_StartBtn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/BLE_List"
+        android:layout_width="350dp"
+        android:layout_height="394dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:background="#8BC34A"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BLE_DirconSW" />
+
+    <TextView
+        android:id="@+id/BLE_status"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/suggest_empty"
+        android:textColor="#673AB7"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BLE_StartBtn" />
+
+    <Switch
+        android:id="@+id/BLE_FilterSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/filter"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/BLE_status"
+        app:layout_constraintTop_toBottomOf="@+id/BLE_DirectBtn" />
+
+    <Button
+        android:id="@+id/BLE_DirectBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/direct"
+        app:layout_constraintStart_toEndOf="@+id/BLE_StopBtn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/BLE_DirectMAC"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/suggest_empty"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BLE_status" />
+
+    <Button
+        android:id="@+id/BLE_CleanBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/clearMAC"
+        app:layout_constraintStart_toEndOf="@+id/BLE_DirectBtn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/BLE_DirconSW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/direct"
+        app:layout_constraintStart_toEndOf="@+id/BLE_DirectMAC"
+        app:layout_constraintTop_toBottomOf="@+id/BLE_FilterSwitch" />
+
+</android.support.constraint.ConstraintLayout>
+</ScrollView>

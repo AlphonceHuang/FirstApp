@@ -1,0 +1,278 @@
+<resources>
+    <drawable name="clr_normal">#ff6501</drawable>
+    <drawable name="clr_pressed">#a44100</drawable>
+    <string name="app_name">Alan的App</string>
+    <string name="input_height">input_height</string>
+    <string name="title_text">BMI計算程式</string>
+    <string name="length">身高(公分)</string>
+    <string name="weight">體重(公斤)</string>
+    <string name="cal_btn">計算</string>
+    <string name="cal_result">你的BMI是:</string>
+    <string name="suggest_over">過重了</string>
+    <string name="suggest_light">過輕了</string>
+    <string name="suggest_good">剛剛好</string>
+    <string name="suggest_empty"> </string>
+    <string name="cal_fail">輸入錯誤</string>
+    <string name="settings">設定1</string>
+    <string name="settings2">設定2</string>
+    <string name="searching">搜尋</string>
+    <string name="app_switch">開關</string>
+    <string name="open_dialog">跳出對話框</string>
+    <string name="about_app">關於(相機Camera2 API Level)</string>
+    <string name="about_app1">關於(對話框方法二)</string>
+    <string name="about_detail">這是一支計算BMI的小程式</string>
+    <string name="clear_btn">清除輸入</string>
+    <string name="report">BMI報告</string>
+    <string name="back">離開</string>
+    <string name="last_result">上次測試結果:</string>
+    <string name="see_report">看報告</string>
+    <string name="cm">公分</string>
+    <string name="kg">公斤</string>
+    <string name="multiToast">多國語言Toast</string>
+    <string name="imageToast">使用MainActivity的Toast</string>
+    <string name="listviewpage">跳至列表頁面</string>
+    <string name="item_text">列表</string>
+    <string name="report_item1">報告頁項目一</string>
+    <string name="report_item2">報告頁項目二</string>
+    <string name="report_item3">報告頁項目三</string>
+    <string name="report_font_size">字體大小</string>
+    <string name="report_font_color">字體顏色</string>
+    <string name="report_font_10">字體10</string>
+    <string name="report_font_12">字體12</string>
+    <string name="report_font_14">字體14</string>
+    <string name="report_font_16">字體16</string>
+    <string name="report_font_18">字體18</string>
+    <string name="report_fontcolor_black">顏色:黑</string>
+    <string name="report_fontcolor_yellow">顏色:黃</string>
+    <string name="report_fontcolor_red">顏色:紅</string>
+    <string name="large_text">大字體(使用xml)</string>
+    <string name="small_text">小字體(使用xml)</string>
+    <string name="show_logo_click">長、短按測試</string>
+    <string name="long_press">長按</string>
+    <string name="short_press">短按</string>
+    <string name="up_notification">通知欄上</string>
+    <string name="down_notification">Snackbar</string>
+    <string name="next_page">下一頁</string>
+    <string name="prv_page">上一頁</string>
+    <string name="show_image">換圖片</string>
+    <string name="zero">0</string>
+    <string name="play">播放</string>
+    <string name="stop">停止</string>
+    <string name="pause">暫停</string>
+    <string name="ble">BLE</string>
+    <string name="long_Press">長按空白處</string>
+    <string name="start">開始</string>
+    <string name="scanning">搜描中</string>
+    <string name="scan_fail">搜描失敗</string>
+    <string name="paired_device_name">裝置名稱: </string>
+    <string name="paired_device_address">裝置地址: </string>
+    <string name="connect">已連線</string>
+    <string name="connecting">連線中....</string>
+    <string name="disconnect">中斷連線</string>
+    <string name="send">送出</string>
+    <string name="connect_fail">連線失敗</string>
+    <string name="dialog">進度條(轉圈)</string>
+    <string name="progress_Horizontal">進度條(水平bar)</string>
+    <string name="cancel">取消</string>
+    <string name="model_Name">型號:</string>
+    <string name="manufacturer">製造商:</string>
+    <string name="without_premission">沒有權限</string>
+    <string name="with_Permission">有讀取權限</string>
+    <string name="not_support">不支援此服務</string>
+    <string name="no_device">找不到裝置</string>
+    <string name="filter">篩選裝置</string>
+    <string name="choose_to_connect">掃描完畢，請選擇裝置</string>
+    <string name="direct">一鍵連線</string>
+    <string name="getting_service">取得services中....</string>
+    <string name="clearMAC">清除MAC</string>
+    <string name="no_mac">沒有目標MAC位址</string>
+    <string name="mac_addr">BLE儲存的MAC</string>
+    <string name="about_BLE">這支程式還可以連線BLE裝置哦</string>
+    <string name="colon"> : </string>
+    <string name="service_complete">service完成</string>
+    <string name="autoScan">自動搜尋</string>
+    <string name="SD_card">SD card</string>
+    <string name="Next_Image">下一張</string>
+    <string name="Pre_Image">上一張</string>
+    <string name="ImageReview">ImageView圖片播放器</string>
+    <string name="call">打電話</string>
+    <string name="picture">照相</string>
+    <string name="NextVideo">下一首</string>
+    <string name="PreVideo">上一首</string>
+    <string name="mediaPath">這是媒體路徑</string>
+    <string name="videoPlayer">VideoView播放器</string>
+    <string name="rawdataText">RAW</string>
+    <string name="Resume">回至最前面</string>
+    <string name="Music">音樂</string>
+    <string name="Video">影片</string>
+    <string name="CustomeDialog">這是一個客制化的Dialog，裡面的佈局是靠progress_bar_dialog.xml來形成的哦~</string>
+    <string name="runningText">這個是跑馬燈的demo，需要一直轉圈圈哦~~</string>
+    <string name="take_picture">拍照</string>
+    <string name="camera1">舊的相機</string>
+    <string name="camera2">新的相機 Android 5</string>
+    <string name="camera_detail">使用手機預設相機</string>
+    <string name="camera1_detail1">拍攝後的照片會放至下面，請滑動下移</string>
+    <string name="camera_front">前相機</string>
+    <string name="camera_back">後相機</string>
+    <string name="listViewPage">帶圖片的ListView</string>
+    <string name="Laplacian">拉普拉斯梯度:</string>
+    <string name="screencap">截圖</string>
+    <string name="report_page">Report</string>
+    <string name="folder_not_exist">資料夾不存在</string>
+    <string name="file_not_exist">檔案不存在</string>
+    <string name="speechText">語音轉文字(Google)</string>
+    <string name="speechToTextDialog">語音轉文字的兩種方式，Google預設及使用intent方式</string>
+    <string name="audioRecord">錄音</string>
+    <string name="RecordTitle">錄音小程式</string>
+    <string name="RecordingNoAvailable">錄音中無法使用</string>
+    <string name="speechText2">語音轉文字</string>
+    <string name="speechText3">語音轉文字(Service)</string>
+    <string name="oneAns">最佳答案</string>
+    <string name="allAns">所有答案</string>
+    <string name="OpenActive">立即啟動</string>
+    <string name="nonStopRecognize">連續辨識</string>
+    <string name="Click_Button">按開始啟動</string>
+    <string name="startRcord">開始錄音</string>
+    <string name="stopRecord">停止錄音</string>
+    <string name="filemanager">檔案總管</string>
+    <string name="fileman_select">由下面選擇檔案總管方式</string>
+    <string name="default_fileman">內建檔案總管</string>
+    <string name="oem_fileman">自定檔案總管</string>
+    <string name="not_folder">這個不是資料夾</string>
+    <string name="record_path">錄音路徑</string>
+    <string name="all_provider">所有定位提供者：</string>
+    <string name="location_text">定位功能</string>
+    <string name="location_provide_network">來源：Network</string>
+    <string name="location_provide_gps">來源：GPS</string>
+    <string name="longitude">經度</string>
+    <string name="latitude">緯度</string>
+    <string name="can_not_location">無法定位</string>
+    <string name="open_location">請開啟定位服務</string>
+    <string name="sensors">感測器</string>
+    <string name="accelerometer">加速器</string>
+    <string name="linear_accelerometer">線性加速器</string>
+    <string name="linear_accelerometer_eng">(Linear Accelerometer)</string>
+    <string name="accelerometer_eng">(Accelerometer)</string>
+    <string name="gyroscopes">陀螺儀</string>
+    <string name="gyroscopes_eng">(Gyroscopes)</string>
+    <string name="rotation">旋轉矢量</string>
+    <string name="rotation_eng">(Rotation vector)</string>
+    <string name="magnetometer">磁力計</string>
+    <string name="magnetometer_eng">(Magnetometer)</string>
+    <string name="Proximity">接近感測</string>
+    <string name="Proximity_eng">(Proximity)</string>
+    <string name="lightSensor">光線感應</string>
+    <string name="light_eng">(Light)</string>
+    <string name="pressure">壓力感測(大氣壓力)</string>
+    <string name="pressure_eng">(Pressure)</string>
+    <string name="step_detect">步數計算</string>
+    <string name="step_eng">(Step)</string>
+
+    <string name="cameras">各種相機實現</string>
+    <string name="camera1_Title">使用手機預設相機</string>
+    <string name="camera2_Title">使用CameraPreview</string>
+    <string name="camera3_Title">使用SurfaceTexture</string>
+    <string name="camera4_Title">使用OpenCV</string>
+    <string name="camera5_Title">使用OpenCV，Laplacian清晰度計算</string>
+    <string name="camera6_Title">使用OpenCV相機</string>
+    <string name="camera7_Title">使用OpenCV相機</string>
+    <string name="camera8_Title">使用OpenCV相機</string>
+    <string name="camera9_Title">使用OpenCV相機</string>
+    <string name="camera10_Title">使用OpenCV相機</string>
+    <string name="camera1_Subtitle">將拍攝下來的照片用ImageView的方式呈現, CameraActivity</string>
+    <string name="camera2_Subtitle">Android 5.0之前的版本，使用CameraPreview, Camera2Activity</string>
+    <string name="camera3_Subtitle">android.hardware.camera2,用了一大堆的callback及其他,Camera3Activity</string>
+    <string name="camera4_subtitle">color-blob-detection顏色團塊偵測範例, OpenCVActiity</string>
+    <string name="camera5_subtitle">計算圖像模糊度, ImageActivity</string>
+    <string name="camera6_subtitle">每秒取一次畫面並計算Laplacian</string>
+    <string name="camera7_subtitle">只顯示灰階，Tutorial1Activity</string>
+    <string name="camera8_subtitle">使用前相機，OpenCVCamera1Activity</string>
+    <string name="camera9_subtitle">特徵點偵測</string>
+    <string name="camera10_subtitle"> </string>
+
+    <!-- ListViewActivity -->
+    <string name="Immersive_sample">沉浸式範例</string>
+    <string name="sample1">範例一</string>
+    <string name="sample2">範例二</string>
+    <string name="sample3">範例三</string>
+    <string name="sample4">範例四</string>
+    <string name="sample5">範例五</string>
+    <string name="sample6">範例六</string>
+    <string name="sample7">範例七</string>
+    <string name="descrip1">未做任何處理</string>
+    <string name="descrip2">隱藏status bar,action bar，滑動status bar退出隱藏</string>
+    <string name="descrip3">隱藏action bar，全透明status bar</string>
+    <string name="descrip4">隱藏所有bar，觸碰一下退出全屏</string>
+    <string name="descrip5">隱藏action bar，全透明status bar, navi bar</string>
+    <string name="descrip6">隱藏action bar，半透明status bar, navi bar</string>
+    <string name="descrip7">隱藏所有bar，滑動一下bar附近出現半透明bar</string>
+    <string-array name="region_icon_list">
+        <item>@drawable/delta_program</item>
+        <item>@drawable/home</item>
+        <item>@drawable/delta</item>
+        <item>@drawable/projector</item>
+        <item>@drawable/delta_office</item>
+        <item>@drawable/icon</item>
+        <item>@drawable/icon</item>
+        <item>@drawable/icon</item>
+        <item>@drawable/icon</item>
+        <item>@drawable/icon</item>
+    </string-array>
+    <string-array name="region_title_list">
+        <item>@string/camera1_Title</item>
+        <item>@string/camera2_Title</item>
+        <item>@string/camera3_Title</item>
+        <item>@string/camera4_Title</item>
+        <item>@string/camera5_Title</item>
+        <item>@string/camera6_Title</item>
+        <item>@string/camera7_Title</item>
+        <item>@string/camera8_Title</item>
+        <item>@string/camera9_Title</item>
+        <item>@string/camera10_Title</item>
+    </string-array>
+    <string-array name="region_subtitle_list">
+        <item>@string/camera1_Subtitle</item>
+        <item>@string/camera2_Subtitle</item>
+        <item>@string/camera3_Subtitle</item>
+        <item>@string/camera4_subtitle</item>
+        <item>@string/camera5_subtitle</item>
+        <item>@string/camera6_subtitle</item>
+        <item>@string/camera7_subtitle</item>
+        <item>@string/camera8_subtitle</item>
+        <item>@string/camera9_subtitle</item>
+        <item>@string/camera10_subtitle</item>
+    </string-array>
+
+    <!-- ListView1Activity -->
+    <string-array name="region1_icon_list">
+        <item>@drawable/delta_program</item>
+        <item>@drawable/home</item>
+        <item>@drawable/delta</item>
+        <item>@drawable/earth</item>
+        <item>@drawable/delta_office</item>
+        <item>@drawable/projector</item>
+        <!--<item>@drawable/delta_program</item>-->
+    </string-array>
+
+    <string-array name="region1_title_list">
+        <item>@string/sample1</item>
+        <item>@string/sample2</item>
+        <item>@string/sample3</item>
+        <item>@string/sample4</item>
+        <item>@string/sample5</item>
+        <item>@string/sample6</item>
+        <!--<item>@string/sample7</item>-->
+    </string-array>
+
+    <string-array name="region1_subtitle_list">
+        <!--<item>@string/descrip1</item>-->
+        <item>@string/descrip2</item>
+        <item>@string/descrip3</item>
+        <item>@string/descrip4</item>
+        <item>@string/descrip5</item>
+        <item>@string/descrip6</item>
+        <item>@string/descrip7</item>
+    </string-array>
+
+
+</resources>

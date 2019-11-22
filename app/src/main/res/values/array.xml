@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="lunch">
+        <item>施工中</item>
+        <item>圖片播放頁面</item>
+        <item>其他頁面，這個好長好長好長好長，要跑馬燈比較好吧~~~~~</item>
+        <item>影片播放頁面</item>
+    </array>
+    <array name="pop_item">
+        <item>"CENTER"</item>
+        <item>"TOP"</item>
+        <item>"BOTTOM"</item>
+        <item>"START"</item>
+        <item>"END"</item>
+        <item>"FILL_HORIZONTAL"</item>
+        <item>"TOP+START"</item>
+        <item>"DEFAULT"</item>
+        <item>"NO_GRAVITY"</item>
+        <item>"BOTTOM, Y=heightPixels/9"</item>
+    </array>
+</resources>

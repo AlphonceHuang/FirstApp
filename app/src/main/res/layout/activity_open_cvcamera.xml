@@ -1,0 +1,21 @@
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <org.opencv.android.JavaCameraView
+            android:id="@+id/openCVCamera"
+            android:layout_width="match_parent"
+            android:layout_height="398dp" />
+
+        <TextView
+            android:id="@+id/lap_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="24sp" />
+
+    </LinearLayout>

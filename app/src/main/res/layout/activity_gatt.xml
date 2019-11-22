@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Video_contencrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gattmenu_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GattActivity">
+
+    <TextView
+        android:id="@+id/d_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/paired_device_name"
+        android:textColor="#673AB7"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/d_addr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/paired_device_address"
+        android:textColor="#673AB7"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/d_name" />
+
+    <Button
+        android:id="@+id/Gatt_Disconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/disconnect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gatt_ModelNameText" />
+
+    <EditText
+        android:id="@+id/Gatt_InputText"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/suggest_empty"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gatt_Disconnect" />
+
+    <Button
+        android:id="@+id/Gatt_Send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/send"
+        app:layout_constraintStart_toEndOf="@+id/Gatt_InputText"
+        app:layout_constraintTop_toBottomOf="@+id/Gatt_Clear" />
+
+    <TextView
+        android:id="@+id/Gatt_SendText"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:background="#000000"
+        android:scrollbars="vertical"
+        android:text="@string/suggest_empty"
+        android:textColor="#D8D8D8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gatt_Status" />
+
+    <TextView
+        android:id="@+id/Gatt_Status"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/connecting"
+        android:textColor="#C70505"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gatt_InputText" />
+
+    <Button
+        android:id="@+id/Gatt_Clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/clear_btn"
+        app:layout_constraintStart_toEndOf="@+id/Gatt_Disconnect"
+        app:layout_constraintTop_toBottomOf="@+id/Gatt_ModelNameText" />
+
+    <TextView
+        android:id="@+id/Gatt_infoText"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/suggest_empty"
+        android:textColor="#FF5722"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gatt_SendText" />
+
+    <TextView
+        android:id="@+id/Gatt_ManufacturerText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/suggest_empty"
+        android:textColor="#673AB7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/d_addr" />
+
+    <TextView
+        android:id="@+id/Gatt_ModelNameText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/suggest_empty"
+        android:textColor="#673AB7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gatt_ManufacturerText" />
+
+</android.support.constraint.ConstraintLayout>
+</ScrollView>

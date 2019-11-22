@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--還沒按下去時的顏色設定 button_sharp.xml-->
+    <item
+        android:drawable="@drawable/switch_off"
+        android:state_checked="false"/>
+
+    <!--按下去時的顏色設定 button_sharp_select.xml-->
+    <item
+        android:drawable="@drawable/switch_on"
+        android:state_checked="true"/>
+</selector>
