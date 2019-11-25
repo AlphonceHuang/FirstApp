@@ -10,12 +10,8 @@ import android.widget.ProgressBar;
 
 public class CustomProgress {
 
-    ProgressBar mProgressBar;
-
-    public static CustomProgress customProgress = null;
+    private static CustomProgress customProgress = null;
     private Dialog mDialog;
-    private ImageView mAnimation;
-    private AnimationDrawable frameAnimation;
 
     public static CustomProgress getInstance() {
         if (customProgress == null) {
@@ -30,14 +26,14 @@ public class CustomProgress {
         // no tile for the dialog
         mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);  // 這個沒有也不影響
         mDialog.setContentView(R.layout.progress_bar_dialog);   // 使用此layout
-        mProgressBar = mDialog.findViewById(R.id.progress_bar);
+        ProgressBar mProgressBar = mDialog.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.VISIBLE);
 
         // 動畫
-        mAnimation = mDialog.findViewById(R.id.progress_anime);
+        ImageView mAnimation = mDialog.findViewById(R.id.progress_anime);
         if (mAnimation.getDrawable()==null)
             mAnimation.setImageResource(R.drawable.amin_pgbar);   // 菊花樣式
-        frameAnimation = (AnimationDrawable) mAnimation.getDrawable();
+        AnimationDrawable frameAnimation = (AnimationDrawable) mAnimation.getDrawable();
         frameAnimation.start(); // 開始動畫
 
         //  mProgressBar.getIndeterminateDrawable().setColorFilter(context.getResources()

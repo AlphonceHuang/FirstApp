@@ -950,6 +950,7 @@ public class VideoActivity extends AppCompatActivity {
         if (recpath == null){    // 直接進入video activity會得到null
             recpath=mem_MediaRecordPath.getString("MEDIA_RECORDER_PATH", "");
 
+            assert recpath != null;
             if (recpath.isEmpty()){  // 還沒有存路徑
                 //Log.w(TAG, "use default path");
                 recpath = default_rec_path;
@@ -978,6 +979,7 @@ public class VideoActivity extends AppCompatActivity {
         if (path == null){    // 直接進入video activity會得到null
             path=mem_MediaVideoPath.getString("MEDIA_VIDEO_PATH", "");
 
+            assert path != null;
             if (path.isEmpty()){  // 還沒有存路徑
                 //Log.w(TAG, "use default path");
                 path = default_video_path;
@@ -1006,6 +1008,7 @@ public class VideoActivity extends AppCompatActivity {
         if (path == null){    // 直接進入video activity會得到null
             path=mem_MediaMusicPath.getString("MEDIA_MUSIC_PATH", "");
 
+            assert path != null;
             if (path.isEmpty()){  // 還沒有存路徑
                 //Log.w(TAG, "use default path");
                 path = default_music_path;

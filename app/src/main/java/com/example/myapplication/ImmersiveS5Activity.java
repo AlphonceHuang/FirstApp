@@ -26,6 +26,7 @@ public class ImmersiveS5Activity extends AppCompatActivity {
         }
         // 隱藏action bar
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.hide();
 
     }

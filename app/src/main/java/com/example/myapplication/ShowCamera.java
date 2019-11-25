@@ -12,14 +12,13 @@ import java.util.List;
 public class ShowCamera extends SurfaceView implements SurfaceHolder.Callback {
 
     private static final String TAG = "Alan";
-    private SurfaceHolder holdMe;
     private Camera theCamera;
 
 
     public ShowCamera(Context context, Camera camera) {
         super(context);
         theCamera = camera;
-        holdMe = getHolder();
+        SurfaceHolder holdMe = getHolder();
         holdMe.addCallback(this);
     }
 

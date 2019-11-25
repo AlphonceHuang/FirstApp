@@ -21,9 +21,6 @@ public class ListViewActivity extends AppCompatActivity {
     private static final String ITEM_TITLE = "Item title";  // 對應到ListAdapter.java
     private static final String ITEM_TITLE1 = "Item title1";
     private static final String ITEM_ICON = "Item icon";
-    //private TextView mTxtR;
-    private ListView lsv_main;
-    private ListAdapter mListAdapter;   // 使用ListAdapter.java
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +30,8 @@ public class ListViewActivity extends AppCompatActivity {
         //mTxtR = findViewById(R.id.txtR);
 
         //宣告 ListView 元件
-        lsv_main = findViewById(R.id.lsv_main);
+        //private TextView mTxtR;
+        ListView lsv_main = findViewById(R.id.lsv_main);
         lsv_main.setOnItemClickListener(listViewOnItemClickListener);
 
         //定義 ListView 每個 Item 的資料
@@ -67,7 +65,8 @@ public class ListViewActivity extends AppCompatActivity {
         }
 
         // ListView 中所需之資料參數可透過修改 Adapter 的建構子傳入
-        mListAdapter = new ListAdapter(ListViewActivity.this, itemList);
+        // 使用ListAdapter.java
+        ListAdapter mListAdapter = new ListAdapter(ListViewActivity.this, itemList);
 
          //設定 ListView 的 Adapter
         lsv_main.setAdapter(mListAdapter);

@@ -31,7 +31,6 @@ public class LeService extends Service {
     private BluetoothGatt mBluetoothGatt;
     IBinder mBinder = new LocalBinder();
     public static BluetoothAdapter mBluetoothAdapter;
-    private BluetoothManager mBluetoothManager;
     public static final int STATE_DISCONNECT = 0;
     public static final int STATE_CONNECTING = 1;
     public static final int STATE_CONNECTED = 2;
@@ -86,7 +85,7 @@ public class LeService extends Service {
     // 初始化Bluetooth
     //===========================================================
     public boolean initialize() {
-        mBluetoothManager = (BluetoothManager) getBaseContext().getSystemService(Context.BLUETOOTH_SERVICE);
+        BluetoothManager mBluetoothManager = (BluetoothManager) getBaseContext().getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter= mBluetoothManager.getAdapter();
         Log.w(TAG, "service initial");
 
@@ -220,8 +219,8 @@ public class LeService extends Service {
         }else{
             Log.w(TAG, "can't find CHR_ISSC_TRANS_TX. Disconnect GATT");
 
-            String intentDisconnect = ACTION_GATT_CONNECTFAIL;
-            broadcastUpdate(intentDisconnect);
+            //String intentDisconnect = ACTION_GATT_CONNECTFAIL;
+            broadcastUpdate(ACTION_GATT_CONNECTFAIL);
 
             disconnect();
             close();
@@ -395,6 +394,7 @@ public class LeService extends Service {
             }
         }
 
+        assert mBluetoothAdapter != null;
         final BluetoothDevice bluetoothDevice = mBluetoothAdapter.getRemoteDevice(address);
         if (bluetoothDevice == null) {
             Log.w(TAG, "Device not found");
@@ -591,13 +591,14 @@ public class LeService extends Service {
             }
         }
     };
-
+/*
     //=================================================================
     // 讀取Characteristic
     //=================================================================
     public String readCharacteristicValue(BluetoothGattCharacteristic characteristic) {
         return new String(characteristic.getValue());
     }
+ */
 
     //=================================================================
     // 發送廣播

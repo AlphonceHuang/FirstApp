@@ -27,6 +27,7 @@ public class ImmersiveS6Activity extends AppCompatActivity {
         }
         // 隱藏action bar
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.hide();
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); // 半透明status

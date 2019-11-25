@@ -50,19 +50,14 @@ public class OpenCVCameraActivity extends AppCompatActivity implements CameraBri
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
-            switch (status) {
-                case LoaderCallbackInterface.SUCCESS:
-                {
-                    Log.w(TAG, "OpenCV loaded successfully");
-                    mOpenCvCameraView.enableView();
+            if (status == LoaderCallbackInterface.SUCCESS) {
+                Log.w(TAG, "OpenCV loaded successfully");
+                mOpenCvCameraView.enableView();
 
-                    //mOpenCvCameraView.setOnTouchListener(OpenCVCameraActivity.this);
-                } break;
-                default:
-                {
-                    super.onManagerConnected(status);
-                    Log.w(TAG, "OpenCV loaded fail");
-                } break;
+                //mOpenCvCameraView.setOnTouchListener(OpenCVCameraActivity.this);
+            } else {
+                super.onManagerConnected(status);
+                Log.w(TAG, "OpenCV loaded fail");
             }
         }
     };
@@ -119,6 +114,7 @@ public class OpenCVCameraActivity extends AppCompatActivity implements CameraBri
 
         bundle = this.getIntent().getExtras();
 
+        assert bundle != null;
         Log.w(TAG, "bundle="+bundle.getString("CAMERA_FUNCTION"));
 
         if (Objects.requireNonNull(bundle.getString("CAMERA_FUNCTION")).equals("1")) {

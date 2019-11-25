@@ -10,13 +10,14 @@ import android.widget.TextView;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class ListAdapter1 extends BaseAdapter
 {
     private LayoutInflater mLayInf;
 
-    List<Map<String, Object>> mItemList;
-    public ListAdapter1(Context context, List<Map<String, Object>> itemList)
+    private List<Map<String, Object>> mItemList;
+    ListAdapter1(Context context, List<Map<String, Object>> itemList)
     {
         mLayInf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //mLayInf = LayoutInflater.from(context); //簡單寫法，跟上面功能一樣
@@ -54,9 +55,9 @@ public class ListAdapter1 extends BaseAdapter
         TextView txtView = v.findViewById(R.id.txtView);
         TextView txtView1 = v.findViewById(R.id.txtView1);
 
-        imgView.setImageResource(Integer.valueOf(mItemList.get(position).get("ImmersiveIcon").toString()));
-        txtView.setText(mItemList.get(position).get("ImmersiveTitle").toString());
-        txtView1.setText(mItemList.get(position).get("ImmersiveSubTitle").toString());
+        imgView.setImageResource(Integer.valueOf(Objects.requireNonNull(mItemList.get(position).get("ImmersiveIcon")).toString()));
+        txtView.setText(Objects.requireNonNull(mItemList.get(position).get("ImmersiveTitle")).toString());
+        txtView1.setText(Objects.requireNonNull(mItemList.get(position).get("ImmersiveSubTitle")).toString());
 
         txtView1.setSelected(true); // 設定這個才會有跑馬燈效果
 

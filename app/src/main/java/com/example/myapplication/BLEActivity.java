@@ -51,14 +51,11 @@ public class BLEActivity extends AppCompatActivity {
 
 
     private Button BLE_Start_Button;
-    private Button BLE_Stop_Button;
     private Button BLE_Direct_Button;
     private Button BLE_Clean_Button;
     private TextView BLE_StatusText;
     private TextView BLE_DirectMACText;
     private boolean mScanning;
-    private Switch BLE_FilterSwitch;
-    private Switch BLE_DirectSwitch;
 
     private ListView listView;
     private ArrayAdapter<String> deviceName;
@@ -70,7 +67,6 @@ public class BLEActivity extends AppCompatActivity {
     private Handler connectHandler;
     private static final long SCAN_PERIOD = 10000; //10 seconds
     private static final long CONNECT_PERIOD = 30000;   // 30s, connect to device max time
-    private int REQUEST_ENABLE_BT=1;
     private int REQUEST_CODE_LOCATION_SETTINGS=2;
 
     //public static BLEActivity instance=null;
@@ -81,8 +77,6 @@ public class BLEActivity extends AppCompatActivity {
     SharedPreferences mem_AutoScan;
     private static BluetoothDevice mBluetoothDevice;    // 目前連接上的device
     private ProgressDialog connectingDialog;
-
-    private int MANUFACTURER_ID=13330;
 
     //SparseArray<byte[]> mandufacturerData;
 
@@ -136,7 +130,7 @@ public class BLEActivity extends AppCompatActivity {
         // Button
         BLE_Start_Button = findViewById(R.id.BLE_StartBtn);
         BLE_Start_Button.setOnClickListener(BLE_TT);
-        BLE_Stop_Button = findViewById(R.id.BLE_StopBtn);
+        Button BLE_Stop_Button = findViewById(R.id.BLE_StopBtn);
         BLE_Stop_Button.setOnClickListener(BLE_TT);
         BLE_Direct_Button = findViewById(R.id.BLE_DirectBtn);
         BLE_Direct_Button.setOnClickListener(BLE_TT);
@@ -144,10 +138,10 @@ public class BLEActivity extends AppCompatActivity {
         BLE_Clean_Button.setOnClickListener(BLE_TT);
 
         // Switch
-        BLE_FilterSwitch=findViewById(R.id.BLE_FilterSwitch);
+        Switch BLE_FilterSwitch = findViewById(R.id.BLE_FilterSwitch);
         BLE_FilterSwitch.setOnCheckedChangeListener(BLE_SW);
         BLE_FilterSwitch.setChecked(FilterEnableGet());
-        BLE_DirectSwitch=findViewById(R.id.BLE_DirconSW);
+        Switch BLE_DirectSwitch = findViewById(R.id.BLE_DirconSW);
         BLE_DirectSwitch.setOnCheckedChangeListener(BLE_SW);
         BLE_DirectSwitch.setChecked(DirectConnectGet());
 
@@ -159,7 +153,7 @@ public class BLEActivity extends AppCompatActivity {
 
         // List
         listView = findViewById(R.id.BLE_List);
-        deviceName = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        deviceName = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         listView.setOnItemClickListener(ListItem);
         listView.setOnItemLongClickListener(ListItem1);
     }
@@ -233,6 +227,7 @@ public class BLEActivity extends AppCompatActivity {
 
         Log.w(TAG, "onActivityResult: requestCode:"+requestCode);
 
+        int REQUEST_ENABLE_BT = 1;
         if(requestCode == REQUEST_ENABLE_BT && resultCode== Activity.RESULT_CANCELED){
             Log.w(TAG, "Bluetooth can't enable.");
             finish();
@@ -571,6 +566,7 @@ public class BLEActivity extends AppCompatActivity {
 
                 ScanSettings settings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build();
                 List<ScanFilter> filters_v2 = new ArrayList<>();
+                int MANUFACTURER_ID = 13330;
                 ScanFilter scanFilter = new ScanFilter.Builder()
                         //.setDeviceName("BM71_BLE")    // 用model name當filter
                         //.setServiceUuid(ParcelUuid.fromString(SERVICE_FILTER))  // 用service UUID當filter
@@ -835,6 +831,7 @@ public class BLEActivity extends AppCompatActivity {
 
             Log.w(TAG, "BLEActivity: BroadcastReceiver:"+action);
 
+            assert action != null;
             switch(action){
                 case LeService.ACTION_GATT_CONNECTED:
                     SavedMACAddrSet(mBluetoothDevice.getAddress()); // 儲存
@@ -854,7 +851,7 @@ public class BLEActivity extends AppCompatActivity {
             }
         }
     };
-
+/*
     //=================================================================
     // 解析 Manufacturer id (回傳int)
     //=================================================================
@@ -875,6 +872,7 @@ public class BLEActivity extends AppCompatActivity {
         }
         return ((a[index+2]<<8)+a[index+1]);
     }
+ */
 
     //=================================================================
     // 解析 Manufacturer id (回傳16進制)

@@ -21,9 +21,6 @@ public class ListView1Activity extends AppCompatActivity {
     private static final String ITEM_TITLE = "ImmersiveTitle";  // 對應到ListAdapter.java
     private static final String ITEM_TITLE1 = "ImmersiveSubTitle";
     private static final String ITEM_ICON = "ImmersiveIcon";
-    //private TextView mTxtR;
-    private ListView lsv1_main;
-    private ListAdapter1 mListAdapter;   // 使用ListAdapter1.java
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +29,8 @@ public class ListView1Activity extends AppCompatActivity {
 
 
         //宣告 ListView 元件
-        lsv1_main = findViewById(R.id.lsv1_main);
+        //private TextView mTxtR;
+        ListView lsv1_main = findViewById(R.id.lsv1_main);
         lsv1_main.setOnItemClickListener(listViewOnItemClickListener);
 
         //定義 ListView 每個 Item 的資料
@@ -59,7 +57,8 @@ public class ListView1Activity extends AppCompatActivity {
         }
 
         // ListView 中所需之資料參數可透過修改 Adapter 的建構子傳入
-        mListAdapter = new ListAdapter1(ListView1Activity.this, itemList);
+        // 使用ListAdapter1.java
+        ListAdapter1 mListAdapter = new ListAdapter1(ListView1Activity.this, itemList);
 
         //設定 ListView 的 Adapter
         lsv1_main.setAdapter(mListAdapter);

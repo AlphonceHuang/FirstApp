@@ -222,14 +222,11 @@ public class ImageActivity extends AppCompatActivity {
     private BaseLoaderCallback loaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
-            switch (status) {
-                case BaseLoaderCallback.SUCCESS:
-                    Log.w(TAG, "加载成功");
-                    break;
-                default:
-                    super.onManagerConnected(status);
-                    Log.w(TAG, "加载失败");
-                    break;
+            if (status == BaseLoaderCallback.SUCCESS) {
+                Log.w(TAG, "加载成功");
+            } else {
+                super.onManagerConnected(status);
+                Log.w(TAG, "加载失败");
             }
         }
     };
@@ -276,7 +273,7 @@ public class ImageActivity extends AppCompatActivity {
             }
         }
     };
-
+/*
     //讀取SDCard圖片，型態為Bitmap
     private static Bitmap getBitmapFromSDCard(String path)
     {
@@ -305,6 +302,7 @@ public class ImageActivity extends AppCompatActivity {
             return null;
         }
     }
+ */
 
     // 將取得的檔案放至array
     private File[] getImages(String path){

@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity{
     private TextView last_result;
     private Button exe_button;
     private Button exe_seeReport;
-    private Button exe_BLE, exe_Sensor;
+    private Button exe_BLE;
     private Button exe_DirectConnect;
     private ImageView ScreenShotImg;
 
@@ -395,7 +395,7 @@ public class MainActivity extends AppCompatActivity{
         Button exe_Location = findViewById(R.id.locationButton);
         exe_Location.setOnClickListener(calcBMI);
 
-        exe_Sensor=findViewById(R.id.sensorbutton);
+        Button exe_Sensor = findViewById(R.id.sensorbutton);
         exe_Sensor.setOnClickListener(calcBMI);
 
         //------------------------------------------------
@@ -1286,7 +1286,7 @@ public class MainActivity extends AppCompatActivity{
             }
         }
         else if (requestCode == ACTIVITY_FILE_MANAGER && resultCode == RESULT_OK){
-            String PathHolder = intent.getData().getPath();
+            String PathHolder = Objects.requireNonNull(intent.getData()).getPath();
             Toast.makeText(MainActivity.this, PathHolder , Toast.LENGTH_LONG).show();
         }
         clearAllKeepLastData(); // 只保留 "上次測試結果" 項目，其餘清空

@@ -43,18 +43,13 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
     private BaseLoaderCallback  mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
-            switch (status) {
-                case LoaderCallbackInterface.SUCCESS:
-                {
-                    Log.w(TAG, "OpenCV loaded successfully");
-                    mOpenCvCameraView.enableView();
-                    mOpenCvCameraView.setOnTouchListener(OpenCVActivity.this);
-                } break;
-                default:
-                {
-                    super.onManagerConnected(status);
-                    Log.w(TAG, "OpenCV loaded fail");
-                } break;
+            if (status == LoaderCallbackInterface.SUCCESS) {
+                Log.w(TAG, "OpenCV loaded successfully");
+                mOpenCvCameraView.enableView();
+                mOpenCvCameraView.setOnTouchListener(OpenCVActivity.this);
+            } else {
+                super.onManagerConnected(status);
+                Log.w(TAG, "OpenCV loaded fail");
             }
         }
     };
@@ -110,9 +105,9 @@ public class OpenCVActivity extends AppCompatActivity implements CameraBridgeVie
     }
 
     //@Override
-    protected List<? extends CameraBridgeViewBase> getCameraViewList() {
-        return Collections.singletonList(mOpenCvCameraView);
-    }
+    //protected List<? extends CameraBridgeViewBase> getCameraViewList() {
+    //    return Collections.singletonList(mOpenCvCameraView);
+    //}
 
     public void onDestroy() {
         super.onDestroy();

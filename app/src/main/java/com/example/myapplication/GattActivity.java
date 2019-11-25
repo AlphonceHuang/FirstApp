@@ -29,11 +29,8 @@ public class GattActivity extends AppCompatActivity {
     private TextView m_DeviceName;
     private TextView m_DeviceAddr;
     private TextView m_DeviceStatus;
-    private Button m_GattBtn_Disconnect;
-    private Button m_GattBtn_Send;
     private EditText m_GattText_Input;
     private TextView mMsg;
-    private Button m_GattBtn_Clear;
     private TextView m_DeviceInfo;
     private TextView m_ManufacturerInfo;
     private TextView m_ModelNamtInfo;
@@ -44,7 +41,6 @@ public class GattActivity extends AppCompatActivity {
 
     private ProgressDialog myDialog;
     private static String dev_name = null;
-    private static String dev_addr = null;
 
     private Handler serviceHandler;
     private boolean mGetService=false;  // 判斷是否正在取得service
@@ -93,11 +89,11 @@ public class GattActivity extends AppCompatActivity {
         m_DeviceName = findViewById(R.id.d_name);
         m_DeviceAddr = findViewById(R.id.d_addr);
         m_DeviceStatus = findViewById(R.id.Gatt_Status);
-        m_GattBtn_Disconnect = findViewById(R.id.Gatt_Disconnect);
-        m_GattBtn_Send = findViewById(R.id.Gatt_Send);
+        Button m_GattBtn_Disconnect = findViewById(R.id.Gatt_Disconnect);
+        Button m_GattBtn_Send = findViewById(R.id.Gatt_Send);
         m_GattText_Input = findViewById(R.id.Gatt_InputText);
         mMsg = findViewById(R.id.Gatt_SendText);
-        m_GattBtn_Clear = findViewById(R.id.Gatt_Clear);
+        Button m_GattBtn_Clear = findViewById(R.id.Gatt_Clear);
         m_DeviceInfo = findViewById(R.id.Gatt_infoText);
         m_ManufacturerInfo = findViewById(R.id.Gatt_ManufacturerText);
         m_ModelNamtInfo = findViewById(R.id.Gatt_ModelNameText);
@@ -163,17 +159,18 @@ public class GattActivity extends AppCompatActivity {
     //---------------------------------------------------------------
     private void GetInputInformation(){
         Bundle bundle = this.getIntent().getExtras();
+        String dev_addr;
         if (bundle != null) {
             dev_name = bundle.getString("DEVICE_NAME");
             dev_addr = bundle.getString("DEVICE_ADDRESS");
         }else{
             dev_name=null;
-            dev_addr=null;
+            dev_addr =null;
         }
         String strDeviceName=getString(R.string.paired_device_name)+dev_name;
-        String strMACAddress=getString(R.string.paired_device_address)+dev_addr;
+        String strMACAddress=getString(R.string.paired_device_address)+ dev_addr;
 
-        Log.w(TAG, "Connecting... "+dev_name+"="+dev_addr);
+        Log.w(TAG, "Connecting... "+dev_name+"="+ dev_addr);
 
         if (dev_name==null){
             dev_name="";
@@ -350,6 +347,7 @@ public class GattActivity extends AppCompatActivity {
             if (action != null) {
                 switch(action){
                     case LeService.ACTION_GATT_CONNECTED:
+                    case LeService.ACTION_GATT_NOTIFY_FINISH:
                         UpdateStatus(GattState.GATT_CONNECTED);
                         break;
                     case LeService.ACTION_GATT_DISCONNECTED:
@@ -369,9 +367,6 @@ public class GattActivity extends AppCompatActivity {
                         break;
                     case LeService.ACTION_GATT_MANUFACTURER:
                         UpdateStatus(GattState.GATT_GET_MANUFACTURER);
-                        break;
-                    case LeService.ACTION_GATT_NOTIFY_FINISH:
-                        UpdateStatus(GattState.GATT_CONNECTED);
                         break;
                     case LeService.ACTION_GATT_RX_STRING:
                         appendMsg("Receive:", intent.getStringExtra("RX_STRING"));
