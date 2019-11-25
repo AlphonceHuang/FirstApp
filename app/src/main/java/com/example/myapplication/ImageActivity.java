@@ -37,7 +37,9 @@ import static org.opencv.imgproc.Imgproc.cvtColor;
 public class ImageActivity extends AppCompatActivity {
 
     private static final String TAG="Alan";
-    private Button SDPreBTN, SDNextBTN, SDCalBTN, SDBrowser;
+    private Button SDPreBTN;
+    private Button SDNextBTN;
+    private Button SDCalBTN;
     private ImageView SDImage;
     private TextView SDFilePath, SDResult;
 
@@ -84,7 +86,7 @@ public class ImageActivity extends AppCompatActivity {
         SDCalBTN = findViewById(R.id.SDCalBtn);
         SDCalBTN.setOnClickListener(ImageBTN);
 
-        SDBrowser = findViewById(R.id.BrowserButton);
+        Button SDBrowser = findViewById(R.id.BrowserButton);
         SDBrowser.setOnClickListener(ImageBTN);
 
         SDImage = findViewById(R.id.SDImage);
