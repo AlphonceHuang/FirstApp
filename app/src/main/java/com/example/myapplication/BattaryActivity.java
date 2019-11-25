@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import static com.example.myapplication.Util.showToastIns;
 
 
 public class BattaryActivity extends AppCompatActivity {
@@ -28,6 +30,10 @@ public class BattaryActivity extends AppCompatActivity {
         super.onResume();
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        filter.addAction(Intent.ACTION_BATTERY_LOW);
+        filter.addAction(Intent.ACTION_BATTERY_OKAY);
+        filter.addAction(Intent.ACTION_POWER_CONNECTED);
+        filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         registerReceiver(mBattery, filter);
     }
 
@@ -168,10 +174,20 @@ public class BattaryActivity extends AppCompatActivity {
                     //ImageView ivBattery.setBackgroundDrawable(batteryLevel);
                     break;
                 case Intent.ACTION_BATTERY_LOW:
-                    Log.w(TAG, "battery low");
+                    //Log.w(TAG, "battery low");
+                    showToastIns(context, "BATTERY_LOW", Toast.LENGTH_LONG);
                     break;
                 case Intent.ACTION_BATTERY_OKAY:
-                    Log.w(TAG, "battery ok");
+                    //Log.w(TAG, "battery ok");
+                    showToastIns(context, "BATTERY_OKAY", Toast.LENGTH_LONG);
+                    break;
+                case Intent.ACTION_POWER_CONNECTED:
+                    //Log.w(TAG, "POWER_CONNECTED");
+                    showToastIns(context, "POWER_CONNECTED", Toast.LENGTH_LONG);
+                    break;
+                case Intent.ACTION_POWER_DISCONNECTED:
+                    //Log.w(TAG, "POWER_DISCONNECTED");
+                    showToastIns(context, "POWER_DISCONNECTED", Toast.LENGTH_LONG);
                     break;
             }
         }
