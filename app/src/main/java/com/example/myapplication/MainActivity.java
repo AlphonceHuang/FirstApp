@@ -1524,14 +1524,15 @@ public class MainActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         //boolean m_ret=false;
+        Intent OptionIntent;
 
         switch(id)
         {
             case R.id.settingsItem:
                 if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
                     Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission success.");
-                    Intent intentVideo = new Intent(MainActivity.this,VideoActivity.class);
-                    startActivity(intentVideo);
+                    OptionIntent = new Intent(MainActivity.this,VideoActivity.class);
+                    startActivity(OptionIntent);
                 } else {
                     Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission fail.");
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, ACTIVITY_RECORD_AUDIO);
@@ -1542,8 +1543,8 @@ public class MainActivity extends AppCompatActivity{
                 break;
             case R.id.ImageItem:
                 //showToastIns(getApplicationContext(), "按下搜尋了", Toast.LENGTH_SHORT);
-                Intent intentImage = new Intent(MainActivity.this,ImageActivity.class);
-                startActivity(intentImage);
+                OptionIntent = new Intent(MainActivity.this,ImageActivity.class);
+                startActivity(OptionIntent);
                 break;
             case R.id.about1Item:
                 OpenDialogFunction();
@@ -1611,8 +1612,8 @@ public class MainActivity extends AppCompatActivity{
             case R.id.ListViewItem:
                 if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
                     //Log.w(TAG, "CameraActivity:Get CAMERA permission success.");
-                    Intent intentListView = new Intent(MainActivity.this, ListViewActivity.class);
-                    startActivity(intentListView);
+                    OptionIntent = new Intent(MainActivity.this, ListViewActivity.class);
+                    startActivity(OptionIntent);
                 }else{
                     Log.w(TAG, "CameraActivity:Get CAMERA permission fail.");
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, ACTIVITY_CAMERA2);
@@ -1620,15 +1621,15 @@ public class MainActivity extends AppCompatActivity{
                 break;
 
             case R.id.ListView1Item:
-                Intent intentListView = new Intent(MainActivity.this, ListView1Activity.class);
-                startActivity(intentListView);
+                OptionIntent = new Intent(MainActivity.this, ListView1Activity.class);
+                startActivity(OptionIntent);
                 break;
 
             case R.id.speechTextItem:
                 if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
                     Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission success.");
-                    Intent intentSpeech = new Intent(MainActivity.this, SpeechToTextActivity.class);
-                    startActivity(intentSpeech);
+                    OptionIntent = new Intent(MainActivity.this, SpeechToTextActivity.class);
+                    startActivity(OptionIntent);
                 } else {
                     Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission fail.");
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, ACTIVITY_SPEECHTOTEXT);
@@ -1638,8 +1639,8 @@ public class MainActivity extends AppCompatActivity{
             case R.id.speechText2Item:
                 if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
                     Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission success.");
-                    Intent intentSpeech = new Intent(MainActivity.this, SpeechToText2Activity.class);
-                    startActivity(intentSpeech);
+                    OptionIntent = new Intent(MainActivity.this, SpeechToText2Activity.class);
+                    startActivity(OptionIntent);
                 } else {
                     Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission fail.");
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, ACTIVITY_SPEECHTOTEXT2);
@@ -1654,13 +1655,18 @@ public class MainActivity extends AppCompatActivity{
                 break;
 
             case R.id.LocationItem:
-                Intent intent = new Intent(MainActivity.this, LocationActivity.class);
-                startActivity(intent);
+                OptionIntent = new Intent(MainActivity.this, LocationActivity.class);
+                startActivity(OptionIntent);
                 break;
 
             case R.id.SensorItem:
-                Intent intent1 = new Intent(MainActivity.this, SensorActivity.class);
-                startActivity(intent1);
+                OptionIntent = new Intent(MainActivity.this, SensorActivity.class);
+                startActivity(OptionIntent);
+                break;
+
+            case R.id.BatteryItem:
+                OptionIntent = new Intent(MainActivity.this, BattaryActivity.class);
+                startActivity(OptionIntent);
                 break;
 
             default:

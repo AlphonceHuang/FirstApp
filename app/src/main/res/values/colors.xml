@@ -8,5 +8,7 @@
     <color name="colorDarkBlue">#0C1687</color>
     <color name="colorPurple">#CE2FCA</color>
     <color name="colorOrange">#F4511E</color>
+    <color name="colorDarkGreen">#0C7910</color>
+    <color name="colorDarkRed">#FFB60F0F</color>
 
 </resources>

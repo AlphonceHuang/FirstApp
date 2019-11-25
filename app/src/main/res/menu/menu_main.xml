@@ -60,4 +60,7 @@
     <item
         android:id="@+id/SensorItem"
         android:title="@string/sensors" />
+    <item
+        android:id="@+id/BatteryItem"
+        android:title="@string/battery_info" />
 </menu>
