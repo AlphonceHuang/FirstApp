@@ -65,6 +65,7 @@ public class ImageActivity extends AppCompatActivity {
         if (image_path == null){    // 直接進入image activity會得到null
             image_path=mem_ImageDefaultPath.getString("IMAGE_DEFAULT_PATH", "");
 
+            assert image_path != null;
             if (image_path.isEmpty()){  // 還沒有存路徑
                 Log.w(TAG, "mem empty");
                 image_path = default_path;
