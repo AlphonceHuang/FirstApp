@@ -70,7 +70,6 @@ public class Camera3Activity extends AppCompatActivity {
     private String mCameraId;
     private Size mPreviewSize;
     private Size mCaptureSize;
-    private HandlerThread mCameraThread;
     private Handler mCameraHandler;
     private CameraDevice mCameraDevice;
     private TextureView mTextureView;
@@ -79,10 +78,9 @@ public class Camera3Activity extends AppCompatActivity {
     private CaptureRequest mCaptureRequest;
     private CameraCaptureSession mCameraCaptureSession;
     private CameraManager manager;
-    private Button CameraSWBtn, TakePicBtn;
+    private Button CameraSWBtn;
     private static String savedPath;
     private ImageView lastImage;
-    private File[] Cam2files;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +97,8 @@ public class Camera3Activity extends AppCompatActivity {
         // 按鈕
         CameraSWBtn = findViewById(R.id.cameraswitch);
         CameraSWBtn.setOnClickListener(BtnEvent);
-        TakePicBtn = findViewById(R.id.photoButton);
-        TakePicBtn.setOnClickListener(BtnEvent);
+        Button takePicBtn = findViewById(R.id.photoButton);
+        takePicBtn.setOnClickListener(BtnEvent);
 
         //lastImage = new ImageView(this);
         lastImage = findViewById(R.id.camera3Cap);
@@ -197,7 +195,7 @@ public class Camera3Activity extends AppCompatActivity {
 
 
     private void startCameraThread() {
-        mCameraThread = new HandlerThread("CameraThread");
+        HandlerThread mCameraThread = new HandlerThread("CameraThread");
         mCameraThread.start();
         mCameraHandler = new Handler(mCameraThread.getLooper());
     }
@@ -266,6 +264,7 @@ public class Camera3Activity extends AppCompatActivity {
                 //根据TextureView的尺寸设置预览尺寸
                 mPreviewSize = getOptimalSize(map.getOutputSizes(SurfaceTexture.class), width, height);
 
+                assert mPreviewSize != null;
                 Log.w(TAG, "preview:"+mPreviewSize.getHeight()+","+mPreviewSize.getWidth());
 
                 //获取相机支持的最大拍照尺寸
@@ -296,7 +295,7 @@ public class Camera3Activity extends AppCompatActivity {
         Configuration configuration=getResources().getConfiguration();
         double targetRatio;
 
-        if (configuration.orientation==configuration.ORIENTATION_LANDSCAPE) {
+        if (configuration.orientation== Configuration.ORIENTATION_LANDSCAPE) {
             targetRatio = (double) width / height;
         }
         else {
@@ -616,10 +615,10 @@ public class Camera3Activity extends AppCompatActivity {
         if (checkSDCard()){
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 String folder = Environment.getExternalStorageDirectory() + "/DCIM/CAMERAV2/";
-                Cam2files = getImages(folder);  // 將此路徑裡的相關檔案取出
+                File[] cam2files = getImages(folder);  // 將此路徑裡的相關檔案取出
 
-                if ((Cam2files != null ? Cam2files.length : 0) != 0) {
-                    lastImage.setImageURI(Uri.fromFile(Cam2files[Cam2files.length-1]));
+                if ((cam2files != null ? cam2files.length : 0) != 0) {
+                    lastImage.setImageURI(Uri.fromFile(cam2files[cam2files.length-1]));
                     //lastImage.setRotation(270);
                     lastImage.setVisibility(View.VISIBLE);
                     Log.w(TAG,"顯示右下角.");
