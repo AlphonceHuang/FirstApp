@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Build;
@@ -14,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +30,7 @@ public class BattaryActivity extends AppCompatActivity {
     private int TIME = 5000;
     private boolean update=false;
     private Switch autoRef;
+    SharedPreferences mem_AutoRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class BattaryActivity extends AppCompatActivity {
 
         manager = (BatteryManager) getSystemService(BATTERY_SERVICE);
         readBattery();
+
+        mem_AutoRefresh = getSharedPreferences("BATTERY_AUTO_REFHRESH", MODE_PRIVATE);
 
         Button mRefresh = findViewById(R.id.BatteryMRefresh);
         mRefresh.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +57,8 @@ public class BattaryActivity extends AppCompatActivity {
                 AutoRefresh(b);
             }
         });
+        update = mem_AutoRefresh.getBoolean("BATTERY_AUTO_REFHRESH", true);
+        autoRef.setChecked(update);
 
         handler = new Handler();
         handler.postDelayed(runnable, TIME);
@@ -76,7 +81,9 @@ public class BattaryActivity extends AppCompatActivity {
         super.onPause();
         unregisterReceiver(mBattery);
 
-        readBattery();
+        // 停止udpate電池
+        handler.post(runnable);
+        handler.removeCallbacks(runnable);
     }
 
     private void readBattery(){
@@ -258,6 +265,10 @@ public class BattaryActivity extends AppCompatActivity {
 
     private void AutoRefresh(boolean enable){
         update = enable;
+        SharedPreferences.Editor editor = mem_AutoRefresh.edit(); //獲取編輯器
+        editor.putBoolean("BATTERY_AUTO_REFHRESH", update);
+        editor.apply();
+        editor.commit();    //提交
     }
 
     // 每間隔時間執行一次
@@ -265,8 +276,9 @@ public class BattaryActivity extends AppCompatActivity {
         @Override
         public void run() {
             try {
+                handler.postDelayed(this, TIME);    // 間隔時間
+
                 if (update) {
-                    handler.postDelayed(this, TIME);    // 間隔時間
                     readBattery();
                 }
             } catch (Exception e) {
