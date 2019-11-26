@@ -29,7 +29,6 @@ public class BattaryActivity extends AppCompatActivity {
     Handler handler;
     private int TIME = 5000;
     private boolean update=false;
-    private Switch autoRef;
     SharedPreferences mem_AutoRefresh;
 
     @Override
@@ -50,7 +49,7 @@ public class BattaryActivity extends AppCompatActivity {
             }
         });
 
-        autoRef = findViewById(R.id.BatteryMAuto);
+        Switch autoRef = findViewById(R.id.BatteryMAuto);
         autoRef.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -59,14 +58,15 @@ public class BattaryActivity extends AppCompatActivity {
         });
         update = mem_AutoRefresh.getBoolean("BATTERY_AUTO_REFHRESH", true);
         autoRef.setChecked(update);
-
-        handler = new Handler();
-        handler.postDelayed(runnable, TIME);
     }
 
     @Override
     protected void onResume(){
         super.onResume();
+
+        handler = new Handler();
+        handler.postDelayed(runnable, TIME);
+
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_BATTERY_CHANGED);
         filter.addAction(Intent.ACTION_BATTERY_LOW);
@@ -82,8 +82,14 @@ public class BattaryActivity extends AppCompatActivity {
         unregisterReceiver(mBattery);
 
         // 停止udpate電池
-        handler.post(runnable);
-        handler.removeCallbacks(runnable);
+        if (handler!=null) {
+            handler.removeCallbacks(runnable);
+        }
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
     }
 
     private void readBattery(){
