@@ -1,9 +1,14 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -25,7 +30,7 @@ import static com.example.myapplication.R.array.pop_item;
 import static com.example.myapplication.Util.showToastIns;
 
 public class ReportActivity extends AppCompatActivity {
-    private static final String TAG="Alan";
+    private static final String TAG = "Alan";
     private TextView report_result;
     private TextView report_suggest;
     private double BMI;
@@ -34,16 +39,17 @@ public class ReportActivity extends AppCompatActivity {
     private TextView input_weight;
     private TextView ChangeText;
 
-    final int font_text_10=1;
-    final int font_text_12=2;
-    final int font_text_14=3;
-    final int font_text_16=4;
-    final int font_text_18=5;
-    final int color_text_1=6;
-    final int color_text_2=7;
-    final int color_text_3=8;
+    final int font_text_10 = 1;
+    final int font_text_12 = 2;
+    final int font_text_14 = 3;
+    final int font_text_16 = 4;
+    final int font_text_18 = 5;
+    final int color_text_1 = 6;
+    final int color_text_2 = 7;
+    final int color_text_3 = 8;
 
-    final int float_menu_group=90;
+    final int float_menu_group = 90;
+    private static final int ACTIVITY_RECORD_AUDIO = 1009;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +60,7 @@ public class ReportActivity extends AppCompatActivity {
 
         initialView();
 
-        if (MainActivity.mHowGoP2==0)    // 由按下"看報告"跳轉而來，需顯示報告內容
+        if (MainActivity.mHowGoP2 == 0)    // 由按下"看報告"跳轉而來，需顯示報告內容
             showResult();
         registerForContextMenu(findViewById(R.id.report_layout));   // 註冊context menu 浮動選單
     }
@@ -62,103 +68,96 @@ public class ReportActivity extends AppCompatActivity {
     //========================================================================
     // 長按任何空白區域，跳出浮動選單
     //========================================================================
-    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo)
-    {
-        String[] a=getResources().getStringArray(pop_item);
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+        String[] a = getResources().getStringArray(pop_item);
 
         //參數1:群組id, 參數2:itemId, 參數3:item順序, 參數4:item名稱
-        for (int i=0; i<a.length; i++)
-            menu.add(float_menu_group, Menu.FIRST+i, Menu.NONE, a[i]);
+        for (int i = 0; i < a.length; i++)
+            menu.add(float_menu_group, Menu.FIRST + i, Menu.NONE, a[i]);
 
         super.onCreateContextMenu(menu, view, menuInfo);
     }
-    public boolean onContextItemSelected(MenuItem item)
-    {
-        String[] a=getResources().getStringArray(pop_item);
 
-        if(item.getGroupId() == float_menu_group){
+    public boolean onContextItemSelected(MenuItem item) {
+        String[] a = getResources().getStringArray(pop_item);
+
+        if (item.getGroupId() == float_menu_group) {
             /*
             showToastIns(getApplicationContext(),
                     item.getTitle(),
                     Toast.LENGTH_SHORT);*/
-            int index=item.getItemId();
+            int index = item.getItemId();
             //Log.w(TAG, "按下"+getString(R.string.item_text)+(index));
 
-            switch(index)
-            {
+            switch (index) {
                 case Menu.FIRST:    // 1
                     showToastIns(getApplicationContext(), a[0], Toast.LENGTH_SHORT,
-                            Gravity.CENTER,0,0);
+                            Gravity.CENTER, 0, 0);
                     break;
-                case Menu.FIRST+1:  // 2
+                case Menu.FIRST + 1:  // 2
                     showToastIns(getApplicationContext(), a[1], Toast.LENGTH_SHORT,
-                            Gravity.TOP,0,0);
+                            Gravity.TOP, 0, 0);
                     break;
-                case Menu.FIRST+2:  // 3
+                case Menu.FIRST + 2:  // 3
                     showToastIns(getApplicationContext(), a[2], Toast.LENGTH_SHORT,
-                            Gravity.BOTTOM,0,0);
+                            Gravity.BOTTOM, 0, 0);
                     break;
-                case Menu.FIRST+3:  // 4
+                case Menu.FIRST + 3:  // 4
                     showToastIns(getApplicationContext(), a[3], Toast.LENGTH_SHORT,
-                            Gravity.START,0,0);
+                            Gravity.START, 0, 0);
                     break;
-                case Menu.FIRST+4:  // 5
+                case Menu.FIRST + 4:  // 5
                     showToastIns(getApplicationContext(), a[4], Toast.LENGTH_SHORT,
-                            Gravity.END,0,0);
+                            Gravity.END, 0, 0);
                     break;
-                case Menu.FIRST+5:  // 6
+                case Menu.FIRST + 5:  // 6
                     showToastIns(getApplicationContext(), a[5], Toast.LENGTH_SHORT,
-                            Gravity.FILL_HORIZONTAL,0,0);
+                            Gravity.FILL_HORIZONTAL, 0, 0);
                     break;
-                case Menu.FIRST+6:  // 7
+                case Menu.FIRST + 6:  // 7
                     showToastIns(getApplicationContext(), a[6], Toast.LENGTH_SHORT,
-                            Gravity.TOP|Gravity.START,0,0);
+                            Gravity.TOP | Gravity.START, 0, 0);
                     break;
-                case Menu.FIRST+7:  // 8
+                case Menu.FIRST + 7:  // 8
                     Toast.makeText(getApplicationContext(), a[7], Toast.LENGTH_SHORT).show();
                     break;
-                case Menu.FIRST+8:  // 9
+                case Menu.FIRST + 8:  // 9
                     showToastIns(getApplicationContext(), a[8], Toast.LENGTH_SHORT,
-                            Gravity.NO_GRAVITY,0,0);
+                            Gravity.NO_GRAVITY, 0, 0);
                     break;
-                case Menu.FIRST+9:  // 10
-                    DisplayMetrics metrics=new DisplayMetrics();
+                case Menu.FIRST + 9:  // 10
+                    DisplayMetrics metrics = new DisplayMetrics();
                     getWindowManager().getDefaultDisplay().getMetrics(metrics);
                     //Log.w(TAG, "metrics.heightPixels="+metrics.heightPixels);
                     showToastIns(getApplicationContext(), a[9], Toast.LENGTH_SHORT,
-                            Gravity.BOTTOM,0, metrics.heightPixels/9); // 類似預設位置
+                            Gravity.BOTTOM, 0, metrics.heightPixels / 9); // 類似預設位置
                     break;
             }
         }
         return super.onContextItemSelected(item);
     }
 
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
         Log.w(TAG, "report on start");
     }
 
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         Log.w(TAG, "report on resume");
     }
 
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         Log.w(TAG, "report on pause");
     }
 
-    protected void onStop()
-    {
+    protected void onStop() {
         super.onStop();
         Log.w(TAG, "report on stop");
     }
 
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         super.onDestroy();
         Log.w(TAG, "report on destroy");
     }
@@ -197,7 +196,7 @@ public class ReportActivity extends AppCompatActivity {
         Log.w(TAG, Objects.requireNonNull(bundle.getString("KEY_BMI")));
         Log.w(TAG, Objects.requireNonNull(bundle.getString("KEY_RESULT")));
 
-        if (Integer.parseInt(Objects.requireNonNull(bundle.getString("KEY_RESULT")))==1) {
+        if (Integer.parseInt(Objects.requireNonNull(bundle.getString("KEY_RESULT"))) == 1) {
             DecimalFormat nf = new DecimalFormat("0.00");
 
             String showHeight = getText(R.string.length) + ":" + bundle.getString("KEY_HEIGHT") + getText(R.string.cm);
@@ -219,9 +218,8 @@ public class ReportActivity extends AppCompatActivity {
                 report_suggest.setText(R.string.suggest_good);
 
             checkResult = true;
-        }
-        else{
-            checkResult=false;
+        } else {
+            checkResult = false;
             Log.w(TAG, "輸入錯誤");
             report_result.setText(R.string.cal_fail);
         }
@@ -259,61 +257,67 @@ public class ReportActivity extends AppCompatActivity {
 
                 case R.id.report_nextpage:
                     Log.w(TAG, "Report的下一頁");
-                    Intent intent1 = new Intent(ReportActivity.this,VideoActivity.class);
-                    startActivity(intent1);
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                        Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission success.");
+                        Intent OptionIntent = new Intent(ReportActivity.this, VideoActivity.class);
+                        startActivity(OptionIntent);
+                    } else {
+                        Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission fail.");
+                        ActivityCompat.requestPermissions(ReportActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, ACTIVITY_RECORD_AUDIO);
+                    }
+                    //Intent intent1 = new Intent(ReportActivity.this,VideoActivity.class);
+                    //startActivity(intent1);
                     break;
             }
         }
     };
 
-/*
-    private void CloseMenuBundleIntent(){
-        // 用bundle的方式傳值
-        DecimalFormat nf = new DecimalFormat("0.00");
-        Bundle msg = new Bundle();
-        Intent intent = new Intent();
+    /*
+        private void CloseMenuBundleIntent(){
+            // 用bundle的方式傳值
+            DecimalFormat nf = new DecimalFormat("0.00");
+            Bundle msg = new Bundle();
+            Intent intent = new Intent();
 
-        if (checkResult==true)
-        {
-            msg.putString("LAST_DATA", nf.format(BMI));
-            intent.putExtras(msg);
-            setResult(RESULT_OK, intent);
+            if (checkResult==true)
+            {
+                msg.putString("LAST_DATA", nf.format(BMI));
+                intent.putExtras(msg);
+                setResult(RESULT_OK, intent);
+            }
+            else
+                setResult(RESULT_CANCELED, intent);
         }
-        else
-            setResult(RESULT_CANCELED, intent);
-    }
-*/
+    */
     // 顯示離開確認對話框
-    private void showExitDialog()
-    {
-        AlertDialog.Builder ShowInfo=new AlertDialog.Builder(ReportActivity.this);
+    private void showExitDialog() {
+        AlertDialog.Builder ShowInfo = new AlertDialog.Builder(ReportActivity.this);
 
         ShowInfo.setTitle(R.string.back);
         ShowInfo.setMessage(R.string.about_detail);
-        ShowInfo.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
+        ShowInfo.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
                 Log.w(TAG, "Dialog:按下確定");
                 CloseMenuEasyIntent();  // 將結果帶去另一個activity
             }
         });
-        ShowInfo.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
+        ShowInfo.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
                 Log.w(TAG, "Dialog:按下取消");
             }
         });
         ShowInfo.show();
     }
 
-    private void CloseMenuEasyIntent(){
+    private void CloseMenuEasyIntent() {
         // 簡單Intent方式回傳值
         DecimalFormat nf = new DecimalFormat("0.00");
         Intent intent = new Intent();
 
-        if (checkResult){   // 有值可回傳
+        if (checkResult) {   // 有值可回傳
             intent.putExtra("LAST_DATA", nf.format(BMI));
             setResult(RESULT_OK, intent);   // 因前面是用startActivityForResult，所以必須使用這個回傳result
-        }
-        else{
+        } else {
             setResult(RESULT_CANCELED, intent);
         }
         ReportActivity.this.finish();   // 回至上一個Activity
@@ -322,7 +326,7 @@ public class ReportActivity extends AppCompatActivity {
     //========================================================================
     // long press button event
     //========================================================================
-    private Button.OnLongClickListener BMIReportBtn1 = new Button.OnLongClickListener(){
+    private Button.OnLongClickListener BMIReportBtn1 = new Button.OnLongClickListener() {
 
         @Override
         public boolean onLongClick(View view) {
@@ -340,8 +344,7 @@ public class ReportActivity extends AppCompatActivity {
     // 增加右上角選單列
     //========================================================================
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         // 報告頁項目一   字體大小
         //               字體顏色
         // 報告頁項目二
@@ -388,8 +391,7 @@ public class ReportActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch(id)
-        {
+        switch (id) {
             case R.id.report_menu_item1:
             case R.id.report_menu_item2:
             case R.id.report_menu_item3:
@@ -456,11 +458,35 @@ public class ReportActivity extends AppCompatActivity {
     //========================================================================
     // 使用xml裡android:onClick實現動作
     //========================================================================
-    public void clickLargeTextSize(View view){
+    public void clickLargeTextSize(View view) {
         ChangeText.setTextSize(20 * 2);
     }
 
-    public void clickSmallTextSize(View view){
+    public void clickSmallTextSize(View view) {
         ChangeText.setTextSize(14 * 2);
+    }
+
+    //=======================================================================
+    // 要求系統權限回應
+    //=======================================================================
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, @NonNull int[] grantResults) {
+
+        //Log.w(TAG, "requestCode:" + requestCode + ",length" + permissions.length);
+
+        for (int i = 0, len = permissions.length; i < len; i++) {
+            //String permission = permissions[i];
+            //Log.w(TAG, "permis:" + permissions[i]);
+
+            if (requestCode == ACTIVITY_RECORD_AUDIO) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intentVideo = new Intent(ReportActivity.this, VideoActivity.class);
+                    startActivity(intentVideo);
+                } else {
+                    Log.w(TAG, "Audio Record Permission not granted.");
+                    showToastIns(getApplicationContext(), "沒有錄音權限", Toast.LENGTH_LONG);
+                }
+            }
+        }
     }
 }
