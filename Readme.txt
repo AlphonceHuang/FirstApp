@@ -1,23 +1,24 @@
-²Ä¤@¤äapp
+ç¬¬ä¸€æ”¯app
 
-1. BMI­pºâ
-2. ª¬ºA¦C³qª¾
-3. Snacker bar³qª¾
-4. §ó´«¹Ï¤ù
-5. Circle/ProgressBar¶i«×±øDialog
-6. ¿Ã¹õºI¹Ï
-7. BLE°»´ú¨Ã³s½u°emessage
-8. «È¨î¤ÆToast / Touch toast/ ¦UºØ¦ì¸mToast
-9. «È¨î¤ÆDialog
-10. ¶]°¨¿O
-11. ¦rÅé¤Á´«
-12. ªø¡Bµu«öevent
-13. intent±a¸ê®Æ¦Ü¤U­Óactivity
-14. ¤U©Ô¦¡¿ï³æ
-15. Option¿ï³æ
-16. ªø«öªÅ¥Õ³B¸õ¥X¿ï³æ
-17. ¦UºØ¬Û¾÷¨Ï¥Î (¹w³]¬Û¾÷ / CameraPreview / Camera2 / OpenCV Camera)
-18. ¨I®û¦¡½d¨Ò
-19. Video¼½©ñ¾¹
-20. ¹Ï¤ù¼½©ñ¡A¥i¥ÎOpenCV­pºâ©Ô´¶©Ô´µ±è«×
-21. ¹ï¸Ü®Ø
+1. BMIè¨ˆç®—
+2. ç‹€æ…‹åˆ—é€šçŸ¥
+3. Snacker baré€šçŸ¥
+4. æ›´æ›åœ–ç‰‡
+5. Circle/ProgressBaré€²åº¦æ¢Dialog
+6. è¢å¹•æˆªåœ–
+7. BLEåµæ¸¬ä¸¦é€£ç·šé€message
+8. å®¢åˆ¶åŒ–Toast / Touch toast/ å„ç¨®ä½ç½®Toast
+9. å®¢åˆ¶åŒ–Dialog
+10. è·‘é¦¬ç‡ˆ
+11. å­—é«”åˆ‡æ›
+12. é•·ã€çŸ­æŒ‰event
+13. intentå¸¶è³‡æ–™è‡³ä¸‹å€‹activity
+14. ä¸‹æ‹‰å¼é¸å–®
+15. Optioné¸å–®
+16. é•·æŒ‰ç©ºç™½è™•è·³å‡ºé¸å–®
+17. å„ç¨®ç›¸æ©Ÿä½¿ç”¨ (é è¨­ç›¸æ©Ÿ / CameraPreview / Camera2 / OpenCV Camera)
+18. æ²‰æµ¸å¼ç¯„ä¾‹
+19. Videoæ’­æ”¾å™¨
+20. åœ–ç‰‡æ’­æ”¾ï¼Œå¯ç”¨OpenCVè¨ˆç®—æ‹‰æ™®æ‹‰æ–¯æ¢¯åº¦
+21. å°è©±æ¡†
+22. é›»æ± è³‡è¨Š
