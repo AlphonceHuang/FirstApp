@@ -190,6 +190,10 @@
     <string name="AC">交流電</string>
     <string name="wireless">無線</string>
     <string name="not_connected">未接線</string>
+    <string name="current">電流</string>
+    <string name="refresh">刷新</string>
+    <string name="auto_refresh">自動刷新</string>
+    <string name="battery_manager">Battery Manager</string>
 
     <string name="cameras">各種相機實現</string>
     <string name="camera1_Title">使用手機預設相機</string>

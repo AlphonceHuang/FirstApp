@@ -6,9 +6,16 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.BatteryManager;
+import android.os.Build;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,11 +25,38 @@ import static com.example.myapplication.Util.showToastIns;
 public class BattaryActivity extends AppCompatActivity {
 
     private static final String TAG="Alan";
+    private BatteryManager manager;
+    Handler handler;
+    private int TIME = 5000;
+    private boolean update=false;
+    private Switch autoRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battary);
+
+        manager = (BatteryManager) getSystemService(BATTERY_SERVICE);
+        readBattery();
+
+        Button mRefresh = findViewById(R.id.BatteryMRefresh);
+        mRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                readBattery();
+            }
+        });
+
+        autoRef = findViewById(R.id.BatteryMAuto);
+        autoRef.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                AutoRefresh(b);
+            }
+        });
+
+        handler = new Handler();
+        handler.postDelayed(runnable, TIME);
     }
 
     @Override
@@ -41,6 +75,33 @@ public class BattaryActivity extends AppCompatActivity {
     protected void onPause(){
         super.onPause();
         unregisterReceiver(mBattery);
+
+        readBattery();
+    }
+
+    private void readBattery(){
+        String string;
+
+        // 當前電流
+        TextView mCurrent = findViewById(R.id.BatteryMCurrent);
+        int current = manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CURRENT_NOW);
+        string = getString(R.string.current)+":"+current/1000+"mA";
+        mCurrent.setText(string);
+        Log.w(TAG, "current:"+string);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Log.w(TAG, "status:"+manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_STATUS));
+        }
+        Log.w(TAG, "Remaining energy ="+manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CHARGE_COUNTER)+"mWh");
+        Log.w(TAG, "current avg:"+manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CURRENT_AVERAGE));
+        Log.w(TAG, "enegry counter:"+manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_ENERGY_COUNTER));
+
+        // 電量百分比
+        TextView mPercentage=findViewById(R.id.BatteryMPercent);
+        int percent=manager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+        string = getString(R.string.capacity)+":"+percent+"%";
+        mPercentage.setText(string);
+
     }
 
     private final BroadcastReceiver mBattery = new BroadcastReceiver() {
@@ -56,7 +117,7 @@ public class BattaryActivity extends AppCompatActivity {
 
                     TextView voltage = findViewById(R.id.BatteryVoltage);
                     int battery_voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1);
-                    string = getString(R.string.voltage) + ":" + battery_voltage / 1000 + "." + battery_voltage % 1000 + "V";
+                    string = getString(R.string.voltage) + ":"+battery_voltage+"mV";
                     voltage.setText(string);
 
                     TextView temperature = findViewById(R.id.BatteryTemperature);
@@ -105,7 +166,7 @@ public class BattaryActivity extends AppCompatActivity {
 
                     /*判斷健康狀態*/
                     TextView health = findViewById(R.id.BatteryHealth);
-                    int battery_health = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+                    int battery_health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, -1);
                     switch (battery_health) {
                         case BatteryManager.BATTERY_HEALTH_UNKNOWN:
                             string = getString(R.string.health) + ":" + getString(R.string.unknow);
@@ -137,6 +198,8 @@ public class BattaryActivity extends AppCompatActivity {
                             break;
                     }
                     health.setText(string);
+                    //int health_1 = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, -1);
+                    //Log.w(TAG, "battery_health="+battery_health+"health1="+health_1);
 
                     TextView capacity = findViewById(R.id.BatteryPercent);
                     int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
@@ -144,7 +207,7 @@ public class BattaryActivity extends AppCompatActivity {
                     int levelPercent = (int) (((float) level / scale) * 100);
                     string = getString(R.string.capacity) + ":" + levelPercent + "%";
                     capacity.setText(string);
-                    Log.w(TAG, "level:" + level + ",scale:" + scale);
+                    //Log.w(TAG, "level:" + level + ",scale:" + scale);
 
                     /*判斷電流來源*/
                     TextView pluged = findViewById(R.id.BatteryPlug);
@@ -192,4 +255,24 @@ public class BattaryActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void AutoRefresh(boolean enable){
+        update = enable;
+    }
+
+    // 每間隔時間執行一次
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                if (update) {
+                    handler.postDelayed(this, TIME);    // 間隔時間
+                    readBattery();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
 }
+
