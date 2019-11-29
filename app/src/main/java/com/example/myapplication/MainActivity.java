@@ -402,6 +402,9 @@ public class MainActivity extends AppCompatActivity{
         Button exe_Sensor = findViewById(R.id.sensorbutton);
         exe_Sensor.setOnClickListener(calcBMI);
 
+        Button exe_Battery = findViewById(R.id.batteryBtn);
+        exe_Battery.setOnClickListener(calcBMI);
+
         //------------------------------------------------
         // 監聽EditText的狀態
         //------------------------------------------------
@@ -972,6 +975,11 @@ public class MainActivity extends AppCompatActivity{
 
                 case R.id.sensorbutton:
                     myIntent = new Intent(MainActivity.this, SensorActivity.class);
+                    startActivity(myIntent);
+                    break;
+                    
+                case R.id.batteryBtn:
+                    myIntent = new Intent(MainActivity.this, BattaryActivity.class);
                     startActivity(myIntent);
                     break;
             }

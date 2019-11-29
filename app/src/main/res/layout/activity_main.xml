@@ -8,7 +8,6 @@
     android:background="#F8F1F180">
 
 
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/mainmenu_layout"
         android:layout_width="match_parent"
@@ -206,30 +205,24 @@
             android:id="@+id/imageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/DirectCon"
-            app:srcCompat="@drawable/delta" />
+            app:layout_constraintTop_toBottomOf="@+id/batteryBtn"
+            app:srcCompat="@drawable/delta"
+            tools:layout_editor_absoluteX="8dp" />
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/ble_btn" />
+            app:layout_constraintTop_toBottomOf="@+id/batteryBtn"
+            tools:layout_editor_absoluteX="170dp" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/ble_btn"
-            app:srcCompat="@drawable/delta_program" />
+            app:layout_constraintTop_toBottomOf="@+id/batteryBtn"
+            app:srcCompat="@drawable/delta_program"
+            tools:layout_editor_absoluteX="89dp" />
 
         <ImageView
             android:id="@+id/screencapImg"
@@ -248,8 +241,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminateDrawable="@drawable/progressbarstyle"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/DirectCon" />
+            app:layout_constraintTop_toBottomOf="@+id/batteryBtn"
+            tools:layout_editor_absoluteX="250dp" />
 
         <Spinner
             android:id="@+id/spinner"
@@ -408,6 +401,15 @@
             android:text="@string/sensors"
             app:layout_constraintStart_toEndOf="@+id/progress_hor"
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
+
+        <Button
+            android:id="@+id/batteryBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:text="@string/battery_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/DirectCon" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
