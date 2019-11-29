@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 public class ImmersiveS6Activity extends AppCompatActivity {
 
@@ -18,9 +19,9 @@ public class ImmersiveS6Activity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 21) {
             // 全透明status bar及Navi bar
             View decorView = getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-                    //| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    //| View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             decorView.setSystemUiVisibility(option);
             //getWindow().setNavigationBarColor(Color.TRANSPARENT);
             //getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -32,5 +33,13 @@ public class ImmersiveS6Activity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS); // 半透明status
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);   // 半透明Navi
+
+        TextView line1=findViewById(R.id.immersive6_text1);
+        String str=getString(R.string.firstLine)+"\n"+
+                "因為有SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN，所以第一行字會跟status bar重疊";
+        line1.setText(str);
+        TextView line2=findViewById(R.id.immersive6_text2);
+        str = "因為有SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION，所以最後一行字會跟navi bar重疊";
+        line2.setText(str);
     }
 }

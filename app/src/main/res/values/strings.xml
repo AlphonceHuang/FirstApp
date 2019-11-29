@@ -194,6 +194,7 @@
     <string name="refresh">刷新</string>
     <string name="auto_refresh">自動刷新</string>
     <string name="battery_manager">Battery Manager</string>
+    <string name="firstLine">這是第一行字，會不會遮到呢?</string>
 
     <string name="cameras">各種相機實現</string>
     <string name="camera1_Title">使用手機預設相機</string>
@@ -226,7 +227,7 @@
     <string name="sample5">範例五</string>
     <string name="sample6">範例六</string>
     <string name="sample7">範例七</string>
-    <string name="descrip1">未做任何處理</string>
+    <string name="descrip1">淡化status bar, navi bar</string>
     <string name="descrip2">隱藏status bar,action bar，滑動status bar退出隱藏</string>
     <string name="descrip3">隱藏action bar，全透明status bar</string>
     <string name="descrip4">隱藏所有bar，觸碰一下退出全屏</string>

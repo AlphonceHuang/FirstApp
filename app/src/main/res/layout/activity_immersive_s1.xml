@@ -12,4 +12,12 @@
         android:scaleType="centerCrop"
         android:src="@drawable/aquatic_beauty" />
 
+    <TextView
+        android:id="@+id/immersive1_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/firstLine"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
 </RelativeLayout>
