@@ -18,12 +18,12 @@ public class ImmersiveS6Activity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 21) {
             // 全透明status bar及Navi bar
             View decorView = getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+                    //| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    //| View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             decorView.setSystemUiVisibility(option);
-            getWindow().setNavigationBarColor(Color.TRANSPARENT);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
+            //getWindow().setNavigationBarColor(Color.TRANSPARENT);
+            //getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         // 隱藏action bar
         ActionBar actionBar = getSupportActionBar();

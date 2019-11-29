@@ -278,7 +278,7 @@
         <item>@drawable/earth</item>
         <item>@drawable/delta_office</item>
         <item>@drawable/projector</item>
-        <!--<item>@drawable/delta_program</item>-->
+        <item>@drawable/delta_program</item>
     </string-array>
 
     <string-array name="region1_title_list">
@@ -288,11 +288,11 @@
         <item>@string/sample4</item>
         <item>@string/sample5</item>
         <item>@string/sample6</item>
-        <!--<item>@string/sample7</item>-->
+        <item>@string/sample7</item>
     </string-array>
 
     <string-array name="region1_subtitle_list">
-        <!--<item>@string/descrip1</item>-->
+        <item>@string/descrip1</item>
         <item>@string/descrip2</item>
         <item>@string/descrip3</item>
         <item>@string/descrip4</item>

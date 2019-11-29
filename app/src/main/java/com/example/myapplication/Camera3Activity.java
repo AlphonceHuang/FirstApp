@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
@@ -92,6 +94,12 @@ public class Camera3Activity extends AppCompatActivity {
 
         setContentView(R.layout.activity_camera3);
         mTextureView = findViewById(R.id.textureView);
+        mTextureView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         mTextureView.setOnTouchListener(TouchEvent);
 
         // 按鈕
@@ -431,6 +439,7 @@ public class Camera3Activity extends AppCompatActivity {
         public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
             Log.w(TAG, "onCaptureCompleted");
             capture();
+            //UpdateImageView();
         }
 
     };
@@ -471,7 +480,28 @@ public class Camera3Activity extends AppCompatActivity {
         mImageReader.setOnImageAvailableListener(new ImageReader.OnImageAvailableListener() {
             @Override
             public void onImageAvailable(ImageReader reader) {
+                //final Image image = reader.acquireNextImage();
                 mCameraHandler.post(new imageSaver(reader.acquireNextImage()));
+                Log.w(TAG, "setupImageReader:onImageAvailable");
+                UpdateImageView();
+                //lastImage.setImageResource(R.drawable.delta);
+                //  lastImage.setVisibility(View.VISIBLE);
+/*
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                        byte[] bytes = new byte[buffer.remaining()];
+                        buffer.get(bytes);//由缓冲区存入字节数组
+                        final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        if (bitmap != null) {
+                            Log.w(TAG, "show");
+                            lastImage.setImageBitmap(bitmap);
+                        }
+
+                    }
+                });
+ */
             }
         }, mCameraHandler);
     }

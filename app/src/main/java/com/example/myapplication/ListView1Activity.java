@@ -76,33 +76,33 @@ public class ListView1Activity extends AppCompatActivity {
 
             switch(position){
                 case 0:
-                    intent = new Intent(ListView1Activity.this, ImmersiveS2Activity.class);
+                    intent = new Intent(ListView1Activity.this, ImmersiveS1Activity.class);
                     startActivity(intent);
                     break;
                 case 1:
-                    intent = new Intent(ListView1Activity.this, ImmersiveS3Activity.class);
+                    intent = new Intent(ListView1Activity.this, ImmersiveS2Activity.class);
                     startActivity(intent);
                     break;
                 case 2:
-                    intent = new Intent(ListView1Activity.this, ImmersiveS4Activity.class);
+                    intent = new Intent(ListView1Activity.this, ImmersiveS3Activity.class);
                     startActivity(intent);
                     break;
                 case 3:
-                    intent = new Intent(ListView1Activity.this, ImmersiveS5Activity.class);
+                    intent = new Intent(ListView1Activity.this, ImmersiveS4Activity.class);
                     startActivity(intent);
                     break;
                 case 4:
-                    intent = new Intent(ListView1Activity.this, ImmersiveS6Activity.class);
+                    intent = new Intent(ListView1Activity.this, ImmersiveS5Activity.class);
                     startActivity(intent);
                     break;
                 case 5:
+                    intent = new Intent(ListView1Activity.this, ImmersiveS6Activity.class);
+                    startActivity(intent);
+                    break;
+                case 6:
                     intent = new Intent(ListView1Activity.this, ImmersiveS7Activity.class);
                     startActivity(intent);
                     break;
-                //case 6:
-                //    intent = new Intent(ListView1Activity.this, ImmersiveS1Activity.class);
-                //    startActivity(intent);
-                //    break;
                 default:
                     break;
             }

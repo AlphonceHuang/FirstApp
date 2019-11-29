@@ -60,7 +60,7 @@ public class BLEActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayAdapter<String> deviceName;
 
-    private ArrayList<BluetoothDevice> mBluetoothDevices=new ArrayList<BluetoothDevice>();
+    private ArrayList<BluetoothDevice> mBluetoothDevices=new ArrayList<>();
     private BluetoothLeScanner mLEScanner;
 
     private Handler searchHandler;

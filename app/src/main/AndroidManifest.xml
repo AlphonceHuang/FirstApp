@@ -79,7 +79,6 @@
         <activity
             android:name=".SpeechToTextActivity"
             android:theme="@style/AppTheme_TransBar" />
-        <activity android:name=".ImmersiveS7Activity" />
         <activity android:name=".ImmersiveS6Activity" />
         <activity android:name=".ImmersiveS5Activity" />
         <activity android:name=".ImmersiveS4Activity" />
@@ -89,6 +88,10 @@
         <activity
             android:name=".OpenCVCamera1Activity"
             android:theme="@style/AppTheme_TransBar" />
+
+        <activity android:name=".ImmersiveS7Activity"
+            android:theme="@style/AppTheme_NoTitle"/>
+
         <activity
             android:name=".Tutorial1Activity"
             android:theme="@style/AppTheme_TransBar" />
