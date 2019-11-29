@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import static com.example.myapplication.Util.showToastIns;
 
@@ -58,6 +60,12 @@ public class BattaryActivity extends AppCompatActivity {
         });
         update = mem_AutoRefresh.getBoolean("BATTERY_AUTO_REFHRESH", true);
         autoRef.setChecked(update);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setLogo(R.mipmap.ic_action_battery);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
     }
 
     @Override

@@ -61,16 +61,24 @@
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
-        android:icon="@drawable/projector"
+        android:icon="@mipmap/ic_action_camera"
         android:label="@string/app_name"
         android:roundIcon="@drawable/projector"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BattaryActivity"></activity>
+
+        <activity android:name=".BattaryActivity"
+            android:label="@string/battery_info"/>
+
+        <activity android:name=".LocationActivity"
+            android:label="@string/location_text"/>
+
+
         <activity
             android:name=".SensorActivity"
+            android:label="@string/sensors"
             android:screenOrientation="portrait" />
-        <activity android:name=".LocationActivity" />
+
         <activity android:name=".FileManagerActivity" />
         <activity
             android:name=".SpeechToText3Activity"
@@ -138,6 +146,7 @@
         <activity
             android:name=".ReportActivity"
             android:screenOrientation="portrait"
+            android:label="@string/report"
             android:theme="@style/AppTheme.NoActionBar1" />
         <activity
             android:name=".MainActivity"

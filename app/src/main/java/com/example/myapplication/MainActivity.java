@@ -156,7 +156,6 @@ public class MainActivity extends AppCompatActivity{
             "android.net.conn.CONNECTIVITY_CHANGE";
     public final static String ACTION_MY_BROADCAST = "com.example.myapplication.MY_BROADCAST";
 
-
     //------------------------------------------------------------------------------------------
     // USB Broadcast Receiver
     //------------------------------------------------------------------------------------------
@@ -244,6 +243,11 @@ public class MainActivity extends AppCompatActivity{
         Log.w(TAG, "MainActivity: on Create");
 
         instance = this;    // 這裡的function可以被其他class調用
+
+        //ActionBar mActionBar = getActionBar(); //取得Activity的ActionBar
+        //assert mActionBar != null;
+        //mActionBar.setDisplayShowTitleEnabled(false); //false : 隱藏程式標題
+
 
         //------------------------------------------------------------------------------------------
         // 註冊context menu 浮動選單 (長按空白處出現的選單)

@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:background="#F8F1F180">
 
+
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/mainmenu_layout"
         android:layout_width="match_parent"
