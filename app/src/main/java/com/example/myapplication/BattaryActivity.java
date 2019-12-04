@@ -13,13 +13,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import static com.example.myapplication.Util.showToastIns;
 
@@ -61,11 +61,26 @@ public class BattaryActivity extends AppCompatActivity {
         update = mem_AutoRefresh.getBoolean("BATTERY_AUTO_REFHRESH", true);
         autoRef.setChecked(update);
 
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setLogo(R.mipmap.ic_action_battery);
-        actionBar.setDisplayUseLogoEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+        ActionBar mActionBar = getSupportActionBar();
+        if (mActionBar!=null) {
+            mActionBar.setDisplayOptions(
+                    ActionBar.DISPLAY_HOME_AS_UP | // 左箭頭
+                    ActionBar.DISPLAY_SHOW_TITLE  // 文字
+                    );
+            //mActionBar.setHomeButtonEnabled(true);
+            //mActionBar.setIcon(R.mipmap.ic_action_battery);
+            // 圖示
+            mActionBar.setLogo(R.mipmap.ic_action_battery);
+            mActionBar.setDisplayUseLogoEnabled(true);
+            mActionBar.setDisplayShowHomeEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
