@@ -66,19 +66,21 @@
         android:roundIcon="@drawable/projector"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".BattaryActivity"
-            android:label="@string/battery_info"/>
-
-        <activity android:name=".LocationActivity"
-            android:label="@string/location_text"/>
-
-
+        <activity android:name=".ListViewMenuActivity"
+            android:label="@string/listviewex"/>
+        <activity
+            android:name=".ListViewExampleActivity"
+            android:label="@string/listviewex" />
+        <activity
+            android:name=".BattaryActivity"
+            android:label="@string/battery_info" />
+        <activity
+            android:name=".LocationActivity"
+            android:label="@string/location_text" />
         <activity
             android:name=".SensorActivity"
             android:label="@string/sensors"
             android:screenOrientation="portrait" />
-
         <activity android:name=".FileManagerActivity" />
         <activity
             android:name=".SpeechToText3Activity"
@@ -96,10 +98,9 @@
         <activity
             android:name=".OpenCVCamera1Activity"
             android:theme="@style/AppTheme_TransBar" />
-
-        <activity android:name=".ImmersiveS7Activity"
-            android:theme="@style/AppTheme_NoTitle"/>
-
+        <activity
+            android:name=".ImmersiveS7Activity"
+            android:theme="@style/AppTheme_NoTitle" />
         <activity
             android:name=".Tutorial1Activity"
             android:theme="@style/AppTheme_TransBar" />
@@ -145,8 +146,8 @@
             android:theme="@style/AppTheme_NoTitle" />
         <activity
             android:name=".ReportActivity"
-            android:screenOrientation="portrait"
             android:label="@string/report"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar1" />
         <activity
             android:name=".MainActivity"
@@ -157,6 +158,10 @@
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <!--
+                <category android:name="android.intent.category.HOME"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                -->
             </intent-filter>
         </activity> <!-- 註冊自定義靜態廣播接收器 -->
         <receiver
@@ -164,7 +169,6 @@
             android:permission="true">
             <intent-filter>
                 <action android:name="com.example.myapplication.MY_BROADCAST" />
-
             </intent-filter>
         </receiver>
 

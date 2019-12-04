@@ -6,7 +6,6 @@
     android:pivotX="50%"
     android:pivotY="50%">
 
-
     <!--shape ring代表圓環，thickness厚度，-->
     <shape
 

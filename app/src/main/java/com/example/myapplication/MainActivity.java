@@ -244,6 +244,11 @@ public class MainActivity extends AppCompatActivity{
 
         instance = this;    // 這裡的function可以被其他class調用
 
+        if (savedInstanceState!=null){
+            mImageCounter = savedInstanceState.getInt("mImageCounter");
+        }
+        Log.w(TAG, "mImageCounter:"+mImageCounter);
+
         //ActionBar mActionBar = getActionBar(); //取得Activity的ActionBar
         //assert mActionBar != null;
         //mActionBar.setDisplayShowTitleEnabled(false); //false : 隱藏程式標題
@@ -278,6 +283,20 @@ public class MainActivity extends AppCompatActivity{
         clearInputData();
         ShowAnimation();
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        Log.w(TAG, "MainActivity:onSaveInstanceState:"+mImageCounter);
+        savedInstanceState.putInt("mImageCounter", mImageCounter);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mImageCounter = savedInstanceState.getInt("mImageCounter");
+        Log.w(TAG, "MainActivity:onRestoreInstanceState:"+mImageCounter);
+    }
+
 
     protected void onStart()
     {
@@ -405,6 +424,10 @@ public class MainActivity extends AppCompatActivity{
         Button exe_Battery = findViewById(R.id.batteryBtn);
         exe_Battery.setOnClickListener(calcBMI);
 
+        Button exe_ListView = findViewById(R.id.listviewB);
+        exe_ListView.setOnClickListener(calcBMI);
+        exe_ListView.setSelected(true);
+
         //------------------------------------------------
         // 監聽EditText的狀態
         //------------------------------------------------
@@ -418,6 +441,7 @@ public class MainActivity extends AppCompatActivity{
         nAdapter = ArrayAdapter.createFromResource(
                 //this, R.array.lunch, android.R.layout.simple_spinner_item );
                 this, R.array.lunch, R.layout.myspinner_layout );   //使用layout來客制化spinner布局
+
         //加入這個選項之間比較寬鬆
         //nAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         nAdapter.setDropDownViewResource(R.layout.myspinner_layout);
@@ -815,6 +839,7 @@ public class MainActivity extends AppCompatActivity{
                             break;
                     }
                     mImageCounter++;
+                    Log.w(TAG, "mImageCounter:"+mImageCounter);
                     break;
 
                 case R.id.ble_btn:
@@ -980,6 +1005,11 @@ public class MainActivity extends AppCompatActivity{
                     
                 case R.id.batteryBtn:
                     myIntent = new Intent(MainActivity.this, BattaryActivity.class);
+                    startActivity(myIntent);
+                    break;
+
+                case R.id.listviewB:
+                    myIntent = new Intent(MainActivity.this, ListViewMenuActivity.class);
                     startActivity(myIntent);
                     break;
             }
@@ -1177,12 +1207,13 @@ public class MainActivity extends AppCompatActivity{
         PDialog.setMessage("這是轉圈進度條");
         PDialog.setIndeterminate(true); // 一直轉圈
         PDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // 沒寫也是spinning
+        PDialog.setCancelable(false);   // 按別地方無法被取消
         PDialog.show();
 
         new Thread(){
             public void run(){
                 try{
-                    sleep(3000);
+                    sleep(10000);   // 持續時間
                 }
                 catch(Exception e){
                     e.printStackTrace();
@@ -1427,7 +1458,7 @@ public class MainActivity extends AppCompatActivity{
                 //.setMessage("這是計算BMI程式")
                 //.setTitle(R.string.about_app)   // 用string方式實現多國語言
                 //.setMessage(R.string.about_detail)
-                //.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener()  // 靠右，紅字
+                .setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener()  // 靠右，紅字
                 //.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener()   // 靠左，紅字
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()    // 靠右，紅字
                 {
@@ -1435,7 +1466,9 @@ public class MainActivity extends AppCompatActivity{
                         // empty
                     }
                 }).show();
-                */
+
+
+ */
 
         // 分散寫完
         Builder mmBuilder = new Builder(this);
@@ -1477,7 +1510,10 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(DialogInterface dialog, int which){
                 Log.w(TAG, "Dialog: Press Cancel");
             }
+
         });
+
+
         ShowInfo.show();
     }
 

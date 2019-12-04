@@ -196,6 +196,14 @@
     <string name="battery_manager">Battery Manager</string>
     <string name="firstLine">這是第一行字，會不會遮到呢?</string>
 
+    <string name="selectAll">全選</string>
+    <string name="clearAll">全不選</string>
+    <string name="listviewex">ListView範例</string>
+    <string name="singleLine">單行</string>
+    <string name="multiLine">雙行</string>
+    <string name="singleChoose">單選</string>
+    <string name="multiChoose">複選</string>
+
     <string name="cameras">各種相機實現</string>
     <string name="camera1_Title">使用手機預設相機</string>
     <string name="camera2_Title">使用CameraPreview</string>
@@ -300,6 +308,48 @@
         <item>@string/descrip5</item>
         <item>@string/descrip6</item>
         <item>@string/descrip7</item>
+    </string-array>
+
+    <string-array name="array_Places">
+        <item>"台北市"</item>
+        <item>"新北市"</item>
+        <item>"台南市"</item>
+        <item>"高雄市"</item>
+        <item>"苗栗縣"</item>
+        <item>"彰化縣"</item>
+        <item>"宜蘭縣"</item>
+        <item>"新竹縣"</item>
+        <item>"新竹市"</item>
+        <item>"嘉義縣"</item>
+        <item>"台中縣"</item>
+        <item>"桃園市"</item>
+        <item>"雲林縣"</item>
+    </string-array>
+
+    <string-array name="array_Food">
+        <item>"大餅包小餅"</item>
+        <item>"蚵仔煎"</item>
+        <item>"東山鴨頭"</item>
+        <item>"臭豆腐"</item>
+        <item>"潤餅"</item>
+        <item>"豆花"</item>
+        <item>"青蛙下蛋"</item>
+        <item>"豬血糕"</item>
+        <item>"大腸包小腸"</item>
+        <item>"鹹水雞"</item>
+        <item>"烤香腸"</item>
+        <item>"車輪餅"</item>
+        <item>"珍珠奶茶"</item>
+    </string-array>
+
+    <string-array name="listViewOneLineMenu">
+        <item>simple_list_item_1</item>
+        <item>simple_list_item_2</item>
+        <item>simple_list_item_activated_1</item>
+        <item>simple_list_item_activated_2</item>
+        <item>simple_list_item_checked</item>
+        <item>simple_list_item_multiple_choice</item>
+        <item>simple_list_item_single_choice</item>
     </string-array>
 
 

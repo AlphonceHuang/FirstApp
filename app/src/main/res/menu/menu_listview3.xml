@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/selectAllItem"
+        android:checkable="false"
+        android:title="@string/selectAll"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/clearAllItem"
+        android:checkable="false"
+        android:title="@string/clearAll"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/executeItem"
+        android:checkable="false"
+        android:title="@android:string/ok"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/multiChoiceItem"
+        android:checkable="true"
+        android:title="@string/multiChoose"
+        android:visible="true"
+        app:showAsAction="never" />
+</menu>
