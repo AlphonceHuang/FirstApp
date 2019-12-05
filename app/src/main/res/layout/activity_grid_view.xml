@@ -6,11 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".GridViewActivity">
 
-    <GridView   android:id="@+id/grid"
+    <GridView
+        android:id="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F2F79B"
+        android:listSelector="#B388FF"
         android:columnWidth="120dp"
+        android:drawSelectorOnTop="false"
         android:gravity="center"
+
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth" />
 
