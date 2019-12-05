@@ -342,6 +342,22 @@
         <item>"珍珠奶茶"</item>
     </string-array>
 
+    <string-array name="array_icon">
+        <item>@drawable/delta_program</item>
+        <item>@drawable/home</item>
+        <item>@drawable/delta</item>
+        <item>@drawable/earth</item>
+        <item>@drawable/delta_office</item>
+        <item>@drawable/projector</item>
+        <item>@drawable/delta_program</item>
+        <item>@drawable/home</item>
+        <item>@drawable/delta</item>
+        <item>@drawable/earth</item>
+        <item>@drawable/delta_office</item>
+        <item>@drawable/projector</item>
+        <item>@drawable/play</item>
+    </string-array>
+
     <string-array name="listViewOneLineMenu">
         <item>simple_list_item_1</item>
         <item>simple_list_item_2</item>
@@ -350,6 +366,15 @@
         <item>simple_list_item_checked</item>
         <item>simple_list_item_multiple_choice</item>
         <item>simple_list_item_single_choice</item>
+
+        <item>simple_selectable_list_item</item>
+        <item>simple_expandable_list_item_1</item>
+        <item>simple_expandable_list_item_2</item>
+        <item>test_list_item</item>
+        <item>two_line_list_item</item>
+        <item>activity_list_item</item>
+
+
     </string-array>
 
 
