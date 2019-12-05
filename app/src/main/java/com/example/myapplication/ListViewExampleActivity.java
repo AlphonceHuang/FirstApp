@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.res.TypedArray;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -253,13 +254,29 @@ public class ListViewExampleActivity extends AppCompatActivity {
         }
         //==============================================================================
         // android.R.layout.activity_list_item
+        // 因為有兩個物件，adapter方式跟two line的方式相同
         // ==============================================================================
         else if (Objects.equals(style, "activity_list_item")){
-            // 不知怎麼把圖片放進去
-            String[] listStrings=getResources().getStringArray(R.array.array_Places);
-            ArrayAdapter<String> ListAdapter=new ArrayAdapter<>(this, android.R.layout.activity_list_item,
-                    android.R.id.text1,listStrings);
-            listView.setAdapter(ListAdapter);
+            ArrayList<HashMap<String,Object>> listA = new ArrayList<>();
+            int length = getResources().getStringArray(R.array.array_Places).length;
+            TypedArray regionIconList = getResources().obtainTypedArray(R.array.array_icon);
+
+            //把資料加入ArrayList中
+            for(int i=0; i<length; i++){
+                HashMap<String,Object> item = new HashMap<>();
+                item.put( "icon", regionIconList.getResourceId(i, 0));
+                item.put( "place",getResources().getStringArray(R.array.array_Places)[i]);
+                listA.add( item );
+            }
+            //新增SimpleAdapter
+            SimpleAdapter adapter;
+            adapter = new SimpleAdapter(
+                    this,
+                    listA,
+                    android.R.layout.activity_list_item,
+                    new String[]{"icon", "place"},
+                    new int[]{android.R.id.icon, android.R.id.text1});
+            listView.setAdapter( adapter );
         }
         //==============================================================================
         // android.R.layout.simple_list_item_1
