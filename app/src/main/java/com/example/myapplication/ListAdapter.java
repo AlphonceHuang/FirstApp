@@ -54,9 +54,9 @@ public class ListAdapter extends BaseAdapter
         TextView txtView = v.findViewById(R.id.txtView);
         TextView txtView1 = v.findViewById(R.id.txtView1);
 
-        imgView.setImageResource(Integer.valueOf(Objects.requireNonNull(mItemList.get(position).get("ITEM_ICON")).toString()));
-        txtView.setText(Objects.requireNonNull(mItemList.get(position).get("ITEM_TITLE")).toString());
-        txtView1.setText(Objects.requireNonNull(mItemList.get(position).get("ITEM_SUBTITME")).toString());
+        imgView.setImageResource(Integer.valueOf(Objects.requireNonNull(mItemList.get(position).get("Item icon")).toString()));
+        txtView.setText(Objects.requireNonNull(mItemList.get(position).get("Item title")).toString());
+        txtView1.setText(Objects.requireNonNull(mItemList.get(position).get("Item title1")).toString());
 
         // 設定這個才會有跑馬燈效果
         txtView.setSelected(true);
