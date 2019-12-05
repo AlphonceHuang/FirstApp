@@ -1718,6 +1718,11 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(OptionIntent);
                 break;
 
+            case R.id.GridViewItem:
+                OptionIntent = new Intent(MainActivity.this, GridViewActivity.class);
+                startActivity(OptionIntent);
+                break;
+
             default:
                 //m_ret=true;
                 break;

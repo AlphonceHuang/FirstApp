@@ -66,5 +66,8 @@
     <item
         android:id="@+id/BatteryItem"
         android:title="@string/battery_info" />
+    <item
+        android:id="@+id/GridViewItem"
+        android:title="@string/gridview"/>
 
 </menu>
