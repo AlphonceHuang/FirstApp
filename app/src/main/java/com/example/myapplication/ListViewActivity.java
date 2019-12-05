@@ -41,11 +41,11 @@ public class ListViewActivity extends AppCompatActivity {
 
         // icon由res/value/string裡面取出
 
-        //TypedArray regionIconList = getResources().obtainTypedArray(R.array.region_icon_list);
-        //TypedArray regionTitleList = getResources().obtainTypedArray(R.array.region_title_list);
-        //TypedArray regionSubTitleList = getResources().obtainTypedArray(R.array.region_subtitle_list);
         TypedArray regionIconList = getResources().obtainTypedArray(R.array.region_icon_list);
-        String[] regionTitleList = getResources().getStringArray(R.array.region_title_list);
+        TypedArray regionTitleList = getResources().obtainTypedArray(R.array.region_title_list);
+        TypedArray regionSubTitleList = getResources().obtainTypedArray(R.array.region_subtitle_list);
+        //TypedArray regionIconList = getResources().obtainTypedArray(R.array.region_icon_list);
+        //String[] regionTitleList = getResources().getStringArray(R.array.region_title_list);
         //String[] regionSubTitleList = getResources().getStringArray(R.array.region_subtitle_list);
 
 
@@ -54,7 +54,7 @@ public class ListViewActivity extends AppCompatActivity {
 
         // 將圖片及文字放入item中
         //for (int i = 0; i < regionTitleList.length(); i++)
-        for (int i = 0; i < regionTitleList.length; i++)
+        for (int i = 0; i < regionTitleList.length(); i++)
         {
             Map<String, Object> item = new HashMap<>();
 
@@ -62,11 +62,11 @@ public class ListViewActivity extends AppCompatActivity {
             //item.put(ITEM_TITLE, regionList[i]);
 
             // 用res/values/string.xml裡的string-array來填入字串，如要多國語言，建議用這種
-            //item.put(ITEM_TITLE, getString(regionTitleList.getResourceId(i, 0)));
-            //item.put(ITEM_TITLE1, getString(regionSubTitleList.getResourceId(i, 0)));
+            item.put(ITEM_TITLE, getString(regionTitleList.getResourceId(i, 0)));
+            item.put(ITEM_TITLE1, getString(regionSubTitleList.getResourceId(i, 0)));
             item.put(ITEM_ICON, regionIconList.getResourceId(i, 0));
-            item.put(ITEM_TITLE, getResources().getStringArray(R.array.region_title_list)[i]);
-            item.put(ITEM_TITLE1, getResources().getStringArray(R.array.region_subtitle_list)[i]);
+            //item.put(ITEM_TITLE, getResources().getStringArray(R.array.region_title_list)[i]);
+            //item.put(ITEM_TITLE1, getResources().getStringArray(R.array.region_subtitle_list)[i]);
             //item.put(ITEM_ICON, getResources().getStringArray(R.array.region_icon_list)[i]);
 
             itemList.add(item);

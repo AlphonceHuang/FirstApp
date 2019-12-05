@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.SimpleExpandableListAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -234,6 +236,7 @@ public class ListViewExampleActivity extends AppCompatActivity {
         // android.R.layout.simple_expandable_list_item_1
         // ==============================================================================
         else if (Objects.equals(style, "simple_expandable_list_item_1")){
+
             ArrayAdapter<String> ListAdapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_expandable_list_item_1);
             for (String s : getResources().getStringArray(R.array.array_Places)) {
@@ -277,6 +280,107 @@ public class ListViewExampleActivity extends AppCompatActivity {
                     new String[]{"icon", "place"},
                     new int[]{android.R.id.icon, android.R.id.text1});
             listView.setAdapter( adapter );
+            /* android.R.layout.activity_list_item.xml
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="1dip"
+                android:paddingBottom="1dip"
+                android:paddingStart="8dip"
+                android:paddingEnd="8dip">
+
+                <ImageView android:id="@+id/icon"
+                    android:layout_width="24dip"
+                    android:layout_height="24dip"/>
+
+                <TextView android:id="@android:id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="?android:attr/listPreferredItemPaddingStart" />
+            </LinearLayout>
+             */
+        }
+        //==============================================================================
+        // android.R.layout.preference_category
+        // ==============================================================================
+        else if (Objects.equals(style, "preference_category")){
+            ArrayAdapter<String> ListAdapter = new ArrayAdapter<>(this,
+                    android.R.layout.preference_category);
+            for (String s : getResources().getStringArray(R.array.array_Places)) {
+                ListAdapter.add(s);
+            }
+            listView.setAdapter(ListAdapter);
+        }
+        //==============================================================================
+        // android.R.layout.select_dialog_item
+        // ==============================================================================
+        else if (Objects.equals(style, "select_dialog_item")){
+            ArrayAdapter<String> ListAdapter = new ArrayAdapter<>(this,
+                    android.R.layout.select_dialog_item);
+            for (String s : getResources().getStringArray(R.array.array_Places)) {
+                ListAdapter.add(s);
+            }
+            listView.setAdapter(ListAdapter);
+        }
+        //==============================================================================
+        // android.R.layout.select_dialog_multichoice
+        // ==============================================================================
+        else if (Objects.equals(style, "select_dialog_multichoice")){
+            ArrayAdapter<String> ListAdapter = new ArrayAdapter<>(this,
+                    android.R.layout.select_dialog_multichoice);
+            for (String s : getResources().getStringArray(R.array.array_Places)) {
+                ListAdapter.add(s);
+            }
+            listView.setAdapter(ListAdapter);
+        }
+        //==============================================================================
+        // android.R.layout.select_dialog_singlechoice
+        // ==============================================================================
+        else if (Objects.equals(style, "select_dialog_singlechoice")){
+            ArrayAdapter<String> ListAdapter = new ArrayAdapter<>(this,
+                    android.R.layout.select_dialog_singlechoice);
+            for (String s : getResources().getStringArray(R.array.array_Places)) {
+                ListAdapter.add(s);
+            }
+            listView.setAdapter(ListAdapter);
+        }
+        //==============================================================================
+        // android.R.layout.simple_dropdown_item_1line
+        // ==============================================================================
+        else if (Objects.equals(style, "simple_dropdown_item_1line")){
+            // 單行顯示，跑馬燈要怎麼開始跑??
+            ArrayAdapter<String> ListAdapter = new ArrayAdapter<>(this,
+                    android.R.layout.simple_dropdown_item_1line);
+            for (String s : getResources().getStringArray(R.array.array_Places)) {
+                ListAdapter.add(s);
+            }
+            listView.setAdapter(ListAdapter);
+        }
+        //==============================================================================
+        // R.layout.list_view_item
+        // ==============================================================================
+        else if (Objects.equals(style, "list_view_item")){
+            ArrayList<HashMap<String,Object>> listA = new ArrayList<>();
+            TypedArray regionIconList = getResources().obtainTypedArray(R.array.array_icon);
+
+            //把資料加入ArrayList中
+            for(int i=0; i<getResources().getStringArray(R.array.array_Places).length; i++){
+                HashMap<String,Object> item = new HashMap<>();
+                item.put( "icon", regionIconList.getResourceId(i, 0));
+                item.put( "title",getResources().getStringArray(R.array.array_Places)[i]);
+                item.put( "subtitle",getResources().getStringArray(R.array.array_Food)[i]);
+                listA.add( item );
+            }
+            //新增SimpleAdapter
+            SimpleAdapter adapter = new SimpleAdapter(
+                    this,
+                    listA,
+                    R.layout.list_view_item,
+                    new String[]{"icon", "title", "subtitle"},
+                    new int[]{R.id.imgView, R.id.txtView, R.id.txtView1});
+            listView.setAdapter( adapter );
         }
         //==============================================================================
         // android.R.layout.simple_list_item_1
@@ -295,6 +399,7 @@ public class ListViewExampleActivity extends AppCompatActivity {
             // 短按動作
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.w(TAG, "按了:"+i);
                 if (listView.isItemChecked(i)) {
                     showToastIns(getApplicationContext(), "你點選了:" +
                             adapterView.getItemAtPosition(i).toString(), Toast.LENGTH_SHORT);

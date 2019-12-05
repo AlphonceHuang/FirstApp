@@ -455,7 +455,8 @@ public class MainActivity extends AppCompatActivity{
         //------------------------------------------------
         // TextView
         TextView runningText = findViewById(R.id.runningText);
-        runningText.setSelected(true);
+        //runningText.setSelected(true);
+        runningText.requestFocus();
         //------------------------------------------------
     }
 

@@ -324,6 +324,7 @@
         <item>"台中縣"</item>
         <item>"桃園市"</item>
         <item>"雲林縣"</item>
+        <item>@string/CustomeDialog</item>
     </string-array>
 
     <string-array name="array_Food">
@@ -340,6 +341,7 @@
         <item>"烤香腸"</item>
         <item>"車輪餅"</item>
         <item>"珍珠奶茶"</item>
+        <item>@string/runningText</item>
     </string-array>
 
     <string-array name="array_icon">
@@ -356,6 +358,7 @@
         <item>@drawable/delta_office</item>
         <item>@drawable/projector</item>
         <item>@drawable/play</item>
+        <item>@drawable/stop</item>
     </string-array>
 
     <string-array name="listViewOneLineMenu">
@@ -373,7 +376,12 @@
         <item>test_list_item</item>
         <item>two_line_list_item</item>
         <item>activity_list_item</item>
-
+        <item>preference_category</item>
+        <item>select_dialog_item</item>
+        <item>select_dialog_multichoice</item>
+        <item>select_dialog_singlechoice</item>
+        <item>simple_dropdown_item_1line</item>
+        <item>list_view_item</item>
 
     </string-array>
 
