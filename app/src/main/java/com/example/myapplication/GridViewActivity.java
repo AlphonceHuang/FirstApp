@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -27,6 +29,7 @@ public class GridViewActivity extends AppCompatActivity {
     private GridView gView;
     private int gridview_style=0;
     private TypedArray regionIconList;
+    private boolean multiChoice=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,14 @@ public class GridViewActivity extends AppCompatActivity {
 
         gView=findViewById(R.id.grid);
         gView.setOnItemClickListener(gridViewOnItemClickListener);
-        //gView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        Log.w(TAG, "onCreate: multiChoice="+multiChoice);
+
+        if (multiChoice) {    // 有複選
+            gView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        } else { // 單選
+            gView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        }
 
         switch(gridview_style){
             case 1:
@@ -125,4 +135,38 @@ public class GridViewActivity extends AppCompatActivity {
             }
         }
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_listview3, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.multiChoiceItem) {
+            multiChoice = !item.isChecked();
+            item.setChecked(multiChoice);
+            if (multiChoice) {    // 有複選
+                gView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+            } else { // 單選
+                gView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            }
+        }
+
+        Log.w(TAG, "onOptionsItemSelected: multiChoice="+multiChoice);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.selectAllItem).setVisible(false);
+        menu.findItem(R.id.clearAllItem).setVisible(false);
+        menu.findItem(R.id.executeItem).setVisible(false);
+        menu.findItem(R.id.multiChoiceItem).setChecked(multiChoice);
+        return true;
+    }
 }

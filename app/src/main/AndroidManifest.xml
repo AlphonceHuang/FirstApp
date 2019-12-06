@@ -68,7 +68,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".GridViewActivity"
-            android:theme="@style/AppTheme_NoTitle" />
+            android:label="@string/gridview" />
 
         <activity
             android:name=".ListViewMenuActivity"
