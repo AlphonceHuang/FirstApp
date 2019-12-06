@@ -68,6 +68,15 @@
         android:title="@string/battery_info" />
     <item
         android:id="@+id/GridViewItem"
-        android:title="@string/gridview"/>
+        android:title="@string/gridview">
+        <menu>
+            <item
+                android:id="@+id/GridView1Item"
+                android:title="@string/gridview"/>
+            <item
+                android:id="@+id/GridView2Item"
+                android:title="@string/gridview1"/>
+        </menu>
+    </item>
 
 </menu>

@@ -364,6 +364,9 @@ public class ListViewExampleActivity extends AppCompatActivity {
         else if (Objects.equals(style, "list_view_item")){
             ArrayList<HashMap<String,Object>> listA = new ArrayList<>();
             TypedArray regionIconList = getResources().obtainTypedArray(R.array.array_icon);
+            //TypedArray regionPlaceList = getResources().obtainTypedArray(R.array.array_Places);
+            //TypedArray regionFoodList = getResources().obtainTypedArray(R.array.array_Food);
+            //Log.w(TAG, "size="+regionPlaceList.length());
 
             //把資料加入ArrayList中
             for(int i=0; i<getResources().getStringArray(R.array.array_Places).length; i++){
@@ -380,6 +383,7 @@ public class ListViewExampleActivity extends AppCompatActivity {
                     R.layout.list_view_item,
                     new String[]{"icon", "title", "subtitle"},
                     new int[]{R.id.imgView, R.id.txtView, R.id.txtView1});
+            //ListAdapter adapter = new ListAdapter(ListViewExampleActivity.this, itemList);
             listView.setAdapter( adapter );
         }
         //==============================================================================
@@ -399,7 +403,7 @@ public class ListViewExampleActivity extends AppCompatActivity {
             // 短按動作
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.w(TAG, "按了:"+i);
+                //Log.w(TAG, "按了:"+i);
                 if (listView.isItemChecked(i)) {
                     showToastIns(getApplicationContext(), "你點選了:" +
                             adapterView.getItemAtPosition(i).toString(), Toast.LENGTH_SHORT);

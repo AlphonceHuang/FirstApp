@@ -1572,7 +1572,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        //boolean m_ret=false;
+        Bundle OptionBundle;
         Intent OptionIntent;
 
         switch(id)
@@ -1718,11 +1718,25 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(OptionIntent);
                 break;
 
-            case R.id.GridViewItem:
-                OptionIntent = new Intent(MainActivity.this, GridViewActivity.class);
+            case R.id.GridView1Item:
+                OptionBundle = new Bundle();
+                OptionBundle.putString("GRIDVIEW_STYLE", "1");
+
+                OptionIntent = new Intent();
+                OptionIntent.setClass(MainActivity.this, GridViewActivity.class);
+                OptionIntent.putExtras(OptionBundle);
                 startActivity(OptionIntent);
                 break;
 
+            case R.id.GridView2Item:
+                OptionBundle = new Bundle();
+                OptionBundle.putString("GRIDVIEW_STYLE", "2");
+
+                OptionIntent = new Intent();
+                OptionIntent.setClass(MainActivity.this, GridViewActivity.class);
+                OptionIntent.putExtras(OptionBundle);
+                startActivity(OptionIntent);
+                break;
             default:
                 //m_ret=true;
                 break;

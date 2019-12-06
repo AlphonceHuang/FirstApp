@@ -16,6 +16,7 @@ public class ListAdapter extends BaseAdapter
 {
     private LayoutInflater mLayInf;
     private List<Map<String, Object>> mItemList;
+
     ListAdapter(Context context, List<Map<String, Object>> itemList)
     {
         mLayInf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -48,20 +49,22 @@ public class ListAdapter extends BaseAdapter
     public View getView(int position, View convertView, ViewGroup parent)
     {
         //設定與回傳 convertView 作為顯示在這個 position 位置的 Item 的 View。
-        View v = mLayInf.inflate(R.layout.list_view_item, parent, false);
+        if (convertView==null){
+            convertView = mLayInf.inflate(R.layout.list_view_item, parent, false);
+        }
 
-        ImageView imgView = v.findViewById(R.id.imgView);
-        TextView txtView = v.findViewById(R.id.txtView);
-        TextView txtView1 = v.findViewById(R.id.txtView1);
+        ImageView imgView = convertView.findViewById(R.id.imgView);
+        TextView titleText = convertView.findViewById(R.id.txtView);
+        TextView subTitleText = convertView.findViewById(R.id.txtView1);
 
         imgView.setImageResource(Integer.valueOf(Objects.requireNonNull(mItemList.get(position).get("ITEM_ICON")).toString()));
-        txtView.setText(Objects.requireNonNull(mItemList.get(position).get("ITEM_TITLE")).toString());
-        txtView1.setText(Objects.requireNonNull(mItemList.get(position).get("ITEM_SUBTITME")).toString());
+        titleText.setText(Objects.requireNonNull(mItemList.get(position).get("ITEM_TITLE")).toString());
+        subTitleText.setText(Objects.requireNonNull(mItemList.get(position).get("ITEM_SUBTITME")).toString());
 
         // 設定這個才會有跑馬燈效果
-        txtView.setSelected(true);
-        txtView1.setSelected(true);
+        titleText.setSelected(true);
+        subTitleText.setSelected(true);
 
-        return v;
+        return convertView;
     }
 }

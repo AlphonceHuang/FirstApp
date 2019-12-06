@@ -370,7 +370,7 @@
 
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/CustomeDialog"
+            android:text="@string/runningText"
             android:textColor="#041A9E"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

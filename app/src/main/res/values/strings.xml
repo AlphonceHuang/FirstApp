@@ -106,7 +106,7 @@
     <string name="Music">音樂</string>
     <string name="Video">影片</string>
     <string name="CustomeDialog">這是一個客制化的Dialog，裡面的佈局是靠progress_bar_dialog.xml來形成的哦~</string>
-    <string name="runningText">這個是跑馬燈的demo，需要一直轉圈圈哦~~</string>
+    <string name="runningText">這個是跑馬燈的demo，需要一直轉圈圈哦~~記得要設定正確才會開始動作哦~~</string>
     <string name="take_picture">拍照</string>
     <string name="camera1">舊的相機</string>
     <string name="camera2">新的相機 Android 5</string>
@@ -205,6 +205,10 @@
     <string name="multiChoose">複選</string>
 
     <string name="gridview">GridView</string>
+    <string name="gridview1">GridView Customer</string>
+
+
+
 
     <string name="cameras">各種相機實現</string>
     <string name="camera1_Title">使用手機預設相機</string>
@@ -312,39 +316,71 @@
         <item>@string/descrip7</item>
     </string-array>
 
+    <string name="City1">台北市"</string>
+    <string name="City2">新北市"</string>
+    <string name="City3">台南市"</string>
+    <string name="City4">高雄市"</string>
+    <string name="City5">苗栗縣"</string>
+    <string name="City6">彰化縣"</string>
+    <string name="City7">宜蘭縣"</string>
+    <string name="City8">新竹縣"</string>
+    <string name="City9">新竹市"</string>
+    <string name="City10">嘉義縣"</string>
+    <string name="City11">台中縣"</string>
+    <string name="City12">桃園市"</string>
+    <string name="City13">雲林縣"</string>
+    <string name="City14">南投縣"</string>
+
+    <string name="Food1">大餅包小餅"</string>
+    <string name="Food2">蚵仔煎"</string>
+    <string name="Food3">東山鴨頭"</string>
+    <string name="Food4">臭豆腐"</string>
+    <string name="Food5">潤餅"</string>
+    <string name="Food6">豆花"</string>
+    <string name="Food7">青蛙下蛋"</string>
+    <string name="Food8">豬血糕"</string>
+    <string name="Food9">烤香腸"</string>
+    <string name="Food10">鹹水雞"</string>
+    <string name="Food11">車輪餅"</string>
+    <string name="Food12">珍珠奶茶"</string>
+    <string name="Food13">西瓜牛奶"</string>
+    <string name="Food14">漢堡"</string>
+
+
+
     <string-array name="array_Places">
-        <item>"台北市"</item>
-        <item>"新北市"</item>
-        <item>"台南市"</item>
-        <item>"高雄市"</item>
-        <item>"苗栗縣"</item>
-        <item>"彰化縣"</item>
-        <item>"宜蘭縣"</item>
-        <item>"新竹縣"</item>
-        <item>"新竹市"</item>
-        <item>"嘉義縣"</item>
-        <item>"台中縣"</item>
-        <item>"桃園市"</item>
-        <item>"雲林縣"</item>
-        <item>"南投縣"</item>
-        <item>@string/CustomeDialog</item>
+        <item>@string/City1</item>
+        <item>@string/City2</item>
+        <item>@string/City3</item>
+        <item>@string/City4</item>
+        <item>@string/City5</item>
+        <item>@string/City6</item>
+        <item>@string/City7</item>
+        <item>@string/City8</item>
+        <item>@string/City9</item>
+        <item>@string/City10</item>
+        <item>@string/City11</item>
+        <item>@string/City12</item>
+        <item>@string/City13</item>
+        <item>@string/City14</item>
+        <item>@string/runningText</item>
     </string-array>
 
     <string-array name="array_Food">
-        <item>"大餅包小餅"</item>
-        <item>"蚵仔煎"</item>
-        <item>"東山鴨頭"</item>
-        <item>"臭豆腐"</item>
-        <item>"潤餅"</item>
-        <item>"豆花"</item>
-        <item>"青蛙下蛋"</item>
-        <item>"豬血糕"</item>
-        <item>"大腸包小腸"</item>
-        <item>"鹹水雞"</item>
-        <item>"烤香腸"</item>
-        <item>"車輪餅"</item>
-        <item>"珍珠奶茶"</item>
-        <item>"西瓜牛奶"</item>
+        <item>@string/Food1</item>
+        <item>@string/Food2</item>
+        <item>@string/Food3</item>
+        <item>@string/Food4</item>
+        <item>@string/Food5</item>
+        <item>@string/Food6</item>
+        <item>@string/Food7</item>
+        <item>@string/Food8</item>
+        <item>@string/Food9</item>
+        <item>@string/Food10</item>
+        <item>@string/Food11</item>
+        <item>@string/Food12</item>
+        <item>@string/Food13</item>
+        <item>@string/Food14</item>
         <item>@string/runningText</item>
     </string-array>
 
@@ -374,7 +410,6 @@
         <item>simple_list_item_checked</item>
         <item>simple_list_item_multiple_choice</item>
         <item>simple_list_item_single_choice</item>
-
         <item>simple_selectable_list_item</item>
         <item>simple_expandable_list_item_1</item>
         <item>simple_expandable_list_item_2</item>
