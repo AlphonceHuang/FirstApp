@@ -53,11 +53,14 @@ public class RecycleViewActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         // 設置 adapter
         mRecyclerView.setAdapter(mAdapter);
+
         // 設置分隔線
+        MyDividerItemDecoration divider_Horizontal = new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
+        MyDividerItemDecoration divider_Vertical = new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
         if (HorizontalStyle)
-            mRecyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL));
+            mRecyclerView.addItemDecoration(divider_Horizontal);
         else
-            mRecyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+            mRecyclerView.addItemDecoration(divider_Vertical);
     }
 
     private ArrayList<String> getData() {

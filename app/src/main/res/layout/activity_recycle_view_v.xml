@@ -10,5 +10,6 @@
         android:id="@+id/RecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFD180"
         android:scrollbars="vertical" />
 </RelativeLayout>

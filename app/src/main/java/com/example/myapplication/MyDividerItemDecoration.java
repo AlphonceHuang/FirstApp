@@ -16,6 +16,7 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private static final int[] ATTRS = new int[]{
             android.R.attr.listDivider
+
     };
     public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
     public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
@@ -25,6 +26,7 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
     public MyDividerItemDecoration(Context context, int orientation) {
         // 获取默认主题的属性
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
+
         mDivider = a.getDrawable(0);
         a.recycle();
         setOrientation(orientation);
@@ -47,9 +49,9 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
                                @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         if (mOrientation == VERTICAL_LIST) {
-            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight()+50);
         } else {
-            outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
+            outRect.set(0, 150, mDivider.getIntrinsicWidth()+50, 150);
         }
     }
 
@@ -71,6 +73,7 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
             final int top = child.getBottom() + params.bottomMargin +
                     Math.round(ViewCompat.getTranslationY(child));
             final int bottom = top + mDivider.getIntrinsicHeight();
+            //Log.w("Alan", "left="+left+",top="+top+",right="+right+",bottom"+bottom);
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }
