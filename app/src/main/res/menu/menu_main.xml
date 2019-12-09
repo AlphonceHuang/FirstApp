@@ -80,6 +80,17 @@
     </item>
     <item
         android:id="@+id/RecycleViewItem"
-        android:title="@string/recycleView" />
+        android:title="@string/recycleView">
+        <menu>
+            <item
+                android:id="@+id/RecycleView_V"
+                android:title="@string/vertical"/>
+            <item
+                android:id="@+id/RecycleView_H"
+                android:title="@string/horizontal"/>
+        </menu>
+    </item>
+
+
 
 </menu>

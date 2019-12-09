@@ -15,6 +15,7 @@ class Util {
     private static Toast toast;
     private static Toast toast_1;
     private static int fromWhichActivity;
+    private static boolean recycleViewHorizontal;
 
     static final int FROM_FILE_BROWSER=0;
     static final int FROM_IMAGE_ACTIVITY=1;
@@ -108,6 +109,13 @@ class Util {
     }
     static void setFromWhichActivity(int val){
         fromWhichActivity=val;
+    }
+
+    static boolean getRecycleViewHorizontal(){
+        return recycleViewHorizontal;
+    }
+    static void setRecycleViewHorizontal(boolean val){
+        recycleViewHorizontal=val;
     }
 
 }

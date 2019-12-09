@@ -9,30 +9,55 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
+
+import static com.example.myapplication.Util.getRecycleViewHorizontal;
+
 public class RecycleViewActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private boolean HorizontalStyle=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycle_view);
+
+        if (getRecycleViewHorizontal()) {
+            setContentView(R.layout.activity_recycle_view_h);
+            HorizontalStyle = true;
+        }else {
+            setContentView(R.layout.activity_recycle_view_v);
+            HorizontalStyle = false;
+        }
 
         initData();
         initView();
     }
 
     private void initData() {
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mAdapter = new RecycleViewAdapter(getData());
     }
 
     private void initView() {
         RecyclerView mRecyclerView = findViewById(R.id.RecycleView);
-        // 设置布局管理器
+
+        RecyclerView.LayoutManager mLayoutManager;
+        if (HorizontalStyle) {
+            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+
+        }
+        else {
+            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        }
+
+        // 設置 layout manager
         mRecyclerView.setLayoutManager(mLayoutManager);
-        // 设置adapter
+        // 設置 adapter
         mRecyclerView.setAdapter(mAdapter);
+        // 設置分隔線
+        if (HorizontalStyle)
+            mRecyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL));
+        else
+            mRecyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL));
     }
 
     private ArrayList<String> getData() {

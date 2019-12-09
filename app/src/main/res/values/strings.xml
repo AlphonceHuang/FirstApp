@@ -207,7 +207,8 @@
     <string name="gridview">GridView</string>
     <string name="gridview1">GridView Customer</string>
     <string name="recycleView">RecycleView</string>
-
+    <string name="vertical">垂直</string>
+    <string name="horizontal">水平</string>
 
     <string name="cameras">各種相機實現</string>
     <string name="camera1_Title">使用手機預設相機</string>
