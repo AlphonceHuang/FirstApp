@@ -66,10 +66,11 @@
         android:roundIcon="@drawable/monkey"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RecycleViewActivity"
+            android:label="@string/recycleView"/>
         <activity
             android:name=".GridViewActivity"
             android:label="@string/gridview" />
-
         <activity
             android:name=".ListViewMenuActivity"
             android:label="@string/listviewex" />
@@ -100,7 +101,6 @@
         <activity android:name=".ImmersiveS3Activity" />
         <activity android:name=".ImmersiveS2Activity" />
         <activity android:name=".ImmersiveS1Activity" />
-
         <activity
             android:name=".OpenCVCamera1Activity"
             android:theme="@style/AppTheme_TransBar" />

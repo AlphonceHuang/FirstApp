@@ -62,7 +62,7 @@ public class ListViewMenuActivity extends AppCompatActivity {
 
         ListView listView=findViewById(R.id.ListMenu);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.test_list_item);
         for (String s: getResources().getStringArray(R.array.listViewOneLineMenu)){
                 listAdapter.add(s);
         }

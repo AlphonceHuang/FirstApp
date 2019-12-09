@@ -1737,6 +1737,11 @@ public class MainActivity extends AppCompatActivity{
                 OptionIntent.putExtras(OptionBundle);
                 startActivity(OptionIntent);
                 break;
+
+            case R.id.RecycleViewItem:
+                OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
+                startActivity(OptionIntent);
+                break;
             default:
                 //m_ret=true;
                 break;

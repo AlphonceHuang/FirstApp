@@ -5,8 +5,7 @@
     android:id="@+id/ListViewmenu_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAC1F5"
-    tools:context=".ListViewActivity">
+    android:background="#F2F79B">
 
     <ImageView
         android:id="@+id/imgView"

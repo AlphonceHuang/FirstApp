@@ -206,8 +206,7 @@
 
     <string name="gridview">GridView</string>
     <string name="gridview1">GridView Customer</string>
-
-
+    <string name="recycleView">RecycleView</string>
 
 
     <string name="cameras">各種相機實現</string>
@@ -345,7 +344,6 @@
     <string name="Food12">珍珠奶茶"</string>
     <string name="Food13">西瓜牛奶"</string>
     <string name="Food14">漢堡"</string>
-
 
 
     <string-array name="array_Places">

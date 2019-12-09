@@ -78,5 +78,8 @@
                 android:title="@string/gridview1"/>
         </menu>
     </item>
+    <item
+        android:id="@+id/RecycleViewItem"
+        android:title="@string/recycleView" />
 
 </menu>
