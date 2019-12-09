@@ -1,4 +1,4 @@
-第一支app
+﻿第一支app
 
 1. BMI計算
 2. 狀態列通知
@@ -23,4 +23,4 @@
 21. 對話框
 22. 電池資訊
 23. 語音轉文字
-24. ListView範例
+24. ListView/GridView/RecycleView範例
