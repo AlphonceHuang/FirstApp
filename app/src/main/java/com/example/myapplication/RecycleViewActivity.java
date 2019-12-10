@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     private Button mAddItemBtn, mDelItemBtn;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> listArray;
+    private int newItemCount=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +46,15 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.addButton) {
-            ((RecycleViewAdapter) mAdapter).addNewItem(getString(R.string.new_item));
+            newItemCount++;
+            String str=getString(R.string.new_item)+newItemCount;
+            ((RecycleViewAdapter) mAdapter).addNewItem(str);
             mLayoutManager.scrollToPosition(0);
         } else if (id == R.id.deleteButton) {
             ((RecycleViewAdapter) mAdapter).deleteItem();
             mLayoutManager.scrollToPosition(0);
+            if (newItemCount>0)
+                newItemCount--;
         }
         // 更新資料
         listArray = ((RecycleViewAdapter) mAdapter).getListData();
@@ -61,7 +67,11 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
             mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         }else if (getRecycleViewStyle()==2){
             mLayoutManager = new GridLayoutManager(this, 2);
-        }else {
+        }else if (getRecycleViewStyle()==3) {
+            mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        }else if (getRecycleViewStyle()==4) {
+            mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
+        }else{
             mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         }
 

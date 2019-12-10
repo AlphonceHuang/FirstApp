@@ -1755,6 +1755,16 @@ public class MainActivity extends AppCompatActivity{
                 setRecycleViewStyle(2);
                 startActivity(OptionIntent);
                 break;
+            case R.id.RecycleView_StaggeredGridV_Item:
+                OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
+                setRecycleViewStyle(3);
+                startActivity(OptionIntent);
+                break;
+            case R.id.RecycleView_StaggeredGridH_Item:
+                OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
+                setRecycleViewStyle(4);
+                startActivity(OptionIntent);
+                break;
             default:
                 //m_ret=true;
                 break;

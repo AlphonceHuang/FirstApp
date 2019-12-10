@@ -214,6 +214,8 @@
     <string name="delete">刪除</string>
     <string name="new_item">新欄位</string>
     <string name="cardview">CardView</string>
+    <string name="stagger_V">垂直錯開</string>
+    <string name="stagger_H">水平錯開</string>
 
     <string name="cameras">各種相機實現</string>
     <string name="camera1_Title">使用手機預設相機</string>
@@ -375,6 +377,7 @@
         <item>@string/Food2</item>
         <item>@string/Food3</item>
         <item>@string/Food4</item>
+        <item>@string/runningText</item>
         <item>@string/Food5</item>
         <item>@string/Food6</item>
         <item>@string/Food7</item>
@@ -385,7 +388,6 @@
         <item>@string/Food12</item>
         <item>@string/Food13</item>
         <item>@string/Food14</item>
-        <item>@string/runningText</item>
     </string-array>
 
     <string-array name="array_icon">

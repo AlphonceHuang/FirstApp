@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         this.onItemClickListener = listener;
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 实例化展示的view
@@ -59,6 +61,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_item_horizontal, parent, false);
         }else if (getRecycleViewStyle()==2){
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_grid_item, parent, false);
+        }else if (getRecycleViewStyle()==3 || getRecycleViewStyle()==4){
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_staggergrid_item, parent, false);
         }else{
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_item_vertical, parent, false);
         }

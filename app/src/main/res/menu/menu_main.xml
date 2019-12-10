@@ -91,6 +91,12 @@
             <item
                 android:id="@+id/RecycleView_Grid_Item"
                 android:title="@string/grid"/>
+            <item
+                android:id="@+id/RecycleView_StaggeredGridV_Item"
+                android:title="@string/stagger_V"/>
+            <item
+                android:id="@+id/RecycleView_StaggeredGridH_Item"
+                android:title="@string/stagger_H"/>
         </menu>
     </item>
 
