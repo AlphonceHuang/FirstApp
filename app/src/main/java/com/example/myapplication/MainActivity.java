@@ -77,7 +77,7 @@ import static android.support.v7.app.AlertDialog.OnClickListener;
 import static com.example.myapplication.StorageUtil.savePic;
 import static com.example.myapplication.Util.FROM_FILE_BROWSER;
 import static com.example.myapplication.Util.setFromWhichActivity;
-import static com.example.myapplication.Util.setRecycleViewHorizontal;
+import static com.example.myapplication.Util.setRecycleViewStyle;
 import static com.example.myapplication.Util.showToastIns;
 import static com.example.myapplication.Util.takeScreenShot;
 
@@ -1739,14 +1739,20 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(OptionIntent);
                 break;
 
-            case R.id.RecycleView_V:
+            case R.id.RecycleView_V_Item:
                 OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
-                setRecycleViewHorizontal(false);
+                setRecycleViewStyle(0);
                 startActivity(OptionIntent);
                 break;
-            case R.id.RecycleView_H:
+            case R.id.RecycleView_H_Item:
                 OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
-                setRecycleViewHorizontal(true);
+                setRecycleViewStyle(1);
+                startActivity(OptionIntent);
+                break;
+
+            case R.id.RecycleView_Grid_Item:
+                OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
+                setRecycleViewStyle(2);
                 startActivity(OptionIntent);
                 break;
             default:

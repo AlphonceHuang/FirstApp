@@ -209,8 +209,11 @@
     <string name="recycleView">RecycleView</string>
     <string name="vertical">垂直</string>
     <string name="horizontal">水平</string>
+    <string name="grid">格狀</string>
     <string name="add">增加</string>
     <string name="delete">刪除</string>
+    <string name="new_item">新欄位</string>
+    <string name="cardview">CardView</string>
 
     <string name="cameras">各種相機實現</string>
     <string name="camera1_Title">使用手機預設相機</string>

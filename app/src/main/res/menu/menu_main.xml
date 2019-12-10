@@ -83,14 +83,19 @@
         android:title="@string/recycleView">
         <menu>
             <item
-                android:id="@+id/RecycleView_V"
+                android:id="@+id/RecycleView_V_Item"
                 android:title="@string/vertical"/>
             <item
-                android:id="@+id/RecycleView_H"
+                android:id="@+id/RecycleView_H_Item"
                 android:title="@string/horizontal"/>
+            <item
+                android:id="@+id/RecycleView_Grid_Item"
+                android:title="@string/grid"/>
         </menu>
     </item>
 
-
+    <item
+        android:id="@+id/cardviewItem"
+        android:title="@string/cardview"/>
 
 </menu>

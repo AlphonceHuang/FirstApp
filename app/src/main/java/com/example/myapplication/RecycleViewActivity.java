@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-import static com.example.myapplication.Util.getRecycleViewHorizontal;
+import static com.example.myapplication.Util.getRecycleViewStyle;
 import static com.example.myapplication.Util.showToastIns;
 
 public class RecycleViewActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,7 +21,6 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     protected final String TAG="Alan";
 
     private RecyclerView.Adapter mAdapter;
-    private boolean HorizontalStyle=false;
     private Button mAddItemBtn, mDelItemBtn;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<String> listArray;
@@ -29,12 +29,10 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getRecycleViewHorizontal()) {
+        if (getRecycleViewStyle()==1) {
             setContentView(R.layout.activity_recycle_view_h);
-            HorizontalStyle = true;
-        }else {
+        }else{
             setContentView(R.layout.activity_recycle_view_v);
-            HorizontalStyle = false;
         }
 
         initData();
@@ -46,7 +44,7 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.addButton) {
-            ((RecycleViewAdapter) mAdapter).addNewItem();
+            ((RecycleViewAdapter) mAdapter).addNewItem(getString(R.string.new_item));
             mLayoutManager.scrollToPosition(0);
         } else if (id == R.id.deleteButton) {
             ((RecycleViewAdapter) mAdapter).deleteItem();
@@ -59,12 +57,14 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void initData() {
-        if (HorizontalStyle) {
+        if (getRecycleViewStyle()==1) {
             mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        }
-        else {
+        }else if (getRecycleViewStyle()==2){
+            mLayoutManager = new GridLayoutManager(this, 2);
+        }else {
             mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         }
+
 
         listArray = getData();
         mAdapter = new RecycleViewAdapter(listArray);
@@ -72,12 +72,12 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
         ((RecycleViewAdapter) mAdapter).setOnItemClickListener(new RecycleViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                showToastIns(RecycleViewActivity.this,"click " + position + " item", Toast.LENGTH_SHORT);
+                showToastIns(RecycleViewActivity.this,"click " + listArray.get(position), Toast.LENGTH_SHORT);
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
-                showToastIns(RecycleViewActivity.this,"long click " + position + " item", Toast.LENGTH_SHORT);
+                showToastIns(RecycleViewActivity.this,"long click " + listArray.get(position), Toast.LENGTH_SHORT);
             }
         });
     }
@@ -90,15 +90,17 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
 
         // 設置 layout manager
         mRecyclerView.setLayoutManager(mLayoutManager);
+
         // 設置 adapter
         mRecyclerView.setAdapter(mAdapter);
 
         // 設置分隔線
         MyDividerItemDecoration divider_Horizontal = new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
         MyDividerItemDecoration divider_Vertical = new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
-        if (HorizontalStyle)
+
+        if (getRecycleViewStyle()==1)
             mRecyclerView.addItemDecoration(divider_Horizontal);
-        else
+        else if (getRecycleViewStyle()==0)
             mRecyclerView.addItemDecoration(divider_Vertical);
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -112,7 +114,7 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     private ArrayList<String> getData() {
         ArrayList<String> data = new ArrayList<>();
 
-        String[] str=getResources().getStringArray(R.array.array_Places);
+        String[] str=getResources().getStringArray(R.array.array_Food);
 
         for(int i=0; i<str.length; i++) {
             data.add(str[i]);

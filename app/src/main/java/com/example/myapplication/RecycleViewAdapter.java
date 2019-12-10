@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static com.example.myapplication.Util.getRecycleViewHorizontal;
+import static com.example.myapplication.Util.getRecycleViewStyle;
 
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>{
@@ -31,11 +30,12 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         notifyDataSetChanged();
     }
 
-    public void addNewItem(){
+    public void addNewItem(String str){
         if (mData == null){
             mData = new ArrayList<>();
         }
-        mData.add(0, "new Item");
+
+        mData.add(0, str);
         notifyItemInserted(0);
     }
 
@@ -55,10 +55,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // 实例化展示的view
         View v;
-        if (getRecycleViewHorizontal()) {
+        if (getRecycleViewStyle()==1) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_item_horizontal, parent, false);
-        }
-        else {
+        }else if (getRecycleViewStyle()==2){
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_grid_item, parent, false);
+        }else{
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_item_vertical, parent, false);
         }
 
@@ -78,11 +79,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.w(TAG, "item:"+mData.get(itemId));
+                //Log.w(TAG, "item:"+mData.get(itemId));
 
                 if (onItemClickListener !=null){
                     int pos = holder.getLayoutPosition();
-                    Log.w(TAG, "pos:"+pos);
+                    //Log.w(TAG, "pos:"+pos);
                     onItemClickListener.onItemClick(holder.itemView, pos);
                 }
             }
