@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -40,12 +39,12 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if(id == R.id.addButton) {
-            ((RecycleViewAdapter) mAdapter).addNewItem();
-            mLayoutManager.scrollToPosition(0);
-        } else if(id == R.id.deleteButton){
-            ((RecycleViewAdapter) mAdapter).deleteItem();
-            mLayoutManager.scrollToPosition(0);
+        if (id == R.id.addButton) {
+                ((RecycleViewAdapter) mAdapter).addNewItem();
+                mLayoutManager.scrollToPosition(0);
+        } else if (id == R.id.deleteButton) {
+                ((RecycleViewAdapter) mAdapter).deleteItem();
+                mLayoutManager.scrollToPosition(0);
         }
     }
 
@@ -58,7 +57,7 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
         }
 
         mAdapter = new RecycleViewAdapter(getData());
-
+/*
         ((RecycleViewAdapter) mAdapter).setOnItemClickListener(new RecycleViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -69,11 +68,12 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
             public void onItemLongClick(View view, int position) {
                 Toast.makeText(RecycleViewActivity.this,"long click " + position + " item", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 
     private void initView() {
         RecyclerView mRecyclerView = findViewById(R.id.RecycleView);
+
         mAddItemBtn = findViewById(R.id.addButton);
         mDelItemBtn = findViewById(R.id.deleteButton);
 
