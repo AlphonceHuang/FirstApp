@@ -31,11 +31,35 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getRecycleViewStyle()==1) {
-            setContentView(R.layout.activity_recycle_view_h);
-        }else{
-            setContentView(R.layout.activity_recycle_view_v);
+        // 這裡分不同layout主要是因為scrollbars方向不同(Vertical & Horizontal)
+        String mTitle=getString(R.string.recycleView);
+        switch(getRecycleViewStyle()){
+            case 0:
+                setContentView(R.layout.activity_recycle_view_v);
+                mTitle = getString(R.string.recycleView)+":"+getString(R.string.vertical);
+                break;
+            case 1:
+                setContentView(R.layout.activity_recycle_view_h);
+                mTitle = getString(R.string.recycleView)+":"+getString(R.string.horizontal);
+                break;
+            case 2:
+                setContentView(R.layout.activity_recycle_view_v);
+                mTitle = getString(R.string.recycleView)+":"+getString(R.string.grid);
+                break;
+            case 3:
+                setContentView(R.layout.activity_recycle_view_v);
+                mTitle = getString(R.string.recycleView)+":"+getString(R.string.stagger_V);
+                break;
+            case 4:
+                setContentView(R.layout.activity_recycle_view_h);
+                mTitle = getString(R.string.recycleView)+":"+getString(R.string.stagger_H);
+                break;
+            default:
+                setContentView(R.layout.activity_recycle_view_v);
+                break;
         }
+        // 根據不同設計修改title名稱
+        setTitle(mTitle);
 
         initData();
         initView();
@@ -74,7 +98,6 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
         }else{
             mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         }
-
 
         listArray = getData();
         mAdapter = new RecycleViewAdapter(listArray);
