@@ -16,6 +16,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     private final String TAG="Alan";
     private ArrayList<String> mData;
+    private RecycleViewAdapter.OnItemClickListener onItemClickListener;
 
     RecycleViewAdapter(ArrayList<String> data) {
         this.mData = data;
@@ -24,6 +25,26 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public void updateData(ArrayList<String> data) {
         this.mData = data;
         notifyDataSetChanged();
+    }
+
+    public void addNewItem(){
+        if (mData == null){
+            mData = new ArrayList<>();
+        }
+        mData.add(0, "new Item");
+        notifyItemInserted(0);
+    }
+
+    public void deleteItem() {
+        if(mData == null || mData.isEmpty()) {
+            return;
+        }
+        mData.remove(0);
+        notifyItemRemoved(0);
+    }
+
+    public void setOnItemClickListener(RecycleViewAdapter.OnItemClickListener listener) {
+        this.onItemClickListener = listener;
     }
 
     @Override
@@ -43,17 +64,34 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         final int itemId=position;
 
         // 綁定數據
         holder.mTitle.setText(mData.get(position));
 
-        // 設定觸發
+        // 設定短按觸發
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.w(TAG, "item:"+mData.get(itemId));
+
+                if (onItemClickListener !=null){
+                    int pos = holder.getLayoutPosition();
+                    Log.w(TAG, "pos:"+pos);
+                    onItemClickListener.onItemClick(holder.itemView, pos);
+                }
+            }
+        });
+        // 設定長按觸發
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(onItemClickListener != null) {
+                    int pos = holder.getLayoutPosition();
+                    onItemClickListener.onItemLongClick(holder.itemView, pos);
+                }
+                return true;
             }
         });
     }
@@ -72,21 +110,12 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             mTitle = itemView.findViewById(R.id.item_tv);
             mTitle.setSelected(true); // 跑馬燈
         }
+
     }
 
-    public void addNewItem(){
-        if (mData == null){
-            mData = new ArrayList<>();
-        }
-        mData.add(0, "new Item");
-        notifyItemInserted(0);
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+        void onItemLongClick(View view, int position);
     }
 
-    public void deleteItem() {
-        if(mData == null || mData.isEmpty()) {
-            return;
-        }
-        mData.remove(0);
-        notifyItemRemoved(0);
-    }
 }
