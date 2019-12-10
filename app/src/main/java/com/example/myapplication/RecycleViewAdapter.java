@@ -22,6 +22,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         this.mData = data;
     }
 
+    ArrayList<String> getListData(){
+        return mData;
+    }
+
     public void updateData(ArrayList<String> data) {
         this.mData = data;
         notifyDataSetChanged();

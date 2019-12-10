@@ -7,17 +7,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
 import static com.example.myapplication.Util.getRecycleViewHorizontal;
+import static com.example.myapplication.Util.showToastIns;
 
 public class RecycleViewActivity extends AppCompatActivity implements View.OnClickListener {
+
+    protected final String TAG="Alan";
+
     private RecyclerView.Adapter mAdapter;
     private boolean HorizontalStyle=false;
     private Button mAddItemBtn, mDelItemBtn;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<String> listArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +46,16 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.addButton) {
-                ((RecycleViewAdapter) mAdapter).addNewItem();
-                mLayoutManager.scrollToPosition(0);
+            ((RecycleViewAdapter) mAdapter).addNewItem();
+            mLayoutManager.scrollToPosition(0);
         } else if (id == R.id.deleteButton) {
-                ((RecycleViewAdapter) mAdapter).deleteItem();
-                mLayoutManager.scrollToPosition(0);
+            ((RecycleViewAdapter) mAdapter).deleteItem();
+            mLayoutManager.scrollToPosition(0);
         }
+        // 更新資料
+        listArray = ((RecycleViewAdapter) mAdapter).getListData();
+        ((RecycleViewAdapter) mAdapter).updateData(listArray);
+
     }
 
     private void initData() {
@@ -56,19 +66,20 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
             mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         }
 
-        mAdapter = new RecycleViewAdapter(getData());
-/*
+        listArray = getData();
+        mAdapter = new RecycleViewAdapter(listArray);
+
         ((RecycleViewAdapter) mAdapter).setOnItemClickListener(new RecycleViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(RecycleViewActivity.this,"click " + position + " item", Toast.LENGTH_SHORT).show();
+                showToastIns(RecycleViewActivity.this,"click " + position + " item", Toast.LENGTH_SHORT);
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
-                Toast.makeText(RecycleViewActivity.this,"long click " + position + " item", Toast.LENGTH_SHORT).show();
+                showToastIns(RecycleViewActivity.this,"long click " + position + " item", Toast.LENGTH_SHORT);
             }
-        });*/
+        });
     }
 
     private void initView() {
