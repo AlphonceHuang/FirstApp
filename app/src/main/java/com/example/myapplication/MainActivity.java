@@ -1771,6 +1771,26 @@ public class MainActivity extends AppCompatActivity{
                 OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
                 startActivity(OptionIntent);
                 break;
+            case R.id.RecycleView_ImgH_Item:
+                setRecycleViewStyle(sLinear_Layout_Horizontal_Image);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
+                break;
+            case R.id.RecycleView_ImgGrid_Item:
+                setRecycleViewStyle(sGrid_Layout_Image);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
+                break;
+            case R.id.RecycleView_StaggeredGrid_ImgV_Item:
+                setRecycleViewStyle(sStaggered_Grid_Vertical_Image);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
+                break;
+            case R.id.RecycleView_StaggeredGrid_ImgH_Item:
+                setRecycleViewStyle(sStaggered_Grid_Horizontal_Image);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
+                break;
             default:
                 //m_ret=true;
                 break;

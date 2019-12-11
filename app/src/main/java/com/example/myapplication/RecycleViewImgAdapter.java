@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.example.myapplication.Util.getRecycleViewStyle;
+import static com.example.myapplication.sRecycleViewStyle.*;
+
 
 public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAdapter.ViewHolder>{
 
@@ -40,7 +43,14 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // 实例化展示的view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_image_item, parent, false);
+        View v;
+        if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image
+                //|| getRecycleViewStyle()==sGrid_Layout_Image
+                || getRecycleViewStyle()==sStaggered_Grid_Vertical_Image
+                || getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image)
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_image_h_item, parent, false);
+        else
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_image_v_item, parent, false);
 
         // 实例化viewholder
         ViewHolder viewHolder = new ViewHolder(v);
@@ -58,11 +68,8 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Log.w(TAG, "item:"+mData.get(itemId));
-
                 if (onItemClickListener !=null){
                     int pos = holder.getLayoutPosition();
-                    //Log.w(TAG, "pos:"+pos);
                     onItemClickListener.onItemClick(holder.itemView, pos);
                 }
             }

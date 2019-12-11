@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ListViewmenu_layout"
+    android:layout_width="120dp"
+    android:layout_height="140dp"
+    android:background="#F2F79B">
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/delta" />
+
+    <!--跑馬燈效果-->
+    <TextView
+        android:id="@+id/txtView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="marquee"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:shadowColor="#9B9999"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="1"
+        android:singleLine="true"
+        android:text="這是主要標題"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgView" />
+
+    <TextView
+        android:id="@+id/txtView1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:text="這是次要說明，有跑馬指效果"
+        android:textAlignment="center"
+        android:textColor="#5E35B1"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtView" />
+
+</android.support.constraint.ConstraintLayout>

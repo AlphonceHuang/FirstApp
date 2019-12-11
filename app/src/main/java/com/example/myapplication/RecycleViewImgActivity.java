@@ -4,9 +4,10 @@ import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,7 +18,7 @@ import java.util.Map;
 
 import static com.example.myapplication.Util.getRecycleViewStyle;
 import static com.example.myapplication.Util.showToastIns;
-import static com.example.myapplication.sRecycleViewStyle.sLinear_Layout_Vertical_Image;
+import static com.example.myapplication.sRecycleViewStyle.*;
 
 public class RecycleViewImgActivity extends AppCompatActivity implements View.OnClickListener{
     protected final String TAG="Alan";
@@ -33,8 +34,16 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
 
         // Title text
         String mTitle;
-        if (getRecycleViewStyle()==sLinear_Layout_Vertical_Image){
-            mTitle = getString(R.string.recycleView)+":"+getString(R.string.vertical_img);
+        if (getRecycleViewStyle()==sLinear_Layout_Vertical_Image) {
+            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.vertical_img);
+        }else if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image){
+            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.horizontal_img);
+        }else if (getRecycleViewStyle()==sGrid_Layout_Image){
+            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.grid_img);
+        }else if (getRecycleViewStyle()==sStaggered_Grid_Vertical_Image){
+            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.stagger_VImg);
+        }else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image){
+            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.stagger_HImg);
         }else{
             mTitle = getString(R.string.recycleView);
         }
@@ -58,7 +67,17 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
     }
 
     private void initData() {
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image) {
+            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        }else if (getRecycleViewStyle()==sGrid_Layout_Image){
+            mLayoutManager = new GridLayoutManager(this, 2);
+        }else if (getRecycleViewStyle()==sStaggered_Grid_Vertical_Image){
+            mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        }else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image){
+            mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
+        }else{
+            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        }
 
         final List<Map<String, Object>> itemList = new ArrayList<Map<String, Object>>();
 
@@ -101,13 +120,15 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
         mRecyclerView.setAdapter(mAdapter);
 
         // 設置分隔線
-        //MyDividerItemDecoration divider_Horizontal = new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
+        MyDividerItemDecoration divider_Horizontal = new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
         MyDividerItemDecoration divider_Vertical = new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
 
-        //if (getRecycleViewStyle()==1)
-        //    mRecyclerView.addItemDecoration(divider_Horizontal);
-        if (getRecycleViewStyle()==sLinear_Layout_Vertical_Image)
+        if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image)
+            mRecyclerView.addItemDecoration(divider_Horizontal);
+        else if (getRecycleViewStyle()==sLinear_Layout_Vertical_Image || getRecycleViewStyle()==sStaggered_Grid_Vertical_Image
+                || getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image)
             mRecyclerView.addItemDecoration(divider_Vertical);
+
 
         // 設置動畫
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
