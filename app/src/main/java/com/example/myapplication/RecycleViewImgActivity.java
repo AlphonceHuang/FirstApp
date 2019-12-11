@@ -42,8 +42,10 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
             mTitle = getString(R.string.recycleView) + ":" + getString(R.string.grid_img);
         }else if (getRecycleViewStyle()==sStaggered_Grid_Vertical_Image){
             mTitle = getString(R.string.recycleView) + ":" + getString(R.string.stagger_VImg);
-        }else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image){
+        }else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image) {
             mTitle = getString(R.string.recycleView) + ":" + getString(R.string.stagger_HImg);
+        }else if (getRecycleViewStyle()==sCardView_Linear_Vertical){
+            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.cardview_v);
         }else{
             mTitle = getString(R.string.recycleView);
         }

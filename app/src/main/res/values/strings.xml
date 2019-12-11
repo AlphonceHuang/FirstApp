@@ -206,21 +206,27 @@
 
     <string name="gridview">GridView</string>
     <string name="gridview1">GridView Customer</string>
+    <string name="delete">刪除</string>
+    <string name="new_item">新欄位</string>
+
     <string name="recycleView">RecycleView</string>
+    <string name="textonly">純文字</string>
     <string name="vertical">垂直</string>
     <string name="horizontal">水平</string>
     <string name="grid">格狀</string>
     <string name="add">增加</string>
-    <string name="delete">刪除</string>
-    <string name="new_item">新欄位</string>
-    <string name="cardview">CardView</string>
     <string name="stagger_V">垂直錯開</string>
     <string name="stagger_H">水平錯開</string>
+
+    <string name="withicon">圖示+文字</string>
     <string name="vertical_img">垂直(圖+文字)</string>
     <string name="horizontal_img">水平(圖+文字)</string>
     <string name="grid_img">格狀(圖+文字)</string>
     <string name="stagger_VImg">垂直錯開(圖+文字)</string>
     <string name="stagger_HImg">水平錯開(圖+文字)</string>
+
+    <string name="cardview">CardView</string>
+    <string name="cardview_v">CardView 垂直</string>
 
     <string name="cameras">各種相機實現</string>
     <string name="camera1_Title">使用手機預設相機</string>

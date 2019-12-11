@@ -1791,6 +1791,11 @@ public class MainActivity extends AppCompatActivity{
                 OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
                 startActivity(OptionIntent);
                 break;
+            case R.id.cardviewVItem:
+                setRecycleViewStyle(sCardView_Linear_Vertical);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
+                break;
             default:
                 //m_ret=true;
                 break;

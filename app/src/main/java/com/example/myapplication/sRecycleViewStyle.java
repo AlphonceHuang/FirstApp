@@ -11,4 +11,5 @@ public interface sRecycleViewStyle {
    int sGrid_Layout_Image=7;
    int sStaggered_Grid_Vertical_Image=8;
    int sStaggered_Grid_Horizontal_Image=9;
+   int sCardView_Linear_Vertical=10;
 }

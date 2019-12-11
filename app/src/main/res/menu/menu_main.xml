@@ -78,45 +78,73 @@
                 android:title="@string/gridview1"/>
         </menu>
     </item>
-    <item
-        android:id="@+id/RecycleViewItem"
-        android:title="@string/recycleView">
-        <menu>
-            <item
-                android:id="@+id/RecycleView_V_Item"
-                android:title="@string/vertical"/>
-            <item
-                android:id="@+id/RecycleView_H_Item"
-                android:title="@string/horizontal"/>
-            <item
-                android:id="@+id/RecycleView_Grid_Item"
-                android:title="@string/grid"/>
-            <item
-                android:id="@+id/RecycleView_StaggeredGridV_Item"
-                android:title="@string/stagger_V"/>
-            <item
-                android:id="@+id/RecycleView_StaggeredGridH_Item"
-                android:title="@string/stagger_H"/>
-            <item
-                android:id="@+id/RecycleView_ImgV_Item"
-                android:title="@string/vertical_img"/>
-            <item
-                android:id="@+id/RecycleView_ImgH_Item"
-                android:title="@string/horizontal_img"/>
-            <item
-                android:id="@+id/RecycleView_ImgGrid_Item"
-                android:title="@string/grid_img"/>
-            <item
-                android:id="@+id/RecycleView_StaggeredGrid_ImgV_Item"
-                android:title="@string/stagger_VImg"/>
-            <item
-                android:id="@+id/RecycleView_StaggeredGrid_ImgH_Item"
-                android:title="@string/stagger_HImg"/>
-        </menu>
-    </item>
 
     <item
-        android:id="@+id/cardviewItem"
-        android:title="@string/cardview"/>
+        android:id="@+id/recycleView"
+        android:title="@string/recycleView">
+
+        <menu>
+            <item
+                android:id="@+id/textonly_items"
+                android:title="@string/textonly">
+                <menu>
+                    <item
+                        android:id="@+id/RecycleView_V_Item"
+                        android:title="@string/vertical"/>
+                    <item
+                        android:id="@+id/RecycleView_H_Item"
+                        android:title="@string/horizontal"/>
+                    <item
+                        android:id="@+id/RecycleView_Grid_Item"
+                        android:title="@string/grid"/>
+                    <item
+                        android:id="@+id/RecycleView_StaggeredGridV_Item"
+                        android:title="@string/stagger_V"/>
+                    <item
+                        android:id="@+id/RecycleView_StaggeredGridH_Item"
+                        android:title="@string/stagger_H"/>
+                </menu>
+            </item>
+
+            <item
+                android:id="@+id/withicon_items"
+                android:title="@string/withicon">
+                <menu>
+                    <item
+                        android:id="@+id/RecycleView_ImgV_Item"
+                        android:title="@string/vertical"/>
+                    <item
+                        android:id="@+id/RecycleView_ImgH_Item"
+                        android:title="@string/horizontal"/>
+                    <item
+                        android:id="@+id/RecycleView_ImgGrid_Item"
+                        android:title="@string/grid"/>
+                    <item
+                        android:id="@+id/RecycleView_StaggeredGrid_ImgV_Item"
+                        android:title="@string/stagger_V"/>
+                    <item
+                        android:id="@+id/RecycleView_StaggeredGrid_ImgH_Item"
+                        android:title="@string/stagger_H"/>
+                </menu>
+            </item>
+
+            <item
+                android:id="@+id/cardview_items"
+                android:title="@string/cardview">
+                <menu>
+                    <item
+                        android:id="@+id/cardviewVItem"
+                        android:title="@string/vertical"/>
+                    <item
+                        android:id="@+id/cardviewHItem"
+                        android:title="@string/horizontal"/>
+                    <item
+                        android:id="@+id/cardviewGridItem"
+                        android:title="@string/grid"/>
+                </menu>
+            </item>
+        </menu>
+
+    </item>
 
 </menu>
