@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import static com.example.myapplication.Util.getRecycleViewStyle;
 import static com.example.myapplication.Util.showToastIns;
+import static com.example.myapplication.sRecycleViewStyle.*;
 
 public class RecycleViewActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,23 +35,23 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
         // 這裡分不同layout主要是因為scrollbars方向不同(Vertical & Horizontal)
         String mTitle=getString(R.string.recycleView);
         switch(getRecycleViewStyle()){
-            case 0:
+            case sLinear_Layout_Vertical:
                 setContentView(R.layout.activity_recycle_view_v);
                 mTitle = getString(R.string.recycleView)+":"+getString(R.string.vertical);
                 break;
-            case 1:
+            case sLinear_Layout_Horizontal:
                 setContentView(R.layout.activity_recycle_view_h);
                 mTitle = getString(R.string.recycleView)+":"+getString(R.string.horizontal);
                 break;
-            case 2:
+            case sGrid_Layout:
                 setContentView(R.layout.activity_recycle_view_v);
                 mTitle = getString(R.string.recycleView)+":"+getString(R.string.grid);
                 break;
-            case 3:
+            case sStaggered_Grid_Vertical:
                 setContentView(R.layout.activity_recycle_view_v);
                 mTitle = getString(R.string.recycleView)+":"+getString(R.string.stagger_V);
                 break;
-            case 4:
+            case sStaggered_Grid_Horizontal:
                 setContentView(R.layout.activity_recycle_view_h);
                 mTitle = getString(R.string.recycleView)+":"+getString(R.string.stagger_H);
                 break;
@@ -87,13 +88,13 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void initData() {
-        if (getRecycleViewStyle()==1) {
+        if (getRecycleViewStyle()==sLinear_Layout_Horizontal) {
             mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        }else if (getRecycleViewStyle()==2){
+        }else if (getRecycleViewStyle()==sGrid_Layout){
             mLayoutManager = new GridLayoutManager(this, 2);
-        }else if (getRecycleViewStyle()==3) {
+        }else if (getRecycleViewStyle()==sStaggered_Grid_Vertical) {
             mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
-        }else if (getRecycleViewStyle()==4) {
+        }else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal) {
             mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
         }else{
             mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -131,9 +132,9 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
         MyDividerItemDecoration divider_Horizontal = new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
         MyDividerItemDecoration divider_Vertical = new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
 
-        if (getRecycleViewStyle()==1)
+        if (getRecycleViewStyle()==sLinear_Layout_Horizontal)
             mRecyclerView.addItemDecoration(divider_Horizontal);
-        else if (getRecycleViewStyle()==0)
+        else if (getRecycleViewStyle()==sLinear_Layout_Vertical)
             mRecyclerView.addItemDecoration(divider_Vertical);
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -154,16 +155,4 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
         }
         return data;
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_listview3, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
-*/
 }

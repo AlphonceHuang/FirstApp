@@ -5,49 +5,34 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
-import static com.example.myapplication.Util.getRecycleViewStyle;
 
-
-public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>{
+public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAdapter.ViewHolder>{
 
     private final String TAG="Alan";
-    private ArrayList<String> mData;
-    private RecycleViewAdapter.OnItemClickListener onItemClickListener;
+    private List<Map<String, Object>> mData;
+    private RecycleViewImgAdapter.OnItemClickListener onItemClickListener;
 
-    RecycleViewAdapter(ArrayList<String> data) {
+    RecycleViewImgAdapter(List<Map<String, Object>> data) {
         this.mData = data;
     }
 
-    ArrayList<String> getListData(){
+    List<Map<String, Object>> getListData(){
         return mData;
     }
 
-    public void updateData(ArrayList<String> data) {
+    public void updateData(List<Map<String, Object>> data) {
         this.mData = data;
         notifyDataSetChanged();
     }
 
-    public void addNewItem(String str){
-        if (mData == null){
-            mData = new ArrayList<>();
-        }
-        mData.add(0, str);
-        notifyItemInserted(0);
-    }
-
-    public void deleteItem() {
-        if(mData == null || mData.isEmpty()) {
-            return;
-        }
-        mData.remove(0);
-        notifyItemRemoved(0);
-    }
-
-    public void setOnItemClickListener(RecycleViewAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(RecycleViewImgAdapter.OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
 
@@ -55,16 +40,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // 实例化展示的view
-        View v;
-        if (getRecycleViewStyle()==1) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_item_horizontal, parent, false);
-        }else if (getRecycleViewStyle()==2){
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_grid_item, parent, false);
-        }else if (getRecycleViewStyle()==3 || getRecycleViewStyle()==4){
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_staggergrid_item, parent, false);
-        }else{
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_item_vertical, parent, false);
-        }
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_image_item, parent, false);
 
         // 实例化viewholder
         ViewHolder viewHolder = new ViewHolder(v);
@@ -73,10 +49,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final int itemId=position;
-
         // 綁定數據
-        holder.mTitle.setText(mData.get(position));
+        holder.mIcon.setImageResource(Integer.valueOf(Objects.requireNonNull(mData.get(position).get("ITEM_ICON1")).toString()));
+        holder.mTitle.setText(Objects.requireNonNull(mData.get(position).get("ITEM_TITLE1")).toString());
+        holder.mSubTitle.setText(Objects.requireNonNull(mData.get(position).get("ITEM_TITLE2")).toString());
 
         // 設定短按觸發
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -111,14 +87,17 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mTitle;
+        TextView mTitle, mSubTitle;
+        ImageView mIcon;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTitle = itemView.findViewById(R.id.item_tv);
+            mTitle = itemView.findViewById(R.id.txtView);
+            mSubTitle = itemView.findViewById(R.id.txtView1);
+            mIcon = itemView.findViewById(R.id.imgView);
             mTitle.setSelected(true); // 跑馬燈
+            mSubTitle.setSelected(true);    // 跑馬燈
         }
-
     }
 
     public interface OnItemClickListener {
@@ -127,3 +106,4 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
 }
+

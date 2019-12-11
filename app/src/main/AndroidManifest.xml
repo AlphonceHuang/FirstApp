@@ -66,8 +66,15 @@
         android:roundIcon="@drawable/monkey"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecycleViewActivity"
-            android:label="@string/recycleView"/>
+        <activity
+            android:name=".RecycleViewImgActivity"
+            android:label="@string/vertical_img"/>
+        <activity
+            android:name=".CardViewActivity"
+            android:label="@string/cardview" />
+        <activity
+            android:name=".RecycleViewActivity"
+            android:label="@string/recycleView" />
         <activity
             android:name=".GridViewActivity"
             android:label="@string/gridview" />

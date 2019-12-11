@@ -80,6 +80,7 @@ import static com.example.myapplication.Util.setFromWhichActivity;
 import static com.example.myapplication.Util.setRecycleViewStyle;
 import static com.example.myapplication.Util.showToastIns;
 import static com.example.myapplication.Util.takeScreenShot;
+import static com.example.myapplication.sRecycleViewStyle.*;
 
 
 // 1. 過class方式觸發元件
@@ -1741,28 +1742,33 @@ public class MainActivity extends AppCompatActivity{
 
             case R.id.RecycleView_V_Item:
                 OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
-                setRecycleViewStyle(0);
+                setRecycleViewStyle(sLinear_Layout_Vertical);
                 startActivity(OptionIntent);
                 break;
             case R.id.RecycleView_H_Item:
                 OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
-                setRecycleViewStyle(1);
+                setRecycleViewStyle(sLinear_Layout_Horizontal);
                 startActivity(OptionIntent);
                 break;
 
             case R.id.RecycleView_Grid_Item:
                 OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
-                setRecycleViewStyle(2);
+                setRecycleViewStyle(sGrid_Layout);
                 startActivity(OptionIntent);
                 break;
             case R.id.RecycleView_StaggeredGridV_Item:
                 OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
-                setRecycleViewStyle(3);
+                setRecycleViewStyle(sStaggered_Grid_Vertical);
                 startActivity(OptionIntent);
                 break;
             case R.id.RecycleView_StaggeredGridH_Item:
                 OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
-                setRecycleViewStyle(4);
+                setRecycleViewStyle(sStaggered_Grid_Horizontal);
+                startActivity(OptionIntent);
+                break;
+            case R.id.RecycleView_ImgV_Item:
+                setRecycleViewStyle(sLinear_Layout_Vertical_Image);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
                 startActivity(OptionIntent);
                 break;
             default:
