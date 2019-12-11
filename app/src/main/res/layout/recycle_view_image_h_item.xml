@@ -5,9 +5,7 @@
     android:id="@+id/ListViewmenu_layout"
     android:layout_width="120dp"
     android:layout_height="140dp"
-    android:background="#CE93D8"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp">
+    android:background="#CE93D8">
 
     <ImageView
         android:id="@+id/imgView"
