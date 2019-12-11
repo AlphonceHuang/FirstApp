@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import static com.example.myapplication.Util.getRecycleViewStyle;
+import static com.example.myapplication.sRecycleViewStyle.*;
 
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>{
@@ -56,11 +57,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // 实例化展示的view
         View v;
-        if (getRecycleViewStyle()==1) {
+        if (getRecycleViewStyle()==sLinear_Layout_Horizontal) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_item_horizontal, parent, false);
-        }else if (getRecycleViewStyle()==2){
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_grid_item, parent, false);
-        }else if (getRecycleViewStyle()==3 || getRecycleViewStyle()==4){
+        }else if (getRecycleViewStyle()==sStaggered_Grid_Vertical
+                || getRecycleViewStyle()==sStaggered_Grid_Horizontal){
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_staggergrid_item, parent, false);
         }else{
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_item_vertical, parent, false);

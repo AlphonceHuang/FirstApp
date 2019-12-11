@@ -13,8 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import static com.example.myapplication.Util.getRecycleViewStyle;
-import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Horizontal_Image;
-import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Vertical_Image;
+import static com.example.myapplication.sRecycleViewStyle.*;
 
 public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
 
@@ -42,11 +41,7 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
     public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         // 绘制间隔
         if (mOrientation == VERTICAL_LIST) {
-            if (getRecycleViewStyle()==sStaggered_Grid_Vertical_Image){
-                drawVertical_Image(c, parent);
-            }else {
-                drawVertical(c, parent);
-            }
+            drawVertical(c, parent);
         } else {
             drawHorizontal(c, parent);
         }
@@ -59,15 +54,19 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
                                @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         if (mOrientation == VERTICAL_LIST) {
-            if (getRecycleViewStyle()==sStaggered_Grid_Vertical_Image) {
-                outRect.set(5, 0, 5, 10);   // 根據recycle_view_image_h_item.xml微調
-            }else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image){
-                outRect.set(0, 0, 5, 0);
-            }else {
-                outRect.set(50, 0, 50, mDivider.getIntrinsicHeight() + 50);
-            }
+            if (getRecycleViewStyle()==sLinear_Layout_Vertical_Image || getRecycleViewStyle()==sGrid_Layout_Image)
+                outRect.set(50, 50, 50, 0);
+            else if (getRecycleViewStyle()==sStaggered_Grid_Vertical_Image)
+                outRect.set(10, 10, 0, 0);
+            else
+                outRect.set(0, 0, 0, 0);
         } else {
-            outRect.set(0, 150, mDivider.getIntrinsicWidth()+50, 150);
+            if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image)
+                outRect.set(10, 300, 0, 0);
+            else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image)
+                outRect.set(10, 0, 0, 0);
+            else
+                outRect.set(0, 0, 0, 0);
         }
     }
 
@@ -79,24 +78,6 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     private void drawVertical(Canvas c, RecyclerView parent) {
-        final int left = parent.getPaddingLeft()+50;
-        final int right = parent.getWidth() - parent.getPaddingRight()+50;
-        final int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            final View child = parent.getChildAt(i);
-            final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
-                    .getLayoutParams();
-            final int top = child.getBottom() + params.bottomMargin +
-                    Math.round(ViewCompat.getTranslationY(child)+50);
-
-            final int bottom = top + mDivider.getIntrinsicHeight()-3;
-            //Log.w("Alan", "left="+left+",top="+top+",right="+right+",bottom"+bottom);
-            mDivider.setBounds(left, top, right, bottom);
-            mDivider.draw(c);
-        }
-    }
-
-    private void drawVertical_Image(Canvas c, RecyclerView parent) {
         final int left = parent.getPaddingLeft();
         final int right = parent.getWidth() - parent.getPaddingRight();
         final int childCount = parent.getChildCount();
@@ -106,16 +87,17 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
                     .getLayoutParams();
             final int top = child.getBottom() + params.bottomMargin +
                     Math.round(ViewCompat.getTranslationY(child));
-
-            //final int bottom = top + mDivider.getIntrinsicHeight()-3;
+            final int bottom = top + mDivider.getIntrinsicHeight();
+            //Log.w("Alan", "left="+left+",top="+top+",right="+right+",bottom"+bottom);
+            //mDivider.setBounds(left, top, right, bottom);
             mDivider.setBounds(left, top, right, top);
             mDivider.draw(c);
         }
     }
 
     private void drawHorizontal(Canvas c, RecyclerView parent) {
-        final int top = parent.getPaddingTop()+150;
-        final int bottom = parent.getHeight() - parent.getPaddingBottom()+150;
+        final int top = parent.getPaddingTop();
+        final int bottom = parent.getHeight() - parent.getPaddingBottom();
         final int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
@@ -123,9 +105,10 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
                     .getLayoutParams();
             final int left = child.getRight() + params.rightMargin +
                     Math.round(ViewCompat.getTranslationX(child));
-            final int right = left + mDivider.getIntrinsicHeight()-3;
+            final int right = left + mDivider.getIntrinsicHeight();
             //Log.w("Alan", "left="+left+",top="+top+",right="+right+",bottom"+bottom);
             mDivider.setBounds(left, top, right, bottom);
+            //mDivider.setBounds(left, top, left, bottom);    // left跟right一樣就看不到分割線
             mDivider.draw(c);
         }
     }

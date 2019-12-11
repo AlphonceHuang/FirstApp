@@ -5,18 +5,20 @@
     android:id="@+id/ListViewmenu_layout"
     android:layout_width="120dp"
     android:layout_height="140dp"
-    android:background="#F2F79B">
+    android:background="#CE93D8"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
 
     <ImageView
         android:id="@+id/imgView"
         android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/delta" />
+        app:srcCompat="@drawable/burger" />
 
     <!--跑馬燈效果-->
     <TextView

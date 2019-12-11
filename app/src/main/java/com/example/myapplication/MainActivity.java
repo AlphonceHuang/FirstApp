@@ -826,19 +826,19 @@ public class MainActivity extends AppCompatActivity{
                     {
                         default:
                         case 0:
-                            MyImageView.setImageResource(R.drawable.home);
+                            MyImageView.setImageResource(R.drawable.apple);
                             break;
                         case 1:
-                            MyImageView.setImageResource(R.drawable.earth);
+                            MyImageView.setImageResource(R.drawable.bee);
                             break;
                         case 2:
-                            MyImageView.setImageResource(R.drawable.delta_office);
+                            MyImageView.setImageResource(R.drawable.birthdaycake);
                             break;
                         case 3:
-                            MyImageView.setImageResource(R.drawable.delta_program);
+                            MyImageView.setImageResource(R.drawable.burger);
                             break;
                         case 4:
-                            MyImageView.setImageResource(R.drawable.delta);
+                            MyImageView.setImageResource(R.drawable.icecream);
                             break;
                     }
                     mImageCounter++;

@@ -123,12 +123,10 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
         MyDividerItemDecoration divider_Horizontal = new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
         MyDividerItemDecoration divider_Vertical = new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
 
-        if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image)
+        if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image || getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image)
             mRecyclerView.addItemDecoration(divider_Horizontal);
-        else if (getRecycleViewStyle()==sLinear_Layout_Vertical_Image || getRecycleViewStyle()==sStaggered_Grid_Vertical_Image
-                || getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image)
+        else
             mRecyclerView.addItemDecoration(divider_Vertical);
-
 
         // 設置動畫
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

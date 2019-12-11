@@ -45,7 +45,7 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
         // 实例化展示的view
         View v;
         if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image
-                //|| getRecycleViewStyle()==sGrid_Layout_Image
+                || getRecycleViewStyle()==sGrid_Layout_Image
                 || getRecycleViewStyle()==sStaggered_Grid_Vertical_Image
                 || getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image)
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_image_h_item, parent, false);

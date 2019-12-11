@@ -132,9 +132,9 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
         MyDividerItemDecoration divider_Horizontal = new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
         MyDividerItemDecoration divider_Vertical = new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
 
-        if (getRecycleViewStyle()==sLinear_Layout_Horizontal)
+        if (getRecycleViewStyle()==sLinear_Layout_Horizontal || getRecycleViewStyle()==sStaggered_Grid_Horizontal)
             mRecyclerView.addItemDecoration(divider_Horizontal);
-        else if (getRecycleViewStyle()==sLinear_Layout_Vertical)
+        else
             mRecyclerView.addItemDecoration(divider_Vertical);
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
