@@ -70,9 +70,6 @@
             android:name=".RecycleViewImgActivity"
             android:label="@string/vertical_img"/>
         <activity
-            android:name=".CardViewActivity"
-            android:label="@string/cardview" />
-        <activity
             android:name=".RecycleViewActivity"
             android:label="@string/recycleView" />
         <activity

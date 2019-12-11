@@ -10,10 +10,12 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardBackgroundColor="#F80390FF"
+        card_view:cardBackgroundColor="#F86DB8F3"
         card_view:cardCornerRadius="10dp"
         card_view:cardElevation="5dp"
-        card_view:cardUseCompatPadding="true">
+        card_view:cardUseCompatPadding="true"
+        card_view:cardPreventCornerOverlap="true"
+        android:foreground="?attr/selectableItemBackground">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,6 +43,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
+                    android:shadowColor="#9B9999"
+                    android:shadowDx="5"
+                    android:shadowDy="5"
+                    android:shadowRadius="1"
                     android:text="Android Name"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
