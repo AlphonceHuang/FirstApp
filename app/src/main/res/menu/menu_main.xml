@@ -23,10 +23,12 @@
     <item
         android:id="@+id/about1Item"
         android:title="@string/about_app"
+        android:icon="@mipmap/ic_action_about"
         android:visible="true"
         app:showAsAction="never"/>
     <item
         android:id="@+id/about2Item"
+        android:icon="@mipmap/ic_action_about"
         android:title="@string/about_app1"
         android:visible="true"
         app:showAsAction="never" />
@@ -34,38 +36,46 @@
         android:id="@+id/AutoScanItem"
         android:checkable="true"
         android:title="@string/autoScan"
+        android:icon="@mipmap/ic_action_search"
         android:visible="true" />
     <item
         android:id="@+id/DirectConnectItem"
         android:checkable="true"
+        android:icon="@mipmap/ic_action_bluetooth"
         android:title="@string/direct"
         android:visible="true" />
     <item
         android:id="@+id/ListViewItem"
-        android:icon="@android:drawable/ic_menu_camera"
+        android:icon="@mipmap/ic_action_camera_b"
         android:title="@string/cameras"
         android:visible="true"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/ListView1Item"
+        android:icon="@mipmap/ic_action_phone"
         android:title="@string/Immersive_sample" />
     <item
         android:id="@+id/speechTextItem"
+        android:icon="@mipmap/ic_action_mic"
         android:title="@string/speechText" />
     <item
         android:id="@+id/speechText2Item"
+        android:icon="@mipmap/ic_action_mic"
         android:title="@string/speechText2" />
     <item
         android:id="@+id/FileManagerItem"
+        android:icon="@mipmap/ic_action_collection"
         android:title="@string/filemanager" />
     <item
         android:id="@+id/LocationItem"
+        android:icon="@mipmap/ic_action_location_found"
         android:title="@string/location_text" />
     <item
         android:id="@+id/SensorItem"
         android:title="@string/sensors" />
     <item
         android:id="@+id/BatteryItem"
+        android:icon="@mipmap/ic_action_battery_b"
         android:title="@string/battery_info" />
     <item
         android:id="@+id/GridViewItem"
