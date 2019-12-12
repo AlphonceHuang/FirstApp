@@ -141,6 +141,12 @@
                     <item
                         android:id="@+id/cardviewGridItem"
                         android:title="@string/grid"/>
+                    <item
+                        android:id="@+id/cardview_StaggeredGridV_Item"
+                        android:title="@string/stagger_V"/>
+                    <item
+                        android:id="@+id/cardview_StaggeredGridH_Item"
+                        android:title="@string/stagger_H"/>
                 </menu>
             </item>
         </menu>

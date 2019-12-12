@@ -34,20 +34,40 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
 
         // Title text
         String mTitle;
-        if (getRecycleViewStyle()==sLinear_Layout_Vertical_Image) {
-            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.vertical_img);
-        }else if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image){
-            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.horizontal_img);
-        }else if (getRecycleViewStyle()==sGrid_Layout_Image){
-            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.grid_img);
-        }else if (getRecycleViewStyle()==sStaggered_Grid_Vertical_Image){
-            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.stagger_VImg);
-        }else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image) {
-            mTitle = getString(R.string.recycleView) + ":" + getString(R.string.stagger_HImg);
-        }else if (getRecycleViewStyle()==sCardView_Linear_Vertical){
-            mTitle = getString(R.string.recycleView) + "+" + getString(R.string.cardview_v);
-        }else{
-            mTitle = getString(R.string.recycleView);
+        switch(getRecycleViewStyle()){
+            case sLinear_Layout_Vertical_Image:
+                mTitle = getString(R.string.recycleView) + ":" + getString(R.string.vertical_img);
+                break;
+            case sLinear_Layout_Horizontal_Image:
+                mTitle = getString(R.string.recycleView) + ":" + getString(R.string.horizontal_img);
+                break;
+            case sGrid_Layout_Image:
+                mTitle = getString(R.string.recycleView) + ":" + getString(R.string.grid_img);
+                break;
+            case sStaggered_Grid_Vertical_Image:
+                mTitle = getString(R.string.recycleView) + ":" + getString(R.string.stagger_VImg);
+                break;
+            case sStaggered_Grid_Horizontal_Image:
+                mTitle = getString(R.string.recycleView) + ":" + getString(R.string.stagger_HImg);
+                break;
+            case sCardView_Linear_Vertical:
+                mTitle = getString(R.string.recycleView) + " + " + getString(R.string.cardview_v);
+                break;
+            case sCardView_Linear_Horizontal:
+                mTitle = getString(R.string.recycleView) + " + " + getString(R.string.cardview_h);
+                break;
+            case sCardView_Grid:
+                mTitle = getString(R.string.recycleView) + " + " + getString(R.string.cardview_grid);
+                break;
+            case sCardView_Stagger_Vertical:
+                mTitle = getString(R.string.recycleView) + " + " + getString(R.string.cardview_stagger_V);
+                break;
+            case sCardView_Stagger_Horizontal:
+                mTitle = getString(R.string.recycleView) + " + " + getString(R.string.cardview_stagger_H);
+                break;
+            default:
+                mTitle = getString(R.string.recycleView);
+                break;
         }
         setTitle(mTitle);
 
@@ -69,16 +89,36 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
     }
 
     private void initData() {
-        if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image) {
-            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        }else if (getRecycleViewStyle()==sGrid_Layout_Image){
-            mLayoutManager = new GridLayoutManager(this, 2);
-        }else if (getRecycleViewStyle()==sStaggered_Grid_Vertical_Image){
-            mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
-        }else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image){
-            mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
-        }else{
-            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        switch(getRecycleViewStyle()){
+
+            case sLinear_Layout_Horizontal_Image:
+            case sCardView_Linear_Horizontal:
+                mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                break;
+
+            case sGrid_Layout_Image:
+            case sCardView_Grid:
+                mLayoutManager = new GridLayoutManager(this, 2);
+                break;
+
+            case sStaggered_Grid_Vertical_Image:
+                mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+                break;
+            case sCardView_Stagger_Vertical:
+                mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                break;
+
+            case sStaggered_Grid_Horizontal_Image:
+            case sCardView_Stagger_Horizontal:
+                mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
+                break;
+
+            case sLinear_Layout_Vertical_Image:
+            case sCardView_Linear_Vertical:
+            default:
+                mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+                break;
         }
 
         final List<Map<String, Object>> itemList = new ArrayList<Map<String, Object>>();
@@ -122,13 +162,17 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
         mRecyclerView.setAdapter(mAdapter);
 
         // 設置分隔線
-        MyDividerItemDecoration divider_Horizontal = new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
-        MyDividerItemDecoration divider_Vertical = new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL);
-
-        if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image || getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image)
-            mRecyclerView.addItemDecoration(divider_Horizontal);
-        else
-            mRecyclerView.addItemDecoration(divider_Vertical);
+        switch(getRecycleViewStyle()){
+            case sLinear_Layout_Horizontal_Image:
+            case sStaggered_Grid_Horizontal_Image:
+            case sCardView_Linear_Horizontal:
+            case sCardView_Stagger_Horizontal:
+                mRecyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.HORIZONTAL));
+                break;
+            default:
+                mRecyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+                break;
+        }
 
         // 設置動畫
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

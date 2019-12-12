@@ -54,19 +54,31 @@ public class MyDividerItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
                                @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         if (mOrientation == VERTICAL_LIST) {
-            if (getRecycleViewStyle()==sLinear_Layout_Vertical_Image || getRecycleViewStyle()==sGrid_Layout_Image)
-                outRect.set(50, 50, 50, 0);
-            else if (getRecycleViewStyle()==sStaggered_Grid_Vertical_Image)
-                outRect.set(10, 10, 0, 0);
-            else
-                outRect.set(0, 0, 0, 0);
+            switch(getRecycleViewStyle()){
+                case sLinear_Layout_Vertical_Image:
+                case sGrid_Layout_Image:
+                    outRect.set(50, 50, 50, 0);
+                    break;
+                case sStaggered_Grid_Vertical_Image:
+                    outRect.set(10, 10, 0, 0);
+                    break;
+                default:
+                    outRect.set(0, 0, 0, 0);
+                break;
+            }
         } else {
-            if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image)
-                outRect.set(10, 300, 0, 0);
-            else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image)
-                outRect.set(10, 0, 0, 0);
-            else
-                outRect.set(0, 0, 0, 0);
+            switch(getRecycleViewStyle()){
+                case sLinear_Layout_Horizontal_Image:
+                case sCardView_Linear_Horizontal:
+                    outRect.set(10, 300, 0, 0);
+                    break;
+                case sStaggered_Grid_Horizontal_Image:
+                    outRect.set(10, 0, 0, 0);
+                    break;
+                default:
+                    outRect.set(0, 0, 0, 0);
+                    break;
+            }
         }
     }
 

@@ -44,16 +44,25 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // 实例化展示的view
         View v;
-        if (getRecycleViewStyle()==sLinear_Layout_Horizontal_Image
-                || getRecycleViewStyle()==sGrid_Layout_Image
-                || getRecycleViewStyle()==sStaggered_Grid_Vertical_Image
-                || getRecycleViewStyle()==sStaggered_Grid_Horizontal_Image) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_image_h_item, parent, false);
-        }else if (getRecycleViewStyle()==sCardView_Linear_Vertical){
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
-        }
-        else {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_image_v_item, parent, false);
+        switch(getRecycleViewStyle()){
+            case sLinear_Layout_Horizontal_Image:
+            case sGrid_Layout_Image:
+            case sStaggered_Grid_Vertical_Image:
+            case sStaggered_Grid_Horizontal_Image:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_image_h_item, parent, false);
+                break;
+            case sCardView_Linear_Vertical:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
+                break;
+            case sCardView_Linear_Horizontal:
+            case sCardView_Grid:
+            case sCardView_Stagger_Vertical:
+            case sCardView_Stagger_Horizontal:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardsbox, parent, false);
+                break;
+            default:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_image_v_item, parent, false);
+                break;
         }
 
         // 实例化viewholder

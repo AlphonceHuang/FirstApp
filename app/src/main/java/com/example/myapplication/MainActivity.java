@@ -1796,6 +1796,26 @@ public class MainActivity extends AppCompatActivity{
                 OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
                 startActivity(OptionIntent);
                 break;
+            case R.id.cardviewHItem:
+                setRecycleViewStyle(sCardView_Linear_Horizontal);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
+                break;
+            case R.id.cardviewGridItem:
+                setRecycleViewStyle(sCardView_Grid);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
+                break;
+            case R.id.cardview_StaggeredGridV_Item:
+                setRecycleViewStyle(sCardView_Stagger_Vertical);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
+                break;
+            case R.id.cardview_StaggeredGridH_Item:
+                setRecycleViewStyle(sCardView_Stagger_Horizontal);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
+                break;
             default:
                 //m_ret=true;
                 break;
