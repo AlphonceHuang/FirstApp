@@ -8,6 +8,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,6 +28,8 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private TypedArray IconList, TitleList, SubTitleList;
+    private List<Map<String, Object>> itemList = new ArrayList<Map<String, Object>>();
+    private int newItemCount=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,8 +125,8 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
                 break;
         }
 
-        final List<Map<String, Object>> itemList = new ArrayList<Map<String, Object>>();
-
+        //final List<Map<String, Object>> itemList = new ArrayList<Map<String, Object>>();
+/*
         IconList = getResources().obtainTypedArray(R.array.array_icon);
         TitleList = getResources().obtainTypedArray(R.array.array_Food);
         SubTitleList = getResources().obtainTypedArray(R.array.array_Places);
@@ -139,21 +143,49 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
             item.put("ITEM_ICON1", IconList.getResourceId(i, 0));
             itemList.add(item);
         }
-        mAdapter = new RecycleViewImgAdapter(itemList);
+
+ */
+        mAdapter = new RecycleViewImgAdapter(getData());
 
         ((RecycleViewImgAdapter) mAdapter).setOnItemClickListener(new RecycleViewImgAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                //showToastIns(RecycleViewImgActivity.this,"click: " + str[position], Toast.LENGTH_SHORT);
-                showToastIns(RecycleViewImgActivity.this,"click: " + getString(TitleList.getResourceId(position, 0)), Toast.LENGTH_SHORT);
+
+                //Map<String, Object> item = new HashMap<>();
+                //item = itemList.get(position);
+                //Set<String> get = item.keySet();
+                //Log.w(TAG, ""+item.get("ITEM_TITLE1"));
+
+                showToastIns(RecycleViewImgActivity.this,"click: " +
+                        itemList.get(position).get("ITEM_TITLE1"), Toast.LENGTH_SHORT);
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
-                //showToastIns(RecycleViewImgActivity.this,"long click: " + str[position], Toast.LENGTH_SHORT);
-                showToastIns(RecycleViewImgActivity.this,"long click: " + getString(TitleList.getResourceId(position, 0)), Toast.LENGTH_SHORT);
+                showToastIns(RecycleViewImgActivity.this,"long click: " +
+                        itemList.get(position).get("ITEM_TITLE1"), Toast.LENGTH_SHORT);
             }
         });
+    }
+
+    private List<Map<String, Object>> getData() {
+        IconList = getResources().obtainTypedArray(R.array.array_icon);
+        TitleList = getResources().obtainTypedArray(R.array.array_Food);
+        SubTitleList = getResources().obtainTypedArray(R.array.array_Places);
+        //final String[] str=getResources().getStringArray(R.array.array_Food);
+        //String[] str1=getResources().getStringArray(R.array.array_Places);
+
+        //for (int i = 0; i < str.length; i++) {
+        for (int i = 0; i < TitleList.length(); i++) {
+            Map<String, Object> item = new HashMap<>();
+            //item.put("ITEM_TITLE1", str[i]);
+            //item.put("ITEM_TITLE2", str1[i]);
+            item.put("ITEM_TITLE1", getString(TitleList.getResourceId(i, 0)));
+            item.put("ITEM_TITLE2", getString(SubTitleList.getResourceId(i, 0)));
+            item.put("ITEM_ICON1", IconList.getResourceId(i, 0));
+            itemList.add(item);
+        }
+        return itemList;
     }
 
     private void initView() {
@@ -176,5 +208,34 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
 
         // 設置動畫
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_recycleview, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch(id){
+            case R.id.addItem:
+                newItemCount++;
+                ((RecycleViewImgAdapter) mAdapter).addNewItem(getString(R.string.new_item)+newItemCount, Integer.toString(newItemCount));
+                mLayoutManager.scrollToPosition(0);
+                break;
+            case R.id.deleteItem:
+                if (newItemCount>0)
+                    newItemCount--;
+                ((RecycleViewImgAdapter) mAdapter).deleteItem();
+                mLayoutManager.scrollToPosition(0);
+                break;
+        }
+        // 更新itemList資料
+        itemList = ((RecycleViewImgAdapter) mAdapter).getListData();
+        ((RecycleViewImgAdapter) mAdapter).updateData(itemList);
+        return super.onOptionsItemSelected(item);
     }
 }

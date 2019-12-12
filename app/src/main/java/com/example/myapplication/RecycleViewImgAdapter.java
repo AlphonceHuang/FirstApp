@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -34,6 +38,29 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
         this.mData = data;
         notifyDataSetChanged();
     }
+
+    public void addNewItem(String str, String subStr){
+
+        if (mData == null){
+            mData = new ArrayList<Map<String, Object>>();
+        }
+        Map<String, Object> item = new HashMap<>();
+        item.put("ITEM_TITLE1", str);
+        item.put("ITEM_TITLE2", subStr);
+        item.put("ITEM_ICON1", R.drawable.apple);
+        mData.add(0,item);
+
+        notifyItemInserted(0);
+    }
+
+    public void deleteItem() {
+        if(mData == null || mData.isEmpty()) {
+            return;
+        }
+        mData.remove(0);
+        notifyItemRemoved(0);
+    }
+
 
     public void setOnItemClickListener(RecycleViewImgAdapter.OnItemClickListener listener) {
         this.onItemClickListener = listener;

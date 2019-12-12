@@ -88,20 +88,27 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void initData() {
-        if (getRecycleViewStyle()==sLinear_Layout_Horizontal) {
-            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        }else if (getRecycleViewStyle()==sGrid_Layout){
-            mLayoutManager = new GridLayoutManager(this, 2);
-        }else if (getRecycleViewStyle()==sStaggered_Grid_Vertical) {
-            mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
-        }else if (getRecycleViewStyle()==sStaggered_Grid_Horizontal) {
-            mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
-        }else{
-            mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        switch(getRecycleViewStyle()){
+            default:
+            case sLinear_Layout_Vertical:
+                mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+                break;
+            case sLinear_Layout_Horizontal:
+                mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                break;
+            case sGrid_Layout:
+                mLayoutManager = new GridLayoutManager(this, 2);
+                break;
+            case sStaggered_Grid_Vertical:
+                mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+                break;
+            case sStaggered_Grid_Horizontal:
+                mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL);
+                break;
         }
 
-        listArray = getData();
-        mAdapter = new RecycleViewAdapter(listArray);
+        //listArray = getData();
+        mAdapter = new RecycleViewAdapter(getData());
 
         ((RecycleViewAdapter) mAdapter).setOnItemClickListener(new RecycleViewAdapter.OnItemClickListener() {
             @Override
