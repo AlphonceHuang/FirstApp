@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
 import android.content.res.TypedArray;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,8 +15,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -244,7 +249,37 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
 
     private void showPopupMenu(View view, final int position){
         PopupMenu popupMenu = new PopupMenu(RecycleViewImgActivity.this, view);
+
+        // 強制顯示Icon
+        try {
+            Method method = popupMenu.getMenu().getClass().getDeclaredMethod("setOptionalIconsVisible", boolean.class);
+            method.setAccessible(true);
+            method.invoke(popupMenu.getMenu(), true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*  // 下面這種方法也可以用
+        try {
+            Field[] fields = popupMenu.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                if ("mPopup".equals(field.getName())) {
+                    field.setAccessible(true);
+                    Object menuPopupHelper = field.get(popupMenu);
+                    Class<?> classPopupHelper = Class.forName(menuPopupHelper.getClass().getName());
+                    Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
+                    setForceIcons.invoke(menuPopupHelper, true);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        */
+
         popupMenu.getMenuInflater().inflate(R.menu.menu_recycleview, popupMenu.getMenu());
+
+        //final PopupWindow popup = new PopupWindow(view.getContext());
+        //popup.setBackgroundDrawable(new BitmapDrawable());
         popupMenu.show();
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {

@@ -32,19 +32,24 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuBuilder;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Gravity;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -251,10 +256,17 @@ public class MainActivity extends AppCompatActivity{
         }
         Log.w(TAG, "mImageCounter:"+mImageCounter);
 
-        //ActionBar mActionBar = getActionBar(); //取得Activity的ActionBar
-        //assert mActionBar != null;
-        //mActionBar.setDisplayShowTitleEnabled(false); //false : 隱藏程式標題
-
+        ActionBar mActionBar = getSupportActionBar();
+        if (mActionBar!=null) {
+            mActionBar.setDisplayOptions(
+                    //ActionBar.DISPLAY_HOME_AS_UP | // 左箭頭
+                    ActionBar.DISPLAY_USE_LOGO |
+                    ActionBar.DISPLAY_SHOW_HOME|
+                    ActionBar.DISPLAY_SHOW_TITLE  // 文字
+            );
+            // 圖示
+            mActionBar.setLogo(R.drawable.monkey_64);
+        }
 
         //------------------------------------------------------------------------------------------
         // 註冊context menu 浮動選單 (長按空白處出現的選單)
@@ -1552,11 +1564,17 @@ public class MainActivity extends AppCompatActivity{
     //======================================================================
     // 創建右上角 Option menu
     //======================================================================
+    @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         Log.w(TAG, "onCreateOptionsMenu...");
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        if(menu instanceof MenuBuilder){
+            MenuBuilder m = (MenuBuilder) menu;
+            m.setOptionalIconsVisible(true);
+        }
         return true;
     }
 
@@ -2150,4 +2168,6 @@ public class MainActivity extends AppCompatActivity{
         }
         return null;
     }
+
+
 }

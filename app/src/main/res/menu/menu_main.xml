@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <item
         android:id="@+id/settingsItem"
         android:checkable="false"
@@ -41,10 +42,10 @@
         android:visible="true" />
     <item
         android:id="@+id/ListViewItem"
-        android:icon="@mipmap/ic_action_camera"
+        android:icon="@android:drawable/ic_menu_camera"
         android:title="@string/cameras"
         android:visible="true"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/ListView1Item"
         android:title="@string/Immersive_sample" />
