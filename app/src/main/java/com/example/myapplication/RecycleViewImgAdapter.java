@@ -39,7 +39,7 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
         notifyDataSetChanged();
     }
 
-    public void addNewItem(String str, String subStr){
+    public void addNewItem(String str, String subStr, int position){
 
         if (mData == null){
             mData = new ArrayList<Map<String, Object>>();
@@ -48,17 +48,17 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
         item.put("ITEM_TITLE1", str);
         item.put("ITEM_TITLE2", subStr);
         item.put("ITEM_ICON1", R.drawable.apple);
-        mData.add(0,item);
+        mData.add(position,item);
 
-        notifyItemInserted(0);
+        notifyItemInserted(position);
     }
 
-    public void deleteItem() {
+    public void deleteItem(int position) {
         if(mData == null || mData.isEmpty()) {
             return;
         }
-        mData.remove(0);
-        notifyItemRemoved(0);
+        mData.remove(position);
+        notifyItemRemoved(position);
     }
 
 

@@ -9,7 +9,7 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="#EE7A3B"
+        app:cardBackgroundColor="#F86DB8F3"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:cardPreventCornerOverlap="true"

@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -164,6 +166,7 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
             public void onItemLongClick(View view, int position) {
                 showToastIns(RecycleViewImgActivity.this,"long click: " +
                         itemList.get(position).get("ITEM_TITLE1"), Toast.LENGTH_SHORT);
+                showPopupMenu(view, position);
             }
         });
     }
@@ -223,13 +226,13 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
         switch(id){
             case R.id.addItem:
                 newItemCount++;
-                ((RecycleViewImgAdapter) mAdapter).addNewItem(getString(R.string.new_item)+newItemCount, Integer.toString(newItemCount));
+                ((RecycleViewImgAdapter) mAdapter).addNewItem(getString(R.string.new_item)+newItemCount, Integer.toString(newItemCount), 0);
                 mLayoutManager.scrollToPosition(0);
                 break;
             case R.id.deleteItem:
                 if (newItemCount>0)
                     newItemCount--;
-                ((RecycleViewImgAdapter) mAdapter).deleteItem();
+                ((RecycleViewImgAdapter) mAdapter).deleteItem(0);
                 mLayoutManager.scrollToPosition(0);
                 break;
         }
@@ -237,5 +240,43 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
         itemList = ((RecycleViewImgAdapter) mAdapter).getListData();
         ((RecycleViewImgAdapter) mAdapter).updateData(itemList);
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showPopupMenu(View view, final int position){
+        PopupMenu popupMenu = new PopupMenu(RecycleViewImgActivity.this, view);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_recycleview, popupMenu.getMenu());
+        popupMenu.show();
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.addItem:
+                        Log.w(TAG, "press add:"+position);
+                        newItemCount++;
+                        ((RecycleViewImgAdapter) mAdapter).addNewItem(getString(R.string.new_item)+newItemCount, Integer.toString(newItemCount), position);
+
+                        // 更新資料
+                        itemList = ((RecycleViewImgAdapter) mAdapter).getListData();
+                        ((RecycleViewImgAdapter) mAdapter).updateData(itemList);
+                        break;
+                    case R.id.deleteItem:
+                        Log.w(TAG, "press del:"+position);
+                        ((RecycleViewImgAdapter) mAdapter).deleteItem(position);
+
+                        // 更新資料
+                        itemList = ((RecycleViewImgAdapter) mAdapter).getListData();
+                        ((RecycleViewImgAdapter) mAdapter).updateData(itemList);
+                        break;
+                }
+                return true;
+            }
+        });
+        popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+            @Override
+            public void onDismiss(PopupMenu menu) {
+                // 控件消失时的事件
+            }
+        });
     }
 }
