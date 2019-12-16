@@ -47,7 +47,7 @@
             android:text="@string/show_image"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
+            app:layout_constraintTop_toBottomOf="@+id/CapPagebutton" />
 
         <Button
             android:id="@+id/ble_btn"
@@ -63,13 +63,12 @@
             style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:text="@string/dialog"
             app:layout_constraintStart_toEndOf="@+id/showimage"
-            app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
+            app:layout_constraintTop_toBottomOf="@+id/CapPagebutton" />
 
         <Button
             android:id="@+id/DirectCon"
@@ -106,7 +105,7 @@
             android:text="@string/progress_Horizontal"
             android:textAllCaps="false"
             app:layout_constraintStart_toEndOf="@+id/DialogBtn"
-            app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
+            app:layout_constraintTop_toBottomOf="@+id/CapPagebutton" />
 
         <Button
             android:id="@+id/CustomeDialogShowBtn"
@@ -146,16 +145,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/screencap"
-            app:layout_constraintStart_toEndOf="@+id/snackbatBtn"
-            app:layout_constraintTop_toBottomOf="@+id/BMIbutton" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/DirectCon"
-            app:srcCompat="@drawable/dolphin"
-            tools:layout_editor_absoluteX="1dp" />
+            app:srcCompat="@drawable/dolphin" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -171,18 +170,6 @@
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/DirectCon"
             app:srcCompat="@drawable/burger" />
-
-        <ImageView
-            android:id="@+id/screencapImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/runningText"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/delta" />
 
         <ProgressBar
             android:id="@+id/custome_progressBar"
@@ -236,11 +223,12 @@
             android:id="@+id/runningText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+
             android:ellipsize="marquee"
-
             android:focusable="true"
-            android:focusableInTouchMode="true"
 
+            android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:text="@string/runningText"
@@ -266,8 +254,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/location_text"
-            app:layout_constraintStart_toEndOf="@+id/screencapBtn"
-            app:layout_constraintTop_toBottomOf="@+id/BMIbutton" />
+            app:layout_constraintStart_toEndOf="@+id/sensorbutton"
+            app:layout_constraintTop_toBottomOf="@+id/listviewB" />
 
         <Button
             android:id="@+id/sensorbutton"
@@ -275,8 +263,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sensors"
-            app:layout_constraintStart_toEndOf="@+id/progress_hor"
-            app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
+            app:layout_constraintStart_toEndOf="@+id/snackbatBtn"
+            app:layout_constraintTop_toBottomOf="@+id/BMIbutton" />
 
         <Button
             android:id="@+id/batteryBtn"
@@ -315,6 +303,15 @@
             android:text="@string/title_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/CapPagebutton"
+            style="@android:style/Widget.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/screencappage"
+            app:layout_constraintStart_toEndOf="@+id/screencapBtn"
+            app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

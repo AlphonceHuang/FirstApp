@@ -117,6 +117,9 @@
     <string name="listViewPage">帶圖片的ListView</string>
     <string name="Laplacian">拉普拉斯梯度:</string>
     <string name="screencap">截圖</string>
+    <string name="screencappage">顯示截圖</string>
+    <string name="first_image">已經是第一張</string>
+    <string name="last_image">已經是最後一張</string>
     <string name="report_page">Report</string>
     <string name="folder_not_exist">資料夾不存在</string>
     <string name="file_not_exist">檔案不存在</string>

@@ -67,8 +67,15 @@
         android:roundIcon="@drawable/monkey"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BMIActivity"
-            android:label="@string/title_text"/>
+        <activity
+            android:name=".ImageSwitcherActivity"
+            android:theme="@style/AppTheme_NoTitle" />
+        <activity
+            android:name=".ScreenCapActivity"
+            android:theme="@style/AppTheme_NoTitle" />
+        <activity
+            android:name=".BMIActivity"
+            android:label="@string/title_text" />
         <activity
             android:name=".RecycleViewImgActivity"
             android:label="@string/vertical_img" />

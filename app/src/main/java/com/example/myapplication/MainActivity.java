@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity{
     //private Button exe_seeReport;
     private Button exe_BLE;
     private Button exe_DirectConnect;
-    private ImageView ScreenShotImg;
+    //private ImageView ScreenShotImg;
 
     private Switch sw_AutoScan;
 
@@ -398,8 +398,8 @@ public class MainActivity extends AppCompatActivity{
 
         Button exe_ScreenShot = findViewById(R.id.screencapBtn);
         exe_ScreenShot.setOnClickListener(calcBMI);
-        ScreenShotImg = findViewById(R.id.screencapImg);
-        ScreenShotImg.setVisibility(View.GONE);
+        //ScreenShotImg = findViewById(R.id.screencapImg);
+        //ScreenShotImg.setVisibility(View.GONE);
 
         Button exe_customer = findViewById(R.id.CustomeDialogShowBtn);
         exe_customer.setOnClickListener(calcBMI);
@@ -433,6 +433,8 @@ public class MainActivity extends AppCompatActivity{
         exe_ListView.setOnClickListener(calcBMI);
         exe_ListView.setSelected(true);
 
+        Button exeShowCap = findViewById(R.id.CapPagebutton);
+        exeShowCap.setOnClickListener(calcBMI);
         //------------------------------------------------
         // 監聽EditText的狀態
         //------------------------------------------------
@@ -696,6 +698,12 @@ public class MainActivity extends AppCompatActivity{
                     myIntent = new Intent(MainActivity.this,BMIActivity.class);
                     startActivity(myIntent);
                     break;
+
+                case R.id.CapPagebutton:
+                    //myIntent = new Intent(MainActivity.this,ScreenCapActivity.class);
+                    myIntent = new Intent(MainActivity.this,ImageSwitcherActivity.class);
+                    startActivity(myIntent);
+                    break;
 /*
                 case R.id.button:
                     Log.w(TAG, "Press calculate.");
@@ -938,8 +946,8 @@ public class MainActivity extends AppCompatActivity{
                 case R.id.screencapBtn:
                     // 截圖
                     Bitmap bm=takeScreenShot(MainActivity.this);
-                    ScreenShotImg.setImageBitmap(bm);
-                    ScreenShotImg.setVisibility(View.VISIBLE);
+                    //ScreenShotImg.setImageBitmap(bm);
+                    //ScreenShotImg.setVisibility(View.VISIBLE);
 
                     // 將截圖儲存
                     File f = new File(Environment.getExternalStorageDirectory(), "ScreenCap");
