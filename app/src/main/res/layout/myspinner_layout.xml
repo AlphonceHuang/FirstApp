@@ -3,17 +3,15 @@
     android:id="@android:id/text1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:ellipsize="marquee"
-    android:marqueeRepeatLimit="marquee_forever"
-
-
-
     android:gravity="start"
+    android:marqueeRepeatLimit="marquee_forever"
     android:paddingStart="8dip"
     android:paddingEnd="8dip"
+    android:scrollHorizontally="true"
     android:singleLine="true"
-    android:textColor="#A54200"
+    android:textColor="@color/colorOrange"
     android:textSize="16sp"
-    android:textStyle="normal" >
+    android:textStyle="normal">
+
 </TextView>

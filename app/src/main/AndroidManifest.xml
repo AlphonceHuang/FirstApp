@@ -59,6 +59,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
+        android:name=".GlobalVariable"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@drawable/monkey"
@@ -66,9 +67,11 @@
         android:roundIcon="@drawable/monkey"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".BMIActivity"
+            android:label="@string/title_text"/>
         <activity
             android:name=".RecycleViewImgActivity"
-            android:label="@string/vertical_img"/>
+            android:label="@string/vertical_img" />
         <activity
             android:name=".RecycleViewActivity"
             android:label="@string/recycleView" />

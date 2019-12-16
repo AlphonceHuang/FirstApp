@@ -24,7 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
-import java.util.Objects;
 
 import static com.example.myapplication.R.array.pop_item;
 import static com.example.myapplication.Util.showToastIns;
@@ -56,12 +55,15 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-        Log.w(TAG, "report on create");
+        //Log.w(TAG, "ReportActivity onCreate:"+MainActivity.mHowGoP2);
 
         initialView();
 
-        if (MainActivity.mHowGoP2 == 0)    // 由按下"看報告"跳轉而來，需顯示報告內容
-            showResult();
+        //if (MainActivity.mHowGoP2 == 0)    // 由按下"看報告"跳轉而來，需顯示報告內容
+        //    showResult();
+        //else if (MainActivity.mHowGoP2 == -1)   // not from MainActivity
+            showBMIreport();
+
         registerForContextMenu(findViewById(R.id.report_layout));   // 註冊context menu 浮動選單
     }
 
@@ -187,7 +189,7 @@ public class ReportActivity extends AppCompatActivity {
         ChangeText.setTextColor(Color.GREEN);   // default color
         ChangeText.setTextSize(30); // default size
     }
-
+/*
     private void showResult() {
         Bundle bundle = this.getIntent().getExtras();
 
@@ -223,6 +225,29 @@ public class ReportActivity extends AppCompatActivity {
             Log.w(TAG, "輸入錯誤");
             report_result.setText(R.string.cal_fail);
         }
+    }
+ */
+
+    private void showBMIreport(){
+        DecimalFormat nf = new DecimalFormat("0.00");
+        GlobalVariable gv = (GlobalVariable)getApplicationContext();
+
+        BMI = gv.getPerson_BMI();
+        String showHeight = getText(R.string.length) + ":" + gv.getPerson_height();
+        String showWeight = getText(R.string.weight) + ":" + gv.getPerson_weight();
+        input_height.setText(showHeight);
+        input_weight.setText(showWeight);
+
+        String showResult = getText(R.string.cal_result) + nf.format(BMI);
+        report_result.setText(showResult);
+        checkResult=false;
+
+        if (BMI > 25) //太重了
+            report_suggest.setText(R.string.suggest_over);
+        else if (BMI < 20) //太輕了
+            report_suggest.setText(R.string.suggest_light);
+        else //剛剛好
+            report_suggest.setText(R.string.suggest_good);
     }
 
     //========================================================================

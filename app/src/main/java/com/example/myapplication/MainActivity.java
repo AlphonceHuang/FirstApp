@@ -32,7 +32,6 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -42,14 +41,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Gravity;
-import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,12 +52,10 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -71,7 +63,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -97,13 +88,7 @@ import static com.example.myapplication.sRecycleViewStyle.*;
 public class MainActivity extends AppCompatActivity{
 
     private static final String TAG="Alan";
-    private EditText num_height;
-    private EditText num_weight;
-    private TextView num_result;
-    private TextView result_suggest;
-    private TextView last_result;
-    private Button exe_button;
-    private Button exe_seeReport;
+    //private Button exe_seeReport;
     private Button exe_BLE;
     private Button exe_DirectConnect;
     private ImageView ScreenShotImg;
@@ -112,11 +97,11 @@ public class MainActivity extends AppCompatActivity{
 
     private ImageView MyImageView;
     private ImageView MyImageView1;
-    private double BMI, I_Height, I_Weight;
+    //private double BMI, I_Height, I_Weight;
 
     private static final int CUSTOM_DIALOG_DELAY_TIME = 10000;  // 10s
 
-    private static final int ACTIVITY_REPORT = 1000;
+    //private static final int ACTIVITY_REPORT = 1000;
     private static final int ACTIVITY_BLUETOOTH = 1001;
     private static final int ACTIVITY_CAMERA = 1002;
     private static final int ACTIVITY_READ_STORAGE = 1003;
@@ -294,7 +279,7 @@ public class MainActivity extends AppCompatActivity{
 
         checkAndRequestPermissions();   // 取得REQUIRED_PERMISSION_LIST裡的權限
         initView();
-        clearInputData();
+        //clearInputData();
         ShowAnimation();
     }
 
@@ -364,10 +349,10 @@ public class MainActivity extends AppCompatActivity{
     @SuppressLint("ClickableViewAccessibility")
     private void initView()
     {
-        num_height =  findViewById(R.id.height);
-        num_weight =  findViewById(R.id.weight);
-        num_result =  findViewById(R.id.result);
-        last_result = findViewById(R.id.lastResult);
+        //num_height =  findViewById(R.id.height);
+        //num_weight =  findViewById(R.id.weight);
+        //num_result =  findViewById(R.id.result);
+        //last_result = findViewById(R.id.lastResult);
 
         MyImageView =  findViewById(R.id.imageView);
         MyImageView1 =  findViewById(R.id.imageView3);
@@ -376,12 +361,18 @@ public class MainActivity extends AppCompatActivity{
         MyImageView1.setOnTouchListener(mOnTouchListener);
         myImageView2.setOnTouchListener(mOnTouchListener);
 
-        exe_button =  findViewById(R.id.button);
+        //private EditText num_height;
+        //private EditText num_weight;
+        //private TextView num_result;
+        //private TextView result_suggest;
+        //private TextView last_result;
+        Button exe_button = findViewById(R.id.BMIbutton);
         exe_button.setOnClickListener(calcBMI);
-        Button exe_clearButton = findViewById(R.id.clearbutton);
-        exe_clearButton.setOnClickListener(calcBMI);
-        exe_seeReport = findViewById(R.id.seereport);
-        exe_seeReport.setOnClickListener(calcBMI);
+        exe_button.setSelected(true);
+        //Button exe_clearButton = findViewById(R.id.clearbutton);
+        //exe_clearButton.setOnClickListener(calcBMI);
+        //exe_seeReport = findViewById(R.id.seereport);
+        //exe_seeReport.setOnClickListener(calcBMI);
         Button exe_Notify = findViewById(R.id.notifybtn);
         exe_Notify.setOnClickListener(calcBMI);
         Button exe_NextPage = findViewById(R.id.nextpagebtn);
@@ -426,8 +417,8 @@ public class MainActivity extends AppCompatActivity{
         sw_AutoScan.setOnCheckedChangeListener(MainSW);
         sw_AutoScan.setChecked(AutoScanGet());
 
-        result_suggest = findViewById(R.id.suggest);
-        result_suggest.setText(getString(R.string.suggest_empty)); // 預設空白字串
+        //result_suggest = findViewById(R.id.suggest);
+        //result_suggest.setText(getString(R.string.suggest_empty)); // 預設空白字串
 
         Button exe_Location = findViewById(R.id.locationButton);
         exe_Location.setOnClickListener(calcBMI);
@@ -445,8 +436,8 @@ public class MainActivity extends AppCompatActivity{
         //------------------------------------------------
         // 監聽EditText的狀態
         //------------------------------------------------
-        num_height.addTextChangedListener(InputWatcher);
-        num_weight.addTextChangedListener(InputWatcher);
+        //num_height.addTextChangedListener(InputWatcher);
+        //num_weight.addTextChangedListener(InputWatcher);
 
         //------------------------------------------------
         // Spinner (下拉式選單)
@@ -489,6 +480,7 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    /*
     //=======================================================================
     // 監控EditText是否有輸入字，決定"計算"按鈕是否反灰
     //=======================================================================
@@ -514,6 +506,7 @@ public class MainActivity extends AppCompatActivity{
 
         }
     };
+     */
 /*
     // 1. 透過class方式觸發元件
     private final class MyTouchListener implements OnTouchListener{
@@ -699,52 +692,14 @@ public class MainActivity extends AppCompatActivity{
 
             switch(v.getId())
             {
+                case R.id.BMIbutton:
+                    myIntent = new Intent(MainActivity.this,BMIActivity.class);
+                    startActivity(myIntent);
+                    break;
+/*
                 case R.id.button:
                     Log.w(TAG, "Press calculate.");
                     DecimalFormat nf = new DecimalFormat("0.00");
-
-                    //判斷是否有輸入
-                    //if (TextUtils.isEmpty(num_height.getText().toString()) ||
-                    //    TextUtils.isEmpty(num_weight.getText().toString()))
-                    //{
-                    //     Toast.makeText(getApplicationContext(), R.string.cal_fail, Toast.LENGTH_SHORT).show();
-                    //     num_result.setText(getText(R.string.cal_fail));    // 輸入錯誤
-                    //}
-                    //else
-
-                    // 使用Exception的方式判斷是否有輸入
-                    /*
-                    try {
-
-                        //身高
-                        I_Height = Double.parseDouble(num_height.getText().toString()) / 100;
-                        //體重
-                        I_Weight = Double.parseDouble(num_weight.getText().toString());
-                        // 計算出BMI值
-                        BMI = I_Weight / (I_Height * I_Height);
-
-                        //結果 (Your BMI is:)
-                        num_result.setText(getText(R.string.cal_result) + nf.format(BMI));
-
-                        //建議
-                        if (BMI > 25) //太重了
-                            result_suggest.setText(R.string.suggest_over);
-                        else if (BMI < 20) //太輕了
-                            result_suggest.setText(R.string.suggest_light);
-                        else //剛剛好
-                            result_suggest.setText(R.string.suggest_good);
-
-                        // 隱藏軟鍵盤
-                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        if (imm != null) {
-                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);   // 強制隱藏
-                            //imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);   // toggle方式
-                        }
-                    } catch (Exception obj)   // 使用try...catch的方式判斷是否有輸入
-                    {
-                        Toast.makeText(getApplicationContext(), R.string.cal_fail, Toast.LENGTH_SHORT).show();
-                        result_suggest.setText(getText(R.string.cal_fail));    // 輸入錯誤
-                    }*/
                     if (CalCulate_BMI())
                     {
                         String strRes=getString(R.string.cal_result) + nf.format(BMI);
@@ -815,6 +770,7 @@ public class MainActivity extends AppCompatActivity{
                         startActivityForResult(intent, ACTIVITY_REPORT);    // 需將結果回傳的start activity
                     }
                     break;
+ */
 
                 case R.id.notifybtn:
                     Log.w(TAG, "Press NOTIFY");
@@ -823,9 +779,9 @@ public class MainActivity extends AppCompatActivity{
 
                 case R.id.nextpagebtn:
                     Log.w(TAG, "NEXT，use startActivity");
+                    //mHowGoP2=1;
                     myIntent = new Intent(MainActivity.this,ReportActivity.class);
                     startActivity(myIntent);
-                    mHowGoP2=1;
                     break;
 
                 // 按鈕更換圖片
@@ -1222,7 +1178,7 @@ public class MainActivity extends AppCompatActivity{
         PDialog.setMessage("這是轉圈進度條");
         PDialog.setIndeterminate(true); // 一直轉圈
         PDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // 沒寫也是spinning
-        PDialog.setCancelable(false);   // 按別地方無法被取消
+        PDialog.setCancelable(true);   // 按別地方可被取消
         PDialog.show();
 
         new Thread(){
@@ -1283,11 +1239,11 @@ public class MainActivity extends AppCompatActivity{
         editor.commit();    //提交
     }
 
-    public static int mHowGoP2=0;// 0: 按"看報告", 1:按"下一頁"
+    //public static int mHowGoP2=-1;// 0: 按"看報告", 1:按"下一頁"
     //public int HowToGoPage2(){
     //    return mHowGoP2;    // 0: 按"看報告", 1:按"下一頁"
     //}
-
+/*
     private boolean CalCulate_BMI()
     {
         try{
@@ -1305,6 +1261,7 @@ public class MainActivity extends AppCompatActivity{
             return false;
         }
     }
+ */
 
     // onActivityResult函式與startActivityForResult函式是共生的關係，
     // startActivityForResult函式負責呼叫其他Activity，
@@ -1317,7 +1274,7 @@ public class MainActivity extends AppCompatActivity{
         super.onActivityResult(requestCode, resultCode, intent);
 
         Log.w(TAG, "requestCode:"+requestCode+",resultCode:"+resultCode);
-
+/*
         if(resultCode == RESULT_OK && requestCode == ACTIVITY_REPORT)
         {
             Bundle bundle = intent.getExtras();
@@ -1331,7 +1288,7 @@ public class MainActivity extends AppCompatActivity{
             last_result.setText(strResult);
         }
 
-        else if (requestCode == ACTIVITY_BLUETOOTH){
+        else*/ if (requestCode == ACTIVITY_BLUETOOTH){
             Log.w(TAG, "ACTIVITY_BLUETOOTH");
             if (resultCode == RESULT_OK) {
                 Log.w(TAG, "按了開啟bluetooth後，跳轉頁面");
@@ -1347,8 +1304,8 @@ public class MainActivity extends AppCompatActivity{
             String PathHolder = Objects.requireNonNull(intent.getData()).getPath();
             Toast.makeText(MainActivity.this, PathHolder , Toast.LENGTH_LONG).show();
         }
-        clearAllKeepLastData(); // 只保留 "上次測試結果" 項目，其餘清空
-        num_height.requestFocus();  // focus在身高
+        //clearAllKeepLastData(); // 只保留 "上次測試結果" 項目，其餘清空
+        //num_height.requestFocus();  // focus在身高
     }
 
     //=======================================================================
@@ -1440,7 +1397,7 @@ public class MainActivity extends AppCompatActivity{
             }*/
         }
     }
-
+/*
     private void clearInputData()
     {
         num_height.setText(""); // 清空欄位
@@ -1461,6 +1418,7 @@ public class MainActivity extends AppCompatActivity{
         num_result.setText(getText(R.string.cal_result)); // 清除後面的數字
         result_suggest.setText("");   // 清空
     }
+ */
 
 
     // 按下選單項目，出現對話框，關於一
@@ -1597,6 +1555,10 @@ public class MainActivity extends AppCompatActivity{
 
         switch(id)
         {
+            case R.id.BMIItem:
+                OptionIntent = new Intent(MainActivity.this,BMIActivity.class);
+                startActivity(OptionIntent);
+                break;
             case R.id.settingsItem:
                 if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
                     Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission success.");

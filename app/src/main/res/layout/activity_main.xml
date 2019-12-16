@@ -17,59 +17,31 @@
         tools:context=".MainActivity">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:background="@android:drawable/btn_default"
-            android:text="@string/cal_btn"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/height"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <Button
-            android:id="@+id/clearbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/clear_btn"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <Button
-            android:id="@+id/seereport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_default"
-            android:text="@string/see_report"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/weight"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
-
-        <Button
             android:id="@+id/notifybtn"
+            style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
             android:text="@string/up_notification"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastResult" />
+            app:layout_constraintTop_toBottomOf="@+id/BMIbutton" />
 
         <Button
             android:id="@+id/nextpagebtn"
+            style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/report_page"
             android:textAllCaps="false"
             android:textColor="@android:color/black"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/seereport"
-            app:layout_constraintTop_toBottomOf="@+id/clearbutton" />
+            app:layout_constraintStart_toEndOf="@+id/BMIbutton"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/showimage"
+            style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/show_image"
@@ -88,6 +60,7 @@
 
         <Button
             android:id="@+id/DialogBtn"
+            style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
@@ -110,19 +83,20 @@
 
         <Button
             android:id="@+id/snackbatBtn"
+            style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:text="@string/filemanager"
             android:textAllCaps="false"
             app:layout_constraintStart_toEndOf="@+id/notifybtn"
-            app:layout_constraintTop_toBottomOf="@+id/lastResult" />
+            app:layout_constraintTop_toBottomOf="@+id/BMIbutton" />
 
         <Button
             android:id="@+id/progress_hor"
+            style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
@@ -152,6 +126,7 @@
 
         <Button
             android:id="@+id/CameraBtn"
+            style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
@@ -167,61 +142,34 @@
 
         <Button
             android:id="@+id/screencapBtn"
+            style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
             android:text="@string/screencap"
             app:layout_constraintStart_toEndOf="@+id/snackbatBtn"
-            app:layout_constraintTop_toBottomOf="@+id/lastResult" />
-
-        <EditText
-            android:id="@+id/height"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#4527A0"
-            android:contentDescription="@string/input_height"
-            android:ems="10"
-            android:inputType="number"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <EditText
-            android:id="@+id/weight"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:backgroundTint="#C62828"
-            android:contentDescription="@string/kg"
-            android:ems="10"
-            android:inputType="number"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/height" />
+            app:layout_constraintTop_toBottomOf="@+id/BMIbutton" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/batteryBtn"
-            app:srcCompat="@drawable/dolphin" />
+            app:layout_constraintTop_toBottomOf="@+id/DirectCon"
+            app:srcCompat="@drawable/dolphin"
+            tools:layout_editor_absoluteX="1dp" />
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="80dp"
             android:layout_height="80dp"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/batteryBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/DirectCon" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="80dp"
             android:layout_height="80dp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/batteryBtn"
+            app:layout_constraintTop_toBottomOf="@+id/DirectCon"
             app:srcCompat="@drawable/burger" />
 
         <ImageView
@@ -238,22 +186,21 @@
 
         <ProgressBar
             android:id="@+id/custome_progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:indeterminateDrawable="@drawable/progressbarstyle"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/batteryBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/DirectCon" />
 
         <Spinner
             android:id="@+id/spinner"
             style="@android:style/Widget.Spinner.DropDown"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="38dp"
             android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
             android:background="@drawable/spinner_drop_down_shape"
             android:clickable="false"
-
             android:ellipsize="marquee"
             android:entries="@array/lunch"
             android:focusable="true"
@@ -278,86 +225,12 @@
             app:layout_constraintStart_toEndOf="@+id/ble_btn"
             app:layout_constraintTop_toBottomOf="@+id/showimage" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/title_text"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/length"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
         <!--使用button_sharp_behavior.xml-->
         <!--裡面又包含button_sharp.xml及button_sharp_select.xml定義normal及press的樣式-->
         <!--textAllCaps設成false，就不會強制變成大寫字母 -->
         <!--marqueeRepeatLimit+singleLine成形成跑馬燈，在activity裡面要定義setSelected才會啟動-->
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/weight"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <TextView
-            android:id="@+id/result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:text="@string/cal_result"
-            android:textColor="#6A1B9A"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weight" />
 
         <!-- marquee 跑馬燈模式-->
-        <TextView
-            android:id="@+id/suggest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/suggest_good"
-            android:textColor="#D84315"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seereport" />
-
-        <TextView
-            android:id="@+id/lastResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="1dp"
-            android:text="@string/last_result"
-            android:textColor="#6A1B9A"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/result" />
 
         <TextView
             android:id="@+id/runningText"
@@ -389,15 +262,16 @@
 
         <Button
             android:id="@+id/locationButton"
+            style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
             android:text="@string/location_text"
             app:layout_constraintStart_toEndOf="@+id/screencapBtn"
-            app:layout_constraintTop_toBottomOf="@+id/lastResult" />
+            app:layout_constraintTop_toBottomOf="@+id/BMIbutton" />
 
         <Button
             android:id="@+id/sensorbutton"
+            style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sensors"
@@ -406,24 +280,41 @@
 
         <Button
             android:id="@+id/batteryBtn"
+            style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
+            android:layout_marginTop="8dp"
             android:text="@string/battery_info"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/DirectCon" />
+            app:layout_constraintStart_toEndOf="@+id/nextpagebtn"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/listviewB"
+            style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:text="@string/listviewex"
             android:textAllCaps="false"
             app:layout_constraintStart_toEndOf="@+id/batteryBtn"
-            app:layout_constraintTop_toBottomOf="@+id/DirectCon" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/BMIbutton"
+            style="@android:style/Widget.Button"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="@string/title_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
