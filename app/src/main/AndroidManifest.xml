@@ -71,9 +71,6 @@
             android:name=".ImageSwitcherActivity"
             android:theme="@style/AppTheme_NoTitle" />
         <activity
-            android:name=".ScreenCapActivity"
-            android:theme="@style/AppTheme_NoTitle" />
-        <activity
             android:name=".BMIActivity"
             android:label="@string/title_text" />
         <activity

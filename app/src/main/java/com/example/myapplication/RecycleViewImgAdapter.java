@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

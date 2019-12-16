@@ -51,7 +51,7 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
                     files = getImages(default_path);  // 將此路徑裡的相關檔案取出
 
                     if (files !=null) {
-                        Log.w(TAG, "length:" + files.length);
+                        //Log.w(TAG, "length:" + files.length);
                         ImageView[] tips = new ImageView[files.length];
                         for(int i=0; i<files.length; i++){
                             ImageView mImageView = new ImageView(this);
@@ -63,6 +63,7 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
 
                             linearLayout.addView(mImageView, layoutParams);
                         }
+
                         currentPosition = getIntent().getIntExtra("position", 0);
                         mImageSwitcher.setImageURI(Uri.fromFile(files[currentPosition]));
                     }
