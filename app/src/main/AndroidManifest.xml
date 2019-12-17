@@ -68,6 +68,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ImageViewPagerActivity"
+            android:theme="@style/AppTheme_NoTitle"/>
+        <activity
             android:name=".ImageSwitcherActivity"
             android:theme="@style/AppTheme_NoTitle" />
         <activity

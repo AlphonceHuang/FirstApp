@@ -435,6 +435,11 @@ public class MainActivity extends AppCompatActivity{
 
         Button exeShowCap = findViewById(R.id.CapPagebutton);
         exeShowCap.setOnClickListener(calcBMI);
+        exeShowCap.setSelected(true);
+
+        Button exeViewPager=findViewById(R.id.viewPagerButton);
+        exeViewPager.setOnClickListener(calcBMI);
+        exeViewPager.setSelected(true);
         //------------------------------------------------
         // 監聽EditText的狀態
         //------------------------------------------------
@@ -989,6 +994,11 @@ public class MainActivity extends AppCompatActivity{
 
                 case R.id.listviewB:
                     myIntent = new Intent(MainActivity.this, ListViewMenuActivity.class);
+                    startActivity(myIntent);
+                    break;
+
+                case R.id.viewPagerButton:
+                    myIntent = new Intent(MainActivity.this, ImageViewPagerActivity.class);
                     startActivity(myIntent);
                     break;
             }

@@ -198,6 +198,8 @@
     <string name="auto_refresh">自動刷新</string>
     <string name="battery_manager">Battery Manager</string>
     <string name="firstLine">這是第一行字，會不會遮到呢?</string>
+    <string name="imageSwitcher">ImageSwitcher</string>
+    <string name="viewpager">ViewPager</string>
 
     <string name="selectAll">全選</string>
     <string name="clearAll">全不選</string>
@@ -373,6 +375,25 @@
     <string name="Food13">西瓜牛奶"</string>
     <string name="Food14">漢堡"</string>
 
+    <string name="apple">apple</string>
+    <string name="bee">bee</string>
+    <string name="burger">burger</string>
+    <string name="birthdaycake">birthdaycake</string>
+    <string name="bus">bus</string>
+    <string name="camera">camera</string>
+    <string name="chat">chat</string>
+    <string name="cobweb">cobweb</string>
+    <string name="dolphin">dolphin</string>
+    <string name="ghost">ghost</string>
+    <string name="icecream">icecream</string>
+    <string name="location">location</string>
+    <string name="monkey">monkey</string>
+    <string name="monster">monster</string>
+    <string name="turtle">turtle</string>
+    <string name="veggie">veggie</string>
+    <string name="virus">virus</string>
+    <string name="whatsapp">whatsapp</string>
+    <string name="woman">woman</string>
 
     <string-array name="array_Places">
         <item>@string/City1</item>

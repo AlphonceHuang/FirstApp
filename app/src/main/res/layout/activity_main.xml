@@ -307,10 +307,25 @@
         <Button
             android:id="@+id/CapPagebutton"
             style="@android:style/Widget.Button"
-            android:layout_width="wrap_content"
+            android:layout_width="88dp"
             android:layout_height="wrap_content"
-            android:text="@string/screencappage"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="@string/imageSwitcher"
             app:layout_constraintStart_toEndOf="@+id/screencapBtn"
+            app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
+
+        <Button
+            android:id="@+id/viewPagerButton"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="@string/viewpager"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toEndOf="@+id/CapPagebutton"
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
 
     </android.support.constraint.ConstraintLayout>

@@ -119,7 +119,7 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
     public boolean onTouch(View view, MotionEvent event) {
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:{
-                //手指按下的X坐标
+                //按下的X座標
                 downX = event.getX();
                 break;
             }
@@ -130,7 +130,7 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
                 if (abs(lastX-downX)>100) {
                     if (lastX > downX) {
                         if (currentPosition > 0) {
-                            //设置动画，这里的动画比较简单，不明白的去网上看看相关内容
+                            // 設置動畫
                             mImageSwitcher.setInAnimation(AnimationUtils.loadAnimation(getApplication(), R.anim.left_in));
                             mImageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(getApplication(), R.anim.right_out));
                             currentPosition--;
