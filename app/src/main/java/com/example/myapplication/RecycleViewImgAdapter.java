@@ -84,9 +84,13 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
             case sCardView_Grid:
             case sCardView_Stagger_Vertical:
             case sCardView_Stagger_Horizontal:
-            case sCardView_Stagger_Vertical_Bitmap:
+            //case sCardView_Stagger_Vertical_Bitmap:
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardsbox, parent, false);
                 break;
+
+            case sCardView_Stagger_Vertical_Bitmap:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardsbox_imageonly, parent, false);
+                    break;
             default:
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_image_v_item, parent, false);
                 break;
@@ -104,8 +108,9 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
             String path = Objects.requireNonNull(mData.get(position).get("ITEM_ICON1")).toString();
 
             holder.mIcon.setImageBitmap(BitmapFactory.decodeFile(path));
-            holder.mTitle.setText(Objects.requireNonNull(mData.get(position).get("ITEM_TITLE1")).toString());
-            holder.mSubTitle.setVisibility(TextView.INVISIBLE);
+            //holder.mTitle.setText(Objects.requireNonNull(mData.get(position).get("ITEM_TITLE1")).toString());
+            //holder.mTitle.setVisibility(TextView.INVISIBLE);
+            //holder.mSubTitle.setVisibility(TextView.INVISIBLE);
         }else {
             holder.mIcon.setImageResource(Integer.valueOf(Objects.requireNonNull(mData.get(position).get("ITEM_ICON1")).toString()));
             holder.mTitle.setText(Objects.requireNonNull(mData.get(position).get("ITEM_TITLE1")).toString());
@@ -147,11 +152,15 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTitle = itemView.findViewById(R.id.txtView);
-            mSubTitle = itemView.findViewById(R.id.txtView1);
-            mIcon = itemView.findViewById(R.id.imgView);
-            mTitle.setSelected(true); // 跑馬燈
-            mSubTitle.setSelected(true);    // 跑馬燈
+            if (getRecycleViewStyle()==sCardView_Stagger_Vertical_Bitmap){
+                mIcon = itemView.findViewById(R.id.imgView);
+            }else {
+                mTitle = itemView.findViewById(R.id.txtView);
+                mSubTitle = itemView.findViewById(R.id.txtView1);
+                mIcon = itemView.findViewById(R.id.imgView);
+                mTitle.setSelected(true); // 跑馬燈
+                mSubTitle.setSelected(true);    // 跑馬燈
+            }
         }
     }
 

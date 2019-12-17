@@ -1,12 +1,10 @@
 package com.example.myapplication;
 
 import android.content.res.TypedArray;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,11 +15,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import java.io.File;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -261,6 +257,16 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_recycleview, menu);
+/*
+        if (getRecycleViewStyle()==sCardView_Stagger_Vertical_Bitmap){
+            menu.findItem(R.id.addItem).setVisible(false);
+            menu.findItem(R.id.deleteItem).setVisible(false);
+        }else{
+            menu.findItem(R.id.addItem).setVisible(true);
+            menu.findItem(R.id.deleteItem).setVisible(true);
+        }
+
+ */
         return true;
     }
 
