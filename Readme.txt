@@ -23,4 +23,6 @@
 21. 對話框
 22. 電池資訊
 23. 語音轉文字
-24. ListView/GridView/RecycleView範例
+24. ListView/GridView/RecycleView/CardView範例
+25. ImageSwitcher
+26. ViewPager
