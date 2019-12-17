@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Environment;
@@ -175,6 +176,15 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
 
                 showToastIns(RecycleViewImgActivity.this,"click: " +
                         itemList.get(position).get("ITEM_TITLE1"), Toast.LENGTH_SHORT);
+
+                //Log.w(TAG, "click item:"+position);
+
+                Bundle ImageBundle = new Bundle();
+                Intent ImageIntent = new Intent();
+                ImageBundle.putString("IMAGE_INDEX", String.valueOf(position));
+                ImageIntent.setClass(RecycleViewImgActivity.this, ImageSwitcherActivity.class);
+                ImageIntent.putExtras(ImageBundle);
+                startActivity(ImageIntent);
             }
 
             @Override
@@ -257,16 +267,14 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_recycleview, menu);
-/*
+
         if (getRecycleViewStyle()==sCardView_Stagger_Vertical_Bitmap){
             menu.findItem(R.id.addItem).setVisible(false);
             menu.findItem(R.id.deleteItem).setVisible(false);
-        }else{
+        }else {
             menu.findItem(R.id.addItem).setVisible(true);
             menu.findItem(R.id.deleteItem).setVisible(true);
         }
-
- */
         return true;
     }
 

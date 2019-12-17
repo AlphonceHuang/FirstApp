@@ -17,6 +17,7 @@ import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import java.io.File;
+import java.util.Objects;
 
 import static com.example.myapplication.StorageUtil.checkSDCard;
 import static com.example.myapplication.StorageUtil.imageFilter;
@@ -42,7 +43,7 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
 
         LinearLayout linearLayout = findViewById(R.id.viewGroup);
 
-        String default_path= Environment.getExternalStorageDirectory() + "/ScreenCap/";
+        String default_path= Environment.getExternalStorageDirectory() + "/DCIM/100ANDRO/";
 
         if (checkSDCard()) {
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -64,7 +65,17 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
                             linearLayout.addView(mImageView, layoutParams);
                         }
 
-                        currentPosition = getIntent().getIntExtra("position", 0);
+                        // 指定第幾張圖
+                        int index=0;
+                        Bundle bundle = this.getIntent().getExtras();
+                        if (bundle != null) {
+                            String str=bundle.getString("IMAGE_INDEX");
+                            if (str != null) {
+                                index=Integer.valueOf(str);
+                                //Log.w(TAG, bundle.getString("IMAGE_INDEX")+":"+index);
+                            }
+                        }
+                        currentPosition = index;
                         mImageSwitcher.setImageURI(Uri.fromFile(files[currentPosition]));
                     }
                 }
@@ -85,7 +96,7 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
     public View makeView() {
         final ImageView i = new ImageView(this);
         i.setBackgroundColor(0xff000000);
-        i.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        i.setScaleType(ImageView.ScaleType.FIT_CENTER);
         i.setLayoutParams(new ImageSwitcher.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         return i ;
     }
