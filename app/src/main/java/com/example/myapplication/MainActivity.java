@@ -1728,6 +1728,16 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(OptionIntent);
                 break;
 
+            case R.id.GridView3Item:
+                OptionBundle = new Bundle();
+                OptionBundle.putString("GRIDVIEW_STYLE", "3");
+
+                OptionIntent = new Intent();
+                OptionIntent.setClass(MainActivity.this, GridViewActivity.class);
+                OptionIntent.putExtras(OptionBundle);
+                startActivity(OptionIntent);
+                break;
+
             case R.id.RecycleView_V_Item:
                 OptionIntent = new Intent(MainActivity.this, RecycleViewActivity.class);
                 setRecycleViewStyle(sLinear_Layout_Vertical);
@@ -1803,6 +1813,10 @@ public class MainActivity extends AppCompatActivity{
                 setRecycleViewStyle(sCardView_Stagger_Horizontal);
                 OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
                 startActivity(OptionIntent);
+                break;
+            case R.id.Test_Item:
+                //OptionIntent = new Intent(MainActivity.this, GridViewImageActivity.class);
+                //startActivity(OptionIntent);
                 break;
             default:
                 //m_ret=true;

@@ -91,6 +91,9 @@
             <item
                 android:id="@+id/GridView2Item"
                 android:title="@string/gridview1"/>
+            <item
+                android:id="@+id/GridView3Item"
+                android:title="@string/gridViewBitmap"/>
         </menu>
     </item>
 
@@ -162,6 +165,9 @@
                     <item
                         android:id="@+id/cardview_StaggeredGridH_Item"
                         android:title="@string/stagger_H"/>
+                    <item
+                        android:id="@+id/Test_Item"
+                        android:title="@string/City14"/>
                 </menu>
             </item>
         </menu>

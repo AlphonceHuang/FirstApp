@@ -209,6 +209,7 @@
 
     <string name="gridview">GridView</string>
     <string name="gridview1">GridView Customer</string>
+    <string name="gridViewBitmap">GridView SD Bitmap</string>
     <string name="delete">刪除</string>
     <string name="add">增加</string>
     <string name="new_item">新欄位</string>

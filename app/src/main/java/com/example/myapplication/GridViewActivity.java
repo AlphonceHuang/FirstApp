@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,12 +16,15 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.example.myapplication.StorageUtil.getRealPathFromURI;
+import static com.example.myapplication.StorageUtil.imageFilter;
 import static com.example.myapplication.Util.showToastIns;
 
 public class GridViewActivity extends AppCompatActivity {
@@ -42,6 +47,8 @@ public class GridViewActivity extends AppCompatActivity {
                 gridview_style = 1;
             else if (Objects.equals(bundle.getString("GRIDVIEW_STYLE"), "2"))
                 gridview_style = 2;
+            else if (Objects.equals(bundle.getString("GRIDVIEW_STYLE"), "3"))
+                gridview_style = 3;
             else {
                 gridview_style = 0;
                 showToastIns(getApplicationContext(), "設定錯誤，取消", Toast.LENGTH_LONG);
@@ -68,6 +75,9 @@ public class GridViewActivity extends AppCompatActivity {
             case 2:
                 Custom_InitialView();
                 break;
+            case 3:
+                SDImages_InitialView();
+                break;
             default:
                 break;
         }
@@ -76,7 +86,9 @@ public class GridViewActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        regionIconList.recycle();
+        if (gridview_style==1 || gridview_style==2) {
+            regionIconList.recycle();
+        }
     }
 
     private void Default_InitialView(){
@@ -113,8 +125,38 @@ public class GridViewActivity extends AppCompatActivity {
             item.put("ITEM_ICON1", regionIconList.getResourceId(i, 0));
             itemList.add(item);
         }
-        GridViewAdapter mGridAdapter=new GridViewAdapter(GridViewActivity.this, itemList);
+        GridViewAdapter mGridAdapter=new GridViewAdapter(GridViewActivity.this, itemList,1);
         gView.setAdapter(mGridAdapter);
+    }
+
+    private void SDImages_InitialView(){
+        List<Map<String, Object>> itemList = new ArrayList<Map<String, Object>>();
+        String folder = Environment.getExternalStorageDirectory() + "/DCIM/100ANDRO/";
+        File[] files = getImages(folder);
+
+        //String[] str=getResources().getStringArray(R.array.array_Places);
+
+        if (files != null) {
+            for (int i = 0; i < files.length; i++) {
+                Map<String, Object> item = new HashMap<>();
+                item.put("ITEM_TITLE1", files[i].getName());
+                //item.put("ITEM_TITLE1", str[i]);
+                item.put("ITEM_ICON1", getRealPathFromURI(Uri.fromFile(files[i])));
+                itemList.add(item);
+            }
+        }
+        GridViewAdapter mGridAdapter=new GridViewAdapter(GridViewActivity.this, itemList,2);
+        gView.setAdapter(mGridAdapter);
+    }
+
+    // 將取得的檔案放至array
+    private File[] getImages(String path){
+        File folder= new File(path);
+        if (folder.isDirectory()){
+            File[] fs=folder.listFiles(imageFilter);
+            return fs;
+        }
+        return null;
     }
 
     //--------------------------------------------------------
