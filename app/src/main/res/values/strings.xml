@@ -235,6 +235,7 @@
     <string name="cardview_grid">CardView 格狀</string>
     <string name="cardview_stagger_V">CardView 垂直錯開</string>
     <string name="cardview_stagger_H">CardView 水平錯開</string>
+    <string name="cardview_Imagefiles_V">CardView 內存圖片</string>
 
     <string name="cameras">各種相機實現</string>
     <string name="camera1_Title">使用手機預設相機</string>

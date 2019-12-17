@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.content.res.TypedArray;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuPopupHelper;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -25,6 +28,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.myapplication.StorageUtil.getRealPathFromURI;
+import static com.example.myapplication.StorageUtil.imageFilter;
 import static com.example.myapplication.Util.getRecycleViewStyle;
 import static com.example.myapplication.Util.showToastIns;
 import static com.example.myapplication.sRecycleViewStyle.*;
@@ -71,6 +76,7 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
                 mTitle = getString(R.string.recycleView) + " + " + getString(R.string.cardview_grid);
                 break;
             case sCardView_Stagger_Vertical:
+            case sCardView_Stagger_Vertical_Bitmap:
                 mTitle = getString(R.string.recycleView) + " + " + getString(R.string.cardview_stagger_V);
                 break;
             case sCardView_Stagger_Horizontal:
@@ -89,9 +95,11 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        IconList.recycle();
-        TitleList.recycle();
-        SubTitleList.recycle();
+        if (getRecycleViewStyle()!=sCardView_Stagger_Vertical_Bitmap) {
+            IconList.recycle();
+            TitleList.recycle();
+            SubTitleList.recycle();
+        }
     }
 
     @Override
@@ -116,7 +124,9 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
             case sStaggered_Grid_Vertical_Image:
                 mLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
                 break;
+
             case sCardView_Stagger_Vertical:
+            case sCardView_Stagger_Vertical_Bitmap:
                 mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
                 break;
 
@@ -152,7 +162,11 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
         }
 
  */
-        mAdapter = new RecycleViewImgAdapter(getData());
+        if (getRecycleViewStyle()==sCardView_Stagger_Vertical_Bitmap){
+            mAdapter = new RecycleViewImgAdapter(getBitmapData());
+        }else{
+            mAdapter = new RecycleViewImgAdapter(getData());
+        }
 
         ((RecycleViewImgAdapter) mAdapter).setOnItemClickListener(new RecycleViewImgAdapter.OnItemClickListener() {
             @Override
@@ -175,6 +189,31 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
             }
         });
     }
+
+    private List<Map<String, Object>> getBitmapData() {
+        String folder = Environment.getExternalStorageDirectory() + "/DCIM/100ANDRO/";
+        File[] files = getImages(folder);
+        if (files != null){
+            for (File file : files) {
+                Map<String, Object> item = new HashMap<>();
+                item.put("ITEM_TITLE1", file.getName());
+                //item.put("ITEM_TITLE1", str[i]);
+                item.put("ITEM_ICON1", getRealPathFromURI(Uri.fromFile(file)));
+                itemList.add(item);
+            }
+        }
+        return itemList;
+    }
+    // 將取得的檔案放至array
+    private File[] getImages(String path){
+        File folder= new File(path);
+        if (folder.isDirectory()){
+            File[] fs=folder.listFiles(imageFilter);
+            return fs;
+        }
+        return null;
+    }
+
 
     private List<Map<String, Object>> getData() {
         IconList = getResources().obtainTypedArray(R.array.array_icon);

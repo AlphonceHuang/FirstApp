@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -83,6 +84,7 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
             case sCardView_Grid:
             case sCardView_Stagger_Vertical:
             case sCardView_Stagger_Horizontal:
+            case sCardView_Stagger_Vertical_Bitmap:
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardsbox, parent, false);
                 break;
             default:
@@ -98,9 +100,17 @@ public class RecycleViewImgAdapter extends RecyclerView.Adapter<RecycleViewImgAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         // 綁定數據
-        holder.mIcon.setImageResource(Integer.valueOf(Objects.requireNonNull(mData.get(position).get("ITEM_ICON1")).toString()));
-        holder.mTitle.setText(Objects.requireNonNull(mData.get(position).get("ITEM_TITLE1")).toString());
-        holder.mSubTitle.setText(Objects.requireNonNull(mData.get(position).get("ITEM_TITLE2")).toString());
+        if (getRecycleViewStyle()==sCardView_Stagger_Vertical_Bitmap){
+            String path = Objects.requireNonNull(mData.get(position).get("ITEM_ICON1")).toString();
+
+            holder.mIcon.setImageBitmap(BitmapFactory.decodeFile(path));
+            holder.mTitle.setText(Objects.requireNonNull(mData.get(position).get("ITEM_TITLE1")).toString());
+            holder.mSubTitle.setVisibility(TextView.INVISIBLE);
+        }else {
+            holder.mIcon.setImageResource(Integer.valueOf(Objects.requireNonNull(mData.get(position).get("ITEM_ICON1")).toString()));
+            holder.mTitle.setText(Objects.requireNonNull(mData.get(position).get("ITEM_TITLE1")).toString());
+            holder.mSubTitle.setText(Objects.requireNonNull(mData.get(position).get("ITEM_TITLE2")).toString());
+        }
 
         // 設定短按觸發
         holder.itemView.setOnClickListener(new View.OnClickListener() {

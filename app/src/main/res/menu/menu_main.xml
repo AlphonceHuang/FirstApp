@@ -166,8 +166,8 @@
                         android:id="@+id/cardview_StaggeredGridH_Item"
                         android:title="@string/stagger_H"/>
                     <item
-                        android:id="@+id/Test_Item"
-                        android:title="@string/City14"/>
+                        android:id="@+id/cardview_ImageV_Item"
+                        android:title="@string/cardview_Imagefiles_V"/>
                 </menu>
             </item>
         </menu>

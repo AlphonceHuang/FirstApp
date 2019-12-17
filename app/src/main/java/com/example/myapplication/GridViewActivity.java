@@ -137,11 +137,11 @@ public class GridViewActivity extends AppCompatActivity {
         //String[] str=getResources().getStringArray(R.array.array_Places);
 
         if (files != null) {
-            for (int i = 0; i < files.length; i++) {
+            for (File file : files) {
                 Map<String, Object> item = new HashMap<>();
-                item.put("ITEM_TITLE1", files[i].getName());
+                item.put("ITEM_TITLE1", file.getName());
                 //item.put("ITEM_TITLE1", str[i]);
-                item.put("ITEM_ICON1", getRealPathFromURI(Uri.fromFile(files[i])));
+                item.put("ITEM_ICON1", getRealPathFromURI(Uri.fromFile(file)));
                 itemList.add(item);
             }
         }

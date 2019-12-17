@@ -18,4 +18,5 @@ public interface sRecycleViewStyle {
    int sCardView_Grid=12;
    int sCardView_Stagger_Vertical=13;
    int sCardView_Stagger_Horizontal=14;
+   int sCardView_Stagger_Vertical_Bitmap=15;
 }

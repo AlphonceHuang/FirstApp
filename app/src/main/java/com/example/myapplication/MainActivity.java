@@ -1814,9 +1814,10 @@ public class MainActivity extends AppCompatActivity{
                 OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
                 startActivity(OptionIntent);
                 break;
-            case R.id.Test_Item:
-                //OptionIntent = new Intent(MainActivity.this, GridViewImageActivity.class);
-                //startActivity(OptionIntent);
+            case R.id.cardview_ImageV_Item:
+                setRecycleViewStyle(sCardView_Stagger_Vertical_Bitmap);
+                OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
                 break;
             default:
                 //m_ret=true;
