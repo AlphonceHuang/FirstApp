@@ -17,19 +17,20 @@ import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import java.io.File;
-import java.util.Objects;
 
 import static com.example.myapplication.StorageUtil.checkSDCard;
 import static com.example.myapplication.StorageUtil.imageFilter;
 import static com.example.myapplication.Util.showToastIns;
+import static java.lang.Math.abs;
 
 public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwitcher.ViewFactory, View.OnTouchListener {
 
     private static final String TAG="Alan";
     private ImageSwitcher mImageSwitcher;
     private File[] files;
-    private int currentPosition;
+    private int currentPosition=0;
     private float downX;
+    private String imagePath=Environment.getExternalStorageDirectory() + "/ScreenCap/";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -43,13 +44,21 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
 
         LinearLayout linearLayout = findViewById(R.id.viewGroup);
 
-        String default_path= Environment.getExternalStorageDirectory() + "/DCIM/100ANDRO/";
+        // 指定第幾張圖
+        Bundle bundle = this.getIntent().getExtras();
+        if (bundle != null) {
+            String str=bundle.getString("IMAGE_INDEX");
+            imagePath=bundle.getString("IMAGE_PATH");
+            if (str != null) {
+                currentPosition=Integer.valueOf(str);
+            }
+        }
 
         if (checkSDCard()) {
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                File cfolder=new File(default_path);
+                File cfolder=new File(imagePath);
                 if (cfolder.exists()) {
-                    files = getImages(default_path);  // 將此路徑裡的相關檔案取出
+                    files = getImages(imagePath);  // 將此路徑裡的相關檔案取出
 
                     if (files !=null) {
                         //Log.w(TAG, "length:" + files.length);
@@ -59,27 +68,31 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
                             tips[i] = mImageView;
                             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(new ViewGroup.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT));
-                            layoutParams.rightMargin = 3;
-                            layoutParams.leftMargin = 3;
+                            layoutParams.rightMargin = 0;
+                            layoutParams.leftMargin = 0;
 
                             linearLayout.addView(mImageView, layoutParams);
                         }
-
-                        // 指定第幾張圖
-                        int index=0;
-                        Bundle bundle = this.getIntent().getExtras();
-                        if (bundle != null) {
-                            String str=bundle.getString("IMAGE_INDEX");
-                            if (str != null) {
-                                index=Integer.valueOf(str);
-                                //Log.w(TAG, bundle.getString("IMAGE_INDEX")+":"+index);
-                            }
-                        }
-                        currentPosition = index;
                         mImageSwitcher.setImageURI(Uri.fromFile(files[currentPosition]));
                     }
                 }
             }
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            View decorView = getWindow().getDecorView();
+
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN // 有沒有此行沒差
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN    // 隱藏status bar
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
     }
 
@@ -112,27 +125,30 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
             }
             case MotionEvent.ACTION_UP:{
                 float lastX = event.getX();
-                //抬起的时候的X坐标大于按下的时候就显示上一张图片
-                if(lastX > downX){
-                    if(currentPosition > 0){
-                        //设置动画，这里的动画比较简单，不明白的去网上看看相关内容
-                        mImageSwitcher.setInAnimation(AnimationUtils.loadAnimation(getApplication(), R.anim.left_in));
-                        mImageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(getApplication(), R.anim.right_out));
-                        currentPosition --;
-                        mImageSwitcher.setImageURI(Uri.fromFile(files[currentPosition% files.length]));
-                    }else{
-                        showToastIns(getApplicationContext(), getString(R.string.first_image), Toast.LENGTH_SHORT);
+                // 抬起時X軸大於按下時的X，且超過100時執行換圖動作
+                //Log.w(TAG, "lastX:"+lastX+", downX:"+downX);
+                if (abs(lastX-downX)>100) {
+                    if (lastX > downX) {
+                        if (currentPosition > 0) {
+                            //设置动画，这里的动画比较简单，不明白的去网上看看相关内容
+                            mImageSwitcher.setInAnimation(AnimationUtils.loadAnimation(getApplication(), R.anim.left_in));
+                            mImageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(getApplication(), R.anim.right_out));
+                            currentPosition--;
+                            mImageSwitcher.setImageURI(Uri.fromFile(files[currentPosition % files.length]));
+                        } else {
+                            showToastIns(getApplicationContext(), getString(R.string.first_image), Toast.LENGTH_SHORT);
+                        }
                     }
-                }
 
-                if(lastX < downX){
-                    if(currentPosition < files.length - 1){
-                        mImageSwitcher.setInAnimation(AnimationUtils.loadAnimation(getApplication(), R.anim.right_in));
-                        mImageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(getApplication(), R.anim.left_out));
-                        currentPosition ++ ;
-                        mImageSwitcher.setImageURI(Uri.fromFile(files[currentPosition]));
-                    }else{
-                        showToastIns(getApplicationContext(), getString(R.string.last_image), Toast.LENGTH_SHORT);
+                    if (lastX < downX) {
+                        if (currentPosition < files.length - 1) {
+                            mImageSwitcher.setInAnimation(AnimationUtils.loadAnimation(getApplication(), R.anim.right_in));
+                            mImageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(getApplication(), R.anim.left_out));
+                            currentPosition++;
+                            mImageSwitcher.setImageURI(Uri.fromFile(files[currentPosition]));
+                        } else {
+                            showToastIns(getApplicationContext(), getString(R.string.last_image), Toast.LENGTH_SHORT);
+                        }
                     }
                 }
             }

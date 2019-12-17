@@ -39,6 +39,7 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
     private TypedArray IconList, TitleList, SubTitleList;
     private List<Map<String, Object>> itemList = new ArrayList<Map<String, Object>>();
     private int newItemCount=0;
+    private final String folder = Environment.getExternalStorageDirectory() + "/DCIM/100ANDRO/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,6 +183,7 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
                 Bundle ImageBundle = new Bundle();
                 Intent ImageIntent = new Intent();
                 ImageBundle.putString("IMAGE_INDEX", String.valueOf(position));
+                ImageBundle.putString("IMAGE_PATH", folder);
                 ImageIntent.setClass(RecycleViewImgActivity.this, ImageSwitcherActivity.class);
                 ImageIntent.putExtras(ImageBundle);
                 startActivity(ImageIntent);
@@ -197,7 +199,7 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
     }
 
     private List<Map<String, Object>> getBitmapData() {
-        String folder = Environment.getExternalStorageDirectory() + "/DCIM/100ANDRO/";
+        //String folder = Environment.getExternalStorageDirectory() + "/DCIM/100ANDRO/";
         File[] files = getImages(folder);
         if (files != null){
             for (File file : files) {
