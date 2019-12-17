@@ -318,6 +318,7 @@
 
         <Button
             android:id="@+id/viewPagerButton"
+            style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
