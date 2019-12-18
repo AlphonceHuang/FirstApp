@@ -251,6 +251,7 @@ public class MainActivity extends AppCompatActivity{
             );
             // 圖示
             mActionBar.setLogo(R.drawable.monkey_64);
+            mActionBar.setBackgroundDrawable(getDrawable(R.drawable.background_red));
         }
 
         //------------------------------------------------------------------------------------------
@@ -997,10 +998,10 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(myIntent);
                     break;
 
-                case R.id.viewPagerButton:
-                    myIntent = new Intent(MainActivity.this, ImageViewPagerActivity.class);
-                    startActivity(myIntent);
-                    break;
+                //case R.id.viewPagerButton:
+                //    myIntent = new Intent(MainActivity.this, ImageViewPagerActivity.class);
+                //    startActivity(myIntent);
+                //    break;
             }
         }
     };
@@ -1827,6 +1828,28 @@ public class MainActivity extends AppCompatActivity{
             case R.id.cardview_ImageV_Item:
                 setRecycleViewStyle(sCardView_Stagger_Vertical_Bitmap);
                 OptionIntent = new Intent(MainActivity.this, RecycleViewImgActivity.class);
+                startActivity(OptionIntent);
+                break;
+            case R.id.BackgroundItem:
+                OptionIntent = new Intent(MainActivity.this, BackgroundActivity.class);
+                startActivity(OptionIntent);
+                break;
+            case R.id.VP_drawable_Item:
+                OptionBundle = new Bundle();
+                OptionBundle.putInt("VIEWPAGE_STYLE", 0);
+
+                OptionIntent = new Intent();
+                OptionIntent.setClass(MainActivity.this, ImageViewPagerActivity.class);
+                OptionIntent.putExtras(OptionBundle);
+                startActivity(OptionIntent);
+                break;
+            case R.id.VP_images_Item:
+                OptionBundle = new Bundle();
+                OptionBundle.putInt("VIEWPAGE_STYLE", 1);
+
+                OptionIntent = new Intent();
+                OptionIntent.setClass(MainActivity.this, ImageViewPagerActivity.class);
+                OptionIntent.putExtras(OptionBundle);
                 startActivity(OptionIntent);
                 break;
             default:

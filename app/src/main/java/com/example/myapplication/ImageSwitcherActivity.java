@@ -2,10 +2,9 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,10 +61,10 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
 
                     if (files !=null) {
                         //Log.w(TAG, "length:" + files.length);
-                        ImageView[] tips = new ImageView[files.length];
+                        //ImageView[] tips = new ImageView[files.length];
                         for(int i=0; i<files.length; i++){
                             ImageView mImageView = new ImageView(this);
-                            tips[i] = mImageView;
+                            //tips[i] = mImageView;
                             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(new ViewGroup.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                                     LinearLayout.LayoutParams.WRAP_CONTENT));
                             layoutParams.rightMargin = 0;

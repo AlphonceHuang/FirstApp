@@ -5,14 +5,14 @@
     android:id="@+id/main_contencrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F1F180">
+    android:background="@color/colorGray">
 
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/mainmenu_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F8F1F180"
+        android:background="@drawable/background_test"
         android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar"
         tools:context=".MainActivity">
 
@@ -324,7 +324,7 @@
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/viewpager"
+            android:text="@string/suggest_empty"
             android:textAllCaps="false"
             app:layout_constraintStart_toEndOf="@+id/CapPagebutton"
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00000000"
+    android:gravity="center"
     android:orientation="vertical">
 
     <TextView
@@ -11,16 +12,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="44dp"
-        android:text="@string/AC"
-        android:textColor="#ffffff"
-        android:textSize="60sp" />
+        android:layout_marginTop="2dp"
+        android:shadowColor="#2C2B2B"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="2"
+        android:text="@string/viewpager"
+        android:textColor="#9B7BD6"
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/fragment_image"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="44dp" />
+
+        android:layout_marginTop="2dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
 
 </LinearLayout>

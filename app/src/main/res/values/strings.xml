@@ -200,6 +200,9 @@
     <string name="firstLine">這是第一行字，會不會遮到呢?</string>
     <string name="imageSwitcher">ImageSwitcher</string>
     <string name="viewpager">ViewPager</string>
+    <string name="background">背景漸層</string>
+    <string name="Drawable">Drawable</string>
+    <string name="Images">Images</string>
 
     <string name="selectAll">全選</string>
     <string name="clearAll">全不選</string>
@@ -447,6 +450,24 @@
         <item>@drawable/veggie</item>
         <item>@drawable/cobweb</item>
         <item>@drawable/dolphin</item>
+    </string-array>
+
+    <string-array name="array_icon_name">
+        <item>@string/bus</item>
+        <item>@string/turtle</item>
+        <item>@string/icecream</item>
+        <item>@string/monster</item>
+        <item>@string/location</item>
+        <item>@string/monkey</item>
+        <item>@string/virus</item>
+        <item>@string/bee</item>
+        <item>@string/apple</item>
+        <item>@string/ghost</item>
+        <item>@string/woman</item>
+        <item>@string/camera</item>
+        <item>@string/veggie</item>
+        <item>@string/cobweb</item>
+        <item>@string/dolphin</item>
     </string-array>
 
     <string-array name="listViewOneLineMenu">

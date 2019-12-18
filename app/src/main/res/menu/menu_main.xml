@@ -5,7 +5,9 @@
     <item
         android:id="@+id/BMIItem"
         android:title="@string/title_text"
-        android:visible="true"/>
+        android:icon="@mipmap/ic_action_storage"
+        android:visible="true"
+        app:showAsAction="never"/>
     <item
         android:id="@+id/settingsItem"
         android:checkable="false"
@@ -15,8 +17,23 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/savedMacItem"
+        android:icon="@mipmap/ic_action_bluetooth"
         android:title="@string/mac_addr"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/DirectConnectItem"
+        android:checkable="true"
+        android:icon="@mipmap/ic_action_bluetooth"
+        android:title="@string/direct"
+        android:visible="true"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/AutoScanItem"
+        android:checkable="true"
+        android:title="@string/autoScan"
+        android:icon="@mipmap/ic_action_search"
+        android:visible="true"
+        app:showAsAction="never"/>
     <item
         android:id="@+id/ImageItem"
         android:icon="@mipmap/ic_action_picture"
@@ -36,18 +53,7 @@
         android:title="@string/about_app1"
         android:visible="true"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/AutoScanItem"
-        android:checkable="true"
-        android:title="@string/autoScan"
-        android:icon="@mipmap/ic_action_search"
-        android:visible="true" />
-    <item
-        android:id="@+id/DirectConnectItem"
-        android:checkable="true"
-        android:icon="@mipmap/ic_action_bluetooth"
-        android:title="@string/direct"
-        android:visible="true" />
+
     <item
         android:id="@+id/ListViewItem"
         android:icon="@mipmap/ic_action_camera_b"
@@ -76,6 +82,7 @@
         android:title="@string/location_text" />
     <item
         android:id="@+id/SensorItem"
+        android:icon="@mipmap/ic_action_make_available_offline"
         android:title="@string/sensors" />
     <item
         android:id="@+id/BatteryItem"
@@ -83,23 +90,28 @@
         android:title="@string/battery_info" />
     <item
         android:id="@+id/GridViewItem"
-        android:title="@string/gridview">
+        android:title="@string/gridview"
+        android:icon="@mipmap/ic_action_view_as_grid">
         <menu>
             <item
                 android:id="@+id/GridView1Item"
+                android:icon="@mipmap/ic_action_view_as_grid"
                 android:title="@string/gridview"/>
             <item
                 android:id="@+id/GridView2Item"
+                android:icon="@mipmap/ic_action_view_as_grid"
                 android:title="@string/gridview1"/>
             <item
                 android:id="@+id/GridView3Item"
+                android:icon="@mipmap/ic_action_view_as_grid"
                 android:title="@string/gridViewBitmap"/>
         </menu>
     </item>
 
     <item
         android:id="@+id/recycleView"
-        android:title="@string/recycleView">
+        android:title="@string/recycleView"
+        android:icon="@mipmap/ic_action_view_as_grid">
 
         <menu>
             <item
@@ -173,5 +185,26 @@
         </menu>
 
     </item>
+
+    <item
+        android:id="@+id/ViewPagerItem"
+        android:icon="@mipmap/ic_action_picture_b"
+        android:title="@string/viewpager">
+        <menu>
+            <item
+                android:id="@+id/VP_drawable_Item"
+                android:icon="@mipmap/ic_action_picture_b"
+                android:title="@string/Drawable" />
+            <item
+                android:id="@+id/VP_images_Item"
+                android:icon="@mipmap/ic_action_picture_b"
+                android:title="@string/Images" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/BackgroundItem"
+        android:icon="@mipmap/ic_action_collection"
+        android:title="@string/background" />
 
 </menu>
