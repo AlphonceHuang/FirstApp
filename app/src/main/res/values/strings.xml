@@ -455,6 +455,24 @@
         <item>@drawable/dolphin</item>
     </string-array>
 
+    <string-array name="kitty_icon">
+        <item>@drawable/kitty001</item>
+        <item>@drawable/kitty002</item>
+        <item>@drawable/kitty003</item>
+        <item>@drawable/kitty004</item>
+        <item>@drawable/kitty005</item>
+        <item>@drawable/kitty006</item>
+        <item>@drawable/kitty007</item>
+        <item>@drawable/kitty008</item>
+        <item>@drawable/kitty009</item>
+        <item>@drawable/kitty010</item>
+        <item>@drawable/kitty011</item>
+        <item>@drawable/kitty012</item>
+        <item>@drawable/kitty013</item>
+        <item>@drawable/kitty014</item>
+        <item>@drawable/kitty015</item>
+    </string-array>
+
     <string-array name="array_icon_name">
         <item>@string/bus</item>
         <item>@string/turtle</item>

@@ -44,7 +44,7 @@ public class ListView1Activity extends AppCompatActivity {
         List<Map<String, Object>> itemList = new ArrayList<Map<String, Object>>();
 
         // icon由res/value/string裡面取出
-        regionIconList = getResources().obtainTypedArray(R.array.region1_icon_list);
+        regionIconList = getResources().obtainTypedArray(R.array.kitty_icon);
         regionTitleList = getResources().obtainTypedArray(R.array.region1_title_list);
         regionSubTitleList = getResources().obtainTypedArray(R.array.region1_subtitle_list);
 
