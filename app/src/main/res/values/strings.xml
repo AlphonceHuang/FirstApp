@@ -205,6 +205,8 @@
     <string name="Images">Images</string>
     <string name="imageslider">Image Slider</string>
 
+    <string name="checkbox">CheckBox and RadioButton</string>
+
     <string name="selectAll">全選</string>
     <string name="clearAll">全不選</string>
     <string name="listviewex">ListView範例</string>

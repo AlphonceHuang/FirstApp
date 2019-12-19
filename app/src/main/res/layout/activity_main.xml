@@ -45,7 +45,7 @@
             android:text="@string/show_image"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button4" />
+            app:layout_constraintTop_toBottomOf="@+id/screencapBtn" />
 
         <Button
             android:id="@+id/ble_btn"
@@ -66,7 +66,7 @@
             android:singleLine="true"
             android:text="@string/dialog"
             app:layout_constraintStart_toEndOf="@+id/showimage"
-            app:layout_constraintTop_toBottomOf="@+id/button4" />
+            app:layout_constraintTop_toBottomOf="@+id/screencapBtn" />
 
         <Button
             android:id="@+id/DirectCon"
@@ -103,7 +103,7 @@
             android:text="@string/progress_Horizontal"
             android:textAllCaps="false"
             app:layout_constraintStart_toEndOf="@+id/DialogBtn"
-            app:layout_constraintTop_toBottomOf="@+id/button4" />
+            app:layout_constraintTop_toBottomOf="@+id/screencapBtn" />
 
         <Button
             android:id="@+id/CustomeDialogShowBtn"
@@ -253,7 +253,7 @@
             android:layout_height="wrap_content"
             android:text="@string/location_text"
             app:layout_constraintStart_toEndOf="@+id/sensorbutton"
-            app:layout_constraintTop_toBottomOf="@+id/listviewB" />
+            app:layout_constraintTop_toBottomOf="@+id/BMIbutton" />
 
         <Button
             android:id="@+id/sensorbutton"
@@ -303,14 +303,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/checkbox"
             style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/suggest_empty"
+            android:text="@string/checkbox"
             app:layout_constraintStart_toEndOf="@+id/screencapBtn"
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
 
@@ -324,7 +324,7 @@
             android:singleLine="true"
             android:text="@string/suggest_empty"
             android:textAllCaps="false"
-            app:layout_constraintStart_toEndOf="@+id/button4"
+            app:layout_constraintStart_toEndOf="@+id/checkbox"
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
 
         <Button

@@ -434,9 +434,9 @@ public class MainActivity extends AppCompatActivity{
         exe_ListView.setOnClickListener(calcBMI);
         exe_ListView.setSelected(true);
 
-        Button exeShowCap = findViewById(R.id.button4);
-        exeShowCap.setOnClickListener(calcBMI);
-        exeShowCap.setSelected(true);
+        Button exeCheckBox = findViewById(R.id.checkbox);
+        exeCheckBox.setOnClickListener(calcBMI);
+        exeCheckBox.setSelected(true);
 
         //Button exeViewPager=findViewById(R.id.button3);
         //exeViewPager.setOnClickListener(calcBMI);
@@ -700,6 +700,11 @@ public class MainActivity extends AppCompatActivity{
 
             switch(v.getId())
             {
+                case R.id.checkbox:
+                    myIntent = new Intent(MainActivity.this,CheckBoxRadioBiuttonActivity.class);
+                    startActivity(myIntent);
+                    break;
+
                 case R.id.BMIbutton:
                     myIntent = new Intent(MainActivity.this,BMIActivity.class);
                     startActivity(myIntent);

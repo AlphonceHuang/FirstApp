@@ -67,6 +67,8 @@
         android:roundIcon="@drawable/monkey"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CheckBoxRadioBiuttonActivity"
+            android:label="@string/checkbox"/>
         <activity
             android:name=".BackgroundActivity"
             android:theme="@style/AppTheme_NoTitle" />
@@ -109,8 +111,7 @@
         <activity
             android:name=".SpeechToText3Activity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".SpeechToText2Activity" />
+        <activity android:name=".SpeechToText2Activity" />
         <activity
             android:name=".SpeechToTextActivity"
             android:theme="@style/AppTheme_TransBar" />

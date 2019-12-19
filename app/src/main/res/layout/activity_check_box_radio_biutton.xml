@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CheckBoxRadioBiuttonActivity">
+
+    <CheckBox
+        android:id="@+id/CB_city1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/City1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/CB_city2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/City2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CB_city1" />
+
+    <CheckBox
+        android:id="@+id/CB_city3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/City3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CB_city2" />
+
+    <CheckBox
+        android:id="@+id/CB_city4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/City4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CB_city3" />
+
+    <CheckBox
+        android:id="@+id/CB_city5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/City5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CB_city4" />
+
+    <CheckBox
+        android:id="@+id/CB_city6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/City6"
+        app:layout_constraintStart_toEndOf="@+id/CB_city1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/CB_city7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/City7"
+        app:layout_constraintStart_toEndOf="@+id/CB_city2"
+        app:layout_constraintTop_toBottomOf="@+id/CB_city6" />
+
+    <CheckBox
+        android:id="@+id/CB_city8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/City8"
+        app:layout_constraintStart_toEndOf="@+id/CB_city3"
+        app:layout_constraintTop_toBottomOf="@+id/CB_city7" />
+
+    <CheckBox
+        android:id="@+id/CB_city9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/City9"
+        app:layout_constraintStart_toEndOf="@+id/CB_city4"
+        app:layout_constraintTop_toBottomOf="@+id/CB_city8" />
+
+    <CheckBox
+        android:id="@+id/CB_city10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/City10"
+        app:layout_constraintStart_toEndOf="@+id/CB_city5"
+        app:layout_constraintTop_toBottomOf="@+id/CB_city9" />
+
+    <RadioGroup
+        android:id="@+id/RadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CB_city6"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Food1" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Food10" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Food4" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Food13" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Food14" />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Food6" />
+
+        <RadioButton
+            android:id="@+id/radioButton7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Food8" />
+    </RadioGroup>
+</android.support.constraint.ConstraintLayout>
