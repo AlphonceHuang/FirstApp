@@ -404,7 +404,6 @@
     <string-array name="array_Places">
         <item>@string/City1</item>
         <item>@string/City2</item>
-        <item>@string/runningText</item>
         <item>@string/City3</item>
         <item>@string/City4</item>
         <item>@string/City5</item>
@@ -417,6 +416,7 @@
         <item>@string/City12</item>
         <item>@string/City13</item>
         <item>@string/City14</item>
+        <item>@string/runningText</item>
     </string-array>
 
     <string-array name="array_Food">
