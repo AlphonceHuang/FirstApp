@@ -6,23 +6,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import static com.example.myapplication.Util.showToastIns;
 
-public class CheckBoxRadioBiuttonActivity extends AppCompatActivity {
+public class CheckBoxRadioBiuttonActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RadioButton rb1, rb2, rb3, rb4, rb5, rb6, rb7;
     private CheckBox city1, city2, city3, city4, city5, city6, city7, city8, city9, city10;
     private static final String TAG="Alan";
+    private String food="";
+
+    private ImageButton imgbtn;
+    private boolean flag=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_box_radio_biutton);
 
+        // Check box
         city1 = findViewById(R.id.CB_city1);
         city2 = findViewById(R.id.CB_city2);
         city3 = findViewById(R.id.CB_city3);
@@ -44,6 +51,7 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity {
         city9.setOnCheckedChangeListener(mCheckBox);
         city10.setOnCheckedChangeListener(mCheckBox);
 
+        // Radio button
         rb1=findViewById(R.id.radioButton1);
         rb2=findViewById(R.id.radioButton2);
         rb3=findViewById(R.id.radioButton3);
@@ -55,12 +63,68 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity {
         rg.setOnCheckedChangeListener(mRadioButton);
 
         Button result = findViewById(R.id.CB_Result);
+        result.setOnClickListener(this);
+        /*
         result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showResult();
             }
+        });*/
+
+        // Image Button
+        imgbtn=findViewById(R.id.imageButton);
+        imgbtn.setImageResource(R.drawable.pause);
+        imgbtn.setOnClickListener(this);
+        flag=false;
+        /*
+        imgbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (flag){
+                    imgbtn.setImageResource(R.drawable.pause);
+                    flag=false;
+                    showToastIns(getApplicationContext(), getString(R.string.pause), Toast.LENGTH_LONG);
+
+                }else{
+                    imgbtn.setImageResource(R.drawable.playbutton);
+                    flag=true;
+                    showToastIns(getApplicationContext(), getString(R.string.play), Toast.LENGTH_LONG);
+                }
+            }
+        });*/
+
+        ToggleButton tgb=findViewById(R.id.toggleButton);
+        tgb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    showToastIns(getApplicationContext(), getString(R.string.start), Toast.LENGTH_LONG);
+                }else{
+                    showToastIns(getApplicationContext(), getString(R.string.stop), Toast.LENGTH_LONG);
+                }
+            }
         });
+    }
+    @Override
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.imageButton:
+                if (flag){
+                    imgbtn.setImageResource(R.drawable.pause);
+                    flag=false;
+                    showToastIns(getApplicationContext(), getString(R.string.pause), Toast.LENGTH_LONG);
+                }else{
+                    imgbtn.setImageResource(R.drawable.playbutton);
+                    flag=true;
+                    showToastIns(getApplicationContext(), getString(R.string.play), Toast.LENGTH_LONG);
+                }
+                break;
+            case R.id.CB_Result:
+                showResult();
+                break;
+        }
+
     }
 
     //---------------------------------------------------------------------
@@ -83,7 +147,7 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity {
     private RadioGroup.OnCheckedChangeListener mRadioButton = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup radioGroup, int i) {
-            String food="";
+
             switch (i){
                 case R.id.radioButton1:
                     food=rb1.getText().toString();
@@ -136,6 +200,12 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity {
                 selectedCount++;
             }
         }
+        selectedData.append(" 並且選擇吃").append(food);
         showToastIns(this, "總共選取"+selectedCount+"個項目..."+selectedData, Toast.LENGTH_LONG);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
