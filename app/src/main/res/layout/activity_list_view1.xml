@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAC1F5"
     tools:context=".ListView1Activity">
 
     <!--這裡的定義無效，主要是以list_view.item.xml為主-->
@@ -19,7 +18,6 @@
         android:id="@+id/lsv1_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFFFF"
         android:focusable="true" />
 
 </RelativeLayout>

@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_contencrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorGray">
+    android:layout_height="match_parent">
 
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/mainmenu_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_test"
         android:theme="@android:style/Theme.DeviceDefault.Light.DarkActionBar"
         tools:context=".MainActivity">
 

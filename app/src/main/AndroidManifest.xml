@@ -99,7 +99,8 @@
             android:label="@string/battery_info" />
         <activity
             android:name=".LocationActivity"
-            android:label="@string/location_text" />
+            android:label="@string/location_text"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SensorActivity"
             android:label="@string/sensors"
@@ -108,7 +109,8 @@
         <activity
             android:name=".SpeechToText3Activity"
             android:screenOrientation="portrait" />
-        <activity android:name=".SpeechToText2Activity" />
+        <activity
+            android:name=".SpeechToText2Activity" />
         <activity
             android:name=".SpeechToTextActivity"
             android:theme="@style/AppTheme_TransBar" />
@@ -132,15 +134,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_TransBar" />
         <activity
+            android:name=".ListViewActivity"
+            android:theme="@style/AppTheme_NoTitle" />
+        <activity
             android:name=".ListView1Activity"
             android:theme="@style/AppTheme_NoTitle" />
         <activity
             android:name=".OpenCVActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme_TransBar" />
-        <activity
-            android:name=".ListViewActivity"
-            android:theme="@style/AppTheme_NoTitle" />
         <activity
             android:name=".Camera3Activity"
             android:theme="@style/AppTheme_NoTitle" />

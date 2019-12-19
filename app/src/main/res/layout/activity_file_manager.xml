@@ -21,7 +21,6 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#A6ABCC"
         android:divider="#5E35B1"
         android:dividerHeight="1dp"
         app:layout_constraintStart_toStartOf="parent"

@@ -13,6 +13,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ import java.util.List;
 
 import static com.example.myapplication.Util.showToastIns;
 
-public class LocationActivity extends Activity implements LocationListener {
+public class LocationActivity extends AppCompatActivity implements LocationListener {
     private static final String TAG = "Alan";
     private boolean getService = false;
 
@@ -31,8 +32,9 @@ public class LocationActivity extends Activity implements LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        checkAndRequestPermissions();
+        Log.w(TAG, "LocationActivity:onCreate");
 
+        checkAndRequestPermissions();
     }
 
     private static final String[] REQUIRED_PERMISSION_LIST = new String[]{

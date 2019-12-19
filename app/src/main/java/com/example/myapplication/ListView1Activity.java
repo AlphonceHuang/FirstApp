@@ -32,6 +32,8 @@ public class ListView1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view1);
 
+        Log.w(TAG, "ListView1Activity:onCreate");
+
 
         //宣告 ListView 元件
         //private TextView mTxtR;

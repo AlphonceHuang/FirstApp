@@ -204,7 +204,7 @@
 
     <item
         android:id="@+id/BackgroundItem"
-        android:icon="@mipmap/ic_action_collection"
+        android:icon="@android:drawable/ic_menu_edit"
         android:title="@string/background" />
 
 </menu>

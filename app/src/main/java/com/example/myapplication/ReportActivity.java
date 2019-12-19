@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -65,6 +66,9 @@ public class ReportActivity extends AppCompatActivity {
             showBMIreport();
 
         registerForContextMenu(findViewById(R.id.report_layout));   // 註冊context menu 浮動選單
+        ActionBar mActionBar = getSupportActionBar();
+        if (mActionBar!=null)
+            mActionBar.setBackgroundDrawable(getDrawable(R.drawable.background_test));
     }
 
     //========================================================================

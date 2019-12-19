@@ -28,6 +28,8 @@ public class ListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
+        Log.w(TAG, "ListViewActivity:onCreate");
+
         //宣告 ListView 元件
         ListView lsv_main = findViewById(R.id.lsv_main);
         lsv_main.setOnItemClickListener(listViewOnItemClickListener);

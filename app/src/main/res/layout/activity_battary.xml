@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_contencrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F8F0F09F">
+    android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
