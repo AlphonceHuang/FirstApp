@@ -203,6 +203,7 @@
     <string name="background">背景漸層</string>
     <string name="Drawable">Drawable</string>
     <string name="Images">Images</string>
+    <string name="imageslider">Image Slider</string>
 
     <string name="selectAll">全選</string>
     <string name="clearAll">全不選</string>

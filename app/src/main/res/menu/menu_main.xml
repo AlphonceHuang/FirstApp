@@ -187,18 +187,29 @@
     </item>
 
     <item
-        android:id="@+id/ViewPagerItem"
+        android:id="@+id/ImageViewItem"
         android:icon="@mipmap/ic_action_picture_b"
-        android:title="@string/viewpager">
+        android:title="@string/imageslider">
         <menu>
             <item
-                android:id="@+id/VP_drawable_Item"
+                android:id="@+id/ImageSwitcher_Item"
                 android:icon="@mipmap/ic_action_picture_b"
-                android:title="@string/Drawable" />
+                android:title="@string/imageSwitcher"/>
             <item
-                android:id="@+id/VP_images_Item"
+                android:id="@+id/ViewPager_Item"
                 android:icon="@mipmap/ic_action_picture_b"
-                android:title="@string/Images" />
+                android:title="@string/viewpager" >
+                <menu>
+                    <item
+                        android:id="@+id/ViewPagerDrawable_Item"
+                        android:icon="@mipmap/ic_action_picture_b"
+                        android:title="@string/Drawable" />
+                    <item
+                        android:id="@+id/ViewPagerBitmap_Item"
+                        android:icon="@mipmap/ic_action_picture_b"
+                        android:title="@string/Images" />
+                </menu>
+            </item>
         </menu>
     </item>
 

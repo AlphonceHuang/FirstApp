@@ -434,13 +434,13 @@ public class MainActivity extends AppCompatActivity{
         exe_ListView.setOnClickListener(calcBMI);
         exe_ListView.setSelected(true);
 
-        Button exeShowCap = findViewById(R.id.CapPagebutton);
+        Button exeShowCap = findViewById(R.id.button4);
         exeShowCap.setOnClickListener(calcBMI);
         exeShowCap.setSelected(true);
 
-        Button exeViewPager=findViewById(R.id.viewPagerButton);
-        exeViewPager.setOnClickListener(calcBMI);
-        exeViewPager.setSelected(true);
+        //Button exeViewPager=findViewById(R.id.button3);
+        //exeViewPager.setOnClickListener(calcBMI);
+        //exeViewPager.setSelected(true);
         //------------------------------------------------
         // 監聽EditText的狀態
         //------------------------------------------------
@@ -705,11 +705,6 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(myIntent);
                     break;
 
-                case R.id.CapPagebutton:
-                    //myIntent = new Intent(MainActivity.this,ScreenCapActivity.class);
-                    myIntent = new Intent(MainActivity.this,ImageSwitcherActivity.class);
-                    startActivity(myIntent);
-                    break;
 /*
                 case R.id.button:
                     Log.w(TAG, "Press calculate.");
@@ -1834,7 +1829,7 @@ public class MainActivity extends AppCompatActivity{
                 OptionIntent = new Intent(MainActivity.this, BackgroundActivity.class);
                 startActivity(OptionIntent);
                 break;
-            case R.id.VP_drawable_Item:
+            case R.id.ViewPagerDrawable_Item:
                 OptionBundle = new Bundle();
                 OptionBundle.putInt("VIEWPAGE_STYLE", 0);
 
@@ -1843,13 +1838,17 @@ public class MainActivity extends AppCompatActivity{
                 OptionIntent.putExtras(OptionBundle);
                 startActivity(OptionIntent);
                 break;
-            case R.id.VP_images_Item:
+            case R.id.ViewPagerBitmap_Item:
                 OptionBundle = new Bundle();
                 OptionBundle.putInt("VIEWPAGE_STYLE", 1);
 
                 OptionIntent = new Intent();
                 OptionIntent.setClass(MainActivity.this, ImageViewPagerActivity.class);
                 OptionIntent.putExtras(OptionBundle);
+                startActivity(OptionIntent);
+                break;
+            case R.id.ImageSwitcher_Item:
+                OptionIntent = new Intent(MainActivity.this, ImageSwitcherActivity.class);
                 startActivity(OptionIntent);
                 break;
             default:

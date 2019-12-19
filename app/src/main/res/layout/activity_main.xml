@@ -45,7 +45,7 @@
             android:text="@string/show_image"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CapPagebutton" />
+            app:layout_constraintTop_toBottomOf="@+id/button4" />
 
         <Button
             android:id="@+id/ble_btn"
@@ -66,7 +66,7 @@
             android:singleLine="true"
             android:text="@string/dialog"
             app:layout_constraintStart_toEndOf="@+id/showimage"
-            app:layout_constraintTop_toBottomOf="@+id/CapPagebutton" />
+            app:layout_constraintTop_toBottomOf="@+id/button4" />
 
         <Button
             android:id="@+id/DirectCon"
@@ -103,7 +103,7 @@
             android:text="@string/progress_Horizontal"
             android:textAllCaps="false"
             app:layout_constraintStart_toEndOf="@+id/DialogBtn"
-            app:layout_constraintTop_toBottomOf="@+id/CapPagebutton" />
+            app:layout_constraintTop_toBottomOf="@+id/button4" />
 
         <Button
             android:id="@+id/CustomeDialogShowBtn"
@@ -303,19 +303,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/CapPagebutton"
+            android:id="@+id/button4"
             style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/imageSwitcher"
+            android:text="@string/suggest_empty"
             app:layout_constraintStart_toEndOf="@+id/screencapBtn"
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
 
         <Button
-            android:id="@+id/viewPagerButton"
+            android:id="@+id/button3"
             style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
@@ -324,8 +324,34 @@
             android:singleLine="true"
             android:text="@string/suggest_empty"
             android:textAllCaps="false"
-            app:layout_constraintStart_toEndOf="@+id/CapPagebutton"
+            app:layout_constraintStart_toEndOf="@+id/button4"
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
+
+        <Button
+            android:id="@+id/button"
+            style="@android:style/Widget.Button"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="@string/suggest_empty"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toEndOf="@+id/button3"
+            app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@android:style/Widget.Button"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="@string/suggest_empty"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toEndOf="@+id/progress_hor"
+            app:layout_constraintTop_toBottomOf="@+id/screencapBtn" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
