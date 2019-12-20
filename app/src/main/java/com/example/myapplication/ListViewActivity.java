@@ -54,6 +54,9 @@ public class ListViewActivity extends AppCompatActivity {
 
             itemList.add(item);
         }
+        regionIconList.recycle();
+        regionTitleList.recycle();
+        regionSubTitleList.recycle();
 
         // ListView 中所需之資料參數可透過修改 Adapter 的建構子傳入
         // 使用ListAdapter.java

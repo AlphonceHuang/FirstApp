@@ -18,7 +18,7 @@ public class MyBaseAdapter extends BaseAdapter {
     private List<MyBaseAdapterData> mDatas;
     private int mListId;
 
-    public MyBaseAdapter(Context context, List<MyBaseAdapterData> datas, int listid){
+    MyBaseAdapter(Context context, List<MyBaseAdapterData> datas, int listid){
         this.mContext=context;
         this.mDatas=datas;
         this.mListId=listid;

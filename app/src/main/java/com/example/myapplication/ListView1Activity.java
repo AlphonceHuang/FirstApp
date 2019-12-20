@@ -62,6 +62,9 @@ public class ListView1Activity extends AppCompatActivity {
             item.put(ITEM_ICON, regionIconList.getResourceId(i, 0));
             itemList.add(item);
         }
+        regionIconList.recycle();
+        regionTitleList.recycle();
+        regionSubTitleList.recycle();
 
         // ListView 中所需之資料參數可透過修改 Adapter 的建構子傳入
         // 使用ListAdapter1.java
@@ -74,9 +77,6 @@ public class ListView1Activity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        regionIconList.recycle();
-        regionTitleList.recycle();
-        regionSubTitleList.recycle();
     }
 
     private AdapterView.OnItemClickListener listViewOnItemClickListener
