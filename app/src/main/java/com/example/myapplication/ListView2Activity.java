@@ -37,7 +37,8 @@ public class ListView2Activity extends AppCompatActivity {
 
         List<MyBaseAdapterData> datas = new ArrayList<>();
 
-        // text 由res/values/strings.xml裡的String-array取出
+        // 方法一：text 由res/values/strings.xml裡的String-array取出
+
         title=getResources().getStringArray(R.array.array_Places);
         String[] subtitle=getResources().getStringArray(R.array.array_Food);
 
@@ -47,13 +48,28 @@ public class ListView2Activity extends AppCompatActivity {
         for (int i=0; i<ids.length; i++){
             ids[i]=iconArray.getResourceId(i, 0);
         }
+        iconArray.recycle();
+
+        // 方法二: 字串也是用TypedArray方式取得
+        /*
+        TypedArray titleArray = getResources().obtainTypedArray(R.array.array_Places);
+        for (int i=0; i<titleArray.length(); i++){
+            title[i]=getString(titleArray.getResourceId(i, 0));
+        }
+
+        TypedArray subtitleArray = getResources().obtainTypedArray(R.array.array_Food);
+        for (int i=0; i<subtitleArray.length(); i++){
+            subtitle[i]=getString(subtitleArray.getResourceId(i, 0));
+        }
+        titleArray.recycle();
+        subtitleArray.recycle();
+        */
 
         // 將圖片及文字放入item中
         for (int i = 0; i < title.length; i++)
         {
             datas.add(new MyBaseAdapterData(ids[i], title[i], subtitle[i]));
         }
-        iconArray.recycle();
         return datas;
     }
 }

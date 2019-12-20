@@ -17,6 +17,7 @@ public class MyBaseAdapter extends BaseAdapter {
     private Context mContext;
     private List<MyBaseAdapterData> mDatas;
     private int mListId;
+    private boolean useBuildHolder=true;
 
     MyBaseAdapter(Context context, List<MyBaseAdapterData> datas, int listid){
         this.mContext=context;
@@ -41,24 +42,58 @@ public class MyBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        if (view==null){
-            LayoutInflater inflater = LayoutInflater.from(mContext);
-            view=inflater.inflate(mListId, null);
-        }
 
-        ImageView icon=view.findViewById(R.id.imgView);
-        TextView title=view.findViewById(R.id.txtView);
-        TextView subtitle=view.findViewById(R.id.txtView1);
+        if (useBuildHolder) {   // use build holder method
 
-        MyBaseAdapterData data=getItem(i);
-        if (data!=null){
-            icon.setImageResource(data.getItemIcon());
-            title.setText(data.getItemTitle());
-            subtitle.setText(data.getItemSubtitle());
+            ViewHolder holder = new ViewHolder();
+            if (view == null) {
+                LayoutInflater inflater = LayoutInflater.from(mContext);
+                view = inflater.inflate(mListId, null);
 
-            title.setSelected(true);
-            subtitle.setSelected(true);
+                holder.icon = view.findViewById(R.id.imgView);
+                holder.title = view.findViewById(R.id.txtView);
+                holder.subtitle = view.findViewById(R.id.txtView1);
+
+                view.setTag(holder);
+            } else {
+                holder = (ViewHolder) view.getTag();
+            }
+            MyBaseAdapterData data = getItem(i);
+            if (data != null) {
+                holder.icon.setImageResource(data.getItemIcon());
+                holder.title.setText(data.getItemTitle());
+                holder.subtitle.setText(data.getItemSubtitle());
+
+                holder.title.setSelected(true);
+                holder.subtitle.setSelected(true);
+            }
+        }else {
+
+            if (view == null) {
+                LayoutInflater inflater = LayoutInflater.from(mContext);
+                view = inflater.inflate(mListId, null);
+            }
+
+            ImageView icon = view.findViewById(R.id.imgView);
+            TextView title = view.findViewById(R.id.txtView);
+            TextView subtitle = view.findViewById(R.id.txtView1);
+
+            MyBaseAdapterData data = getItem(i);
+            if (data != null) {
+                icon.setImageResource(data.getItemIcon());
+                title.setText(data.getItemTitle());
+                subtitle.setText(data.getItemSubtitle());
+
+                title.setSelected(true);
+                subtitle.setSelected(true);
+            }
         }
         return view;
+    }
+
+    private class ViewHolder{
+        ImageView icon;
+        TextView title;
+        TextView subtitle;
     }
 }
