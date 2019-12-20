@@ -18,4 +18,27 @@
         <item>"NO_GRAVITY"</item>
         <item>"BOTTOM, Y=heightPixels/9"</item>
     </array>
+
+    <integer-array name="kitty_itmes">
+        <item>@drawable/kitty001</item>
+        <item>@drawable/kitty002</item>
+        <item>@drawable/kitty003</item>
+        <item>@drawable/kitty004</item>
+        <item>@drawable/kitty005</item>
+        <item>@drawable/kitty006</item>
+        <item>@drawable/kitty007</item>
+        <item>@drawable/kitty008</item>
+        <item>@drawable/kitty009</item>
+        <item>@drawable/kitty010</item>
+        <item>@drawable/kitty011</item>
+        <item>@drawable/kitty012</item>
+        <item>@drawable/kitty013</item>
+        <item>@drawable/kitty014</item>
+        <item>@drawable/kitty015</item>
+        <item>@drawable/kitty016</item>
+        <item>@drawable/kitty017</item>
+        <item>@drawable/kitty018</item>
+        <item>@drawable/kitty019</item>
+        <item>@drawable/kitty020</item>
+    </integer-array>
 </resources>

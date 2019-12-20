@@ -1574,6 +1574,10 @@ public class MainActivity extends AppCompatActivity{
 
         switch(id)
         {
+            case R.id.MyAdapterListViewItem:
+                OptionIntent = new Intent(MainActivity.this,ListView2Activity.class);
+                startActivity(OptionIntent);
+                break;
             case R.id.BMIItem:
                 OptionIntent = new Intent(MainActivity.this,BMIActivity.class);
                 startActivity(OptionIntent);
