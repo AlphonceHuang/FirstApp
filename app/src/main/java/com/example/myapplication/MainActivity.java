@@ -367,9 +367,9 @@ public class MainActivity extends AppCompatActivity{
         //private TextView num_result;
         //private TextView result_suggest;
         //private TextView last_result;
-        Button exe_button = findViewById(R.id.BMIbutton);
-        exe_button.setOnClickListener(calcBMI);
-        exe_button.setSelected(true);
+        Button exe_BMIbutton = findViewById(R.id.BMIbutton);
+        exe_BMIbutton.setOnClickListener(calcBMI);
+        exe_BMIbutton.setSelected(true);
         //Button exe_clearButton = findViewById(R.id.clearbutton);
         //exe_clearButton.setOnClickListener(calcBMI);
         //exe_seeReport = findViewById(R.id.seereport);
@@ -430,18 +430,28 @@ public class MainActivity extends AppCompatActivity{
         Button exe_Battery = findViewById(R.id.batteryBtn);
         exe_Battery.setOnClickListener(calcBMI);
 
-        Button exe_ListView = findViewById(R.id.listviewB);
-        exe_ListView.setOnClickListener(calcBMI);
-        exe_ListView.setSelected(true);
-
         Button exeCheckBox = findViewById(R.id.checkbox);
         exeCheckBox.setOnClickListener(calcBMI);
         exeCheckBox.setSelected(true);
 
-        //Button exeViewPager=findViewById(R.id.button3);
-        //exeViewPager.setOnClickListener(calcBMI);
-        //exeViewPager.setSelected(true);
-        //------------------------------------------------
+        //---------------------------------------------------------
+        Button exe_button1 = findViewById(R.id.button);
+        exe_button1.setOnClickListener(calcBMI);
+        exe_button1.setSelected(true);
+
+        Button exe_button2 = findViewById(R.id.button2);
+        exe_button2.setOnClickListener(calcBMI);
+        exe_button2.setSelected(true);
+
+        Button exe_button3=findViewById(R.id.button3);
+        exe_button3.setOnClickListener(calcBMI);
+        exe_button3.setSelected(true);
+
+        Button exe_button4 = findViewById(R.id.button4);
+        exe_button4.setOnClickListener(calcBMI);
+        exe_button4.setSelected(true);
+
+//------------------------------------------------
         // 監聽EditText的狀態
         //------------------------------------------------
         //num_height.addTextChangedListener(InputWatcher);
@@ -993,15 +1003,22 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(myIntent);
                     break;
 
-                case R.id.listviewB:
-                    myIntent = new Intent(MainActivity.this, ListViewMenuActivity.class);
-                    startActivity(myIntent);
-                    break;
+                //case R.id.listviewB:
+                //    myIntent = new Intent(MainActivity.this, ListViewMenuActivity.class);
+                //    startActivity(myIntent);
+                //    break;
 
                 //case R.id.viewPagerButton:
                 //    myIntent = new Intent(MainActivity.this, ImageViewPagerActivity.class);
                 //    startActivity(myIntent);
                 //    break;
+
+                case R.id.button:
+                case R.id.button2:
+                case R.id.button3:
+                case R.id.button4:
+                    showToastIns(getApplicationContext(), "按下空白按鍵", Toast.LENGTH_SHORT);
+                    break;
             }
         }
     };
@@ -1574,8 +1591,12 @@ public class MainActivity extends AppCompatActivity{
 
         switch(id)
         {
-            case R.id.MyAdapterListViewItem:
+            case R.id.ListViewAllStyleItem:
                 OptionIntent = new Intent(MainActivity.this,ListView2Activity.class);
+                startActivity(OptionIntent);
+                break;
+            case R.id.MyAdapterListViewItem:
+                OptionIntent = new Intent(MainActivity.this,ListViewMenuActivity.class);
                 startActivity(OptionIntent);
                 break;
             case R.id.BMIItem:

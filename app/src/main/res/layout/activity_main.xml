@@ -275,7 +275,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/listviewB"
+            android:id="@+id/button4"
             style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
@@ -283,7 +283,7 @@
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/listviewex"
+            android:text="@string/suggest_empty"
             android:textAllCaps="false"
             app:layout_constraintStart_toEndOf="@+id/batteryBtn"
             app:layout_constraintTop_toTopOf="parent" />

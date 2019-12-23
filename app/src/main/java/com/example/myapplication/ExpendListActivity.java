@@ -14,7 +14,7 @@ import java.util.List;
 import static com.example.myapplication.Util.showToastIns;
 
 public class ExpendListActivity extends AppCompatActivity {
-    private static final String TAG="Alan";
+    //private static final String TAG="Alan";
 
     // 列表数据
     private List<String> mGroupNameList = null;
@@ -57,14 +57,14 @@ public class ExpendListActivity extends AppCompatActivity {
     }
 
     private void initialData(){
-        mGroupNameList = new ArrayList<String>();
+        mGroupNameList = new ArrayList<>();
 
         // Title group
         String[] groups = getResources().getStringArray(R.array.group_title);
         mGroupNameList.addAll(Arrays.asList(groups));
 
         List<MyBaseAdapterData> datas = new ArrayList<>();
-        mItemNameList = new ArrayList<List<MyBaseAdapterData>>();
+        mItemNameList = new ArrayList<>();
 
         // Group1
         TypedArray regionIconList = getResources().obtainTypedArray(R.array.group_icons);

@@ -219,6 +219,10 @@
         android:title="@string/listviewex">
         <menu>
             <item
+                android:id="@+id/ListViewAllStyleItem"
+                android:icon="@mipmap/ic_action_storage"
+                android:title="@string/listview_allStyle" />
+            <item
                 android:id="@+id/MyAdapterListViewItem"
                 android:icon="@mipmap/ic_action_storage"
                 android:title="@string/listviewsample" />

@@ -209,6 +209,7 @@
     <string name="listview">ListView</string>
     <string name="listviewsample">ListView範例(MyAdapter)</string>
     <string name="expendlistsample">ExpendListView範例</string>
+    <string name="listview_allStyle">ListView all style</string>
 
 
     <string name="selectAll">全選</string>
