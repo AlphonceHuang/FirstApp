@@ -214,6 +214,23 @@
     </item>
 
     <item
+        android:id="@+id/ListViewTitleItem"
+        android:icon="@mipmap/ic_action_storage"
+        android:title="@string/listviewex">
+        <menu>
+            <item
+                android:id="@+id/MyAdapterListViewItem"
+                android:icon="@mipmap/ic_action_storage"
+                android:title="@string/listviewsample" />
+            <item
+                android:id="@+id/ExpendListViewItem"
+                android:icon="@mipmap/ic_action_storage"
+                android:title="@string/expendlistsample" />
+        </menu>
+    </item>
+
+
+    <item
         android:id="@+id/BackgroundItem"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="@string/background" />

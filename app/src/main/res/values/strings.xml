@@ -206,7 +206,10 @@
     <string name="imageslider">Image Slider</string>
 
     <string name="checkbox">CheckBox and RadioButton</string>
+    <string name="listview">ListView</string>
     <string name="listviewsample">ListView範例(MyAdapter)</string>
+    <string name="expendlistsample">ExpendListView範例</string>
+
 
     <string name="selectAll">全選</string>
     <string name="clearAll">全不選</string>
@@ -512,8 +515,138 @@
         <item>select_dialog_singlechoice</item>
         <item>simple_dropdown_item_1line</item>
         <item>list_view_item</item>
-
     </string-array>
 
 
+
+
+
+    <string name="people_Group1">歷代帝王</string>
+    <string name="people_Group2">中國內地女星排行</string>
+    <string name="people_Group3">外國明星</string>
+    <string name="people_Group4">韓女團排名2019</string>
+
+    <string name="king1">唐太宗李世民</string>
+    <string name="king2">宋太祖趙匡胤</string>
+    <string name="king3">元太祖成吉思汗</string>
+    <string name="king4">明太祖朱元璋</string>
+    <string name="king5">清太宗皇太極</string>
+
+    <string name="king1_info">626年－649年，唐朝第二任皇帝。出自隴西成紀。父親是唐高祖李淵，母親是太穆皇后竇氏</string>
+    <string name="king2_info">960年－976年，宋朝開國皇帝，祖籍涿郡保州保塞縣，父親趙弘殷，母親杜氏</string>
+    <string name="king3_info">1162年5月31日－1227年8月25日，即元太祖，又稱成吉思皇帝、成吉思可汗</string>
+    <string name="king4_info">1328年10月21日－1398年6月24日，或稱洪武帝，明朝開國皇帝</string>
+    <string name="king5_info">1626年－1636年，他是後金建立者努爾哈赤（尊為清太祖）第八子，在1626年努爾哈赤逝世後繼承汗位，年號天聰</string>
+
+    <string name="king1_icon">唐太宗李世民</string>
+    <string name="king2_icon">宋太祖趙匡胤</string>
+    <string name="king3_icon">元太祖成吉思汗</string>
+    <string name="king4_icon">明太祖朱元璋</string>
+    <string name="king5_icon">清太宗皇太極</string>
+
+    <string name="chinese_star1">楊幂</string>
+    <string name="chinese_star2">趙麗穎</string>
+    <string name="chinese_star3">謝娜</string>
+    <string name="chinese_star4">劉亦菲</string>
+    <string name="chinese_star5">張靚穎</string>
+    <string name="chinese_star6">宋祖兒</string>
+
+    <string name="chinese_star1_info">歌手、制片人，1986年9月12日生於北京，畢業於北京電影學院表演系</string>
+    <string name="chinese_star2_info">1987年10月16日生於河北廊坊市，畢業于廊坊市电子信息工程学校，2006年参加雅虎搜星比賽出道</string>
+    <string name="chinese_star3_info">演員、歌手，出生於四川省德陽市中江縣，生日為1981年5月6日，畢業於四川師範大學電影電視學院</string>
+    <string name="chinese_star4_info">演員、流行音樂歌手，1987年8月25日出生於湖北武漢，畢業於北京電影學院2002級表演系本科班</string>
+    <string name="chinese_star5_info">流行樂女歌手，1984年10月11日出生於四川省成都市，畢業於四川大學外國語學院</string>
+    <string name="chinese_star6_info">女演員，1998年05月23日出生於天津</string>
+
+    <string name="Foreigner_star1">Natalie Portman</string>
+    <string name="Foreigner_star2">Angelina Jolie</string>
+    <string name="Foreigner_star3">Megan Fox</string>
+
+    <string name="Foreigner_star1_info">曾四次獲得奧斯卡金像獎提名，並獲得金球獎，這位以色列和美國女演員成為我們評選的2019好萊塢最炙手可熱的11位女演員中的第一名。1981年6月9日出生</string>
+    <string name="Foreigner_star2_info">安吉麗娜朱莉。她是好萊塢美麗和魅力的標誌。安吉麗娜朱莉出生於1975年6月4日，是一位美國女演員、電影製作人和人道主義者</string>
+    <string name="Foreigner_star3_info">Megan Denise Fox以「擁有一張完美的臉」而聞名，她是一位美國女演員和模特。她因在大片動作電影變形金剛中扮演的角色而廣受歡迎</string>
+
+    <string name="twice">TWICE</string>
+    <string name="blackpink">BLACKPINK</string>
+    <string name="RedVelvet">Red Velvet</string>
+    <string name="Mamamoo">Mamamoo</string>
+
+    <string name="twice_info">韓國JYP娛樂旗下的九人女子團體，成員通過Mnet生存實境節目《SIXTEEN》篩選而出。最終由五名韓國成員娜璉、定延、志效、多賢、彩瑛，三名日本成員Momo、Sana、Mina，以及一名台灣成員子瑜組成</string>
+    <string name="blackpink_info">YG娛樂於2016年推出的韓國女子音樂組合，由Jisoo、Jennie、Rosé與Lisa共四名成員組成</string>
+    <string name="RedVelvet_info">SM娛樂旗下於2014年所推出的女子組合，該團體起初由Irene、Seulgi、Wendy、Joy四名成員組成，2015年3月，加入新成員Yeri，成為五人形式的女子組合</string>
+    <string name="Mamamoo_info">Rainbow Bridge World (簡稱RBW)經紀公司所屬，成員有頌樂、玟星、輝人及華莎</string>
+
+    <string-array name="group_title">
+        <item>@string/people_Group1</item>
+        <item>@string/people_Group2</item>
+        <item>@string/people_Group3</item>
+        <item>@string/people_Group4</item>
+    </string-array>
+
+    <string-array name="group_king">
+        <item>@string/king1</item>
+        <item>@string/king2</item>
+        <item>@string/king3</item>
+        <item>@string/king4</item>
+        <item>@string/king5</item>
+    </string-array>
+    <string-array name="group_king_info">
+        <item>@string/king1_info</item>
+        <item>@string/king2_info</item>
+        <item>@string/king3_info</item>
+        <item>@string/king4_info</item>
+        <item>@string/king5_info</item>
+    </string-array>
+
+    <string-array name="group_chinese_star">
+        <item>@string/chinese_star1</item>
+        <item>@string/chinese_star2</item>
+        <item>@string/chinese_star3</item>
+        <item>@string/chinese_star4</item>
+        <item>@string/chinese_star5</item>
+        <item>@string/chinese_star6</item>
+    </string-array>
+    <string-array name="group_chinese_star_info">
+        <item>@string/chinese_star1_info</item>
+        <item>@string/chinese_star2_info</item>
+        <item>@string/chinese_star3_info</item>
+        <item>@string/chinese_star4_info</item>
+        <item>@string/chinese_star5_info</item>
+        <item>@string/chinese_star6_info</item>
+    </string-array>
+
+
+    <string-array name="group_Foreigner_star">
+        <item>@string/Foreigner_star1</item>
+        <item>@string/Foreigner_star2</item>
+        <item>@string/Foreigner_star3</item>
+    </string-array>
+    <string-array name="group_Foreigner_star_info">
+        <item>@string/Foreigner_star1_info</item>
+        <item>@string/Foreigner_star2_info</item>
+        <item>@string/Foreigner_star3_info</item>
+    </string-array>
+
+    <string-array name="group_political">
+        <item>@string/twice</item>
+        <item>@string/blackpink</item>
+        <item>@string/RedVelvet</item>
+        <item>@string/Mamamoo</item>
+    </string-array>
+
+    <string-array name="group_information">
+        <item>@string/twice_info</item>
+        <item>@string/blackpink_info</item>
+        <item>@string/RedVelvet_info</item>
+        <item>@string/Mamamoo_info</item>
+    </string-array>
+
+    <string-array name="group_icons">
+        <item>@drawable/kitty003</item>
+        <item>@drawable/kitty003</item>
+        <item>@drawable/kitty003</item>
+        <item>@drawable/kitty003</item>
+        <item>@drawable/kitty003</item>
+        <item>@drawable/kitty003</item>
+    </string-array>
 </resources>

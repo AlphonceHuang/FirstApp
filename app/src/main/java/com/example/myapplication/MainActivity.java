@@ -1860,6 +1860,10 @@ public class MainActivity extends AppCompatActivity{
                 OptionIntent = new Intent(MainActivity.this, ImageSwitcherActivity.class);
                 startActivity(OptionIntent);
                 break;
+            case R.id.ExpendListViewItem:
+                OptionIntent = new Intent(MainActivity.this, ExpendListActivity.class);
+                startActivity(OptionIntent);
+                break;
             default:
                 //m_ret=true;
                 break;
