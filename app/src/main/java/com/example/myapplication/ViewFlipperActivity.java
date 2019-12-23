@@ -27,6 +27,8 @@ public class ViewFlipperActivity extends AppCompatActivity {
     private final static int MIN_MOVE = 200;   //最小距离
     private GestureDetector mDetector;
 
+    private int[] iconId, strId;
+
     //private int[] resId = {R.drawable.kitty001,
     //        R.drawable.kitty002,
     //        R.drawable.kitty003,
@@ -46,21 +48,21 @@ public class ViewFlipperActivity extends AppCompatActivity {
 
         // 取Array裡資料轉成int
         TypedArray iconArray = getResources().obtainTypedArray(R.array.kitty_icon);
-        int[] iconId = new int[iconArray.length()];
+        iconId = new int[iconArray.length()];
         for (int i=0; i<iconId.length; i++){
             iconId[i]=iconArray.getResourceId(i, 0);
         }
         iconArray.recycle();
 
         TypedArray strArray = getResources().obtainTypedArray(R.array.array_Food);
-        int[] strId = new int[strArray.length()];
+        strId = new int[strArray.length()];
         for (int i=0; i<strId.length; i++){
             strId[i]=strArray.getResourceId(i, 0);
         }
         strArray.recycle();
 
-        int items=min(iconId.length, strId.length);
-        Log.w(TAG, "icon="+iconId.length+", text="+strId.length+", min="+items);
+        int itemCount=min(iconId.length, strId.length);
+        Log.w(TAG, "icon="+iconId.length+", text="+strId.length+", min="+itemCount);
 
         // 方法一：直接增加至view裡
         //for (int value : resId) {
@@ -68,15 +70,27 @@ public class ViewFlipperActivity extends AppCompatActivity {
         //}
 
         // 使用客制化layout，再一個一個加入view裡
-        for (int value=0; value<items; value++) {
-            View view = LayoutInflater.from(this).inflate(R.layout.fragment_main, null);
-            TextView tv_show = view.findViewById(R.id.fragment_title);
-            ImageView tv_showTwo = view.findViewById(R.id.fragment_image);
+        for (int value=0; value<itemCount; value++) {
+            //View view = LayoutInflater.from(this).inflate(R.layout.fragment_main, null);
+            //TextView tv_show = view.findViewById(R.id.fragment_title);
+            //ImageView tv_showTwo = view.findViewById(R.id.fragment_image);
 
-            tv_show.setText(strId[value]);
-            tv_showTwo.setImageResource(iconId[value]);
-            vflp_help.addView(view);
+            //tv_show.setText(strId[value]);
+            //tv_showTwo.setImageResource(iconId[value]);
+
+
+            vflp_help.addView(getCustomView(value));
         }
+    }
+
+    private View getCustomView(int item){
+        View view = LayoutInflater.from(this).inflate(R.layout.fragment_main, null);
+        TextView tv_show = view.findViewById(R.id.fragment_title);
+        ImageView tv_showTwo = view.findViewById(R.id.fragment_image);
+
+        tv_show.setText(strId[item]);
+        tv_showTwo.setImageResource(iconId[item]);
+        return view;
     }
 
     private ImageView getImageView(int resId) {
