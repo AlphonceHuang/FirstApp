@@ -1591,6 +1591,10 @@ public class MainActivity extends AppCompatActivity{
 
         switch(id)
         {
+            case R.id.ImageFlipperItem:
+                OptionIntent = new Intent(MainActivity.this,ViewFlipperActivity.class);
+                startActivity(OptionIntent);
+                break;
             case R.id.ListViewAllStyleItem:
                 OptionIntent = new Intent(MainActivity.this,ListView2Activity.class);
                 startActivity(OptionIntent);

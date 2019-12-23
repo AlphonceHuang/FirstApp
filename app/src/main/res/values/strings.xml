@@ -210,6 +210,8 @@
     <string name="listviewsample">ListView範例(MyAdapter)</string>
     <string name="expendlistsample">ExpendListView範例</string>
     <string name="listview_allStyle">ListView all style</string>
+    <string name="ViewFlipper">ViewFlipper</string>
+    <string name="auto_switch">自動切換</string>
 
 
     <string name="selectAll">全選</string>
@@ -517,9 +519,6 @@
         <item>simple_dropdown_item_1line</item>
         <item>list_view_item</item>
     </string-array>
-
-
-
 
 
     <string name="people_Group1">歷代帝王</string>

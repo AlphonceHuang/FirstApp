@@ -68,8 +68,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ViewFlipperActivity"
+            android:label="@string/ViewFlipper"/>
+        <activity
             android:name=".ExpendListActivity"
-            android:label="@string/expendlistsample"/>
+            android:label="@string/expendlistsample" />
         <activity
             android:name=".ListView2Activity"
             android:label="@string/listviewsample" />

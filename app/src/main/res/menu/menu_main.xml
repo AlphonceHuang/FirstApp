@@ -238,5 +238,9 @@
         android:id="@+id/BackgroundItem"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="@string/background" />
+    <item
+        android:id="@+id/ImageFlipperItem"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/ViewFlipper" />
 
 </menu>
