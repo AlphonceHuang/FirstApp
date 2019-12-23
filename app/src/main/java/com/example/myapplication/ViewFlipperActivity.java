@@ -69,7 +69,7 @@ public class ViewFlipperActivity extends AppCompatActivity {
         //    vflp_help.addView(getImageView(value));
         //}
 
-        // 使用客制化layout，再一個一個加入view裡
+        // 方法二：使用客制化layout，再一個一個加入view裡
         for (int value=0; value<itemCount; value++) {
             //View view = LayoutInflater.from(this).inflate(R.layout.fragment_main, null);
             //TextView tv_show = view.findViewById(R.id.fragment_title);
@@ -77,7 +77,6 @@ public class ViewFlipperActivity extends AppCompatActivity {
 
             //tv_show.setText(strId[value]);
             //tv_showTwo.setImageResource(iconId[value]);
-
 
             vflp_help.addView(getCustomView(value));
         }
