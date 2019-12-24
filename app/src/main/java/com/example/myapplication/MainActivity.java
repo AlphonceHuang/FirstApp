@@ -1596,11 +1596,11 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(OptionIntent);
                 break;
             case R.id.ListViewAllStyleItem:
-                OptionIntent = new Intent(MainActivity.this,ListView2Activity.class);
+                OptionIntent = new Intent(MainActivity.this,ListViewMenuActivity.class);
                 startActivity(OptionIntent);
                 break;
             case R.id.MyAdapterListViewItem:
-                OptionIntent = new Intent(MainActivity.this,ListViewMenuActivity.class);
+                OptionIntent = new Intent(MainActivity.this,ListView2Activity.class);
                 startActivity(OptionIntent);
                 break;
             case R.id.BMIItem:
