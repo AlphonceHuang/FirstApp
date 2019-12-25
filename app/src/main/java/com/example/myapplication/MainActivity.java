@@ -76,7 +76,22 @@ import static com.example.myapplication.Util.setFromWhichActivity;
 import static com.example.myapplication.Util.setRecycleViewStyle;
 import static com.example.myapplication.Util.showToastIns;
 import static com.example.myapplication.Util.takeScreenShot;
-import static com.example.myapplication.sRecycleViewStyle.*;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Grid;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Linear_Horizontal;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Linear_Vertical;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Stagger_Horizontal;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Stagger_Vertical;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Stagger_Vertical_Bitmap;
+import static com.example.myapplication.sRecycleViewStyle.sGrid_Layout;
+import static com.example.myapplication.sRecycleViewStyle.sGrid_Layout_Image;
+import static com.example.myapplication.sRecycleViewStyle.sLinear_Layout_Horizontal;
+import static com.example.myapplication.sRecycleViewStyle.sLinear_Layout_Horizontal_Image;
+import static com.example.myapplication.sRecycleViewStyle.sLinear_Layout_Vertical;
+import static com.example.myapplication.sRecycleViewStyle.sLinear_Layout_Vertical_Image;
+import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Horizontal;
+import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Horizontal_Image;
+import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Vertical;
+import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Vertical_Image;
 
 
 // 1. 過class方式觸發元件
@@ -1014,6 +1029,9 @@ public class MainActivity extends AppCompatActivity{
                 //    break;
 
                 case R.id.button:
+                        myIntent = new Intent(MainActivity.this, DialogFragmentActivity.class);
+                        startActivity(myIntent);
+                    break;
                 case R.id.button2:
                 case R.id.button3:
                 case R.id.button4:

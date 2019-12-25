@@ -67,9 +67,10 @@
         android:roundIcon="@drawable/monkey"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DialogFragmentActivity"></activity>
         <activity
             android:name=".ViewFlipperActivity"
-            android:label="@string/ViewFlipper"/>
+            android:label="@string/ViewFlipper" />
         <activity
             android:name=".ExpendListActivity"
             android:label="@string/expendlistsample" />

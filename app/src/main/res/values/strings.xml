@@ -20,6 +20,7 @@
     <string name="open_dialog">跳出對話框</string>
     <string name="about_app">關於(相機Camera2 API Level)</string>
     <string name="about_app1">關於(對話框方法二)</string>
+    <string name="about_app2">關於(使用DialogFragment)</string>
     <string name="about_detail">這是一支計算BMI的小程式</string>
     <string name="clear_btn">清除輸入</string>
     <string name="report">BMI報告</string>
@@ -74,6 +75,7 @@
     <string name="dialog">進度條(轉圈)</string>
     <string name="progress_Horizontal">進度條(水平bar)</string>
     <string name="cancel">取消</string>
+    <string name="ok">確定</string>
     <string name="model_Name">型號:</string>
     <string name="manufacturer">製造商:</string>
     <string name="without_premission">沒有權限</string>
@@ -204,6 +206,10 @@
     <string name="Drawable">Drawable</string>
     <string name="Images">Images</string>
     <string name="imageslider">Image Slider</string>
+
+    <string name="inputHint">請輸入您的帳號及密碼</string>
+    <string name="password">密碼</string>
+    <string name="account">帳號</string>
 
     <string name="checkbox">CheckBox and RadioButton</string>
     <string name="listview">ListView</string>
