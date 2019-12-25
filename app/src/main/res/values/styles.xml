@@ -11,7 +11,7 @@
         <item name="colorPrimaryDark">@color/colorOrange</item>
         <item name="colorAccent">@color/colorDarkBlue</item>
         <item name="android:navigationBarColor">#7804A8</item>
-        <item name="android:windowBackground">@drawable/background_test</item>
+        <item name="android:windowBackground">@drawable/background_gold</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -74,6 +74,13 @@
         <item name="android:colorForeground">@color/colorDarkBlue</item>
         <!--使用方法：
         在布局中给需要自定義物件中增加android:theme="@style/MySwitch"-->
+    </style>
+
+    <style name="MySwitchGold" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlActivated">#F9F295</item>
+        <item name="android:colorForeground">#F9F295</item>
+        <!--使用方法：
+        在布局中给需要自定義物件中增加android:theme="@style/MySwitchGold"-->
     </style>
 
 </resources>

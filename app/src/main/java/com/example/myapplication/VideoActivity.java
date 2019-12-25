@@ -235,11 +235,11 @@ public class VideoActivity extends AppCompatActivity {
         RecordTime = findViewById(R.id.RecTime);
         temp="00:00/10:00";
         RecordTime.setText(temp);
-        RecordTime.setTextColor(Color.BLUE);
+        //RecordTime.setTextColor(Color.BLUE);
 
         RecordHint = findViewById(R.id.RecHintText);
         RecordHint.setText(getString(R.string.stopRecord));
-        RecordHint.setTextColor(Color.BLUE);
+        //RecordHint.setTextColor(Color.BLUE);
     }
 
     //=================================================================
@@ -844,7 +844,7 @@ public class VideoActivity extends AppCompatActivity {
                 myAudioRecorder.prepare();  // 使用設定的內容準備錄音
                 myAudioRecorder.start();    // 開始錄音
                 RecordHint.setText(getString(R.string.startRcord));
-                RecordHint.setTextColor(Color.RED);
+                //RecordHint.setTextColor(Color.RED);
 
                 Log.w(TAG, getString(R.string.startRcord));
 
@@ -854,7 +854,7 @@ public class VideoActivity extends AppCompatActivity {
                 VideoSeek.setClickable(false);
                 rec_Time=0;
                 RecordTime.setText(finalRecordTime(rec_Time));
-                RecordTime.setTextColor(Color.RED);
+                //RecordTime.setTextColor(Color.RED);
                 recHandler.postDelayed(UpdateRecordTime, 1000); // 開始更新
 
                 VideoBrowserB.setEnabled(false);
@@ -887,8 +887,8 @@ public class VideoActivity extends AppCompatActivity {
         InitialRecorder();  // 因為stop有release，需要重新初始化
 
         RecordHint.setText(getString(R.string.stopRecord));
-        RecordHint.setTextColor(Color.BLUE);
-        RecordTime.setTextColor(Color.BLUE);
+        //RecordHint.setTextColor(Color.BLUE);
+        //RecordTime.setTextColor(Color.BLUE);
 
         VideoBrowserB.setEnabled(true);
     }

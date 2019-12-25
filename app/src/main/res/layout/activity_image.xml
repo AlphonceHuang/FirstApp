@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/ble_contencrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#BAF0A5"
-        android:fitsSystemWindows="true"
-        tools:context=".ImageActivity">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ble_contencrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gold"
+    android:fitsSystemWindows="true"
+    tools:context=".ImageActivity">
 
-        <Button
-            android:id="@+id/SDPrv_Btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/Pre_Image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SDImage" />
+    <Button
+        android:id="@+id/SDPrv_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/Pre_Image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SDImage" />
 
     <ImageView
         android:id="@+id/SDImage"
@@ -33,13 +32,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/projector" />
 
-        <Button
-            android:id="@+id/SDNext_Btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Next_Image"
-            app:layout_constraintStart_toEndOf="@+id/SDPrv_Btn"
-            app:layout_constraintTop_toBottomOf="@+id/SDImage" />
+    <Button
+        android:id="@+id/SDNext_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Next_Image"
+        app:layout_constraintStart_toEndOf="@+id/SDPrv_Btn"
+        app:layout_constraintTop_toBottomOf="@+id/SDImage" />
 
     <TextView
         android:id="@+id/SDfilepath"

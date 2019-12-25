@@ -2,10 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Camera3Layout"
+    android:id="@+id/Video_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B7DCEE"
+    android:background="@drawable/background_black"
     tools:context=".VideoActivity">
 
     <VideoView
@@ -15,6 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="#926F34"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/VideoPath" />
@@ -25,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
-        android:background="@android:drawable/btn_default"
+        android:background="@drawable/gold_button_sharp"
         android:text="@string/filemanager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,6 +43,7 @@
         android:singleLine="true"
         android:text="@string/mediaPath"
 
+        android:textColor="#F9F295"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/VideoBrowserBtn" />
@@ -58,6 +60,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/suggest_empty"
+        android:theme="@style/MySwitchGold"
         app:layout_constraintStart_toEndOf="@+id/rawDataText"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,7 +71,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/rawdataText"
-        android:textColor="#000000"
+        android:textColor="#F9F295"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,7 +82,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/SD_card"
-        android:textColor="#000000"
+        android:textColor="#F9F295"
         app:layout_constraintStart_toEndOf="@+id/MediaSourceSwitch"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -136,9 +139,10 @@
 
     <SeekBar
         android:id="@+id/VideoSeekbar"
-        android:layout_width="370dp"
+        android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="8dp"
+        android:thumbTint="#FFD66F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +154,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:text=""
+        android:text="00:00"
+        android:textColor="#FFD66F"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/VideoSeekbar" />
 
@@ -160,7 +165,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
-        android:text=""
+        android:text="00:00"
+        android:textColor="#FFD66F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/VideoSeekbar" />
 
@@ -171,7 +177,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/Music"
-        android:textColor="#000000"
+        android:textColor="#F9F295"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MediaSourceSwitch" />
 
@@ -181,6 +187,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
+        android:theme="@style/MySwitchGold"
         app:layout_constraintStart_toEndOf="@+id/MusicText"
         app:layout_constraintTop_toBottomOf="@+id/MediaSourceSwitch" />
 
@@ -191,7 +198,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/Video"
-        android:textColor="#000000"
+        android:textColor="#F9F295"
         app:layout_constraintStart_toEndOf="@+id/MediaTypeSwitch"
         app:layout_constraintTop_toBottomOf="@+id/MediaSourceSwitch" />
 
@@ -199,62 +206,62 @@
         android:id="@+id/RecordImg"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/RecBrowserButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentPos"
-        app:srcCompat="@android:drawable/presence_audio_online" />
+        app:srcCompat="@drawable/microphone" />
 
     <TextView
         android:id="@+id/RecordFile"
-        android:layout_width="wrap_content"
+        android:layout_width="317dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
         android:ellipsize="marquee"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
         android:text="@string/record_path"
-        android:textColor="#BF360C"
+        android:textColor="#FFD66F"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/RecBrowserButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RecordImg" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/RecTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
         android:text="00:00/10:00"
-        android:textColor="#4A148C"
+        android:textColor="#FFD66F"
         android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@+id/RecordImg"
-        app:layout_constraintTop_toBottomOf="@+id/RecHintText" />
+        app:layout_constraintBottom_toTopOf="@+id/RecBrowserButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/RecordImg" />
 
     <TextView
         android:id="@+id/RecHintText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
         android:text="@string/stopRecord"
-        android:textColor="#4A148C"
+        android:textColor="#FFD66F"
         android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@+id/RecordImg"
-        app:layout_constraintTop_toBottomOf="@+id/finalPos" />
+        app:layout_constraintBottom_toTopOf="@+id/RecTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/RecordImg" />
 
     <Button
         android:id="@+id/RecBrowserButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/gold_button_sharp"
         android:text="@string/record_path"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RecordImg" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

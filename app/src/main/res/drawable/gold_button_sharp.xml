@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--客制化按鈕顏色，顏色定義在 res/drawable-->
+
+    <!--還沒按下去時的顏色設定 button_sharp.xml-->
+
+    <!--按下去時的顏色設定 button_sharp_select.xml-->
+    <item android:state_pressed="false" android:drawable="@drawable/gold_button_unselect" />
+    <item android:state_pressed="true" android:drawable="@drawable/gold_button_select" />
+</selector>
