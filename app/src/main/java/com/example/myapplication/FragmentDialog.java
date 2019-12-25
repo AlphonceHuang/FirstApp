@@ -3,7 +3,6 @@ package com.example.myapplication;
     Author: Alan Huang
 */
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -47,12 +46,35 @@ public class FragmentDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
 
-        if (AlertStyle==1) {
+        if (AlertStyle==1) {    // 結果跟Simple Dialog Fragment一樣
             LayoutInflater inflater = getActivity().getLayoutInflater();
-            @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.fragment_dialog, null);
+            View view= inflater.inflate(R.layout.fragment_dialog, null);
+
+            Button btn=view.findViewById(R.id.btnDone);
+            final EditText editText = view.findViewById(R.id.inEmail);
+
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 將email傳回activity
+                    DialogListener dialogListener = (DialogListener) getActivity();
+
+                    if (getArguments() != null && !TextUtils.isEmpty(getArguments().getString("email")))
+                        editText.setText(getArguments().getString("email"));
+
+                    if (dialogListener != null) {
+                        dialogListener.onFinishEditDialog(editText.getText().toString());
+                    }
+                    dismiss();
+                }
+            });
+
+            // 設定title及message可省略
+            builder.setTitle(R.string.about_app2);  // 關於(使用DialogFragment)
+            builder.setMessage(R.string.about_detail);  // 這是一支計算BMI的小程式
             builder.setView(view);
-            // 這個view裡面的ok無法使用??
         }else {
+
             builder.setTitle(R.string.about_app2);  // 關於(使用DialogFragment)
             builder.setMessage(R.string.about_detail);  // 這是一支計算BMI的小程式
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -69,7 +91,6 @@ public class FragmentDialog extends DialogFragment {
                 }
             });
         }
-
         return builder.create();
     }
 

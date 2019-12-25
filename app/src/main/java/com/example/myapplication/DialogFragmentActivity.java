@@ -115,12 +115,11 @@ public class DialogFragmentActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onFinishEditDialog(String inputText) {
-        String str=getString(R.string.account);
 
         if (TextUtils.isEmpty(inputText)) {
-            textView.setText(str);
+            textView.setText("");
         } else {
-            str=getString(R.string.account)+":"+inputText;
+            String str=getString(R.string.account)+":"+inputText;
             textView.setText(str);
         }
     }
