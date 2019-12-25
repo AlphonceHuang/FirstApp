@@ -14,20 +14,23 @@
         android:id="@+id/SDPrv_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:background="@drawable/gold_button_sharp"
         android:text="@string/Pre_Image"
+        app:layout_constraintEnd_toStartOf="@+id/SDNext_Btn"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SDImage" />
 
     <ImageView
         android:id="@+id/SDImage"
-        android:layout_width="342dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="false"
         android:background="#000000"
         android:cropToPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/projector" />
@@ -36,7 +39,10 @@
         android:id="@+id/SDNext_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/gold_button_sharp"
         android:text="@string/Next_Image"
+        app:layout_constraintEnd_toStartOf="@+id/SDCalBtn"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/SDPrv_Btn"
         app:layout_constraintTop_toBottomOf="@+id/SDImage" />
 
@@ -47,7 +53,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        android:textColor="#F4511E"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SDPrv_Btn" />
 
@@ -55,7 +61,10 @@
         android:id="@+id/SDCalBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/gold_button_sharp"
         android:text="@string/cal_btn"
+        app:layout_constraintEnd_toStartOf="@+id/BrowserButton"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/SDNext_Btn"
         app:layout_constraintTop_toBottomOf="@+id/SDImage" />
 
@@ -73,7 +82,10 @@
         android:id="@+id/BrowserButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/gold_button_sharp"
         android:text="@string/filemanager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/SDCalBtn"
         app:layout_constraintTop_toBottomOf="@+id/SDImage" />
 </android.support.constraint.ConstraintLayout>

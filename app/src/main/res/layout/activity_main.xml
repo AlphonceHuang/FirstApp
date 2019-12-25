@@ -305,11 +305,10 @@
             style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/suggest_empty"
+            android:text="@string/DialogFragment"
             android:textAllCaps="false"
             app:layout_constraintStart_toEndOf="@+id/sensorbutton"
             app:layout_constraintTop_toBottomOf="@+id/BMIbutton" />

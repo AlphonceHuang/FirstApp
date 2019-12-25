@@ -1028,13 +1028,13 @@ public class MainActivity extends AppCompatActivity{
                 //    startActivity(myIntent);
                 //    break;
 
-                case R.id.button:
+                case R.id.button4:
                         myIntent = new Intent(MainActivity.this, DialogFragmentActivity.class);
                         startActivity(myIntent);
                     break;
+                case R.id.button:
                 case R.id.button2:
                 case R.id.button3:
-                case R.id.button4:
                     showToastIns(getApplicationContext(), "按下空白按鍵", Toast.LENGTH_SHORT);
                     break;
             }
