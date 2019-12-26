@@ -243,6 +243,10 @@
                 android:icon="@mipmap/ic_action_warning"
                 android:title="@string/Normal" />
             <item
+                android:id="@+id/AlertDialog_NormalCustomTitle_Item"
+                android:icon="@mipmap/ic_action_warning"
+                android:title="@string/CustomeTitle" />
+            <item
                 android:id="@+id/AlertDialog_List_Item"
                 android:icon="@mipmap/ic_action_warning"
                 android:title="@string/ListStyle" />

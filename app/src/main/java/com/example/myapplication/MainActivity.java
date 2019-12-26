@@ -1921,7 +1921,7 @@ public class MainActivity extends AppCompatActivity{
                 //AlertDialogListItem().show();
                 AlertDialog bb=AlertDialogListItem();
                 bb.show();
-                bb.getWindow().getDecorView().setBackgroundResource(R.drawable.background_gold);
+                Objects.requireNonNull(bb.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
                 break;
             case R.id.AlertDialog_Layout_Item:
                 AlertDialog_Layout(false).show();
@@ -1937,17 +1937,22 @@ public class MainActivity extends AppCompatActivity{
                 //設定單色有下面幾種方法
                 //aa.getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0x00F9F295));
                 //aa.getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.colorOrange));
-                aa.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F7EF8A"));
+                Objects.requireNonNull(aa.getWindow()).getDecorView().setBackgroundColor(Color.parseColor("#F7EF8A"));
 
                 // 設定drawable背景
                 //aa.getWindow().getDecorView().setBackgroundResource(R.drawable.background_gold);
                 break;
 
             case R.id.AlertDialog_Normal_Item:
-                AlertDialog cc=AlertDialog_Simple();
+                AlertDialog cc=AlertDialog_Simple(false);
                 cc.show();
-                cc.getWindow().getDecorView().setBackgroundResource(R.drawable.background_gold);
+                Objects.requireNonNull(cc.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
                 //cc.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F7EF8A"));
+                break;
+            case R.id.AlertDialog_NormalCustomTitle_Item:
+                AlertDialog dd=AlertDialog_Simple(true);
+                dd.show();
+                Objects.requireNonNull(dd.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
                 break;
 
             default:
@@ -2316,12 +2321,12 @@ public class MainActivity extends AppCompatActivity{
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        View view= inflater.inflate(R.layout.progress_bar_dialog, null);
+        @SuppressLint("InflateParams") View view= inflater.inflate(R.layout.progress_bar_dialog, null);
         builder.setView(view);
 
         if (withTitleConfirm){
             builder.setTitle(R.string.LayoutStyle);
-            builder.setMessage(R.string.AlertDialog);
+            builder.setMessage("中間嵌入一個layout，程式化後可按layout裡的按鈕動作");
             builder.setIcon(R.drawable.kitty016);
 
             // positive
@@ -2427,12 +2432,22 @@ public class MainActivity extends AppCompatActivity{
         return dialog;
     }
 
-    private AlertDialog AlertDialog_Simple(){
+    private AlertDialog AlertDialog_Simple(boolean customTitle){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String message="";
 
-        builder.setTitle(R.string.Normal);
-        builder.setMessage(R.string.AlertDialog);
-        builder.setIcon(R.drawable.kitty016);
+        if (customTitle) {
+            LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+            @SuppressLint("InflateParams") View mTitleView = layoutInflater.inflate(R.layout.alertdialog_custom_title, null);
+            builder.setCustomTitle(mTitleView);
+            message = "這是客制化的標題"+"\n"+"可用layout來取代整個標題列";
+            builder.setMessage(message);
+        }else{
+            builder.setTitle(R.string.Normal);
+            message = "這是一般的對話框"+"\n"+"只有『確定』跟『取消』兩個按鈕";
+            builder.setMessage(message);
+            builder.setIcon(R.drawable.kitty016);
+        }
 
         // positive
         builder.setPositiveButtonIcon(getResources().getDrawable(R.drawable.kitty030));
