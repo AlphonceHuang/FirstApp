@@ -1952,7 +1952,8 @@ public class MainActivity extends AppCompatActivity{
             case R.id.AlertDialog_NormalCustomTitle_Item:
                 AlertDialog dd=AlertDialog_Simple(true);
                 dd.show();
-                Objects.requireNonNull(dd.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
+                //Objects.requireNonNull(dd.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
+                dd.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#A0F7EF8A"));
                 break;
 
             default:
