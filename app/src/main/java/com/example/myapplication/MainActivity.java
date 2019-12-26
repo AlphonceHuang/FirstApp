@@ -21,6 +21,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
@@ -39,6 +40,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
 import android.util.Log;
@@ -57,6 +59,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -1029,12 +1032,14 @@ public class MainActivity extends AppCompatActivity{
                 //    break;
 
                 case R.id.button4:
-                        myIntent = new Intent(MainActivity.this, DialogFragmentActivity.class);
-                        startActivity(myIntent);
+                    myIntent = new Intent(MainActivity.this, DialogFragmentActivity.class);
+                    startActivity(myIntent);
                     break;
-                case R.id.button:
-                case R.id.button2:
                 case R.id.button3:
+                    AlertDialogListItem();
+                    break;
+                case R.id.button2:
+                case R.id.button:
                     showToastIns(getApplicationContext(), "按下空白按鍵", Toast.LENGTH_SHORT);
                     break;
             }
@@ -2242,5 +2247,28 @@ public class MainActivity extends AppCompatActivity{
         return null;
     }
 
+    //----------------------------------------------------------------------------------------------
+    // Use AlertDialog to create List items
+    //----------------------------------------------------------------------------------------------
+    private void AlertDialogListItem(){
+        final String[] items=getResources().getStringArray(R.array.array_Food);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+        builder.setIcon(R.drawable.kitty009);
+        builder.setTitle(R.string.DialogList);
+        builder.setItems(items, new OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                showToastIns(MainActivity.this, items[i], Toast.LENGTH_LONG);
+            }
+        });
+        //builder.show();   // 如果不需要分隔線，直接builder.show就可以
+
+        // 加入分隔線
+        AlertDialog alert =builder.create();
+        ListView listView =alert.getListView();
+        listView.setDivider(new ColorDrawable(Color.GRAY));
+        listView.setDividerHeight(3);
+        alert.show();   // 有分隔線必須用alert.show
+    }
 }

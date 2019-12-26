@@ -211,6 +211,7 @@
     <string name="inputHint">請輸入您的帳號及密碼</string>
     <string name="password">密碼</string>
     <string name="account">帳號</string>
+    <string name="DialogList">列表對話框</string>
 
     <string name="checkbox">CheckBox and RadioButton</string>
     <string name="listview">ListView</string>

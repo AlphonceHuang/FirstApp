@@ -347,7 +347,7 @@
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/suggest_empty"
+            android:text="@string/DialogList"
             android:textAllCaps="false"
             app:layout_constraintStart_toEndOf="@+id/checkbox"
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
