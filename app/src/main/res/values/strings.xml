@@ -207,11 +207,16 @@
     <string name="Images">Images</string>
     <string name="imageslider">Image Slider</string>
 
-    <string name="DialogFragment">DialogFragment</string>
+    <string name="DialogFragment">DialogFragment範例</string>
     <string name="inputHint">請輸入您的帳號及密碼</string>
     <string name="password">密碼</string>
     <string name="account">帳號</string>
     <string name="DialogList">列表對話框</string>
+    <string name="AlertDialog">Alert Dialog</string>
+    <string name="ListStyle">List列表</string>
+    <string name="Normal">一般</string>
+    <string name="LayoutOnlyStyle">只有Layout型式</string>
+    <string name="LayoutStyle">Layout型式+對話框</string>
 
     <string name="checkbox">CheckBox and RadioButton</string>
     <string name="listview">ListView</string>

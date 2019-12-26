@@ -1036,9 +1036,11 @@ public class MainActivity extends AppCompatActivity{
                     startActivity(myIntent);
                     break;
                 case R.id.button3:
-                    AlertDialogListItem();
+                    //AlertDialogListItem();
                     break;
                 case R.id.button2:
+                    //AlertDialog_Layout().show();
+                    break;
                 case R.id.button:
                     showToastIns(getApplicationContext(), "按下空白按鍵", Toast.LENGTH_SHORT);
                     break;
@@ -1084,7 +1086,9 @@ public class MainActivity extends AppCompatActivity{
     //=================================================================
     public void onButton1(View view){
         //Log.w(TAG, "onButton1:" +a.isInterrupted());
-        customProgress.hideProgress();
+        if (customProgress!=null) {
+            customProgress.hideProgress();
+        }
         isCustomerDialogShow=false;
 
         if (!customThread.isInterrupted()){
@@ -1912,6 +1916,40 @@ public class MainActivity extends AppCompatActivity{
                 OptionIntent = new Intent(MainActivity.this, ExpendListActivity.class);
                 startActivity(OptionIntent);
                 break;
+
+            case R.id.AlertDialog_List_Item:
+                //AlertDialogListItem().show();
+                AlertDialog bb=AlertDialogListItem();
+                bb.show();
+                bb.getWindow().getDecorView().setBackgroundResource(R.drawable.background_gold);
+                break;
+            case R.id.AlertDialog_Layout_Item:
+                AlertDialog_Layout(false).show();
+                break;
+            case R.id.AlertDialog_Layout_Dialog_Item:
+                // 不改背景顏色，預設為白色
+                //AlertDialog_Layout(true).show();
+
+                AlertDialog aa=AlertDialog_Layout(true);
+                aa.show();
+
+                // 修改對話框背景顏色，layout的背景不會被改變
+                //設定單色有下面幾種方法
+                //aa.getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0x00F9F295));
+                //aa.getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.colorOrange));
+                aa.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F7EF8A"));
+
+                // 設定drawable背景
+                //aa.getWindow().getDecorView().setBackgroundResource(R.drawable.background_gold);
+                break;
+
+            case R.id.AlertDialog_Normal_Item:
+                AlertDialog cc=AlertDialog_Simple();
+                cc.show();
+                cc.getWindow().getDecorView().setBackgroundResource(R.drawable.background_gold);
+                //cc.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F7EF8A"));
+                break;
+
             default:
                 //m_ret=true;
                 break;
@@ -2250,7 +2288,7 @@ public class MainActivity extends AppCompatActivity{
     //----------------------------------------------------------------------------------------------
     // Use AlertDialog to create List items
     //----------------------------------------------------------------------------------------------
-    private void AlertDialogListItem(){
+    private AlertDialog AlertDialogListItem(){
         final String[] items=getResources().getStringArray(R.array.array_Food);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -2265,10 +2303,158 @@ public class MainActivity extends AppCompatActivity{
         //builder.show();   // 如果不需要分隔線，直接builder.show就可以
 
         // 加入分隔線
-        AlertDialog alert =builder.create();
-        ListView listView =alert.getListView();
+        AlertDialog dialog =builder.create();
+        ListView listView =dialog.getListView();
         listView.setDivider(new ColorDrawable(Color.GRAY));
         listView.setDividerHeight(3);
-        alert.show();   // 有分隔線必須用alert.show
+        return dialog;
+    }
+
+    private AlertDialog AlertDialog_Layout(Boolean withTitleConfirm){
+        // 用下面這種改背景顏色會變成全畫面
+        //final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        View view= inflater.inflate(R.layout.progress_bar_dialog, null);
+        builder.setView(view);
+
+        if (withTitleConfirm){
+            builder.setTitle(R.string.LayoutStyle);
+            builder.setMessage(R.string.AlertDialog);
+            builder.setIcon(R.drawable.kitty016);
+
+            // positive
+            builder.setPositiveButtonIcon(getResources().getDrawable(R.drawable.kitty021));
+            builder.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.w(TAG, "Positive Button");
+                    dialog.dismiss();
+                }
+            });
+
+            // negateiv
+            builder.setNegativeButtonIcon(getResources().getDrawable(R.drawable.kitty022));
+            builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.w(TAG, "Negative Button");
+                    dialog.dismiss();
+                }
+            });
+
+
+            // Neutral
+            builder.setNeutralButtonIcon(getResources().getDrawable(R.drawable.kitty023));  //無法顯示icon
+            builder.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.w(TAG, "Neutral Button");
+                    dialog.dismiss();
+                }
+            });
+        }
+
+        final AlertDialog dialog = builder.create();
+
+        // 動畫
+        ImageView mAnimation = view.findViewById(R.id.progress_anime);
+        if (mAnimation.getDrawable()==null)
+            mAnimation.setImageResource(R.drawable.amin_pgbar);   // 菊花樣式
+        AnimationDrawable frameAnimation = (AnimationDrawable) mAnimation.getDrawable();
+        frameAnimation.start(); // 開始動畫
+
+        Button exitbtn=view.findViewById(R.id.progress_exitbutton);
+        exitbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.w(TAG, "press exitbtn.");
+                dialog.dismiss();
+            }
+        });
+
+        Button btn1=view.findViewById(R.id.progress_button1);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.w(TAG, "press btn1.");
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                    Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission success.");
+                    Intent intentSpeech = new Intent(MainActivity.this, SpeechToTextActivity.class);
+                    startActivity(intentSpeech);
+                } else {
+                    Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission fail.");
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, ACTIVITY_SPEECHTOTEXT);
+                }
+                dialog.dismiss();
+            }
+        });
+
+        Button btn2=view.findViewById(R.id.progress_button2);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.w(TAG, "press btn2.");
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                    Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission success.");
+                    Intent intentSpeech = new Intent(MainActivity.this, SpeechToText2Activity.class);
+                    startActivity(intentSpeech);
+                } else {
+                    Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission fail.");
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, ACTIVITY_SPEECHTOTEXT2);
+                }
+                dialog.dismiss();
+            }
+        });
+
+        Button btn3=view.findViewById(R.id.progress_button3);
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.w(TAG, "press btn3.");
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                    Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission success.");
+                    Intent intentSpeech = new Intent(MainActivity.this, SpeechToText3Activity.class);
+                    startActivity(intentSpeech);
+                } else {
+                    Log.w(TAG, "MainActivity:Get RECORD_AUDIO permission fail.");
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, ACTIVITY_SPEECHTOTEXT3);
+                }
+                dialog.dismiss();
+            }
+        });
+        return dialog;
+    }
+
+    private AlertDialog AlertDialog_Simple(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.Normal);
+        builder.setMessage(R.string.AlertDialog);
+        builder.setIcon(R.drawable.kitty016);
+
+        // positive
+        builder.setPositiveButtonIcon(getResources().getDrawable(R.drawable.kitty030));
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.w(TAG, "Positive Button");
+                dialog.dismiss();
+            }
+        });
+
+        // negative
+        builder.setNegativeButtonIcon(getResources().getDrawable(R.drawable.kitty022));
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.w(TAG, "Negative Button");
+                dialog.dismiss();
+            }
+        });
+
+        //AlertDialog mDialog = builder.create();
+        return builder.create();
     }
 }

@@ -21,7 +21,7 @@
 
     <style name="AppTheme.NoActionBar1">
         <item name="windowActionBar">true</item>
-        <item name="android:itemBackground">#3F51B5</item>
+        <item name="android:itemBackground">#FBC02D</item>
 
     </style>
 
@@ -82,5 +82,7 @@
         <!--使用方法：
         在布局中给需要自定義物件中增加android:theme="@style/MySwitchGold"-->
     </style>
+
+
 
 </resources>

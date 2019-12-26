@@ -233,6 +233,29 @@
         </menu>
     </item>
 
+    <item
+        android:id="@+id/AlertDialogeGroupItem"
+        android:icon="@mipmap/ic_action_warning"
+        android:title="@string/AlertDialog">
+        <menu>
+            <item
+                android:id="@+id/AlertDialog_Normal_Item"
+                android:icon="@mipmap/ic_action_warning"
+                android:title="@string/Normal" />
+            <item
+                android:id="@+id/AlertDialog_List_Item"
+                android:icon="@mipmap/ic_action_warning"
+                android:title="@string/ListStyle" />
+            <item
+                android:id="@+id/AlertDialog_Layout_Item"
+                android:icon="@mipmap/ic_action_warning"
+                android:title="@string/LayoutOnlyStyle" />
+            <item
+                android:id="@+id/AlertDialog_Layout_Dialog_Item"
+                android:icon="@mipmap/ic_action_warning"
+                android:title="@string/LayoutStyle" />
+        </menu>
+    </item>
 
     <item
         android:id="@+id/BackgroundItem"

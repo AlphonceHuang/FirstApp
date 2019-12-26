@@ -40,6 +40,11 @@ public class DialogFragmentActivity extends AppCompatActivity implements View.On
         switch (view.getId()) {
             case R.id.btnEmbedDialogFragment:
                 FragmentDialog dialogFragment = new FragmentDialog();
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("AlertDialog", 0);
+                dialogFragment.setArguments(bundle);
+
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.frameLayout, dialogFragment);   // 將fragment_dialog.xml的layout放在此activity layout的framelayout裡
                 ft.commit();
@@ -48,7 +53,7 @@ public class DialogFragmentActivity extends AppCompatActivity implements View.On
             case R.id.btnDialogFragment:
                 dialogFragment = new FragmentDialog();
 
-                Bundle bundle = new Bundle();
+                bundle = new Bundle();
                 bundle.putInt("AlertDialog", 0);
                 dialogFragment.setArguments(bundle);
 

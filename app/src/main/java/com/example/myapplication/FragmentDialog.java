@@ -20,10 +20,38 @@ import android.widget.EditText;
 
 import java.util.Objects;
 
+/* 啟動順序
+FragmentDialog:onCreate
+FragmentDialog:onCreateDialog
+FragmentDialog:onCreateView
+FragmentDialog:onViewCreated
+FragmentDialog:onResume
+FragmentDialog:onDestroyView
+*/
+
 public class FragmentDialog extends DialogFragment {
 
     private static final String TAG="Alan";
-    private int AlertStyle=0;
+    private int AlertStyle=-1;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.w(TAG, "FragmentDialog:onCreate");
+
+        if (getArguments() != null) {
+            AlertStyle = getArguments().getInt("AlertDialog");
+        }
+        Log.w(TAG, "AlertStyle="+AlertStyle);
+
+        boolean setFullScreen = false;
+        if (getArguments() != null) {
+            setFullScreen = getArguments().getBoolean("fullScreen");
+        }
+
+        if (setFullScreen)
+            setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Material_Light_NoActionBar_Fullscreen);
+    }
 
     @NonNull
     @Override
@@ -31,22 +59,8 @@ public class FragmentDialog extends DialogFragment {
 
         Log.w(TAG, "FragmentDialog:onCreateDialog");
 
-        if (getArguments() != null) {
-            if (getArguments().getInt("AlertDialog")==0) {
-                return super.onCreateDialog(savedInstanceState);
-            }else{
-                if (getArguments().getInt("AlertDialog")==2)
-                    AlertStyle=1;
-                else
-                    AlertStyle=0;
-            }
-        }
-
-        Log.w(TAG, "AlertStyle="+AlertStyle);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
-
-        if (AlertStyle==1) {    // 結果跟Simple Dialog Fragment一樣
+        if (AlertStyle==2) {    // 結果跟Simple Dialog Fragment一樣
+            AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View view= inflater.inflate(R.layout.fragment_dialog, null);
 
@@ -68,13 +82,16 @@ public class FragmentDialog extends DialogFragment {
                     dismiss();
                 }
             });
-
             // 設定title及message可省略
+            builder.setIcon(R.drawable.kitty010);
             builder.setTitle(R.string.about_app2);  // 關於(使用DialogFragment)
             builder.setMessage(R.string.about_detail);  // 這是一支計算BMI的小程式
             builder.setView(view);
-        }else {
+            return builder.create();
 
+        }else if (AlertStyle==1) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+            builder.setIcon(R.drawable.kitty010);
             builder.setTitle(R.string.about_app2);  // 關於(使用DialogFragment)
             builder.setMessage(R.string.about_detail);  // 這是一支計算BMI的小程式
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -90,17 +107,16 @@ public class FragmentDialog extends DialogFragment {
                     dismiss();
                 }
             });
+            return builder.create();
         }
-        return builder.create();
+        return super.onCreateDialog(savedInstanceState);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         Log.w(TAG, "FragmentDialog:onCreateView");
         return inflater.inflate(R.layout.fragment_dialog, container, false);
-
     }
 
     @Override
@@ -109,45 +125,33 @@ public class FragmentDialog extends DialogFragment {
 
         Log.w(TAG, "FragmentDialog:onViewCreated");
 
-        final EditText editText = view.findViewById(R.id.inEmail);
+        if (AlertStyle==0) {
+            final EditText editText = view.findViewById(R.id.inEmail);
 
-        if (getArguments() != null && !TextUtils.isEmpty(getArguments().getString("email")))
-            editText.setText(getArguments().getString("email"));
+            if (getArguments() != null && !TextUtils.isEmpty(getArguments().getString("email")))
+                editText.setText(getArguments().getString("email"));
 
-        Button btnDone = view.findViewById(R.id.btnDone);
-        btnDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            Button btnDone = view.findViewById(R.id.btnDone);
+            btnDone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                Log.w(TAG, "Done onClick");
+                    Log.w(TAG, "Done onClick");
 
-                DialogListener dialogListener = (DialogListener) getActivity();
-                if (dialogListener != null) {
-                    dialogListener.onFinishEditDialog(editText.getText().toString());
+                    DialogListener dialogListener = (DialogListener) getActivity();
+                    if (dialogListener != null) {
+                        dialogListener.onFinishEditDialog(editText.getText().toString());
+                    }
+                    dismiss();
                 }
-                dismiss();
-            }
-        });
+            });
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
         Log.w(TAG, "FragmentDialog:onResume");
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.w(TAG, "FragmentDialog:onCreate");
-
-        boolean setFullScreen = false;
-        if (getArguments() != null) {
-            setFullScreen = getArguments().getBoolean("fullScreen");
-        }
-
-        if (setFullScreen)
-            setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Material_Light_NoActionBar_Fullscreen);
     }
 
     @Override
