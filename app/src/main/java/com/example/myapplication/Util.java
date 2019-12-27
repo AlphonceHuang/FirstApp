@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 class Util {
+    private static final String TAG="Alan";
 
     private static Toast toast;
     private static Toast toast_1;
@@ -85,7 +86,7 @@ class Util {
     //=====================================================================
     // 截取目前畫面
     //=====================================================================
-    public static Bitmap takeScreenShot(Activity activity) {
+    static Bitmap takeScreenShot(Activity activity) {
         View view = activity.getWindow().getDecorView();
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();

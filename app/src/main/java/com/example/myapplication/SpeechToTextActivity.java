@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class SpeechToTextActivity extends AppCompatActivity {
 
     private static final String TAG="Alan";
-    private Button start_Btn;
     private TextView speechText;
     private static final int VOICE_RECOGNITION_REQUEST_CODE = 1;
 
@@ -25,7 +24,7 @@ public class SpeechToTextActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speech_to_text);
 
-        start_Btn=findViewById(R.id.start_button);
+        Button start_Btn = findViewById(R.id.start_button);
         start_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,11 +50,11 @@ public class SpeechToTextActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK && data != null){
                 ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 //speechText.setText(result.get(0));    // 只列出最佳結果
-                String all = "";
+                StringBuilder all = new StringBuilder();
                 for (String r : result) {   // 將所有結果列出來
-                    all = all + r + "\n";
+                    all.append(r).append("\n");
                 }
-                speechText.setText(all);
+                speechText.setText(all.toString());
 
                 if (result.get(0).equals("打開第二頁"))
                 {

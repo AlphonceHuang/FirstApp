@@ -3,6 +3,7 @@ package com.example.myapplication;
     Author: Alan Huang
 */
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -62,7 +63,7 @@ public class FragmentDialog extends DialogFragment {
         if (AlertStyle==2) {    // 結果跟Simple Dialog Fragment一樣
             AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
             LayoutInflater inflater = getActivity().getLayoutInflater();
-            View view= inflater.inflate(R.layout.fragment_dialog, null);
+            @SuppressLint("InflateParams") View view= inflater.inflate(R.layout.fragment_dialog, null);
 
             Button btn=view.findViewById(R.id.btnDone);
             final EditText editText = view.findViewById(R.id.inEmail);

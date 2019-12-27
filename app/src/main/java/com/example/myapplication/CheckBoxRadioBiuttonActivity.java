@@ -18,7 +18,7 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity implements V
 
     private RadioButton rb1, rb2, rb3, rb4, rb5, rb6, rb7;
     private CheckBox city1, city2, city3, city4, city5, city6, city7, city8, city9, city10;
-    private static final String TAG="Alan";
+    //private static final String TAG="Alan";
     private String food="";
 
     private ImageButton imgbtn;

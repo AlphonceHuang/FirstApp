@@ -117,8 +117,8 @@ public class SpeechToTextService extends Service {
     protected static class IncomingHandler extends Handler {
         private WeakReference<SpeechToTextService> mtarget;
 
-        public IncomingHandler(SpeechToTextService speechToTextService) {
-            mtarget = new WeakReference<SpeechToTextService>(speechToTextService);
+        IncomingHandler(SpeechToTextService speechToTextService) {
+            mtarget = new WeakReference<>(speechToTextService);
         }
 
         @Override
@@ -164,7 +164,6 @@ public class SpeechToTextService extends Service {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            // TODO Auto-generated method stub
             Log.w(TAG, "CountDownTimer: onTick");
         }
 
@@ -178,7 +177,7 @@ public class SpeechToTextService extends Service {
                 message = Message.obtain(null, MSG_RECOGNIZER_START_LISTENING);
                 mServerMessenger.send(message);
             } catch (RemoteException e) {
-
+                Log.w(TAG, "countdown error.");
             }
         }
     };
@@ -237,7 +236,7 @@ public class SpeechToTextService extends Service {
             try {
                 mServerMessenger.send(message);
             } catch (RemoteException e) {
-
+                Log.w(TAG, "onError.");
             }
         }
 

@@ -113,8 +113,7 @@ public class MainActivity extends AppCompatActivity{
 
     private Switch sw_AutoScan;
 
-    private ImageView MyImageView;
-    private ImageView MyImageView1;
+    private ImageView MyImageView ,MyImageView1, MyImageView2;
     //private double BMI, I_Height, I_Weight;
 
     private static final int CUSTOM_DIALOG_DELAY_TIME = 10000;  // 10s
@@ -378,10 +377,10 @@ public class MainActivity extends AppCompatActivity{
 
         MyImageView =  findViewById(R.id.imageView);
         MyImageView1 =  findViewById(R.id.imageView3);
-        ImageView myImageView2 = findViewById(R.id.imageView2);
+        MyImageView2 = findViewById(R.id.imageView2);
         MyImageView.setOnTouchListener(mOnTouchListener);
         MyImageView1.setOnTouchListener(mOnTouchListener);
-        myImageView2.setOnTouchListener(mOnTouchListener);
+        MyImageView2.setOnTouchListener(mOnTouchListener);
 
         //private EditText num_height;
         //private EditText num_weight;
@@ -1957,16 +1956,16 @@ public class MainActivity extends AppCompatActivity{
                 break;
 
             case R.id.AlertDialog_Normal_Item:
-                alertDialog=AlertDialog_Simple(false);
+                alertDialog=AlertDialog_Simple_Example(false);
                 alertDialog.show();
                 Objects.requireNonNull(alertDialog.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
                 //alertDialog.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F7EF8A"));
                 break;
             case R.id.AlertDialog_NormalCustomTitle_Item:
-                alertDialog=AlertDialog_Simple(true);
+                alertDialog=AlertDialog_Simple_Example(true);
                 alertDialog.show();
                 //Objects.requireNonNull(alertDialog.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
-                alertDialog.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#A0F7EF8A"));
+                Objects.requireNonNull(alertDialog.getWindow()).getDecorView().setBackgroundColor(Color.parseColor("#A0F7EF8A"));
                 break;
 
             default:
@@ -2346,7 +2345,7 @@ public class MainActivity extends AppCompatActivity{
                     showToastIns(MainActivity.this, getString(R.string.cancel), Toast.LENGTH_SHORT);
                 }
             });
-        }else if (style==2){
+        }else if (style==2){    // multi choice
 
             builder.setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
                 @Override
@@ -2506,12 +2505,12 @@ public class MainActivity extends AppCompatActivity{
         return dialog;
     }
 
-    private AlertDialog AlertDialog_Simple(boolean customTitle){
+    private AlertDialog AlertDialog_Simple_Example(boolean customTitle){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String message="";
 
         if (customTitle) {
-            LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+            LayoutInflater layoutInflater = LayoutInflater.from(this);
             @SuppressLint("InflateParams") View mTitleView = layoutInflater.inflate(R.layout.alertdialog_custom_title, null);
             builder.setCustomTitle(mTitleView);
             message = "這是客制化的標題"+"\n"+"可用layout來取代整個標題列";
@@ -2542,9 +2541,8 @@ public class MainActivity extends AppCompatActivity{
                 dialog.dismiss();
             }
         });
+        builder.setCancelable(false);
 
-        //AlertDialog mDialog = builder.create();
         return builder.create();
     }
-
 }

@@ -57,6 +57,7 @@ public class VideoActivity extends AppCompatActivity {
     private TextView RecordHint;
     private ImageView VideoPlayPause;
     private ImageView AudioRecord;
+
     private TextView endTimeField, startTimeField;
     private SeekBar VideoSeek;
 

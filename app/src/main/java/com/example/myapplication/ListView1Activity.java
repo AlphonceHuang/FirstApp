@@ -23,10 +23,6 @@ public class ListView1Activity extends AppCompatActivity {
     private static final String ITEM_TITLE = "ITEM_TITLE";
     private static final String ITEM_TITLE1 = "ITEM_SUBTITME";
 
-    private TypedArray regionIconList;
-    private TypedArray regionTitleList;
-    private TypedArray regionSubTitleList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +40,9 @@ public class ListView1Activity extends AppCompatActivity {
         List<Map<String, Object>> itemList = new ArrayList<Map<String, Object>>();
 
         // icon由res/value/string裡面取出
-        regionIconList = getResources().obtainTypedArray(R.array.kitty_icon);
-        regionTitleList = getResources().obtainTypedArray(R.array.region1_title_list);
-        regionSubTitleList = getResources().obtainTypedArray(R.array.region1_subtitle_list);
+        TypedArray regionIconList = getResources().obtainTypedArray(R.array.kitty_icon);
+        TypedArray regionTitleList = getResources().obtainTypedArray(R.array.region1_title_list);
+        TypedArray regionSubTitleList = getResources().obtainTypedArray(R.array.region1_subtitle_list);
 
         // 將圖片及文字放入item中
         for (int i = 0; i < regionTitleList.length(); i++)

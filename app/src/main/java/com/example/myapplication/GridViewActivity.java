@@ -1,11 +1,10 @@
 package com.example.myapplication;
 
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,8 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.example.myapplication.StorageUtil.getImages;
 import static com.example.myapplication.StorageUtil.getRealPathFromURI;
-import static com.example.myapplication.StorageUtil.imageFilter;
 import static com.example.myapplication.Util.showToastIns;
 
 public class GridViewActivity extends AppCompatActivity {
@@ -150,14 +149,13 @@ public class GridViewActivity extends AppCompatActivity {
     }
 
     // 將取得的檔案放至array
-    private File[] getImages(String path){
-        File folder= new File(path);
-        if (folder.isDirectory()){
-            File[] fs=folder.listFiles(imageFilter);
-            return fs;
-        }
-        return null;
-    }
+    //private File[] getImages(String path){
+    //    File folder= new File(path);
+    //    if (folder.isDirectory()){
+    //        return folder.listFiles(imageFilter);
+    //    }
+    //    return null;
+    //}
 
     //--------------------------------------------------------
     // 按下item

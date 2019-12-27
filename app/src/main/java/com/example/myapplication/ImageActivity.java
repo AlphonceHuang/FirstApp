@@ -28,8 +28,12 @@ import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 
-import static com.example.myapplication.StorageUtil.*;
-import static com.example.myapplication.Util.*;
+import static com.example.myapplication.StorageUtil.checkSDCard;
+import static com.example.myapplication.StorageUtil.getImages;
+import static com.example.myapplication.StorageUtil.getRealPathFromURI;
+import static com.example.myapplication.Util.FROM_FILE_BROWSER;
+import static com.example.myapplication.Util.FROM_IMAGE_ACTIVITY;
+import static com.example.myapplication.Util.setFromWhichActivity;
 import static org.opencv.core.CvType.CV_16U;
 import static org.opencv.imgproc.Imgproc.cvtColor;
 
@@ -305,14 +309,13 @@ public class ImageActivity extends AppCompatActivity {
  */
 
     // 將取得的檔案放至array
-    private File[] getImages(String path){
-        File folder= new File(path);
-        if (folder.isDirectory()){
-            File[] fs=folder.listFiles(imageFilter);
-            return fs;
-        }
-        return null;
-    }
+    //private File[] getImages(String path){
+    //    File folder= new File(path);
+    //    if (folder.isDirectory()){
+    //        return folder.listFiles(imageFilter);
+    //    }
+    //    return null;
+    //}
 /*
     // 過濾所列的檔案類型
     private FileFilter imageFilter=new FileFilter(){

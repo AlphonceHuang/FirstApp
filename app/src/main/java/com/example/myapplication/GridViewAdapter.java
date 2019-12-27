@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ public class GridViewAdapter extends BaseAdapter {
 
     private LayoutInflater mLayInf;
     private List<Map<String, Object>> mItemList;
-    private int mStyle=0;
+    private int mStyle;
 
     GridViewAdapter(Context context, List<Map<String, Object>> itemList, int Style){
         mLayInf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -18,13 +18,13 @@ import android.widget.ViewSwitcher;
 import java.io.File;
 
 import static com.example.myapplication.StorageUtil.checkSDCard;
-import static com.example.myapplication.StorageUtil.imageFilter;
+import static com.example.myapplication.StorageUtil.getImages;
 import static com.example.myapplication.Util.showToastIns;
 import static java.lang.Math.abs;
 
 public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwitcher.ViewFactory, View.OnTouchListener {
 
-    private static final String TAG="Alan";
+    //private static final String TAG="Alan";
     private ImageSwitcher mImageSwitcher;
     private File[] files;
     private int currentPosition=0;
@@ -95,14 +95,13 @@ public class ImageSwitcherActivity extends AppCompatActivity implements ViewSwit
         }
     }
 
-    private File[] getImages(String path){
-        File folder= new File(path);
-        if (folder.isDirectory()){
-            File[] fs=folder.listFiles(imageFilter);
-            return fs;
-        }
-        return null;
-    }
+    //private File[] getImages(String path){
+    //    File folder= new File(path);
+    //    if (folder.isDirectory()){
+    //        return folder.listFiles(imageFilter);
+    //    }
+    //    return null;
+    //}
 
     @Override
     public View makeView() {

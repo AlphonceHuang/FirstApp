@@ -11,8 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FragmentViewPager extends Fragment {
-    private static final String TAG="Alan";
-    private int style=0;
+    //private static final String TAG="Alan";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,10 +27,10 @@ public class FragmentViewPager extends Fragment {
         // R.layout.fragment_main不能先放圖片，不然會被重疊
         ImageView imageView = v.findViewById(R.id.fragment_image);
 
-        style = getArguments().getInt("style");
+        int style = getArguments().getInt("style");
         //Log.w(TAG, "FragmentViewPager style="+style);
 
-        if (style==1) {
+        if (style ==1) {
             Bitmap bp = BitmapFactory.decodeFile(getArguments().getString("path"));
             imageView.setImageBitmap(bp);
         }else {

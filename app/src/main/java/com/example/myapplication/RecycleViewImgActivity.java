@@ -3,9 +3,9 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,11 +25,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.example.myapplication.StorageUtil.getImages;
 import static com.example.myapplication.StorageUtil.getRealPathFromURI;
-import static com.example.myapplication.StorageUtil.imageFilter;
 import static com.example.myapplication.Util.getRecycleViewStyle;
 import static com.example.myapplication.Util.showToastIns;
-import static com.example.myapplication.sRecycleViewStyle.*;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Grid;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Linear_Horizontal;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Linear_Vertical;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Stagger_Horizontal;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Stagger_Vertical;
+import static com.example.myapplication.sRecycleViewStyle.sCardView_Stagger_Vertical_Bitmap;
+import static com.example.myapplication.sRecycleViewStyle.sGrid_Layout_Image;
+import static com.example.myapplication.sRecycleViewStyle.sLinear_Layout_Horizontal_Image;
+import static com.example.myapplication.sRecycleViewStyle.sLinear_Layout_Vertical_Image;
+import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Horizontal_Image;
+import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Vertical_Image;
 
 public class RecycleViewImgActivity extends AppCompatActivity implements View.OnClickListener{
     protected final String TAG="Alan";
@@ -175,23 +185,25 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
                 //Set<String> get = item.keySet();
                 //Log.w(TAG, ""+item.get("ITEM_TITLE1"));
 
-                showToastIns(RecycleViewImgActivity.this,"click: " +
+                showToastIns(RecycleViewImgActivity.this,"RecycleViewImgActivity: click: " +
                         itemList.get(position).get("ITEM_TITLE1"), Toast.LENGTH_SHORT);
 
                 //Log.w(TAG, "click item:"+position);
 
-                Bundle ImageBundle = new Bundle();
-                Intent ImageIntent = new Intent();
-                ImageBundle.putString("IMAGE_INDEX", String.valueOf(position));
-                ImageBundle.putString("IMAGE_PATH", folder);
-                ImageIntent.setClass(RecycleViewImgActivity.this, ImageSwitcherActivity.class);
-                ImageIntent.putExtras(ImageBundle);
-                startActivity(ImageIntent);
+                if (getRecycleViewStyle()==sCardView_Stagger_Vertical_Bitmap) {
+                    Bundle ImageBundle = new Bundle();
+                    Intent ImageIntent = new Intent();
+                    ImageBundle.putString("IMAGE_INDEX", String.valueOf(position));
+                    ImageBundle.putString("IMAGE_PATH", folder);
+                    ImageIntent.setClass(RecycleViewImgActivity.this, ImageSwitcherActivity.class);
+                    ImageIntent.putExtras(ImageBundle);
+                    startActivity(ImageIntent);
+                }
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
-                showToastIns(RecycleViewImgActivity.this,"long click: " +
+                showToastIns(RecycleViewImgActivity.this,"RecycleViewImgActivity: long click: " +
                         itemList.get(position).get("ITEM_TITLE1"), Toast.LENGTH_SHORT);
                 showPopupMenu(view, position);
             }
@@ -213,14 +225,14 @@ public class RecycleViewImgActivity extends AppCompatActivity implements View.On
         return itemList;
     }
     // 將取得的檔案放至array
-    private File[] getImages(String path){
-        File folder= new File(path);
-        if (folder.isDirectory()){
-            File[] fs=folder.listFiles(imageFilter);
-            return fs;
-        }
-        return null;
-    }
+    //private File[] getImages(String path){
+    //    File folder= new File(path);
+    //    if (folder.isDirectory()){
+    //        File[] fs=folder.listFiles(imageFilter);
+    //        return fs;
+    //    }
+    //    return null;
+    //}
 
 
     private List<Map<String, Object>> getData() {

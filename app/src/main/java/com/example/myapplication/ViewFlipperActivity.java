@@ -83,7 +83,7 @@ public class ViewFlipperActivity extends AppCompatActivity {
     }
 
     private View getCustomView(int item){
-        View view = LayoutInflater.from(this).inflate(R.layout.fragment_main, null);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(this).inflate(R.layout.fragment_main, null);
         TextView tv_show = view.findViewById(R.id.fragment_title);
         ImageView tv_showTwo = view.findViewById(R.id.fragment_image);
 
@@ -92,11 +92,11 @@ public class ViewFlipperActivity extends AppCompatActivity {
         return view;
     }
 
-    private ImageView getImageView(int resId) {
-        ImageView img = new ImageView(this);
-        img.setBackgroundResource(resId);
-        return img;
-    }
+    //private ImageView getImageView(int resId) {
+    //    ImageView img = new ImageView(this);
+    //    img.setBackgroundResource(resId);
+    //    return img;
+    //}
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.io.File;
 
-import static com.example.myapplication.StorageUtil.imageFilter;
+import static com.example.myapplication.StorageUtil.getImages;
 
 
 public class ImageViewPagerActivity extends AppCompatActivity {
@@ -46,14 +46,14 @@ public class ImageViewPagerActivity extends AppCompatActivity {
         }
     }
 
-    private File[] getImages(String path){
-        File folder= new File(path);
-        if (folder.isDirectory()){
-            File[] fs=folder.listFiles(imageFilter);
-            return fs;
-        }
-        return null;
-    }
+    //private File[] getImages(String path){
+    //    File folder= new File(path);
+    //    if (folder.isDirectory()){
+    //        File[] fs=folder.listFiles(imageFilter);
+    //        return fs;
+    //    }
+    //    return null;
+    //}
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
 

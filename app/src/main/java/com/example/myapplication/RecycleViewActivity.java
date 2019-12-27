@@ -1,7 +1,7 @@
 package com.example.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,11 +12,15 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 
 import static com.example.myapplication.Util.getRecycleViewStyle;
 import static com.example.myapplication.Util.showToastIns;
-import static com.example.myapplication.sRecycleViewStyle.*;
+import static com.example.myapplication.sRecycleViewStyle.sGrid_Layout;
+import static com.example.myapplication.sRecycleViewStyle.sLinear_Layout_Horizontal;
+import static com.example.myapplication.sRecycleViewStyle.sLinear_Layout_Vertical;
+import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Horizontal;
+import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Vertical;
 
 public class RecycleViewActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -157,9 +161,8 @@ public class RecycleViewActivity extends AppCompatActivity implements View.OnCli
 
         String[] str=getResources().getStringArray(R.array.array_Food);
 
-        for(int i=0; i<str.length; i++) {
-            data.add(str[i]);
-        }
+        Collections.addAll(data, str);
+        listArray=data;
         return data;
     }
 }

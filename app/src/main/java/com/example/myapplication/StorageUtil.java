@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.ContentResolver;
 import android.database.Cursor;
@@ -14,17 +15,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+@SuppressLint("Registered")
 class StorageUtil extends Application {
 
     private static StorageUtil me;
+    @SuppressLint("SimpleDateFormat")
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
 
     public StorageUtil(){
         me=this;
     }
+
     //public static Context Context() {
     //    return me;
     //}
+
     public static ContentResolver ContentResolver() {
         return me.getContentResolver();
     }
@@ -108,6 +113,14 @@ class StorageUtil extends Application {
     //=====================================================================
     public static String getPhotoDefaultName() {
         return "IMG_" + simpleDateFormat.format(System.currentTimeMillis()) + ".jpg";
+    }
+
+    public static File[] getImages(String path){
+        File folder= new File(path);
+        if (folder.isDirectory()){
+            return folder.listFiles(imageFilter);
+        }
+        return null;
     }
 
 }

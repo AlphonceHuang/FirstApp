@@ -10,7 +10,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import static com.example.myapplication.Util.getRecycleViewStyle;
-import static com.example.myapplication.sRecycleViewStyle.*;
+import static com.example.myapplication.sRecycleViewStyle.sLinear_Layout_Horizontal;
+import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Horizontal;
+import static com.example.myapplication.sRecycleViewStyle.sStaggered_Grid_Vertical;
 
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>{
