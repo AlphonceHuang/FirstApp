@@ -26,3 +26,6 @@
 24. ListView/GridView/RecycleView/CardView範例
 25. ImageSwitcher
 26. ViewPager
+27. TextClock
+28. DialogFragment
+29. AlertDialog
