@@ -166,6 +166,9 @@ public class MainActivity extends AppCompatActivity{
             "android.net.conn.CONNECTIVITY_CHANGE";
     public final static String ACTION_MY_BROADCAST = "com.example.myapplication.MY_BROADCAST";
 
+    private int checkedItem=-1;
+    private int selectedCount=0;
+
     //------------------------------------------------------------------------------------------
     // USB Broadcast Receiver
     //------------------------------------------------------------------------------------------
@@ -1615,6 +1618,7 @@ public class MainActivity extends AppCompatActivity{
         int id = item.getItemId();
         Bundle OptionBundle;
         Intent OptionIntent;
+        AlertDialog alertDialog;
 
         switch(id)
         {
@@ -1917,12 +1921,21 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(OptionIntent);
                 break;
 
+
+
             case R.id.AlertDialog_List_Item:
-                //AlertDialogListItem().show();
-                AlertDialog bb=AlertDialogListItem();
-                bb.show();
-                Objects.requireNonNull(bb.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
+                alertDialog= AlertDialogListItem(0);
+                alertDialog.show();
+                Objects.requireNonNull(alertDialog.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
                 break;
+            case R.id.AlertDialog_SingleChooseList_Item:
+                AlertDialogListItem(1).show();
+                break;
+            case R.id.AlertDialog_MultiChooseList_Item:
+                AlertDialogListItem(2).show();
+                break;
+
+
             case R.id.AlertDialog_Layout_Item:
                 AlertDialog_Layout(false).show();
                 break;
@@ -1930,30 +1943,30 @@ public class MainActivity extends AppCompatActivity{
                 // 不改背景顏色，預設為白色
                 //AlertDialog_Layout(true).show();
 
-                AlertDialog aa=AlertDialog_Layout(true);
-                aa.show();
+                alertDialog=AlertDialog_Layout(true);
+                alertDialog.show();
 
                 // 修改對話框背景顏色，layout的背景不會被改變
                 //設定單色有下面幾種方法
-                //aa.getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0x00F9F295));
-                //aa.getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.colorOrange));
-                Objects.requireNonNull(aa.getWindow()).getDecorView().setBackgroundColor(Color.parseColor("#F7EF8A"));
+                //alertDialog.getWindow().getDecorView().getBackground().setColorFilter(new LightingColorFilter(0xFFFFFFFF, 0x00F9F295));
+                //alertDialog.getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.colorOrange));
+                Objects.requireNonNull(alertDialog.getWindow()).getDecorView().setBackgroundColor(Color.parseColor("#F7EF8A"));
 
                 // 設定drawable背景
-                //aa.getWindow().getDecorView().setBackgroundResource(R.drawable.background_gold);
+                //alertDialog.getWindow().getDecorView().setBackgroundResource(R.drawable.background_gold);
                 break;
 
             case R.id.AlertDialog_Normal_Item:
-                AlertDialog cc=AlertDialog_Simple(false);
-                cc.show();
-                Objects.requireNonNull(cc.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
-                //cc.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F7EF8A"));
+                alertDialog=AlertDialog_Simple(false);
+                alertDialog.show();
+                Objects.requireNonNull(alertDialog.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
+                //alertDialog.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#F7EF8A"));
                 break;
             case R.id.AlertDialog_NormalCustomTitle_Item:
-                AlertDialog dd=AlertDialog_Simple(true);
-                dd.show();
-                //Objects.requireNonNull(dd.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
-                dd.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#A0F7EF8A"));
+                alertDialog=AlertDialog_Simple(true);
+                alertDialog.show();
+                //Objects.requireNonNull(alertDialog.getWindow()).getDecorView().setBackgroundResource(R.drawable.background_gold);
+                alertDialog.getWindow().getDecorView().setBackgroundColor(Color.parseColor("#A0F7EF8A"));
                 break;
 
             default:
@@ -2294,18 +2307,78 @@ public class MainActivity extends AppCompatActivity{
     //----------------------------------------------------------------------------------------------
     // Use AlertDialog to create List items
     //----------------------------------------------------------------------------------------------
-    private AlertDialog AlertDialogListItem(){
+    private AlertDialog AlertDialogListItem(int style){
         final String[] items=getResources().getStringArray(R.array.array_Food);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final boolean[] checked=new boolean[items.length];
 
         builder.setIcon(R.drawable.kitty009);
         builder.setTitle(R.string.DialogList);
-        builder.setItems(items, new OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                showToastIns(MainActivity.this, items[i], Toast.LENGTH_LONG);
-            }
-        });
+        if (style==0) {   // list only
+            builder.setItems(items, new OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    showToastIns(MainActivity.this, items[i], Toast.LENGTH_SHORT);
+                }
+            });
+        }else if (style==1) { // single choose
+            builder.setSingleChoiceItems(items, -1, new OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //showToastIns(MainActivity.this, items[i], Toast.LENGTH_SHORT);
+                    checkedItem=i;
+                }
+            });
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //Log.w(TAG, "Positive Button:"+items[checkedItem]);
+                    dialog.dismiss();
+                    showToastIns(MainActivity.this, "你選了:"+items[checkedItem], Toast.LENGTH_SHORT);
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.w(TAG, "Negative Button");
+                    dialog.dismiss();
+                    showToastIns(MainActivity.this, getString(R.string.cancel), Toast.LENGTH_SHORT);
+                }
+            });
+        }else if (style==2){
+
+            builder.setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                    //Log.w(TAG, items[i]+":"+b);
+                    checked[i]=b;
+                }
+            });
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    selectedCount=0;
+                    StringBuilder selectedData = new StringBuilder();
+
+                    for (int j=0; j<items.length; j++) {
+                        if (checked[j]) {
+                            selectedData.append(items[j]).append(",");
+                            selectedCount++;
+                        }
+                    }
+                    showToastIns(MainActivity.this, "總共選取"+selectedCount+"個項目..."+selectedData, Toast.LENGTH_LONG);
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    showToastIns(MainActivity.this, getString(R.string.cancel), Toast.LENGTH_SHORT);
+                }
+            });
+        }
         //builder.show();   // 如果不需要分隔線，直接builder.show就可以
 
         // 加入分隔線
@@ -2473,4 +2546,5 @@ public class MainActivity extends AppCompatActivity{
         //AlertDialog mDialog = builder.create();
         return builder.create();
     }
+
 }

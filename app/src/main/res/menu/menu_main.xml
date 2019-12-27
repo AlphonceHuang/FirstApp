@@ -251,6 +251,14 @@
                 android:icon="@mipmap/ic_action_warning"
                 android:title="@string/ListStyle" />
             <item
+                android:id="@+id/AlertDialog_SingleChooseList_Item"
+                android:icon="@mipmap/ic_action_warning"
+                android:title="@string/singleChooseList" />
+            <item
+                android:id="@+id/AlertDialog_MultiChooseList_Item"
+                android:icon="@mipmap/ic_action_warning"
+                android:title="@string/multiChooseList" />
+            <item
                 android:id="@+id/AlertDialog_Layout_Item"
                 android:icon="@mipmap/ic_action_warning"
                 android:title="@string/LayoutOnlyStyle" />

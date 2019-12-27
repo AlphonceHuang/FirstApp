@@ -214,6 +214,8 @@
     <string name="DialogList">列表對話框</string>
     <string name="AlertDialog">Alert Dialog</string>
     <string name="ListStyle">List列表</string>
+    <string name="singleChooseList">單選列表</string>
+    <string name="multiChooseList">多選列表</string>
     <string name="Normal">一般</string>
     <string name="CustomeTitle">客制化標題</string>
     <string name="LayoutOnlyStyle">只有Layout型式</string>
