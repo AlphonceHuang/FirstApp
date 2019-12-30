@@ -19,15 +19,18 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -153,7 +156,18 @@ public class BLEActivity extends AppCompatActivity {
 
         // List
         listView = findViewById(R.id.BLE_List);
-        deviceName = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        //deviceName = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+
+        // 修改內建layout的屬性
+        deviceName = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1){
+            @NonNull
+            public View getView(int position, View convertView, @NonNull ViewGroup parent){
+                View view=super.getView(position, convertView, parent);
+                TextView txt=view.findViewById(android.R.id.text1);
+                txt.setTextColor(Color.WHITE);
+                return view;
+            }
+        };
         listView.setOnItemClickListener(ListItem);
         listView.setOnItemLongClickListener(ListItem1);
     }

@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ble_contencrollView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,12 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".BLEActivity">
 
+    <ListView
+        android:id="@+id/BLE_List"
+        android:layout_width="wrap_content"
+        android:layout_height="450dp"
+        android:layout_marginTop="1dp"
+        android:divider="@drawable/background_gold"
+        android:dividerHeight="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BLE_DirconSW" />
+
     <Button
         android:id="@+id/BLE_StartBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="20dp"
         android:text="@string/start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,20 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="20dp"
         android:text="@string/stop"
         app:layout_constraintStart_toEndOf="@+id/BLE_StartBtn"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/BLE_List"
-        android:layout_width="350dp"
-        android:layout_height="394dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="1dp"
-        android:background="#8BC34A"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BLE_DirconSW" />
 
     <TextView
         android:id="@+id/BLE_status"
@@ -70,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="20dp"
         android:text="@string/direct"
         app:layout_constraintStart_toEndOf="@+id/BLE_StopBtn"
         app:layout_constraintTop_toTopOf="parent" />
@@ -91,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="20dp"
         android:text="@string/clearMAC"
         app:layout_constraintStart_toEndOf="@+id/BLE_DirectBtn"
         app:layout_constraintTop_toTopOf="parent" />
@@ -106,4 +102,3 @@
         app:layout_constraintTop_toBottomOf="@+id/BLE_FilterSwitch" />
 
 </android.support.constraint.ConstraintLayout>
-</ScrollView>

@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UUIDListActivity">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/uuid_list"
+        android:id="@+id/myListItem"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="TextView"

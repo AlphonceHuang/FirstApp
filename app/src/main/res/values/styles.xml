@@ -45,9 +45,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">#3124dc</item>
+        <item name="android:statusBarColor">#FBC02D</item>
         <item name="android:navigationBarColor">#062539</item>
-        <item name="android:windowBackground">@drawable/background_red</item>
+        <item name="android:windowBackground">@drawable/background_test</item>
     </style>
 
     <style name="AppTheme_TransBar" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -61,6 +61,7 @@
         <item name="android:windowTranslucentStatus">true</item>
         <!--Navi bar透明-->
         <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@drawable/background_red</item>
     </style>
 
     <style name="MySwitch" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -82,7 +83,6 @@
         <!--使用方法：
         在布局中给需要自定義物件中增加android:theme="@style/MySwitchGold"-->
     </style>
-
 
 
 </resources>

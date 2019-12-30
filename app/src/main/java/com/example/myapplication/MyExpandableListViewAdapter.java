@@ -3,6 +3,7 @@ package com.example.myapplication;
     Author: Alan Huang
 */
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,7 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
         GroupHolder groupHolder=null;
@@ -86,6 +88,7 @@ public class MyExpandableListViewAdapter extends BaseExpandableListAdapter {
         return view;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         ItemHolder itemHolder=null;

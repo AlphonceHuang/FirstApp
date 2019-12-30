@@ -178,7 +178,7 @@
         <activity
             android:name=".BLEActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme_NoTitle" />
+            android:theme="@style/AppTheme_TransBar" />
         <activity
             android:name=".VideoActivity"
             android:screenOrientation="portrait"
