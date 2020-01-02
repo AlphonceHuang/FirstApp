@@ -3,9 +3,13 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private static final String TAG="Alan";
     private EditText name, password;
-
+    private static final String PWD="12345";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,18 @@ public class SplashActivity extends AppCompatActivity {
  */
         name=findViewById(R.id.editNameText);
         password=findViewById(R.id.editPWDText);
+        CheckBox ck=findViewById(R.id.pwdcheckBox);
+        ck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else{
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+                password.setSelection(password.length());  // 光標在最後
+            }
+        });
     }
 
     boolean checkPassword(){
@@ -47,7 +63,8 @@ public class SplashActivity extends AppCompatActivity {
         String inputPassword=password.getText().toString();
 
         Log.w(TAG, "Name:"+inputName+"\n"+"Password:"+inputPassword);
-        return true;
+
+        return inputPassword.equals(PWD);
     }
 
     public void entermain(View view){
@@ -57,6 +74,8 @@ public class SplashActivity extends AppCompatActivity {
             finish();
         }else{
             showToastIns(getApplicationContext(), getString(R.string.cal_fail), Toast.LENGTH_LONG);
+            name.setText("");
+            password.setText("");
         }
     }
 }

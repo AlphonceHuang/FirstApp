@@ -78,14 +78,14 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/kitty045" />
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/inputLayout"
-        android:layout_width="289dp"
+        android:layout_width="291dp"
         android:layout_height="wrap_content"
         android:background="@drawable/gold_button_unselect"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/splashimage">
 
@@ -93,29 +93,50 @@
             android:id="@+id/editNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:ems="10"
             android:hint="@string/inputname"
-            android:inputType="text" />
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editPWDText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:ems="10"
             android:hint="@string/inputpassword"
-            android:inputType="numberPassword" />
+            android:inputType="numberPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editNameText" />
+
+        <CheckBox
+            android:id="@+id/pwdcheckBox"
+            android:layout_width="39dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="1dp"
+            android:text="@string/suggest_empty"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editNameText" />
 
         <Button
             android:id="@+id/EnterButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
             android:backgroundTint="#917241"
             android:onClick="entermain"
             android:text="@string/enter"
             android:textColor="#F7EF8A"
-            android:textSize="18sp" />
-    </LinearLayout>
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editPWDText" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
