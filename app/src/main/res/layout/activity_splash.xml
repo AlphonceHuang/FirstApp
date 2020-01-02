@@ -24,56 +24,98 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <TextView
         android:id="@+id/nameText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginBottom="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:shadowColor="#3F3F3F"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="2"
         android:text="@string/myName"
-        android:textAlignment="viewStart"
+        android:textAlignment="viewEnd"
         android:textAllCaps="false"
         android:textColor="#705527"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/mailText"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/mailText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:shadowColor="#3F3F3F"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="2"
         android:text="@string/mail"
-        android:textAlignment="viewStart"
+        android:textAlignment="viewEnd"
         android:textAllCaps="false"
         android:textColor="#705527"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="197dp"
-        android:layout_height="233dp"
+        android:id="@+id/splashimage"
+        android:layout_width="286dp"
+        android:layout_height="238dp"
         app:layout_constraintBottom_toTopOf="@+id/nameText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Welcome"
-        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/kitty045" />
+
+    <LinearLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="289dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gold_button_unselect"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splashimage">
+
+        <EditText
+            android:id="@+id/editNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:ems="10"
+            android:hint="@string/inputname"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editPWDText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:ems="10"
+            android:hint="@string/inputpassword"
+            android:inputType="numberPassword" />
+
+        <Button
+            android:id="@+id/EnterButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#917241"
+            android:onClick="entermain"
+            android:text="@string/enter"
+            android:textColor="#F7EF8A"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -5,6 +5,9 @@
     <string name="welcome">Welcome!</string>
     <string name="myName">Author: Alan Huang</string>
     <string name="mail">e-mail: alan.huang@coretronic.com</string>
+    <string name="inputname">請輸入帳號</string>
+    <string name="inputpassword">請輸入密碼</string>
+    <string name="enter">進入</string>
     <string name="app_name">Alan的App</string>
     <string name="input_height">input_height</string>
     <string name="title_text">BMI計算程式</string>
