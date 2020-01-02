@@ -6,14 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import static com.example.myapplication.Util.showToastIns;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -73,9 +74,23 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(it);
             finish();
         }else{
-            showToastIns(getApplicationContext(), getString(R.string.cal_fail), Toast.LENGTH_LONG);
+            //showToastIns(getApplicationContext(), getString(R.string.cal_fail), Toast.LENGTH_LONG);
+            ShowIncorrectToast();
             name.setText("");
             password.setText("");
         }
+    }
+
+    public void ShowIncorrectToast()
+    {
+        //把xml的資源轉成view
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.incorrect_layout, (ViewGroup) findViewById(R.id.pwdincorrectLayout));
+        Toast toast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT);
+
+        // 位置
+        toast.setGravity(Gravity.BOTTOM, 0,20);
+        toast.setView(layout);
+        toast.show();
     }
 }

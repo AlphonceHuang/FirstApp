@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -24,6 +25,7 @@ class Util {
     static final int FROM_MUSIC_ACTIVITY=3;
     static final int FROM_RECORD_ACTIVITY=4;
 
+    @SuppressLint("ShowToast")
     static void showToastIns(Context context,
                              CharSequence content,
                              int time,
@@ -45,6 +47,7 @@ class Util {
             }
     }
 
+    @SuppressLint("ShowToast")
     static void showToastIns(Context context,
                              CharSequence content,
                              int time) {
