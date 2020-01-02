@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class FragmentViewPager extends Fragment {
-    private static final String TAG="Alan";
+    //private static final String TAG="Alan";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,21 +37,26 @@ public class FragmentViewPager extends Fragment {
 
         }else {
 
-            Bitmap bp = BitmapFactory.decodeResource(this.getResources(), getArguments().getInt("img"));
+            //Bitmap bp = BitmapFactory.decodeResource(this.getResources(), getArguments().getInt("img"));
             //Drawable drawbale = getResources().getDrawable(getArguments().getInt("img"));
 
-            // 一般用法，但不知為何比例不對
+            // 使用setBackgroundResource時比例會因為background的關系而被拉伸
             //imageView.setBackgroundResource(getArguments().getInt("img"));
-            //imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+            // 使用setImageResource，則維持原圖比例
+            imageView.setImageResource(getArguments().getInt("img"));
+
+            // 這個比例就對了
+            //DrawableUtils.UseBitmap(v.getContext(), imageView, getArguments().getInt("img"));
 
             // 圓角
             //imageView.setImageBitmap(DrawableUtils.SetRoundCornerBitmap(bp, 60));
 
-            //縮放，原本layout裡的長寬必須設成wrap_content，圖片大小才會正確
+            // 縮放
             //imageView.setImageBitmap(DrawableUtils.ZoomBitmap(bp, 450, 450));
 
             // 倒影
-            imageView.setImageBitmap(DrawableUtils.CreateReflectionImageWithOrigin(bp));
+            //imageView.setImageBitmap(DrawableUtils.CreateReflectionImageWithOrigin(bp));
 
             // drawable進行縮放
             //imageView.setImageDrawable(DrawableUtils.ZoomDrawable(drawbale, 1500, 1500));

@@ -2,28 +2,57 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/checkboxlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CACACA"
     tools:context=".CheckBoxRadioBiuttonActivity">
 
-    <CheckBox
-        android:id="@+id/CB_city1"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/checkboxTitle"
+        android:layout_width="163dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/City1"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/checkbox"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
+    <TextView
+        android:id="@+id/RadioGroupTitle"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/radiogroup"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/checkboxTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/CB_city1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:buttonTint="#D32F2F"
+        android:text="@string/City1"
+        android:textColor="#D32F2F"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkboxTitle" />
+
+    <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/CB_city2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/City2"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CB_city1" />
 
-    <CheckBox
+    <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/CB_city3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,10 +81,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="2dp"
         android:text="@string/City6"
         app:layout_constraintStart_toEndOf="@+id/CB_city1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/checkboxTitle" />
 
     <CheckBox
         android:id="@+id/CB_city7"
@@ -95,18 +124,20 @@
 
     <RadioGroup
         android:id="@+id/RadioGroup"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/CB_city6"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroupTitle">
 
         <RadioButton
             android:id="@+id/radioButton1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Food1" />
+            android:buttonTint="#D32F2F"
+            android:text="@string/Food1"
+            android:textColor="#D32F2F" />
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -149,6 +180,7 @@
         android:id="@+id/CB_Result"
         android:layout_width="163dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/gold_button_sharp"
         android:text="@string/see_report"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CB_city5" />
@@ -157,12 +189,12 @@
         android:id="@+id/imageButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="4dp"
+        android:background="#00FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CB_Result"
-        app:srcCompat="@drawable/playbutton" />
+        app:layout_constraintTop_toBottomOf="@+id/ImageButtonTitle"
+        app:srcCompat="@drawable/play_1" />
 
     <ToggleButton
         android:id="@+id/toggleButton"
@@ -173,8 +205,58 @@
         android:text="@string/suggest_empty"
         android:textOff="@string/stop"
         android:textOn="@string/start"
+        android:theme="@style/AppThemeToggle"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toBottomOf="@+id/CB_Result" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SwitchCompat"
+        android:theme="@style/MySwitch"
+        app:layout_constraintStart_toEndOf="@+id/toggleButton"
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroup" />
+
+    <ImageView
+        android:id="@+id/imageViewTest"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageviewTitle"
+        app:srcCompat="@drawable/kitty039" />
+
+    <TextView
+        android:id="@+id/ImageButtonTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/imagebutton"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CB_Result" />
+
+    <TextView
+        android:id="@+id/imageviewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/imageview"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Switch"
+        android:theme="@style/MySwitch"
+        app:layout_constraintStart_toEndOf="@+id/toggleButton"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
 
 </android.support.constraint.ConstraintLayout>

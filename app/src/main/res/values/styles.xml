@@ -14,12 +14,12 @@
         <item name="android:windowBackground">@drawable/background_gold</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
     </style>
 
-    <style name="AppTheme.NoActionBar1">
+    <style name="AppTheme.NoActionBar1" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">true</item>
         <item name="android:itemBackground">#FBC02D</item>
 
@@ -47,7 +47,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">#FBC02D</item>
         <item name="android:navigationBarColor">#062539</item>
-        <item name="android:windowBackground">@drawable/background_test</item>
+        <item name="android:windowBackground">@drawable/background_gold</item>
     </style>
 
     <style name="AppTheme_TransBar" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -67,7 +67,7 @@
     <style name="MySwitch" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Active thumb color & Active track color(30% transparency)
             switch 打开时的拇指按钮的颜色 轨迹颜色默认为30%这个颜色 -->
-        <item name="colorControlActivated">@color/colorBlue</item>
+        <item name="colorControlActivated">@color/colorDarkRed</item>
         <!-- Inactive thumb color switch关闭时的拇指按钮的颜色
             這個目前無作用，不知為何-->
         <item name="colorSwitchThumbNormal">@color/colorPurple</item>
@@ -84,5 +84,11 @@
         在布局中给需要自定義物件中增加android:theme="@style/MySwitchGold"-->
     </style>
 
-
+    <style name="AppThemeToggle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="colorAccent">#388E3C</item>
+        <item name="android:colorControlNormal">#FBC02D</item>
+        <item name="android:colorControlHighlight">#E64A19</item>
+        <item name="android:colorButtonNormal">#303F9F</item>
+    </style>
 </resources>

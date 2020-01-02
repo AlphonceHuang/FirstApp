@@ -19,6 +19,7 @@
     <!--按鈕顏色-->
     <solid android:color="#DCDCDC"/>
 
+
     <!--漸層色按鈕，不可跟solid同時存在-->
     <gradient
         android:startColor="#00CCFF"

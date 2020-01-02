@@ -3,12 +3,8 @@
     <!--客制化按鈕顏色，顏色定義在 res/drawable-->
 
     <!--還沒按下去時的顏色設定 button_sharp.xml-->
-    <item
-        android:drawable="@drawable/button_sharp"
-        android:state_pressed="false"/>
 
     <!--按下去時的顏色設定 button_sharp_select.xml-->
-    <item
-        android:drawable="@drawable/button_sharp_select"
-        android:state_pressed="true"/>
+    <item android:state_pressed="false" android:drawable="@drawable/button_sharp" />
+    <item android:state_pressed="true" android:drawable="@drawable/button_sharp_select" />
 </selector>

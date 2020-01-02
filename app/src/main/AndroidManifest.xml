@@ -69,7 +69,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".DialogFragmentActivity"
-            android:label="@string/DialogFragment"/>
+            android:label="@string/DialogFragment" />
         <activity
             android:name=".ViewFlipperActivity"
             android:label="@string/ViewFlipper" />
@@ -81,7 +81,7 @@
             android:label="@string/listviewsample" />
         <activity
             android:name=".CheckBoxRadioBiuttonActivity"
-            android:label="@string/checkbox" />
+            android:label="@string/checkboxTitle" />
         <activity
             android:name=".BackgroundActivity"
             android:theme="@style/AppTheme_NoTitle" />
@@ -188,9 +188,9 @@
             android:label="@string/report"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar1" />
-        <activity
-            android:name=".MainActivity"
-            >
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme_NoTitle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.speech.action.VOICE_SEARCH_HANDS_FREE" />
@@ -202,7 +202,10 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 -->
             </intent-filter>
-        </activity> <!-- 註冊自定義靜態廣播接收器 -->
+        </activity>
+        <!-- 註冊自定義靜態廣播接收器 -->
+
+
         <receiver
             android:name=".StaticReceiver"
             android:permission="true">

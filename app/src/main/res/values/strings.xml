@@ -1,6 +1,10 @@
 <resources>
     <drawable name="clr_normal">#ff6501</drawable>
     <drawable name="clr_pressed">#a44100</drawable>
+
+    <string name="welcome">Welcome!</string>
+    <string name="myName">Author: Alan Huang</string>
+    <string name="mail">e-mail: alan.huang@coretronic.com</string>
     <string name="app_name">Alan的App</string>
     <string name="input_height">input_height</string>
     <string name="title_text">BMI計算程式</string>
@@ -221,14 +225,19 @@
     <string name="LayoutOnlyStyle">只有Layout型式</string>
     <string name="LayoutStyle">Layout型式+對話框</string>
 
-    <string name="checkbox">CheckBox and RadioButton</string>
+    <string name="checkboxTitle">CheckBox and RadioButton</string>
     <string name="listview">ListView</string>
     <string name="listviewsample">ListView範例(MyAdapter)</string>
     <string name="expendlistsample">ExpendListView範例</string>
     <string name="listview_allStyle">ListView all style</string>
     <string name="ViewFlipper">ViewFlipper</string>
     <string name="auto_switch">自動切換</string>
-
+    <string name="checkbox">CheckBox</string>
+    <string name="radiogroup">Radio Group</string>
+    <string name="imagebutton">ImageButton</string>
+    <string name="imageview">ImageView</string>
+    <string name="SwitchCompat">SwitchCompat</string>
+    <string name="Switch">Switch</string>
 
     <string name="selectAll">全選</string>
     <string name="clearAll">全不選</string>

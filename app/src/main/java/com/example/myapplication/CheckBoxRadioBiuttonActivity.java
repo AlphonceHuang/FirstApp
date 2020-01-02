@@ -1,14 +1,20 @@
 package com.example.myapplication;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -16,18 +22,25 @@ import static com.example.myapplication.Util.showToastIns;
 
 public class CheckBoxRadioBiuttonActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG="Alan";
     private RadioButton rb1, rb2, rb3, rb4, rb5, rb6, rb7;
-    private CheckBox city1, city2, city3, city4, city5, city6, city7, city8, city9, city10;
-    //private static final String TAG="Alan";
+    private AppCompatCheckBox city1, city2, city3;
+    private CheckBox city4, city5, city6, city7, city8, city9, city10;
     private String food="";
+    private ImageView img;
 
     private ImageButton imgbtn;
     private boolean flag=false;
+    private Bitmap stop, play;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_box_radio_biutton);
+
+        stop = BitmapFactory.decodeResource(this.getResources(), R.drawable.kitty039);
+        play = BitmapFactory.decodeResource(this.getResources(), R.drawable.kitty041);
 
         // Check box
         city1 = findViewById(R.id.CB_city1);
@@ -64,6 +77,8 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity implements V
 
         Button result = findViewById(R.id.CB_Result);
         result.setOnClickListener(this);
+        result.setPaintFlags(result.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG); // underline text
+
         /*
         result.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +89,7 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity implements V
 
         // Image Button
         imgbtn=findViewById(R.id.imageButton);
-        imgbtn.setImageResource(R.drawable.pause);
+        imgbtn.setImageResource(R.drawable.stop_1);
         imgbtn.setOnClickListener(this);
         flag=false;
         /*
@@ -94,6 +109,7 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity implements V
             }
         });*/
 
+        // Toggle Button
         ToggleButton tgb=findViewById(R.id.toggleButton);
         tgb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -105,17 +121,33 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity implements V
                 }
             }
         });
+
+        // ImageView
+        img = findViewById(R.id.imageViewTest);
+        img.setImageBitmap(DrawableUtils.CreateReflectionImageWithOrigin(stop));
+        img.setOnClickListener(this);
+
+        // TextView
+        TextView check=findViewById(R.id.checkboxTitle);
+        check.setPaintFlags(check.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG); // underline text 1
+
+        TextView radio=findViewById(R.id.RadioGroupTitle);
+        radio.getPaint().setUnderlineText(true);    // underline text 2
     }
     @Override
     public void onClick(View view){
+
         switch (view.getId()){
             case R.id.imageButton:
+            case R.id.imageViewTest:
                 if (flag){
-                    imgbtn.setImageResource(R.drawable.pause);
+                    imgbtn.setImageResource(R.drawable.stop_1);
+                    img.setImageBitmap(DrawableUtils.CreateReflectionImageWithOrigin(stop));
                     flag=false;
                     showToastIns(getApplicationContext(), getString(R.string.pause), Toast.LENGTH_LONG);
                 }else{
-                    imgbtn.setImageResource(R.drawable.playbutton);
+                    imgbtn.setImageResource(R.drawable.play_1);
+                    img.setImageBitmap(DrawableUtils.CreateReflectionImageWithOrigin(play));
                     flag=true;
                     showToastIns(getApplicationContext(), getString(R.string.play), Toast.LENGTH_LONG);
                 }
@@ -134,10 +166,12 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity implements V
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
             if (b){
-                showToastIns(getApplicationContext(), "選擇:"+compoundButton.getText().toString(), Toast.LENGTH_LONG);
+                showToastIns(getApplicationContext(), "選擇:"+compoundButton.getText(), Toast.LENGTH_LONG);
             }else{
-                showToastIns(getApplicationContext(), "取消:"+compoundButton.getText().toString(), Toast.LENGTH_LONG);
+                showToastIns(getApplicationContext(), "取消:"+compoundButton.getText(), Toast.LENGTH_LONG);
             }
+            //Log.w(TAG, "compoundButton:"+compoundButton.getId());
+
         }
     };
 
