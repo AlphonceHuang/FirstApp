@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_contencrollView"
+    android:background="@drawable/background_rose"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -23,12 +24,12 @@
             android:format12Hour="yyyy年MM月dd EE\naa hh:mm:ss"
             android:format24Hour="yyyy年MM月dd EE\naa HH:mm:ss"
             android:gravity="center_horizontal"
-            android:shadowColor="#926f34"
+            android:shadowColor="#7400A1"
             android:shadowDx="3"
             android:shadowDy="3"
             android:shadowRadius="1"
             android:text="@string/autoScan"
-            android:textColor="#694E08"
+            android:textColor="#EE82EE"
             android:textSize="26sp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
@@ -254,7 +255,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:text="@string/runningText"
-            android:textColor="#041A9E"
+            android:textColor="#EE82EE"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CustomeDialogShowBtn" />
