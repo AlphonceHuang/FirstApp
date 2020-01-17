@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,14 +19,19 @@ import java.util.List;
 import static com.example.myapplication.Util.FROM_IMAGE_ACTIVITY;
 import static com.example.myapplication.Util.FROM_MUSIC_ACTIVITY;
 import static com.example.myapplication.Util.FROM_RECORD_ACTIVITY;
+import static com.example.myapplication.Util.FROM_TRIANGLE_ACTIVITY;
+import static com.example.myapplication.Util.FROM_TRIANGLE_TEMP_ACTIVITY;
 import static com.example.myapplication.Util.FROM_VIDEO_ACTIVITY;
 import static com.example.myapplication.Util.getFromWhichActivity;
+import static com.example.myapplication.Util.setFromWhichActivity;
 
 public class FileManagerActivity extends ListActivity {
     private static final String TAG="Alan";
 
-    private String path;
+    private String path, imageFilePath;
     private int from_where;
+    private int num= 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +92,7 @@ public class FileManagerActivity extends ListActivity {
         @Override
         public void onClick(View view) {
             Intent intent;
+            Bundle bundle;
 
             if (view.getId()==R.id.okButton){
                 Log.w(TAG, "from where:"+from_where);
@@ -111,6 +118,15 @@ public class FileManagerActivity extends ListActivity {
                         intent.putExtra("rec_path", path);
                         startActivity(intent);
                         break;
+                    case FROM_TRIANGLE_ACTIVITY:
+                        bundle = new Bundle();
+                        intent = new Intent();
+                        bundle.putString("FILEPATH", imageFilePath);
+                        intent.setClass(FileManagerActivity.this, TriangleActivity.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                        break;
+
                 }
             }
         }
@@ -132,8 +148,19 @@ public class FileManagerActivity extends ListActivity {
             startActivity(intent);  // 跳至目錄內
 
             //Toast.makeText(this, filename, Toast.LENGTH_LONG).show();
-        } //else {
+        } else {
             //Toast.makeText(this, filename, Toast.LENGTH_LONG).show();
-        //}
+            imageFilePath = filename;
+
+            Intent intent;
+            Bundle bundle;
+
+            bundle = new Bundle();
+            intent = new Intent();
+            bundle.putString("FILEPATH", imageFilePath);
+            intent.setClass(FileManagerActivity.this, TriangleActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ReportActivity">
+
+        <Button
+            android:id="@+id/select1Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/select1image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select1Button"
+            app:srcCompat="@drawable/kitty016" />
+
+        <Button
+            android:id="@+id/select2Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select1image" />
+
+        <ImageView
+            android:id="@+id/select2image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select2Button"
+            app:srcCompat="@drawable/kitty041" />
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select2image" />
+
+        <ImageView
+            android:id="@+id/resultImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startButton"
+            app:srcCompat="@drawable/kitty023" />
+
+        <TextView
+            android:id="@+id/select1path"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="@string/mediaPath"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/select1Button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/select2path"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="@string/mediaPath"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/select2Button"
+            app:layout_constraintTop_toBottomOf="@+id/select1image" />
+
+        <TextView
+            android:id="@+id/select1Detail"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:maxLines="20"
+            android:scrollbars="vertical"
+            android:text="@string/singleLine"
+            app:layout_constraintStart_toEndOf="@+id/select1image"
+            app:layout_constraintTop_toBottomOf="@+id/select1Button" />
+
+        <TextView
+            android:id="@+id/select2Detail"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:maxLines="20"
+            android:scrollbars="vertical"
+            android:text="@string/singleLine"
+            app:layout_constraintStart_toEndOf="@+id/select2image"
+            app:layout_constraintTop_toBottomOf="@+id/select2Button" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

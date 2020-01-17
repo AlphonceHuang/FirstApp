@@ -214,6 +214,9 @@
     <string name="Images">Images</string>
     <string name="imageslider">Image Slider</string>
 
+    <string name="triangle">三角形</string>
+    <string name="choose">選擇圖檔</string>
+
     <string name="DialogFragment">DialogFragment範例</string>
     <string name="inputHint">請輸入您的帳號及密碼</string>
     <string name="password">密碼</string>

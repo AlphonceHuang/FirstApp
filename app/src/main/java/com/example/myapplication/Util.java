@@ -24,6 +24,8 @@ class Util {
     static final int FROM_VIDEO_ACTIVITY=2;
     static final int FROM_MUSIC_ACTIVITY=3;
     static final int FROM_RECORD_ACTIVITY=4;
+    static final int FROM_TRIANGLE_ACTIVITY=5;
+    static final int FROM_TRIANGLE_TEMP_ACTIVITY=7;
 
     @SuppressLint("ShowToast")
     static void showToastIns(Context context,

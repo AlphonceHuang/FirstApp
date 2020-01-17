@@ -4,6 +4,7 @@ import android.app.Application;
 
 public class GlobalVariable extends Application {
     private double person_height, person_weight, person_BMI;
+    private int triangle_file_target;
 
     public void setPerson_height(double person_height) {
         this.person_height = person_height;
@@ -22,5 +23,11 @@ public class GlobalVariable extends Application {
     }
     public double getPerson_BMI(){
         return this.person_BMI;
+    }
+    public int getTriangle_Target(){
+        return this.triangle_file_target;
+    }
+    public void setTriangle_Target(int target){
+        this.triangle_file_target=target;
     }
 }

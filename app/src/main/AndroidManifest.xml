@@ -67,6 +67,8 @@
         android:roundIcon="@drawable/kitty045"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TriangleActivity"
+            android:label="@string/triangle" />
         <activity
             android:name=".DialogFragmentActivity"
             android:label="@string/DialogFragment" />

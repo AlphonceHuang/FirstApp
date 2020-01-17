@@ -463,7 +463,7 @@ public class MainActivity extends AppCompatActivity{
         exe_button2.setOnClickListener(calcBMI);
         exe_button2.setSelected(true);
 
-        Button exe_button3=findViewById(R.id.button3);
+        Button exe_button3=findViewById(R.id.triangleButton);
         exe_button3.setOnClickListener(calcBMI);
         exe_button3.setSelected(true);
 
@@ -1037,8 +1037,9 @@ public class MainActivity extends AppCompatActivity{
                     myIntent = new Intent(MainActivity.this, DialogFragmentActivity.class);
                     startActivity(myIntent);
                     break;
-                case R.id.button3:
-                    //AlertDialogListItem();
+                case R.id.triangleButton:
+                    myIntent = new Intent(MainActivity.this, TriangleActivity.class);
+                    startActivity(myIntent);
                     break;
                 case R.id.button2:
                     //AlertDialog_Layout().show();

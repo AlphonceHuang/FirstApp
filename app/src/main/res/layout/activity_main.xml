@@ -341,14 +341,14 @@
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/triangleButton"
             style="@android:style/Widget.Button"
             android:layout_width="88dp"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/suggest_empty"
+            android:text="@string/triangle"
             android:textAllCaps="false"
             app:layout_constraintStart_toEndOf="@+id/checkbox"
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
@@ -363,7 +363,7 @@
             android:singleLine="true"
             android:text="@string/suggest_empty"
             android:textAllCaps="false"
-            app:layout_constraintStart_toEndOf="@+id/button3"
+            app:layout_constraintStart_toEndOf="@+id/triangleButton"
             app:layout_constraintTop_toBottomOf="@+id/notifybtn" />
 
         <Button
