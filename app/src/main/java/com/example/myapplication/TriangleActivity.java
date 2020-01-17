@@ -304,23 +304,31 @@ public class TriangleActivity extends AppCompatActivity {
                 Log.w(TAG, "三角形重疊");
                 for (int i=0; i<Image2Points.size(); i++){
                     for (int j=0; j<Image1Points.size(); j++){
-                        if (Image2Points.get(i).x==Image1Points.get(j).x && Image2Points.get(i).y==Image1Points.get(j).y) {
+                        if (Image2Points.get(i).equals(Image1Points.get(j))){
                             Image2Points.remove(Image2Points.get(i));
                             Log.w(TAG, "remove:"+i);
                             removeCount++;
                         }
                     }
                 }
-                Log.w(TAG, "final Image2Points:"+Image2Points);
-                Log.w(TAG, "removeCount:"+removeCount);
+                Log.w(TAG, "after remove duplicate points:"+Image2Points);
 
-                if (removeCount == 2) { // 正確重合的話，會有兩個點被移除
-                    Imgproc.circle(rgbMat, Image1Points.get(0), 15, new Scalar(255, 0, 0), -1);
+                if (removeCount >= 2) { // 正確重合的話，會有兩個點以上被移除
+                    // 圖一的最高點
+                    Imgproc.circle(rgbMat, Image1Points.get(0), 15, new Scalar(0, 0, 255), -1);
+                    // 圖一的最高點座標
                     Imgproc.putText(rgbMat, String.valueOf(Image1Points.get(0)), new Point(Image1Points.get(0).x + 20, Image1Points.get(0).y),
-                            Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255), 2);
-                    Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(255, 0, 0), -1);
-                    Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(0)), new Point(Image2Points.get(0).x + 20, Image2Points.get(0).y),
-                            Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255), 2);
+                            Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255), 2);
+                    for (int i=0; i<Image2Points.size(); i++){
+                        // 剩下點裡的最高點
+                        if (i==0) {
+                            Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(0, 0, 255), -1);
+                            Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(i)), new Point(Image2Points.get(i).x + 20, Image2Points.get(i).y),
+                                    Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255), 2);
+                        }
+                        else  // 其他點
+                            Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(255, 0, 0), -1);
+                    }
                     Utils.matToBitmap(rgbMat, resultBitmap);
                     resultImage.setImageBitmap(resultBitmap);
                     resultImage.setVisibility(View.VISIBLE);
@@ -380,7 +388,7 @@ public class TriangleActivity extends AppCompatActivity {
 
         List<Point> pointAA = new ArrayList<>();
         int final_num=0;
-        int totalTri=0;
+        int total3=0;
         int total7=0;
 
         StringBuffer sb = new StringBuffer();
@@ -417,23 +425,31 @@ public class TriangleActivity extends AppCompatActivity {
 
             //Log.w(TAG, "final_num="+final_num);
 
-            if (approxCurve_temp.total()==3) {  // 找到三邊形
+            if (approxCurve_temp.total()==3 || approxCurve_temp.total()==7) {  // 找到三邊形或七邊形
+
+                int pointnum = (int)approxCurve_temp.total();
+
                 Imgproc.drawContours(rgbMat, contours, idx, new Scalar(0, 255, 0), 2);
-                pointBB.add(DrawPoint(3, rgbMat, approxCurve_temp, true));
-                totalTri++;
-            }else if (approxCurve_temp.total()==7){ // 找到七邊形
+                pointBB.add(DrawPoint(pointnum, rgbMat, approxCurve_temp, true));
+
+                if (approxCurve_temp.total()==3)
+                    total3++;
+                else
+                    total7++;
+            }/*
+            else if (approxCurve_temp.total()==7){ // 找到七邊形
                 Imgproc.drawContours(rgbMat, contours, idx, new Scalar(255, 255, 0), 2);
                 pointBB.add(DrawPoint(7, rgbMat, approxCurve_temp, true));
                 total7++;
-            }
+            }*/
         }
 
         // 判斷圖一
         if (index==1){
-            if (totalTri==0) {
+            if (total3==0) {
                 imagecase = SOURCE_IMAGE_ERROR;
                 sb.append("找不到三角形");
-            }else if (totalTri !=1){
+            }else if (total3 !=1){
                 imagecase = SOURCE_IMAGE_ERROR;
                 sb.append("找到多個三角形");
             }else{
@@ -453,7 +469,7 @@ public class TriangleActivity extends AppCompatActivity {
         // 判斷圖二
         else if (index==2){
             // 一個七邊形
-            if (totalTri==0 && total7==1){
+            if (total3==0 && total7==1){
                 imagecase = TWO_TRIANGLE_OVERLAP;
 
                 // 將圖二所有座標存入Image2Points
@@ -467,7 +483,7 @@ public class TriangleActivity extends AppCompatActivity {
                 }
             }
             // 一個三角形
-            else if (totalTri==1 && total7==0){
+            else if (total3==1 && total7==0){
                 // 將圖二的一個三角形座標存入Image2Points
                 Image2Points = pointBB.get(0);
 
@@ -488,7 +504,7 @@ public class TriangleActivity extends AppCompatActivity {
                 }
             }
             // 二個三角形
-            else if (totalTri==2 && total7==0){
+            else if (total3==2 && total7==0){
 
 
                 // 將兩個三角形座標存入
@@ -509,7 +525,7 @@ public class TriangleActivity extends AppCompatActivity {
 
                 // 列出文字
                 sb.append("找到2個三角形");
-                for (int i=0; i<totalTri; i++) {
+                for (int i=0; i<total3; i++) {
                     sb.append("\n");
                     for (int j = 0; j < pointBB.get(i).size(); j++) {
                         sb.append(pointBB.get(i).get(j));
@@ -521,88 +537,14 @@ public class TriangleActivity extends AppCompatActivity {
                 imagecase = TARGET_IMAGE_ERROR;
                 sb.append("找不到正確圖形\n");
                 sb.append("三角形有");
-                sb.append(totalTri);
+                sb.append(total3);
                 sb.append("個\n七邊形有");
                 sb.append(total7);
                 sb.append("個");
             }
         }
-/*
-        switch(totalTri){
-            case 0:
-                if (pointAA.size()==7 && index==2) {  // 找到一個七邊形
-                    sb.append("兩個三角形重合了，七點座標:");
-                    for (int i=0; i<pointAA.size(); i++) {
-                        sb.append("\n");
-                        sb.append(pointAA.get(i));
-
-                        imagecase = TWO_TRIANGLE_OVERLAP;
-                        Image2Points = pointAA; // 將圖二所有座標存入Image2Points
-                    }
-                }
-                else {
-                    if (index==1)
-                        sb.append("錯誤(0)，第一張圖找不到三角形");
-                    else if (index==2)
-                        sb.append("錯誤(0)，第二張圖找不到正確圖形");
-
-                    showToastIns(getApplicationContext(), "錯誤(0)，找不到正確圖形", Toast.LENGTH_SHORT);
-                }
-                break;
-            case 1:
-                sb.append("找到1個三角形");
-                for (int j=0; j<pointBB.get(0).size(); j++){
-                    sb.append("\n");
-                    sb.append(pointBB.get(0).get(j));
-                }
-
-                // 將圖一所有座標存入Image1Points
-                if (index==1) {
-                    Image1Points = pointBB.get(0);
-                }else if (index==2) {   // 圖二有一個三角形重合
-                    Image2Points = pointBB.get(0);
-
-                    if (Image2Points == Image1Points)
-                        imagecase = TWO_TRIANGLE_MATCH;
-                    else {
-                        imagecase = ONE_TRIANGLE;
-                    }
-                }
-                break;
-            case 2:
-                sb.append("找到2個三角形");
-                for (int i=0; i<totalTri; i++) {
-                    sb.append("\n");
-                    for (int j = 0; j < pointBB.get(i).size(); j++) {
-                        sb.append(pointBB.get(i).get(j));
-                        sb.append("\n");
-                    }
-                }
-
-                if (index==2) {   // 圖二有兩個三角形
-                    imagecase = TWO_TRIANGLE;
-
-                    for (int i=0; i<pointBB.size(); i++)
-                    {
-                        // 將兩個三角形座標存入
-                        Image2Points.addAll(pointBB.get(i));
-                    }
-                }else if (index==1) { // 圖一有兩個三角形
-                    imagecase = SOURCE_IMAGE_ERROR;
-                    showToastIns(getApplicationContext(), "錯誤(3)，第一張圖有多張三角形", Toast.LENGTH_SHORT);
-                }
-                break;
-            default:
-                sb.append("錯誤(2)");
-                if (index==1)
-                    showToastIns(getApplicationContext(), "錯誤(2)，第一張圖有多張三角形", Toast.LENGTH_SHORT);
-                else if (index==2)
-                    showToastIns(getApplicationContext(), "錯誤(2)，第二張圖有多張三角形", Toast.LENGTH_SHORT);
-                break;
-        }
-*/
         // 畫出頂點的座標
-        for (int i=0; i<totalTri; i++) {
+        for (int i=0; i<total3; i++) {
             Imgproc.putText(rgbMat, String.valueOf(pointBB.get(i).get(0)), new Point(pointBB.get(i).get(0).x + 20, pointBB.get(i).get(0).y),
                     Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255), 2);
         }
@@ -612,13 +554,13 @@ public class TriangleActivity extends AppCompatActivity {
             file1Detail.setText(sb);
             Utils.matToBitmap(rgbMat, resultBitmap);
             file1Image.setImageBitmap(resultBitmap);
-            image1TriangleNum = totalTri;
+            image1TriangleNum = total3;
         }
         else if (index==2) {
             file2Detail.setText(sb);
             Utils.matToBitmap(rgbMat, resultBitmap);
             file2Image.setImageBitmap(resultBitmap);
-            image2TriangleNum = totalTri;
+            image2TriangleNum = total3;
         }
 
         Log.w(TAG, "Image1Points:"+Image1Points);
