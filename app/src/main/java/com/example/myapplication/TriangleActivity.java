@@ -40,6 +40,7 @@ import static com.example.myapplication.Util.FROM_TRIANGLE_ACTIVITY;
 import static com.example.myapplication.Util.getFromWhichActivity;
 import static com.example.myapplication.Util.setFromWhichActivity;
 import static com.example.myapplication.Util.showToastIns;
+import static java.lang.Math.abs;
 
 public class TriangleActivity extends AppCompatActivity {
     private static final String TAG = "Alan";
@@ -56,6 +57,8 @@ public class TriangleActivity extends AppCompatActivity {
     private List<Point> Image1Points = new ArrayList<>();
     private List<Point> Image2Points = new ArrayList<>();
     private List<List<Point>> pointBB = new ArrayList<List<Point>>();
+
+    private final int POINT_TOLERANCE=5;
 
 
     private int imagecase=0;
@@ -304,13 +307,23 @@ public class TriangleActivity extends AppCompatActivity {
                 Log.w(TAG, "三角形重疊");
                 for (int i=0; i<Image2Points.size(); i++){
                     for (int j=0; j<Image1Points.size(); j++){
+                        // 完全相同的比較
+                        /*
                         if (Image2Points.get(i).equals(Image1Points.get(j))){
+                            Image2Points.remove(Image2Points.get(i));
+                            Log.w(TAG, "remove:"+i);
+                            removeCount++;
+                        }*/
+                        // 有tolerance的比較
+                        if (abs(Image2Points.get(i).x - Image1Points.get(j).x) < POINT_TOLERANCE &&
+                                abs(Image2Points.get(i).y - Image1Points.get(j).y) < POINT_TOLERANCE){
                             Image2Points.remove(Image2Points.get(i));
                             Log.w(TAG, "remove:"+i);
                             removeCount++;
                         }
                     }
                 }
+                Log.w(TAG, "removeCount:"+removeCount);
                 Log.w(TAG, "after remove duplicate points:"+Image2Points);
 
                 if (removeCount >= 2) { // 正確重合的話，會有兩個點以上被移除
@@ -425,7 +438,7 @@ public class TriangleActivity extends AppCompatActivity {
 
             //Log.w(TAG, "final_num="+final_num);
 
-            if (approxCurve_temp.total()==3 || approxCurve_temp.total()==7) {  // 找到三邊形或七邊形
+            if (approxCurve_temp.total()==3 || approxCurve_temp.total()==7 || approxCurve_temp.total()==5) {  // 找到三邊形或七邊形
 
                 int pointnum = (int)approxCurve_temp.total();
 
@@ -476,7 +489,7 @@ public class TriangleActivity extends AppCompatActivity {
                 Image2Points = pointBB.get(0);
 
                 // 列出文字
-                sb.append("找到1個七邊形");
+                sb.append("找到1個多邊形");
                 for (int i=0; i<pointBB.get(0).size(); i++) {
                     sb.append("\n");
                     sb.append(pointBB.get(0).get(i));
@@ -487,17 +500,24 @@ public class TriangleActivity extends AppCompatActivity {
                 // 將圖二的一個三角形座標存入Image2Points
                 Image2Points = pointBB.get(0);
 
-                //Log.w(TAG, "1="+Image1Points);
-                //Log.w(TAG, "2="+Image2Points);
+                Log.w(TAG, "1="+Image1Points);
+                Log.w(TAG, "2="+Image2Points);
 
                 // 比對兩張圖的三角形是否重合
-                if (Image2Points.equals(Image1Points))
-                    imagecase = TWO_TRIANGLE_MATCH;
-                else
-                    imagecase = TARGET_IMAGE_ERROR;
+                //if (Image2Points.equals(Image1Points))    // 完全相同
+                // 有tolerance
+                for (int i=0; i<Image2Points.size(); i++) {
+                    if (abs(Image2Points.get(i).x - Image1Points.get(i).x) < POINT_TOLERANCE &&
+                            abs(Image2Points.get(i).y - Image1Points.get(i).y) < POINT_TOLERANCE) {
+                        imagecase = TWO_TRIANGLE_MATCH;
+                    }
+                    else
+                        imagecase = TARGET_IMAGE_ERROR;
+                }
+
 
                 // 列出文字
-                sb.append("找到1個三角形，沒有七邊形");
+                sb.append("找到1個三角形，沒有多邊形");
                 for (int j=0; j<pointBB.get(0).size(); j++){
                     sb.append("\n");
                     sb.append(pointBB.get(0).get(j));
