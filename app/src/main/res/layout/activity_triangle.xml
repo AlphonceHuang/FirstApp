@@ -54,10 +54,8 @@
 
         <ImageView
             android:id="@+id/resultImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/startButton"
             app:srcCompat="@drawable/kitty023" />
@@ -109,5 +107,15 @@
             android:text="@string/singleLine"
             app:layout_constraintStart_toEndOf="@+id/select2image"
             app:layout_constraintTop_toBottomOf="@+id/select2Button" />
+
+        <TextView
+            android:id="@+id/finalresultText"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:text="@string/singleLine"
+            android:maxLines="20"
+            android:scrollbars="vertical"
+            app:layout_constraintStart_toEndOf="@+id/resultImage"
+            app:layout_constraintTop_toBottomOf="@+id/startButton" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

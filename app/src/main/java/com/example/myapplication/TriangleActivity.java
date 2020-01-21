@@ -48,11 +48,9 @@ public class TriangleActivity extends AppCompatActivity {
     private GlobalVariable gv;
     private ImageView file1Image, file2Image, resultImage;
     private TextView file1text, file2text, file1Detail, file2Detail;
+    private TextView finalDetail;
 
     SharedPreferences mem_Image1, mem_Image2;
-
-    private int image1TriangleNum=0, image2TriangleNum=0;
-    private final int FontSize=2;
 
     private List<Point> Image1Points = new ArrayList<>();
     private List<Point> Image2Points = new ArrayList<>();
@@ -96,10 +94,13 @@ public class TriangleActivity extends AppCompatActivity {
 
         file1Detail=findViewById(R.id.select1Detail);
         file2Detail=findViewById(R.id.select2Detail);
+        finalDetail=findViewById(R.id.finalresultText);
         file1Detail.setText("");
         file2Detail.setText("");
+        finalDetail.setText("");
         file1Detail.setMovementMethod(new ScrollingMovementMethod());
         file2Detail.setMovementMethod(new ScrollingMovementMethod());
+        finalDetail.setMovementMethod(new ScrollingMovementMethod());
 
         mem_Image1 = getSharedPreferences("IMAGE_SAVE1", MODE_PRIVATE);
         mem_Image2 = getSharedPreferences("IMAGE_SAVE2", MODE_PRIVATE);
@@ -269,6 +270,7 @@ public class TriangleActivity extends AppCompatActivity {
 
     // 畫出比較完後的圖片
     private void DrawFinalBitmap(){
+        StringBuffer resultTxt = new StringBuffer();
         Bitmap resultBitmap =BitmapFactory.decodeFile(getImagePath(2));
         Mat rgbMat = new Mat();
         Utils.bitmapToMat(resultBitmap, rgbMat);
@@ -283,6 +285,10 @@ public class TriangleActivity extends AppCompatActivity {
                 Utils.matToBitmap(rgbMat, resultBitmap);
                 resultImage.setImageBitmap(resultBitmap);
                 resultImage.setVisibility(View.VISIBLE);
+
+                resultTxt.append("兩個圖形重合\n");
+                resultTxt.append(Image2Points.get(0));
+                finalDetail.setText(resultTxt);
                 break;
 
             //case ONE_TRIANGLE:
@@ -300,6 +306,12 @@ public class TriangleActivity extends AppCompatActivity {
                 Utils.matToBitmap(rgbMat, resultBitmap);
                 resultImage.setImageBitmap(resultBitmap);
                 resultImage.setVisibility(View.VISIBLE);
+
+                resultTxt.append("兩個圖形最高點座標\n");
+                resultTxt.append(Image2Points.get(0));
+                resultTxt.append("\n");
+                resultTxt.append(Image2Points.get(3));
+                finalDetail.setText(resultTxt);
                 break;
 
             case TWO_TRIANGLE_OVERLAP: // 三角形重疊
@@ -345,6 +357,13 @@ public class TriangleActivity extends AppCompatActivity {
                     Utils.matToBitmap(rgbMat, resultBitmap);
                     resultImage.setImageBitmap(resultBitmap);
                     resultImage.setVisibility(View.VISIBLE);
+                    
+                    resultTxt.append("兩個圖形最高點座標\n");
+                    resultTxt.append(Image1Points.get(0));
+                    resultTxt.append("\n");
+                    resultTxt.append(Image2Points.get(0));
+                    finalDetail.setText(resultTxt);
+
                 }else {
                     showToastIns(getApplicationContext(), "目標影像錯誤", Toast.LENGTH_SHORT);
                 }
@@ -417,6 +436,7 @@ public class TriangleActivity extends AppCompatActivity {
         List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
         Mat hierarchy = new Mat();
         Imgproc.findContours(grayMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
+        //Imgproc.findContours(grayMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_NONE);
 
         Log.w(TAG, "found="+contours.size());
         MatOfPoint temp_contour;
@@ -428,8 +448,12 @@ public class TriangleActivity extends AppCompatActivity {
             MatOfPoint2f approxCurve_temp=new MatOfPoint2f();
 
             // 對圖像輪廓點進行多邊形擬合
-            int contourSize= (int) temp_contour.total();
-            Imgproc.approxPolyDP(new_mat,approxCurve_temp,contourSize*0.03,true);
+            //int contourSize= (int) temp_contour.total();
+
+            // epsilon = 原始曲线与近似曲线之间的最大距离
+            // closed = 曲线是闭合的
+            //Imgproc.approxPolyDP(new_mat,approxCurve_temp,contourSize*0.03,true);
+            Imgproc.approxPolyDP(new_mat,approxCurve_temp,POINT_TOLERANCE,true);
             Log.w(TAG, "邊:"+approxCurve_temp.total());
 
             // 在物件中間畫出數字index
@@ -574,13 +598,11 @@ public class TriangleActivity extends AppCompatActivity {
             file1Detail.setText(sb);
             Utils.matToBitmap(rgbMat, resultBitmap);
             file1Image.setImageBitmap(resultBitmap);
-            image1TriangleNum = total3;
         }
         else if (index==2) {
             file2Detail.setText(sb);
             Utils.matToBitmap(rgbMat, resultBitmap);
             file2Image.setImageBitmap(resultBitmap);
-            image2TriangleNum = total3;
         }
 
         Log.w(TAG, "Image1Points:"+Image1Points);
@@ -592,7 +614,8 @@ public class TriangleActivity extends AppCompatActivity {
     // 在找到輪廓的中間畫面index數字
     private void DrawNumber(Mat mat, MatOfPoint mp, int index, Scalar color){
         int fontface = Core.FONT_HERSHEY_SIMPLEX;
-        double scale = FontSize;
+        int fontSize = 2;
+        double scale = fontSize;
         int thickness = 3;
         int[] baseline = new int[1];
         String label=Integer.toString(index);
