@@ -46,7 +46,7 @@ public class TriangleActivity extends AppCompatActivity {
     private static final String TAG = "Alan";
 
     private GlobalVariable gv;
-    private ImageView file1Image, file2Image, resultImage;
+    private ImageView file1Image, file2Image, resultImage, proImage;
     private TextView file1text, file2text, file1Detail, file2Detail;
     private TextView finalDetail;
 
@@ -57,7 +57,6 @@ public class TriangleActivity extends AppCompatActivity {
     private List<List<Point>> pointBB = new ArrayList<List<Point>>();
 
     private final int POINT_TOLERANCE=5;
-    private Bitmap processBitmap;
 
 
     private int imagecase=0;
@@ -86,7 +85,9 @@ public class TriangleActivity extends AppCompatActivity {
         file1Image=findViewById(R.id.select1image);
         file2Image=findViewById(R.id.select2image);
         resultImage=findViewById(R.id.resultImage);
+        proImage=findViewById(R.id.progressImage);
         resultImage.setVisibility(View.GONE);
+        proImage.setVisibility(View.GONE);
 
         file1text=findViewById(R.id.select1path);
         file2text=findViewById(R.id.select2path);
@@ -607,6 +608,12 @@ public class TriangleActivity extends AppCompatActivity {
 
         Log.w(TAG, "Image1Points:"+Image1Points);
         Log.w(TAG, "Image2Points:"+Image2Points);
+
+        // 畫出處理灰階後的圖
+        Bitmap progressBitMap = Bitmap.createBitmap(rgbMat.width(),rgbMat.height(),Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(grayMat, progressBitMap);
+        proImage.setImageBitmap(progressBitMap);
+        proImage.setVisibility(View.VISIBLE);
 
         return imagecase;
     }
