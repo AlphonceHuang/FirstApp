@@ -50,7 +50,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/select2image" />
+            app:layout_constraintTop_toBottomOf="@+id/thresholdTxt" />
 
         <ImageView
             android:id="@+id/resultImage"
@@ -72,7 +72,6 @@
             android:id="@+id/select1path"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
             android:layout_marginTop="10dp"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
@@ -128,5 +127,31 @@
             android:textColor="#000000"
             app:layout_constraintStart_toEndOf="@+id/resultImage"
             app:layout_constraintTop_toBottomOf="@+id/startButton" />
+
+        <SeekBar
+            android:id="@+id/Threhold_seek"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/thresholdTxt"
+            app:layout_constraintTop_toBottomOf="@+id/select2image" />
+
+        <TextView
+            android:id="@+id/Threhold_Num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#FBC02D"
+            android:text="@string/threshold"
+            android:textColor="#303F9F"
+            app:layout_constraintStart_toEndOf="@+id/Threhold_seek"
+            app:layout_constraintTop_toBottomOf="@+id/select2image" />
+
+        <TextView
+            android:id="@+id/thresholdTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/threshold"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select2image" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

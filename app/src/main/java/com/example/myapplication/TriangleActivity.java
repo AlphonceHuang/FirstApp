@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +58,8 @@ public class TriangleActivity extends AppCompatActivity {
     private List<List<Point>> pointBB = new ArrayList<List<Point>>();
 
     private final int POINT_TOLERANCE=5;
-
+    private int Image_threshold=200;
+    private TextView Num_threshold;
 
     private int imagecase=0;
     //private final int ONE_TRIANGLE=1;
@@ -106,7 +108,34 @@ public class TriangleActivity extends AppCompatActivity {
 
         mem_Image1 = getSharedPreferences("IMAGE_SAVE1", MODE_PRIVATE);
         mem_Image2 = getSharedPreferences("IMAGE_SAVE2", MODE_PRIVATE);
+
+        SeekBar threshold_Bar = findViewById(R.id.Threhold_seek);
+        threshold_Bar.setMax(255);
+        threshold_Bar.setProgress(Image_threshold);
+        threshold_Bar.setOnSeekBarChangeListener(thresholdOnSeekBarChange);
+
+        Num_threshold=findViewById(R.id.Threhold_Num);
+        Num_threshold.setText(String.valueOf(Image_threshold));
     }
+
+    private SeekBar.OnSeekBarChangeListener thresholdOnSeekBarChange = new SeekBar.OnSeekBarChangeListener() {
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+            Log.w(TAG, "threshold調至:"+i);
+            Image_threshold=i;
+            Num_threshold.setText(String.valueOf(Image_threshold));
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+        }
+    };
 
     private String getImagePath(int index){
         if (index==1)
@@ -235,12 +264,17 @@ public class TriangleActivity extends AppCompatActivity {
                     Image1Points.clear();
                     Image2Points.clear();
                     pointBB.clear();
+                    imagecase=0;
 
                     int result=0;
                     result = getImagePoints(1, BitmapFactory.decodeFile(getImagePath(1)));
+
+                    Log.w(TAG, "1 result="+result);
                     if (result != SOURCE_IMAGE_ERROR) {
                         pointBB.clear();
-                        getImagePoints(2, BitmapFactory.decodeFile(getImagePath(2)));
+                        result=getImagePoints(2, BitmapFactory.decodeFile(getImagePath(2)));
+
+                        Log.w(TAG, "2 result="+result);
                         //DrawFinalBitmap();
                     }else{
                         imagecase=SOURCE_IMAGE_ERROR;
@@ -374,10 +408,16 @@ public class TriangleActivity extends AppCompatActivity {
             case SOURCE_IMAGE_ERROR:
                 showToastIns(getApplicationContext(), "來源影像錯誤", Toast.LENGTH_SHORT);
                 file2Detail.setText("圖一錯誤，不做處理");
+                resultImage.setVisibility(View.GONE);
+                proImage.setVisibility(View.GONE);
+                finalDetail.setText("");
                 break;
 
             case TARGET_IMAGE_ERROR:
                 showToastIns(getApplicationContext(), "目標影像錯誤", Toast.LENGTH_SHORT);
+                resultImage.setVisibility(View.GONE);
+                proImage.setVisibility(View.GONE);
+                finalDetail.setText("");
                 break;
 
             default:
@@ -430,7 +470,7 @@ public class TriangleActivity extends AppCompatActivity {
 
         Mat grayMat = new Mat(resultBitmap.getHeight(), resultBitmap.getWidth(),CvType.CV_8U, new Scalar(1));
         Imgproc.cvtColor(rgbMat, grayMat, Imgproc.COLOR_RGB2GRAY, 2);
-        Imgproc.threshold(grayMat, grayMat, 200, 255, Imgproc.THRESH_BINARY);// 大於thresh的都設定為max，小於的設定0
+        Imgproc.threshold(grayMat, grayMat, Image_threshold, 255, Imgproc.THRESH_BINARY);// 大於thresh的都設定為max，小於的設定0
         Core.bitwise_not(grayMat, grayMat);   // 反色 --- 適用於白點黑圖
 
 
