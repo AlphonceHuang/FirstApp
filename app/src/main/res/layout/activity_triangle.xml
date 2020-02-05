@@ -95,6 +95,7 @@
             android:maxLines="20"
             android:scrollbars="vertical"
             android:text="@string/singleLine"
+            android:textColor="#000000"
             app:layout_constraintStart_toEndOf="@+id/select1image"
             app:layout_constraintTop_toBottomOf="@+id/select1Button" />
 
@@ -105,6 +106,7 @@
             android:maxLines="20"
             android:scrollbars="vertical"
             android:text="@string/singleLine"
+            android:textColor="#000000"
             app:layout_constraintStart_toEndOf="@+id/select2image"
             app:layout_constraintTop_toBottomOf="@+id/select2Button" />
 
@@ -112,9 +114,10 @@
             android:id="@+id/finalresultText"
             android:layout_width="150dp"
             android:layout_height="200dp"
-            android:text="@string/singleLine"
             android:maxLines="20"
             android:scrollbars="vertical"
+            android:text="@string/singleLine"
+            android:textColor="#000000"
             app:layout_constraintStart_toEndOf="@+id/resultImage"
             app:layout_constraintTop_toBottomOf="@+id/startButton" />
     </android.support.constraint.ConstraintLayout>

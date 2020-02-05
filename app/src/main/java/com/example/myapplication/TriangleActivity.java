@@ -57,6 +57,7 @@ public class TriangleActivity extends AppCompatActivity {
     private List<List<Point>> pointBB = new ArrayList<List<Point>>();
 
     private final int POINT_TOLERANCE=5;
+    private Bitmap processBitmap;
 
 
     private int imagecase=0;
@@ -279,9 +280,9 @@ public class TriangleActivity extends AppCompatActivity {
 
         switch(imagecase){
             case TWO_TRIANGLE_MATCH:    // 完全重合
-                Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(255, 0, 0), -1);
+                Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(255, 0, 0, 255), -1);
                 Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(0)), new Point(Image2Points.get(0).x + 20, Image2Points.get(0).y),
-                        Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255), 2);
+                        Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
                 Utils.matToBitmap(rgbMat, resultBitmap);
                 resultImage.setImageBitmap(resultBitmap);
                 resultImage.setVisibility(View.VISIBLE);
@@ -296,12 +297,12 @@ public class TriangleActivity extends AppCompatActivity {
             //    break;
 
             case TWO_TRIANGLE: // 三角形分開
-                Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(255, 0, 0), -1);
+                Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(255, 0, 0, 255), -1);
                 Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(0)), new Point(Image2Points.get(0).x + 20, Image2Points.get(0).y),
-                        Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255), 2);
-                Imgproc.circle(rgbMat, Image2Points.get(3), 15, new Scalar(255, 0, 0), -1);
+                        Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
+                Imgproc.circle(rgbMat, Image2Points.get(3), 15, new Scalar(255, 0, 0, 255), -1);
                 Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(3)), new Point(Image2Points.get(3).x + 20, Image2Points.get(3).y),
-                        Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255), 2);
+                        Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
 
                 Utils.matToBitmap(rgbMat, resultBitmap);
                 resultImage.setImageBitmap(resultBitmap);
@@ -340,24 +341,24 @@ public class TriangleActivity extends AppCompatActivity {
 
                 if (removeCount >= 2) { // 正確重合的話，會有兩個點以上被移除
                     // 圖一的最高點
-                    Imgproc.circle(rgbMat, Image1Points.get(0), 15, new Scalar(0, 0, 255), -1);
+                    Imgproc.circle(rgbMat, Image1Points.get(0), 15, new Scalar(0, 0, 255, 255), -1);
                     // 圖一的最高點座標
                     Imgproc.putText(rgbMat, String.valueOf(Image1Points.get(0)), new Point(Image1Points.get(0).x + 20, Image1Points.get(0).y),
-                            Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255), 2);
+                            Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
                     for (int i=0; i<Image2Points.size(); i++){
                         // 剩下點裡的最高點
                         if (i==0) {
-                            Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(0, 0, 255), -1);
+                            Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(0, 0, 255, 255), -1);
                             Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(i)), new Point(Image2Points.get(i).x + 20, Image2Points.get(i).y),
-                                    Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255), 2);
+                                    Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
                         }
                         else  // 其他點
-                            Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(255, 0, 0), -1);
+                            Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(255, 0, 0, 255), -1);
                     }
                     Utils.matToBitmap(rgbMat, resultBitmap);
                     resultImage.setImageBitmap(resultBitmap);
                     resultImage.setVisibility(View.VISIBLE);
-                    
+
                     resultTxt.append("兩個圖形最高點座標\n");
                     resultTxt.append(Image1Points.get(0));
                     resultTxt.append("\n");
@@ -402,7 +403,7 @@ public class TriangleActivity extends AppCompatActivity {
                     return 1;
                 else if (l2.pointY > l1.pointY)
                     return -1;
-                else{
+                else{   // y 相同
                     return Double.compare(l1.pointX, l2.pointX);
                 }
             }
@@ -418,11 +419,9 @@ public class TriangleActivity extends AppCompatActivity {
     private int getImagePoints(int index, Bitmap resultBitmap){
         Log.w(TAG, "Start find image points.");
 
-        List<Point> pointAA = new ArrayList<>();
         int final_num=0;
         int total3=0;
         int total7=0;
-
         StringBuffer sb = new StringBuffer();
 
         Mat rgbMat = new Mat();
@@ -430,13 +429,15 @@ public class TriangleActivity extends AppCompatActivity {
 
         Mat grayMat = new Mat(resultBitmap.getHeight(), resultBitmap.getWidth(),CvType.CV_8U, new Scalar(1));
         Imgproc.cvtColor(rgbMat, grayMat, Imgproc.COLOR_RGB2GRAY, 2);
-        Imgproc.threshold(grayMat, grayMat, 50, 255, Imgproc.THRESH_BINARY);
+        Imgproc.threshold(grayMat, grayMat, 200, 255, Imgproc.THRESH_BINARY);// 大於thresh的都設定為max，小於的設定0
         Core.bitwise_not(grayMat, grayMat);   // 反色 --- 適用於白點黑圖
+
+
+        //Utils.matToBitmap(grayMat, processBitmap);
 
         List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
         Mat hierarchy = new Mat();
-        Imgproc.findContours(grayMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
-        //Imgproc.findContours(grayMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_NONE);
+        Imgproc.findContours(grayMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_NONE);
 
         Log.w(TAG, "found="+contours.size());
         MatOfPoint temp_contour;
@@ -457,7 +458,7 @@ public class TriangleActivity extends AppCompatActivity {
             Log.w(TAG, "邊:"+approxCurve_temp.total());
 
             // 在物件中間畫出數字index
-            DrawNumber(rgbMat, temp_contour, final_num, new Scalar(255,255,0));
+            DrawNumber(rgbMat, temp_contour, final_num, new Scalar(255,0,255, 255));
             final_num++;
 
             //Log.w(TAG, "final_num="+final_num);
@@ -466,19 +467,14 @@ public class TriangleActivity extends AppCompatActivity {
 
                 int pointnum = (int)approxCurve_temp.total();
 
-                Imgproc.drawContours(rgbMat, contours, idx, new Scalar(0, 255, 0), 2);
+                Imgproc.drawContours(rgbMat, contours, idx, new Scalar(0, 255, 0, 255), 2);
                 pointBB.add(DrawPoint(pointnum, rgbMat, approxCurve_temp, true));
 
                 if (approxCurve_temp.total()==3)
                     total3++;
                 else
                     total7++;
-            }/*
-            else if (approxCurve_temp.total()==7){ // 找到七邊形
-                Imgproc.drawContours(rgbMat, contours, idx, new Scalar(255, 255, 0), 2);
-                pointBB.add(DrawPoint(7, rgbMat, approxCurve_temp, true));
-                total7++;
-            }*/
+            }
         }
 
         // 判斷圖一
@@ -539,7 +535,6 @@ public class TriangleActivity extends AppCompatActivity {
                         imagecase = TARGET_IMAGE_ERROR;
                 }
 
-
                 // 列出文字
                 sb.append("找到1個三角形，沒有多邊形");
                 for (int j=0; j<pointBB.get(0).size(); j++){
@@ -550,20 +545,24 @@ public class TriangleActivity extends AppCompatActivity {
             // 二個三角形
             else if (total3==2 && total7==0){
 
-
                 // 將兩個三角形座標存入
                 for (int i=0; i<pointBB.size(); i++){
                     Image2Points.addAll(pointBB.get(i));
                 }
+
+                boolean bFindMatch=false;
 
                 // 比對圖二中的三角形是否有符合圖一的三角形
                 for (int i =0; i<pointBB.size(); i++){
                     if (pointBB.get(i).equals(Image1Points)){
                         Log.w(TAG, "第"+i+"個三角形相同");
                         imagecase = TWO_TRIANGLE;
+                        bFindMatch=true;
                     }else{
-                        Log.w(TAG, "沒有一個符合");
-                        imagecase = TARGET_IMAGE_ERROR;
+                        if (!bFindMatch) {
+                            Log.w(TAG, "沒有一個符合");
+                            imagecase = TARGET_IMAGE_ERROR;
+                        }
                     }
                 }
 
@@ -590,19 +589,20 @@ public class TriangleActivity extends AppCompatActivity {
         // 畫出頂點的座標
         for (int i=0; i<total3; i++) {
             Imgproc.putText(rgbMat, String.valueOf(pointBB.get(i).get(0)), new Point(pointBB.get(i).get(0).x + 20, pointBB.get(i).get(0).y),
-                    Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255), 2);
+                    Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
         }
 
         // 更新圖一及圖二的結果，並且更新文字敘述
+        Bitmap newBitMap = Bitmap.createBitmap(rgbMat.width(),rgbMat.height(),Bitmap.Config.ARGB_8888);
         if (index==1) {
             file1Detail.setText(sb);
-            Utils.matToBitmap(rgbMat, resultBitmap);
-            file1Image.setImageBitmap(resultBitmap);
+            Utils.matToBitmap(rgbMat, newBitMap);
+            file1Image.setImageBitmap(newBitMap);
         }
         else if (index==2) {
             file2Detail.setText(sb);
-            Utils.matToBitmap(rgbMat, resultBitmap);
-            file2Image.setImageBitmap(resultBitmap);
+            Utils.matToBitmap(rgbMat, newBitMap);
+            file2Image.setImageBitmap(newBitMap);
         }
 
         Log.w(TAG, "Image1Points:"+Image1Points);
@@ -637,7 +637,7 @@ public class TriangleActivity extends AppCompatActivity {
 
         if (draw){
             for (int i=0; i<num; i++){
-                Imgproc.circle(rgbMat, threePoint.get(i), 15, new Scalar(255, 0, 0), -1);
+                Imgproc.circle(rgbMat, threePoint.get(i), 15, new Scalar(255, 0, 0, 255), -1);
             }
         }
         return SortPoints(threePoint);
