@@ -54,19 +54,29 @@
 
         <ImageView
             android:id="@+id/resultImage"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/startButton"
+            app:layout_constraintTop_toBottomOf="@+id/finalresultText"
             app:srcCompat="@drawable/kitty023" />
 
         <ImageView
             android:id="@+id/progressImage"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/resultImage"
             app:srcCompat="@drawable/kitty023" />
+
+        <ImageView
+            android:id="@+id/progressImage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressImage"
+            app:srcCompat="@drawable/kitty024" />
 
         <TextView
             android:id="@+id/select1path"
@@ -119,13 +129,13 @@
 
         <TextView
             android:id="@+id/finalresultText"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:maxLines="20"
             android:scrollbars="vertical"
             android:text="@string/singleLine"
             android:textColor="#000000"
-            app:layout_constraintStart_toEndOf="@+id/resultImage"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/startButton" />
 
         <SeekBar

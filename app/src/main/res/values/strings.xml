@@ -218,7 +218,7 @@
     <string name="findTop">找三角形頂點座標</string>
     <string name="choose">選擇圖檔</string>
     <string name="preview">相機預覽</string>
-
+    <string name="show_processImage">顯示處理後圖片</string>
 
     <string name="DialogFragment">DialogFragment範例</string>
     <string name="inputHint">請輸入您的帳號及密碼</string>

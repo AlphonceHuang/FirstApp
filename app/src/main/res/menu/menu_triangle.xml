@@ -9,4 +9,12 @@
         android:visible="true"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/ShowProcessItem"
+        android:checkable="true"
+        android:icon="@mipmap/ic_action_picture"
+        android:title="@string/show_processImage"
+        android:visible="true"
+        app:showAsAction="never" />
+
 </menu>

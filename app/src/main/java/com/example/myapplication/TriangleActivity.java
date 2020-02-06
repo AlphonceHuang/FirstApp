@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -34,6 +35,10 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -49,7 +54,7 @@ public class TriangleActivity extends AppCompatActivity {
     private static final String TAG = "Alan";
 
     private GlobalVariable gv;
-    private ImageView file1Image, file2Image, resultImage, proImage;
+    private ImageView file1Image, file2Image, resultImage, proImage1, proImage2;
     private TextView file1text, file2text, file1Detail, file2Detail;
     private TextView finalDetail;
 
@@ -57,7 +62,7 @@ public class TriangleActivity extends AppCompatActivity {
 
     private List<Point> Image1Points = new ArrayList<>();
     private List<Point> Image2Points = new ArrayList<>();
-    private List<List<Point>> pointBB = new ArrayList<List<Point>>();
+    private List<List<Point>> pointBB = new ArrayList<>();
 
     private final int POINT_TOLERANCE=5;
     private int Image_threshold=200;
@@ -72,7 +77,6 @@ public class TriangleActivity extends AppCompatActivity {
     private final int TWO_TRIANGLE_MATCH=4;
     private final int SOURCE_IMAGE_ERROR=5;
     private final int TARGET_IMAGE_ERROR=6;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +95,12 @@ public class TriangleActivity extends AppCompatActivity {
         file1Image=findViewById(R.id.select1image);
         file2Image=findViewById(R.id.select2image);
         resultImage=findViewById(R.id.resultImage);
-        proImage=findViewById(R.id.progressImage);
+        proImage1=findViewById(R.id.progressImage);
+        proImage2=findViewById(R.id.progressImage2);
         resultImage.setVisibility(View.GONE);
-        proImage.setVisibility(View.GONE);
+        proImage1.setVisibility(View.GONE);
+        proImage2.setVisibility(View.GONE);
+
 
         file1text=findViewById(R.id.select1path);
         file2text=findViewById(R.id.select2path);
@@ -287,20 +294,20 @@ public class TriangleActivity extends AppCompatActivity {
                     pointBB.clear();
                     imagecase=0;
 
-                    int result=0;
-                    result = getImagePoints(1, BitmapFactory.decodeFile(getImagePath(1)));
+                    int result = getImagePoints(1, BitmapFactory.decodeFile(getImagePath(1)));
 
-                    Log.w(TAG, "1 result="+result);
                     if (result != SOURCE_IMAGE_ERROR) {
                         pointBB.clear();
                         result=getImagePoints(2, BitmapFactory.decodeFile(getImagePath(2)));
 
-                        Log.w(TAG, "2 result="+result);
+                        //Log.w(TAG, "2 result="+result);
                         //DrawFinalBitmap();
                     }else{
                         imagecase=SOURCE_IMAGE_ERROR;
                     }
                     DrawFinalBitmap();
+
+                    DrawProcessBitmap();
                     break;
             }
         }
@@ -399,13 +406,15 @@ public class TriangleActivity extends AppCompatActivity {
                     // 圖一的最高點
                     Imgproc.circle(rgbMat, Image1Points.get(0), 15, new Scalar(0, 0, 255, 255), -1);
                     // 圖一的最高點座標
-                    Imgproc.putText(rgbMat, String.valueOf(Image1Points.get(0)), new Point(Image1Points.get(0).x + 20, Image1Points.get(0).y),
+                    //Imgproc.putText(rgbMat, String.valueOf(Image1Points.get(0)), new Point(Image1Points.get(0).x + 20, Image1Points.get(0).y),
+                    Imgproc.putText(rgbMat, String.valueOf(1), new Point(Image1Points.get(0).x + 20, Image1Points.get(0).y),
                             Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
                     for (int i=0; i<Image2Points.size(); i++){
                         // 剩下點裡的最高點
                         if (i==0) {
                             Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(0, 0, 255, 255), -1);
-                            Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(i)), new Point(Image2Points.get(i).x + 20, Image2Points.get(i).y),
+                            //Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(i)), new Point(Image2Points.get(i).x + 20, Image2Points.get(i).y),
+                            Imgproc.putText(rgbMat, String.valueOf(2), new Point(Image2Points.get(i).x + 20, Image2Points.get(i).y),
                                     Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
                         }
                         else  // 其他點
@@ -430,14 +439,16 @@ public class TriangleActivity extends AppCompatActivity {
                 showToastIns(getApplicationContext(), "來源影像錯誤", Toast.LENGTH_SHORT);
                 file2Detail.setText("圖一錯誤，不做處理");
                 resultImage.setVisibility(View.GONE);
-                proImage.setVisibility(View.GONE);
+                proImage1.setVisibility(View.GONE);
+                proImage2.setVisibility(View.GONE);
                 finalDetail.setText("");
                 break;
 
             case TARGET_IMAGE_ERROR:
                 showToastIns(getApplicationContext(), "目標影像錯誤", Toast.LENGTH_SHORT);
                 resultImage.setVisibility(View.GONE);
-                proImage.setVisibility(View.GONE);
+                proImage1.setVisibility(View.GONE);
+                proImage2.setVisibility(View.GONE);
                 finalDetail.setText("");
                 break;
 
@@ -492,12 +503,25 @@ public class TriangleActivity extends AppCompatActivity {
         Mat grayMat = new Mat(resultBitmap.getHeight(), resultBitmap.getWidth(),CvType.CV_8U, new Scalar(1));
         Imgproc.cvtColor(rgbMat, grayMat, Imgproc.COLOR_RGB2GRAY, 2);
         Imgproc.threshold(grayMat, grayMat, Image_threshold, 255, Imgproc.THRESH_BINARY);// 大於thresh的都設定為max，小於的設定0
-        Core.bitwise_not(grayMat, grayMat);   // 反色 --- 適用於白點黑圖
 
+        // 儲存處理後的圖一及圖二
+        String savepath = Environment.getExternalStorageDirectory() + "/DCIM/";
+        if (index ==1) {
+            try {
+                saveMattoBitmapFile(grayMat, "progress1.jpg", savepath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if (index ==2) {
+            try {
+                saveMattoBitmapFile(grayMat, "progress2.jpg", savepath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Core.bitwise_not(grayMat, grayMat);   // 反色 --- 適用於白底黑圖
 
-        //Utils.matToBitmap(grayMat, processBitmap);
-
-        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
+        List<MatOfPoint> contours = new ArrayList<>();
         Mat hierarchy = new Mat();
         Imgproc.findContours(grayMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_NONE);
 
@@ -525,12 +549,14 @@ public class TriangleActivity extends AppCompatActivity {
 
             //Log.w(TAG, "final_num="+final_num);
 
-            if (approxCurve_temp.total()==3 || approxCurve_temp.total()==7 || approxCurve_temp.total()==5) {  // 找到三邊形或七邊形
+            if (approxCurve_temp.total()>=3 && approxCurve_temp.total()<=7) {  // 找到三邊形或七邊形
 
                 int pointnum = (int)approxCurve_temp.total();
 
-                Imgproc.drawContours(rgbMat, contours, idx, new Scalar(0, 255, 0, 255), 2);
-                pointBB.add(DrawPoint(pointnum, rgbMat, approxCurve_temp, true));
+                // 畫外框
+                //Imgproc.drawContours(rgbMat, contours, idx, new Scalar(0, 255, 0, 255), 2);
+
+                pointBB.add(DrawPoint(pointnum, rgbMat, approxCurve_temp));
 
                 if (approxCurve_temp.total()==3)
                     total3++;
@@ -669,12 +695,18 @@ public class TriangleActivity extends AppCompatActivity {
 
         Log.w(TAG, "Image1Points:"+Image1Points);
         Log.w(TAG, "Image2Points:"+Image2Points);
-
+/*
         // 畫出處理灰階後的圖
-        Bitmap progressBitMap = Bitmap.createBitmap(rgbMat.width(),rgbMat.height(),Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(grayMat, progressBitMap);
-        proImage.setImageBitmap(progressBitMap);
-        proImage.setVisibility(View.VISIBLE);
+        Bitmap progressBitMap1 = Bitmap.createBitmap(processMat1.width(),processMat1.height(),Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(processMat1, progressBitMap1);
+        proImage1.setImageBitmap(progressBitMap1);
+        proImage1.setVisibility(View.VISIBLE);
+
+        Bitmap progressBitMap2 = Bitmap.createBitmap(processMat2.width(),processMat2.height(),Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(processMat2, progressBitMap2);
+        proImage2.setImageBitmap(progressBitMap2);
+        proImage2.setVisibility(View.VISIBLE);
+*/
 
         return imagecase;
     }
@@ -682,8 +714,7 @@ public class TriangleActivity extends AppCompatActivity {
     // 在找到輪廓的中間畫面index數字
     private void DrawNumber(Mat mat, MatOfPoint mp, int index, Scalar color){
         int fontface = Core.FONT_HERSHEY_SIMPLEX;
-        int fontSize = 2;
-        double scale = fontSize;
+        double scale = 2;
         int thickness = 3;
         int[] baseline = new int[1];
         String label=Integer.toString(index);
@@ -694,7 +725,7 @@ public class TriangleActivity extends AppCompatActivity {
     }
 
     // 找出此輪廓的所有點，並且標示出來
-    private List<Point> DrawPoint(int num, Mat rgbMat, MatOfPoint2f approxCurve, boolean draw) {
+    private List<Point> DrawPoint(int num, Mat rgbMat, MatOfPoint2f approxCurve) {
         double[] temp_double;
         List<Point> threePoint = new ArrayList<>();
 
@@ -703,11 +734,11 @@ public class TriangleActivity extends AppCompatActivity {
             threePoint.add(new Point(temp_double[0], temp_double[1]));
         }
 
-        if (draw){
+        //if (draw){
             for (int i=0; i<num; i++){
                 Imgproc.circle(rgbMat, threePoint.get(i), 15, new Scalar(255, 0, 0, 255), -1);
             }
-        }
+        //}
         return SortPoints(threePoint);
     }
 
@@ -720,7 +751,7 @@ public class TriangleActivity extends AppCompatActivity {
             pointX = x;
             pointY = y;
         }
-
+/*
         protected double getPointX() {
             return pointX;
         }
@@ -728,7 +759,7 @@ public class TriangleActivity extends AppCompatActivity {
         protected double getPointY() {
             return pointY;
         }
-
+*/
     }
 
     @Override
@@ -748,5 +779,45 @@ public class TriangleActivity extends AppCompatActivity {
             startActivity(OptionIntent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void saveMattoBitmapFile(Mat mat, String fileName, String path) throws IOException {
+
+        Bitmap output = Bitmap.createBitmap(mat.width(), mat.height(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(mat, output);
+
+        String subForder = path;
+        File foder = new File(subForder);
+        if (!foder.exists()) {
+            foder.mkdirs();
+        }
+        File myCaptureFile = new File(subForder, fileName);
+        if (!myCaptureFile.exists()) {
+            myCaptureFile.createNewFile();
+        }
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
+        output.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        bos.flush();
+        bos.close();
+    }
+
+    void DrawProcessBitmap(){
+        proImage1.setImageBitmap(getBitmapFromSDCard("DCIM/progress1.jpg"));
+        proImage1.setVisibility(View.VISIBLE);
+        proImage2.setImageBitmap(getBitmapFromSDCard("DCIM/progress2.jpg"));
+        proImage2.setVisibility(View.VISIBLE);
+    }
+
+    private static Bitmap getBitmapFromSDCard(String file)
+    {
+        try{
+            String sd = Environment.getExternalStorageDirectory().toString();
+            Log.w(TAG, "save path:"+sd + "/" + file);
+            Bitmap bitmap = BitmapFactory.decodeFile(sd + "/" + file);
+            return bitmap;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }
