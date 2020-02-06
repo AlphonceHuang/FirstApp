@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -60,6 +62,8 @@ public class TriangleActivity extends AppCompatActivity {
     private final int POINT_TOLERANCE=5;
     private int Image_threshold=200;
     private TextView Num_threshold;
+    SharedPreferences mem_Image_threshold;
+    private SeekBar threshold_Bar;
 
     private int imagecase=0;
     //private final int ONE_TRIANGLE=1;
@@ -109,10 +113,9 @@ public class TriangleActivity extends AppCompatActivity {
         mem_Image1 = getSharedPreferences("IMAGE_SAVE1", MODE_PRIVATE);
         mem_Image2 = getSharedPreferences("IMAGE_SAVE2", MODE_PRIVATE);
 
-        SeekBar threshold_Bar = findViewById(R.id.Threhold_seek);
-        threshold_Bar.setMax(255);
-        threshold_Bar.setProgress(Image_threshold);
-        threshold_Bar.setOnSeekBarChangeListener(thresholdOnSeekBarChange);
+        mem_Image_threshold = getSharedPreferences("IMAGE_THREHOLD", MODE_PRIVATE);
+
+        threshold_Bar = findViewById(R.id.Threhold_seek);
 
         Num_threshold=findViewById(R.id.Threhold_Num);
         Num_threshold.setText(String.valueOf(Image_threshold));
@@ -124,6 +127,7 @@ public class TriangleActivity extends AppCompatActivity {
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             Log.w(TAG, "threshold調至:"+i);
             Image_threshold=i;
+            setImageThrehold(Image_threshold);
             Num_threshold.setText(String.valueOf(Image_threshold));
         }
 
@@ -137,6 +141,17 @@ public class TriangleActivity extends AppCompatActivity {
         }
     };
 
+    private int getImageThrehold(){
+        return mem_Image_threshold.getInt("IMAGE_THREHOLD", 200);
+    }
+    private void setImageThrehold(int data){
+        SharedPreferences.Editor editor;
+        editor = mem_Image_threshold.edit(); //獲取編輯器
+        editor.putInt("IMAGE_THREHOLD", data);
+        editor.apply();
+        editor.commit();    //提交
+    }
+
     private String getImagePath(int index){
         if (index==1)
             return mem_Image1.getString("IMAGE_SAVE1", "");
@@ -145,6 +160,7 @@ public class TriangleActivity extends AppCompatActivity {
         else
             return null;
     }
+
     private void setImagePath(int index, String path){
         SharedPreferences.Editor editor;
         if (index==1) {
@@ -198,6 +214,11 @@ public class TriangleActivity extends AppCompatActivity {
             file2Image.setImageBitmap(bmp);
             file2Image.setVisibility(View.VISIBLE);
         }
+
+        Image_threshold = getImageThrehold();
+        threshold_Bar.setMax(255);
+        threshold_Bar.setProgress(Image_threshold);
+        threshold_Bar.setOnSeekBarChangeListener(thresholdOnSeekBarChange);
     }
 
     @Override
@@ -708,5 +729,24 @@ public class TriangleActivity extends AppCompatActivity {
             return pointY;
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        Log.w(TAG, "onCreateOptionsMenu...");
+        getMenuInflater().inflate(R.menu.menu_triangle, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.PriviewItem) {
+            Intent OptionIntent = new Intent(TriangleActivity.this,Tutorial1Activity.class);
+            startActivity(OptionIntent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

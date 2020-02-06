@@ -260,6 +260,7 @@
     <string name="delete">刪除</string>
     <string name="add">增加</string>
     <string name="new_item">新欄位</string>
+    <string name="preview">相機預覽</string>
 
     <string name="recycleView">RecycleView</string>
     <string name="textonly">純文字</string>
