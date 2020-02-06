@@ -116,9 +116,7 @@ public class TriangleActivity extends AppCompatActivity {
         mem_Image_threshold = getSharedPreferences("IMAGE_THREHOLD", MODE_PRIVATE);
 
         threshold_Bar = findViewById(R.id.Threhold_seek);
-
         Num_threshold=findViewById(R.id.Threhold_Num);
-        Num_threshold.setText(String.valueOf(Image_threshold));
     }
 
     private SeekBar.OnSeekBarChangeListener thresholdOnSeekBarChange = new SeekBar.OnSeekBarChangeListener() {
@@ -144,6 +142,7 @@ public class TriangleActivity extends AppCompatActivity {
     private int getImageThrehold(){
         return mem_Image_threshold.getInt("IMAGE_THREHOLD", 200);
     }
+
     private void setImageThrehold(int data){
         SharedPreferences.Editor editor;
         editor = mem_Image_threshold.edit(); //獲取編輯器
@@ -219,6 +218,7 @@ public class TriangleActivity extends AppCompatActivity {
         threshold_Bar.setMax(255);
         threshold_Bar.setProgress(Image_threshold);
         threshold_Bar.setOnSeekBarChangeListener(thresholdOnSeekBarChange);
+        Num_threshold.setText(String.valueOf(Image_threshold));
     }
 
     @Override

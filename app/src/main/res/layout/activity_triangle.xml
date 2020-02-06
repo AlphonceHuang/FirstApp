@@ -130,8 +130,10 @@
 
         <SeekBar
             android:id="@+id/Threhold_seek"
-            android:layout_width="250dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/Threhold_Num"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/thresholdTxt"
             app:layout_constraintTop_toBottomOf="@+id/select2image" />
 
@@ -139,10 +141,11 @@
             android:id="@+id/Threhold_Num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:shadowColor="#FBC02D"
             android:text="@string/threshold"
             android:textColor="#303F9F"
-            app:layout_constraintStart_toEndOf="@+id/Threhold_seek"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/select2image" />
 
         <TextView

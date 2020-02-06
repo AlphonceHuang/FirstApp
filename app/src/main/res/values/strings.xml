@@ -215,7 +215,10 @@
     <string name="imageslider">Image Slider</string>
 
     <string name="triangle">三角形</string>
+    <string name="findTop">找三角形頂點座標</string>
     <string name="choose">選擇圖檔</string>
+    <string name="preview">相機預覽</string>
+
 
     <string name="DialogFragment">DialogFragment範例</string>
     <string name="inputHint">請輸入您的帳號及密碼</string>
@@ -260,7 +263,6 @@
     <string name="delete">刪除</string>
     <string name="add">增加</string>
     <string name="new_item">新欄位</string>
-    <string name="preview">相機預覽</string>
 
     <string name="recycleView">RecycleView</string>
     <string name="textonly">純文字</string>
