@@ -56,13 +56,15 @@ public class TriangleActivity extends AppCompatActivity {
     private GlobalVariable gv;
     private ImageView file1Image, file2Image, resultImage, proImage1, proImage2;
     private TextView file1text, file2text, file1Detail, file2Detail;
-    private TextView finalDetail;
+    private TextView finalDetail, removeDetail;
 
     SharedPreferences mem_Image1, mem_Image2;
 
     private List<Point> Image1Points = new ArrayList<>();
     private List<Point> Image2Points = new ArrayList<>();
     private List<List<Point>> pointBB = new ArrayList<>();
+
+    private List<Point> RemovedPoints = new ArrayList<>();
 
     private final int POINT_TOLERANCE=5;
     private int Image_threshold=200;
@@ -110,12 +112,15 @@ public class TriangleActivity extends AppCompatActivity {
         file1Detail=findViewById(R.id.select1Detail);
         file2Detail=findViewById(R.id.select2Detail);
         finalDetail=findViewById(R.id.finalresultText);
+        removeDetail=findViewById(R.id.removeText);
         file1Detail.setText("");
         file2Detail.setText("");
         finalDetail.setText("");
+        removeDetail.setText("");
         file1Detail.setMovementMethod(new ScrollingMovementMethod());
         file2Detail.setMovementMethod(new ScrollingMovementMethod());
         finalDetail.setMovementMethod(new ScrollingMovementMethod());
+        removeDetail.setMovementMethod(new ScrollingMovementMethod());
 
         mem_Image1 = getSharedPreferences("IMAGE_SAVE1", MODE_PRIVATE);
         mem_Image2 = getSharedPreferences("IMAGE_SAVE2", MODE_PRIVATE);
@@ -298,7 +303,7 @@ public class TriangleActivity extends AppCompatActivity {
 
                     if (result != SOURCE_IMAGE_ERROR) {
                         pointBB.clear();
-                        result=getImagePoints(2, BitmapFactory.decodeFile(getImagePath(2)));
+                        getImagePoints(2, BitmapFactory.decodeFile(getImagePath(2)));
 
                         //Log.w(TAG, "2 result="+result);
                         //DrawFinalBitmap();
@@ -335,15 +340,17 @@ public class TriangleActivity extends AppCompatActivity {
     // 畫出比較完後的圖片
     private void DrawFinalBitmap(){
         StringBuffer resultTxt = new StringBuffer();
+        StringBuffer resultTxt1 = new StringBuffer();
         Bitmap resultBitmap =BitmapFactory.decodeFile(getImagePath(2));
         Mat rgbMat = new Mat();
         Utils.bitmapToMat(resultBitmap, rgbMat);
 
         Log.w(TAG, "imagecase:"+imagecase);
+        RemovedPoints.clear();
 
         switch(imagecase){
             case TWO_TRIANGLE_MATCH:    // 完全重合
-                Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(255, 0, 0, 255), -1);
+                Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(0, 0, 255, 255), -1);
                 Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(0)), new Point(Image2Points.get(0).x + 20, Image2Points.get(0).y),
                         Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
                 Utils.matToBitmap(rgbMat, resultBitmap);
@@ -360,11 +367,13 @@ public class TriangleActivity extends AppCompatActivity {
             //    break;
 
             case TWO_TRIANGLE: // 三角形分開
-                Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(255, 0, 0, 255), -1);
-                Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(0)), new Point(Image2Points.get(0).x + 20, Image2Points.get(0).y),
+                Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(0, 0, 255, 255), -1);
+                //Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(0)), new Point(Image2Points.get(0).x + 20, Image2Points.get(0).y),
+                Imgproc.putText(rgbMat, String.valueOf(1), new Point(Image2Points.get(0).x + 20, Image2Points.get(0).y),
                         Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
-                Imgproc.circle(rgbMat, Image2Points.get(3), 15, new Scalar(255, 0, 0, 255), -1);
-                Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(3)), new Point(Image2Points.get(3).x + 20, Image2Points.get(3).y),
+                Imgproc.circle(rgbMat, Image2Points.get(3), 15, new Scalar(0, 0, 255, 255), -1);
+                //Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(3)), new Point(Image2Points.get(3).x + 20, Image2Points.get(3).y),
+                Imgproc.putText(rgbMat, String.valueOf(2), new Point(Image2Points.get(3).x + 20, Image2Points.get(3).y),
                         Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
 
                 Utils.matToBitmap(rgbMat, resultBitmap);
@@ -390,17 +399,26 @@ public class TriangleActivity extends AppCompatActivity {
                             Log.w(TAG, "remove:"+i);
                             removeCount++;
                         }*/
+
                         // 有tolerance的比較
                         if (abs(Image2Points.get(i).x - Image1Points.get(j).x) < POINT_TOLERANCE &&
                                 abs(Image2Points.get(i).y - Image1Points.get(j).y) < POINT_TOLERANCE){
+
+                            Log.w(TAG, "remove:"+i+"="+Image2Points.get(i));
+                            RemovedPoints.add(Image2Points.get(i)); // 儲存移除的點座標
+
                             Image2Points.remove(Image2Points.get(i));
-                            Log.w(TAG, "remove:"+i);
                             removeCount++;
                         }
                     }
                 }
                 Log.w(TAG, "removeCount:"+removeCount);
                 Log.w(TAG, "after remove duplicate points:"+Image2Points);
+
+                // 移除的點
+                for (int i=0; i<removeCount; i++) {
+                    Imgproc.circle(rgbMat, RemovedPoints.get(i), 15, new Scalar(0, 255, 0, 255), -1);
+                }
 
                 if (removeCount >= 2) { // 正確重合的話，會有兩個點以上被移除
                     // 圖一的最高點
@@ -420,6 +438,7 @@ public class TriangleActivity extends AppCompatActivity {
                         else  // 其他點
                             Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(255, 0, 0, 255), -1);
                     }
+
                     Utils.matToBitmap(rgbMat, resultBitmap);
                     resultImage.setImageBitmap(resultBitmap);
                     resultImage.setVisibility(View.VISIBLE);
@@ -429,6 +448,13 @@ public class TriangleActivity extends AppCompatActivity {
                     resultTxt.append("\n");
                     resultTxt.append(Image2Points.get(0));
                     finalDetail.setText(resultTxt);
+
+                    resultTxt1.append("重覆的點座標");
+                    for (int i=0; i<removeCount; i++){
+                        resultTxt1.append("\n");
+                        resultTxt1.append(RemovedPoints.get(i));
+                    }
+                    removeDetail.setText(resultTxt1);
 
                 }else {
                     showToastIns(getApplicationContext(), "目標影像錯誤", Toast.LENGTH_SHORT);
@@ -442,6 +468,7 @@ public class TriangleActivity extends AppCompatActivity {
                 proImage1.setVisibility(View.GONE);
                 proImage2.setVisibility(View.GONE);
                 finalDetail.setText("");
+                removeDetail.setText("");
                 break;
 
             case TARGET_IMAGE_ERROR:
@@ -450,6 +477,7 @@ public class TriangleActivity extends AppCompatActivity {
                 proImage1.setVisibility(View.GONE);
                 proImage2.setVisibility(View.GONE);
                 finalDetail.setText("");
+                removeDetail.setText("");
                 break;
 
             default:
@@ -765,7 +793,7 @@ public class TriangleActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        Log.w(TAG, "onCreateOptionsMenu...");
+        //Log.w(TAG, "onCreateOptionsMenu...");
         getMenuInflater().inflate(R.menu.menu_triangle, menu);
         return true;
     }
@@ -812,7 +840,7 @@ public class TriangleActivity extends AppCompatActivity {
     {
         try{
             String sd = Environment.getExternalStorageDirectory().toString();
-            Log.w(TAG, "save path:"+sd + "/" + file);
+            //Log.w(TAG, "save path:"+sd + "/" + file);
             Bitmap bitmap = BitmapFactory.decodeFile(sd + "/" + file);
             return bitmap;
         }catch (Exception e){
