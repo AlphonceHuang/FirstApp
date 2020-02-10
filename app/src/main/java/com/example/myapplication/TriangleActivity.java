@@ -58,19 +58,28 @@ public class TriangleActivity extends AppCompatActivity {
     private TextView file1text, file2text, file1Detail, file2Detail;
     private TextView finalDetail, removeDetail;
 
-    SharedPreferences mem_Image1, mem_Image2;
+    SharedPreferences mem_Image1, mem_Image2, mem_showProcess;
+    private boolean bShowProcess;
 
     private List<Point> Image1Points = new ArrayList<>();
     private List<Point> Image2Points = new ArrayList<>();
     private List<List<Point>> pointBB = new ArrayList<>();
-
     private List<Point> RemovedPoints = new ArrayList<>();
 
-    private final int POINT_TOLERANCE=5;
     private int Image_threshold=200;
     private TextView Num_threshold;
     SharedPreferences mem_Image_threshold;
     private SeekBar threshold_Bar;
+
+    private int point_tolerance=5;
+    private TextView Num_pointTolerance;
+    SharedPreferences mem_Point_Tolerance;
+    private SeekBar PointTolerance_SeekBar;
+
+    private int approx_tolerance=50;
+    private TextView Num_approxTolerance;
+    SharedPreferences mem_approx_Tolerance;
+    private SeekBar approxTolerance_SeekBar;
 
     private int imagecase=0;
     //private final int ONE_TRIANGLE=1;
@@ -124,21 +133,49 @@ public class TriangleActivity extends AppCompatActivity {
 
         mem_Image1 = getSharedPreferences("IMAGE_SAVE1", MODE_PRIVATE);
         mem_Image2 = getSharedPreferences("IMAGE_SAVE2", MODE_PRIVATE);
+        mem_showProcess = getSharedPreferences("SHOW_PROCESS", MODE_PRIVATE);
 
         mem_Image_threshold = getSharedPreferences("IMAGE_THREHOLD", MODE_PRIVATE);
-
         threshold_Bar = findViewById(R.id.Threhold_seek);
         Num_threshold=findViewById(R.id.Threhold_Num);
+
+        mem_Point_Tolerance = getSharedPreferences("POINT_TOLERANCE", MODE_PRIVATE);
+        PointTolerance_SeekBar = findViewById(R.id.pointTolerance_seek);
+        Num_pointTolerance=findViewById(R.id.pointToleranceNum);
+
+        mem_approx_Tolerance = getSharedPreferences("APPROX_TOLERANCE", MODE_PRIVATE);
+        approxTolerance_SeekBar = findViewById(R.id.Tolerance_seek);
+        Num_approxTolerance=findViewById(R.id.ToleranceNum);
+
     }
 
     private SeekBar.OnSeekBarChangeListener thresholdOnSeekBarChange = new SeekBar.OnSeekBarChangeListener() {
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-            Log.w(TAG, "threshold調至:"+i);
-            Image_threshold=i;
-            setImageThrehold(Image_threshold);
-            Num_threshold.setText(String.valueOf(Image_threshold));
+            switch(seekBar.getId()){
+                case R.id.Threhold_seek:
+                    Log.w(TAG, "threshold調至:"+i);
+                    Image_threshold=i;
+                    setImageThrehold(Image_threshold);
+                    Num_threshold.setText(String.valueOf(Image_threshold));
+                    break;
+
+                case R.id.pointTolerance_seek:
+                    Log.w(TAG, "point tolerance調至:"+i);
+                    point_tolerance=i;
+                    setPointTolerance(point_tolerance);
+                    Num_pointTolerance.setText(String.valueOf(point_tolerance));
+                    break;
+
+                case R.id.Tolerance_seek:
+                    approx_tolerance=i;
+                    setApproxTolerance(approx_tolerance);
+                    String aproxString=(approx_tolerance/10)+"."+(approx_tolerance%10);
+                    Num_approxTolerance.setText(aproxString);
+                    Log.w(TAG, "approx tolerance調至:"+aproxString);
+                    break;
+            }
         }
 
         @Override
@@ -159,6 +196,30 @@ public class TriangleActivity extends AppCompatActivity {
         SharedPreferences.Editor editor;
         editor = mem_Image_threshold.edit(); //獲取編輯器
         editor.putInt("IMAGE_THREHOLD", data);
+        editor.apply();
+        editor.commit();    //提交
+    }
+
+    private int getPointTolerance(){
+        return mem_Point_Tolerance.getInt("POINT_TOLERANCE", 5);
+    }
+
+    private void setPointTolerance(int data){
+        SharedPreferences.Editor editor;
+        editor = mem_Point_Tolerance.edit(); //獲取編輯器
+        editor.putInt("POINT_TOLERANCE", data);
+        editor.apply();
+        editor.commit();    //提交
+    }
+
+    private int getApproxTolerance(){
+        return mem_approx_Tolerance.getInt("APPROX_TOLERANCE", 50);
+    }
+
+    private void setApproxTolerance(int data){
+        SharedPreferences.Editor editor;
+        editor = mem_approx_Tolerance.edit(); //獲取編輯器
+        editor.putInt("APPROX_TOLERANCE", data);
         editor.apply();
         editor.commit();    //提交
     }
@@ -187,6 +248,19 @@ public class TriangleActivity extends AppCompatActivity {
         }
     }
 
+    private Boolean getShowProcess(){
+        return mem_showProcess.getBoolean("SHOW_PROCESS", true);
+    }
+    private void setShowProcess(Boolean b){
+        bShowProcess=b;
+        SharedPreferences.Editor editor;
+        editor = mem_showProcess.edit(); //獲取編輯器
+        editor.putBoolean("SHOW_PROCESS", b);
+        editor.apply();
+        editor.commit();    //提交
+    }
+
+
     @Override
     protected void onResume() {
         Log.w(TAG, "TriangleActivity: onResume");
@@ -202,6 +276,8 @@ public class TriangleActivity extends AppCompatActivity {
         }
 
         getFilePath();
+
+        bShowProcess=getShowProcess();
 
         //Log.w(TAG, "1:"+getImagePath(1));
         //Log.w(TAG, "2:"+getImagePath(2));
@@ -231,6 +307,19 @@ public class TriangleActivity extends AppCompatActivity {
         threshold_Bar.setProgress(Image_threshold);
         threshold_Bar.setOnSeekBarChangeListener(thresholdOnSeekBarChange);
         Num_threshold.setText(String.valueOf(Image_threshold));
+
+        point_tolerance = getPointTolerance();
+        PointTolerance_SeekBar.setMax(20);
+        PointTolerance_SeekBar.setProgress(point_tolerance);
+        PointTolerance_SeekBar.setOnSeekBarChangeListener(thresholdOnSeekBarChange);
+        Num_pointTolerance.setText(String.valueOf(point_tolerance));
+
+        approx_tolerance = getApproxTolerance();
+        approxTolerance_SeekBar.setMax(200);
+        approxTolerance_SeekBar.setProgress(approx_tolerance);
+        approxTolerance_SeekBar.setOnSeekBarChangeListener(thresholdOnSeekBarChange);
+        String aproxString=(approx_tolerance/10)+"."+(approx_tolerance%10);
+        Num_approxTolerance.setText(aproxString);
     }
 
     @Override
@@ -311,8 +400,7 @@ public class TriangleActivity extends AppCompatActivity {
                         imagecase=SOURCE_IMAGE_ERROR;
                     }
                     DrawFinalBitmap();
-
-                    DrawProcessBitmap();
+                    DrawProcessBitmap(bShowProcess);
                     break;
             }
         }
@@ -401,12 +489,11 @@ public class TriangleActivity extends AppCompatActivity {
                         }*/
 
                         // 有tolerance的比較
-                        if (abs(Image2Points.get(i).x - Image1Points.get(j).x) < POINT_TOLERANCE &&
-                                abs(Image2Points.get(i).y - Image1Points.get(j).y) < POINT_TOLERANCE){
-
+                        if (abs(Image2Points.get(i).x - Image1Points.get(j).x) < point_tolerance &&
+                                abs(Image2Points.get(i).y - Image1Points.get(j).y) < point_tolerance)
+                        {
                             Log.w(TAG, "remove:"+i+"="+Image2Points.get(i));
                             RemovedPoints.add(Image2Points.get(i)); // 儲存移除的點座標
-
                             Image2Points.remove(Image2Points.get(i));
                             removeCount++;
                         }
@@ -458,6 +545,11 @@ public class TriangleActivity extends AppCompatActivity {
 
                 }else {
                     showToastIns(getApplicationContext(), "目標影像錯誤", Toast.LENGTH_SHORT);
+                    resultImage.setVisibility(View.GONE);
+                    proImage1.setVisibility(View.GONE);
+                    proImage2.setVisibility(View.GONE);
+                    finalDetail.setText("");
+                    removeDetail.setText("");
                 }
                 break;
 
@@ -563,18 +655,16 @@ public class TriangleActivity extends AppCompatActivity {
             MatOfPoint2f approxCurve_temp=new MatOfPoint2f();
 
             // 對圖像輪廓點進行多邊形擬合
-            //int contourSize= (int) temp_contour.total();
-
+            // int contourSize= (int) temp_contour.total();
             // epsilon = 原始曲线与近似曲线之间的最大距离
             // closed = 曲线是闭合的
             //Imgproc.approxPolyDP(new_mat,approxCurve_temp,contourSize*0.03,true);
-            Imgproc.approxPolyDP(new_mat,approxCurve_temp,POINT_TOLERANCE,true);
+            Imgproc.approxPolyDP(new_mat,approxCurve_temp,approx_tolerance/10,true);
             Log.w(TAG, "邊:"+approxCurve_temp.total());
 
             // 在物件中間畫出數字index
             DrawNumber(rgbMat, temp_contour, final_num, new Scalar(255,0,255, 255));
             final_num++;
-
             //Log.w(TAG, "final_num="+final_num);
 
             if (approxCurve_temp.total()>=3 && approxCurve_temp.total()<=7) {  // 找到三邊形或七邊形
@@ -583,7 +673,6 @@ public class TriangleActivity extends AppCompatActivity {
 
                 // 畫外框
                 //Imgproc.drawContours(rgbMat, contours, idx, new Scalar(0, 255, 0, 255), 2);
-
                 pointBB.add(DrawPoint(pointnum, rgbMat, approxCurve_temp));
 
                 if (approxCurve_temp.total()==3)
@@ -643,8 +732,8 @@ public class TriangleActivity extends AppCompatActivity {
                 //if (Image2Points.equals(Image1Points))    // 完全相同
                 // 有tolerance
                 for (int i=0; i<Image2Points.size(); i++) {
-                    if (abs(Image2Points.get(i).x - Image1Points.get(i).x) < POINT_TOLERANCE &&
-                            abs(Image2Points.get(i).y - Image1Points.get(i).y) < POINT_TOLERANCE) {
+                    if (abs(Image2Points.get(i).x - Image1Points.get(i).x) < point_tolerance &&
+                            abs(Image2Points.get(i).y - Image1Points.get(i).y) < point_tolerance) {
                         imagecase = TWO_TRIANGLE_MATCH;
                     }
                     else
@@ -735,7 +824,6 @@ public class TriangleActivity extends AppCompatActivity {
         proImage2.setImageBitmap(progressBitMap2);
         proImage2.setVisibility(View.VISIBLE);
 */
-
         return imagecase;
     }
 
@@ -799,12 +887,28 @@ public class TriangleActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        //Log.w(TAG, "onPrepareOptionsMenu...");
+        // 設定option menu裡面的check item
+        menu.findItem(R.id.ShowProcessItem).setChecked(getShowProcess());
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.PriviewItem) {
             Intent OptionIntent = new Intent(TriangleActivity.this,Tutorial1Activity.class);
             startActivity(OptionIntent);
+        }else if (id==R.id.ShowProcessItem){
+            if (item.isChecked()) {
+                item.setChecked(false);
+                setShowProcess(false);
+            }else{
+                item.setChecked(true);
+                setShowProcess(true);
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -829,11 +933,17 @@ public class TriangleActivity extends AppCompatActivity {
         bos.close();
     }
 
-    void DrawProcessBitmap(){
-        proImage1.setImageBitmap(getBitmapFromSDCard("DCIM/progress1.jpg"));
-        proImage1.setVisibility(View.VISIBLE);
-        proImage2.setImageBitmap(getBitmapFromSDCard("DCIM/progress2.jpg"));
-        proImage2.setVisibility(View.VISIBLE);
+    void DrawProcessBitmap(Boolean bDraw){
+        //Log.w(TAG, "bDraw="+bDraw);
+        if (bDraw) {
+            proImage1.setImageBitmap(getBitmapFromSDCard("DCIM/progress1.jpg"));
+            proImage1.setVisibility(View.VISIBLE);
+            proImage2.setImageBitmap(getBitmapFromSDCard("DCIM/progress2.jpg"));
+            proImage2.setVisibility(View.VISIBLE);
+        }else{
+            proImage1.setVisibility(View.GONE);
+            proImage2.setVisibility(View.GONE);
+        }
     }
 
     private static Bitmap getBitmapFromSDCard(String file)
