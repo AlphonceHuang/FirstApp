@@ -5,10 +5,15 @@ import android.app.Application;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+import org.opencv.android.Utils;
+import org.opencv.core.Mat;
+
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileOutputStream;
@@ -123,4 +128,36 @@ class StorageUtil extends Application {
         return null;
     }
 
+    public static void saveMattoBitmapFile(Mat mat, String fileName, String path) throws IOException {
+
+        Bitmap output = Bitmap.createBitmap(mat.width(), mat.height(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(mat, output);
+
+        String subForder = path;
+        File foder = new File(subForder);
+        if (!foder.exists()) {
+            foder.mkdirs();
+        }
+        File myCaptureFile = new File(subForder, fileName);
+        if (!myCaptureFile.exists()) {
+            myCaptureFile.createNewFile();
+        }
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
+        output.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        bos.flush();
+        bos.close();
+    }
+
+    public static Bitmap getBitmapFromSDCard(String file)
+    {
+        try{
+            String sd = Environment.getExternalStorageDirectory().toString();
+            //Log.w(TAG, "save path:"+sd + "/" + file);
+            Bitmap bitmap = BitmapFactory.decodeFile(sd + "/" + file);
+            return bitmap;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

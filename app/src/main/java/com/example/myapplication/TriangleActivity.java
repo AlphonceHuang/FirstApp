@@ -44,6 +44,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.example.myapplication.StorageUtil.getBitmapFromSDCard;
+import static com.example.myapplication.StorageUtil.saveMattoBitmapFile;
 import static com.example.myapplication.Util.FROM_TRIANGLE_ACTIVITY;
 import static com.example.myapplication.Util.getFromWhichActivity;
 import static com.example.myapplication.Util.setFromWhichActivity;
@@ -621,6 +623,7 @@ public class TriangleActivity extends AppCompatActivity {
         Utils.bitmapToMat(resultBitmap, rgbMat);
 
         Mat grayMat = new Mat(resultBitmap.getHeight(), resultBitmap.getWidth(),CvType.CV_8U, new Scalar(1));
+
         Imgproc.cvtColor(rgbMat, grayMat, Imgproc.COLOR_RGB2GRAY, 2);
         Imgproc.threshold(grayMat, grayMat, Image_threshold, 255, Imgproc.THRESH_BINARY);// 大於thresh的都設定為max，小於的設定0
 
@@ -912,7 +915,7 @@ public class TriangleActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+/*
     private void saveMattoBitmapFile(Mat mat, String fileName, String path) throws IOException {
 
         Bitmap output = Bitmap.createBitmap(mat.width(), mat.height(), Bitmap.Config.ARGB_8888);
@@ -933,6 +936,8 @@ public class TriangleActivity extends AppCompatActivity {
         bos.close();
     }
 
+ */
+
     void DrawProcessBitmap(Boolean bDraw){
         //Log.w(TAG, "bDraw="+bDraw);
         if (bDraw) {
@@ -945,7 +950,7 @@ public class TriangleActivity extends AppCompatActivity {
             proImage2.setVisibility(View.GONE);
         }
     }
-
+/*
     private static Bitmap getBitmapFromSDCard(String file)
     {
         try{
@@ -958,4 +963,6 @@ public class TriangleActivity extends AppCompatActivity {
             return null;
         }
     }
+
+ */
 }

@@ -222,6 +222,8 @@
     <string name="threshold">Threshold</string>
     <string name="approx_tolerance">輪廓Tolerance</string>
     <string name="point_tolerance">座標Tolerance</string>
+    <string name="take_whole">拍攝整張</string>
+    <string name="take_center">拍攝中間</string>
 
     <string name="DialogFragment">DialogFragment範例</string>
     <string name="inputHint">請輸入您的帳號及密碼</string>
