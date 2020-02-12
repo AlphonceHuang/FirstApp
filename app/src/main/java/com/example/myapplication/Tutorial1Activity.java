@@ -80,7 +80,7 @@ public class Tutorial1Activity extends Activity implements CvCameraViewListener2
 
         mem_Image_threshold = getSharedPreferences("IMAGE_THREHOLD", MODE_PRIVATE);
         threshold=mem_Image_threshold.getInt("IMAGE_THREHOLD", 200);
-        Log.w(TAG, "threshold="+threshold);
+        //Log.w(TAG, "threshold="+threshold);
 
         SeekBar threshold_Bar = findViewById(R.id.seekBar2);
         threshold_Bar.setMax(255);
@@ -204,19 +204,14 @@ public class Tutorial1Activity extends Activity implements CvCameraViewListener2
         Point a3 = new Point(left + width, top + height);
         Imgproc.rectangle(mRgba, a0, a3, new Scalar(255, 0, 0), 4);
 
-
         Mat gray = inputFrame.gray();
         Mat grayInnerWindow = gray.submat(top, top + height, left, left + width);
         rgbaInnerWindow = mRgba.submat(top, top + height, left, left + width);
-        //Imgproc.Sobel(grayInnerWindow, mIntermediateMat, CvType.CV_8U, 1, 1);
-        //Core.convertScaleAbs(mIntermediateMat, mIntermediateMat, 10, 0);
         Imgproc.cvtColor(grayInnerWindow, mIntermediateMat, Imgproc.COLOR_GRAY2BGRA, 4);
         Imgproc.threshold(mIntermediateMat, rgbaInnerWindow, threshold, 255, Imgproc.THRESH_BINARY);
         mPartical = rgbaInnerWindow.clone();
         grayInnerWindow.release();
         rgbaInnerWindow.release();
-
-
         return mRgba;
 
 

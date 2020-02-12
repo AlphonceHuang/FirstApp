@@ -85,11 +85,12 @@ public class TriangleActivity extends AppCompatActivity {
 
     private int imagecase=0;
     //private final int ONE_TRIANGLE=1;
-    private final int TWO_TRIANGLE=2;
-    private final int TWO_TRIANGLE_OVERLAP=3;
-    private final int TWO_TRIANGLE_MATCH=4;
+    //private final int TWO_TRIANGLE=2;
+    //private final int TWO_TRIANGLE_OVERLAP=3;
+    //private final int TWO_TRIANGLE_MATCH=4;
     private final int SOURCE_IMAGE_ERROR=5;
-    private final int TARGET_IMAGE_ERROR=6;
+    //private final int TARGET_IMAGE_ERROR=6;
+    private final int PROCESS_IMAGE=7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -439,6 +440,7 @@ public class TriangleActivity extends AppCompatActivity {
         RemovedPoints.clear();
 
         switch(imagecase){
+            /*
             case TWO_TRIANGLE_MATCH:    // 完全重合
                 Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(0, 0, 255, 255), -1);
                 Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(0)), new Point(Image2Points.get(0).x + 20, Image2Points.get(0).y),
@@ -451,18 +453,21 @@ public class TriangleActivity extends AppCompatActivity {
                 resultTxt.append(Image2Points.get(0));
                 finalDetail.setText(resultTxt);
                 break;
+             */
 
             //case ONE_TRIANGLE:
             //    Log.w(TAG, "圖二中的三角形不是正確的");
             //    break;
-
+/*
             case TWO_TRIANGLE: // 三角形分開
                 Imgproc.circle(rgbMat, Image2Points.get(0), 15, new Scalar(0, 0, 255, 255), -1);
-                //Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(0)), new Point(Image2Points.get(0).x + 20, Image2Points.get(0).y),
+                //Imgproc.putText(rgbMat, "1:"+String.valueOf(Image2Points.get(0)), new Point(5,40),
+                        //Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
                 Imgproc.putText(rgbMat, String.valueOf(1), new Point(Image2Points.get(0).x + 20, Image2Points.get(0).y),
                         Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
                 Imgproc.circle(rgbMat, Image2Points.get(3), 15, new Scalar(0, 0, 255, 255), -1);
-                //Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(3)), new Point(Image2Points.get(3).x + 20, Image2Points.get(3).y),
+                //Imgproc.putText(rgbMat, "2:"+String.valueOf(Image2Points.get(3)), new Point(5,80),
+                        //Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
                 Imgproc.putText(rgbMat, String.valueOf(2), new Point(Image2Points.get(3).x + 20, Image2Points.get(3).y),
                         Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(255, 0, 255, 255), 2);
 
@@ -476,10 +481,15 @@ public class TriangleActivity extends AppCompatActivity {
                 resultTxt.append(Image2Points.get(3));
                 finalDetail.setText(resultTxt);
                 break;
+ */
 
-            case TWO_TRIANGLE_OVERLAP: // 三角形重疊
+            case PROCESS_IMAGE:
+            //case TWO_TRIANGLE_OVERLAP: // 三角形重疊
                 int removeCount=0;
                 Log.w(TAG, "三角形重疊");
+                int beforeRemovePointNum = Image2Points.size();
+                Boolean bDrawText=false;
+
                 for (int i=0; i<Image2Points.size(); i++){
                     for (int j=0; j<Image1Points.size(); j++){
                         // 完全相同的比較
@@ -510,22 +520,31 @@ public class TriangleActivity extends AppCompatActivity {
                 }
 
                 if (removeCount >= 2) { // 正確重合的話，會有兩個點以上被移除
+
                     // 圖一的最高點
                     Imgproc.circle(rgbMat, Image1Points.get(0), 15, new Scalar(0, 0, 255, 255), -1);
                     // 圖一的最高點座標
-                    //Imgproc.putText(rgbMat, String.valueOf(Image1Points.get(0)), new Point(Image1Points.get(0).x + 20, Image1Points.get(0).y),
-                    Imgproc.putText(rgbMat, String.valueOf(1), new Point(Image1Points.get(0).x + 20, Image1Points.get(0).y),
+                    //Imgproc.putText(rgbMat, "1:"+(Image1Points.get(0)), new Point(5,40),
+                            //Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
+                    Imgproc.putText(rgbMat, "1", new Point(Image1Points.get(0).x + 20, Image1Points.get(0).y),
                             Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
-                    for (int i=0; i<Image2Points.size(); i++){
-                        // 剩下點裡的最高點
-                        if (i==0) {
-                            Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(0, 0, 255, 255), -1);
-                            //Imgproc.putText(rgbMat, String.valueOf(Image2Points.get(i)), new Point(Image2Points.get(i).x + 20, Image2Points.get(i).y),
-                            Imgproc.putText(rgbMat, String.valueOf(2), new Point(Image2Points.get(i).x + 20, Image2Points.get(i).y),
-                                    Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
+
+                    if (Image2Points.size()==0) {    // 圖二的三個點都被移除了
+                        Log.w(TAG, "完全重合");
+                    }else {
+
+                        for (int i = 0; i < Image2Points.size(); i++) {
+                            // 剩下點裡的最高點
+                            if (i == 0) {
+                                Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(0, 0, 255, 255), -1);
+                                //Imgproc.putText(rgbMat, "2:"+(Image2Points.get(i)), new Point(5,80),
+                                //Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
+                                Imgproc.putText(rgbMat, "2", new Point(Image2Points.get(i).x + 20, Image2Points.get(i).y),
+                                        Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
+                            } else  // 其他點
+                                Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(255, 0, 0, 255), -1);
                         }
-                        else  // 其他點
-                            Imgproc.circle(rgbMat, Image2Points.get(i), 15, new Scalar(255, 0, 0, 255), -1);
+                        bDrawText=true;
                     }
 
                     Utils.matToBitmap(rgbMat, resultBitmap);
@@ -535,7 +554,8 @@ public class TriangleActivity extends AppCompatActivity {
                     resultTxt.append("兩個圖形最高點座標\n");
                     resultTxt.append(Image1Points.get(0));
                     resultTxt.append("\n");
-                    resultTxt.append(Image2Points.get(0));
+                    if (bDrawText)
+                        resultTxt.append(Image2Points.get(0));
                     finalDetail.setText(resultTxt);
 
                     resultTxt1.append("重覆的點座標");
@@ -564,7 +584,7 @@ public class TriangleActivity extends AppCompatActivity {
                 finalDetail.setText("");
                 removeDetail.setText("");
                 break;
-
+/*
             case TARGET_IMAGE_ERROR:
                 showToastIns(getApplicationContext(), "目標影像錯誤", Toast.LENGTH_SHORT);
                 resultImage.setVisibility(View.GONE);
@@ -573,6 +593,7 @@ public class TriangleActivity extends AppCompatActivity {
                 finalDetail.setText("");
                 removeDetail.setText("");
                 break;
+ */
 
             default:
                 break;
@@ -616,7 +637,7 @@ public class TriangleActivity extends AppCompatActivity {
 
         int final_num=0;
         int total3=0;
-        int total7=0;
+        //int total7=0;
         StringBuffer sb = new StringBuffer();
 
         Mat rgbMat = new Mat();
@@ -665,12 +686,14 @@ public class TriangleActivity extends AppCompatActivity {
             Imgproc.approxPolyDP(new_mat,approxCurve_temp,approx_tolerance/10,true);
             Log.w(TAG, "邊:"+approxCurve_temp.total());
 
-            // 在物件中間畫出數字index
-            DrawNumber(rgbMat, temp_contour, final_num, new Scalar(255,0,255, 255));
-            final_num++;
             //Log.w(TAG, "final_num="+final_num);
 
-            if (approxCurve_temp.total()>=3 && approxCurve_temp.total()<=7) {  // 找到三邊形或七邊形
+            if (approxCurve_temp.total()>=3){// && approxCurve_temp.total()<=7) {  // 找到三邊形或七邊形
+
+                // 在物件中間畫出數字index
+                DrawNumber(rgbMat, temp_contour, final_num, new Scalar(255,0,255, 255));
+                //Log.w(TAG, "final_num="+final_num);
+                final_num++;
 
                 int pointnum = (int)approxCurve_temp.total();
 
@@ -685,29 +708,50 @@ public class TriangleActivity extends AppCompatActivity {
             }
         }
 
+        for (int i=0; i<pointBB.size(); i++){
+            Log.w(TAG, "pointBB="+i+"--"+pointBB.get(i));
+        }
+
         // 判斷圖一
         if (index==1){
-            if (total3==0) {
-                imagecase = SOURCE_IMAGE_ERROR;
-                sb.append("找不到三角形");
-            }else if (total3 !=1){
-                imagecase = SOURCE_IMAGE_ERROR;
-                sb.append("找到多個三角形");
-            }else{
-                if (pointBB.size()==1) {
-                    Image1Points = pointBB.get(0);
-                    sb.append("找到1個三角形");
-                    for (int j = 0; j < pointBB.get(0).size(); j++) {
-                        sb.append("\n");
-                        sb.append(pointBB.get(0).get(j));
-                    }
-                }else{
-                    imagecase = SOURCE_IMAGE_ERROR;
-                    sb.append("找不到正確圖形");
+            if (total3==1 && pointBB.size()==1){
+                Image1Points = pointBB.get(0);
+                sb.append("找到1個三角形");
+                for (int i = 0; i < pointBB.get(0).size(); i++) {
+                    sb.append("\n");
+                    sb.append(pointBB.get(0).get(i));
                 }
+            }else{
+                imagecase = SOURCE_IMAGE_ERROR;
+                sb.append("找不到正確圖形");
             }
+        }else if (index==2){
+            // 將圖二所有座標存入Image2Points
+            for (int i=0; i<pointBB.size(); i++){
+                Image2Points.addAll(pointBB.get(i));
+            }
+            sb.append("所有座標");
+
+            for (int i=0; i<pointBB.size(); i++){
+                for (int j=0; j<pointBB.get(i).size(); j++){
+                    sb.append("\n");
+                    sb.append(pointBB.get(i).get(j));
+                }
+                sb.append("\n");
+            }
+            /*
+            for (int j = 0; j < Image2Points.size(); j++) {
+                sb.append(Image2Points.get(j));
+                sb.append("\n");
+            }
+             */
+
+            imagecase = PROCESS_IMAGE;
+        }else{
+            sb.append("錯誤判斷");
         }
         // 判斷圖二
+        /*
         else if (index==2){
             // 一個七邊形
             if (total3==0 && total7==1){
@@ -751,7 +795,7 @@ public class TriangleActivity extends AppCompatActivity {
                 }
             }
             // 二個三角形
-            else if (total3==2 && total7==0){
+            else if ((total3>=2 && total7==0) || (total3==1 && total7>=1)){
 
                 // 將兩個三角形座標存入
                 for (int i=0; i<pointBB.size(); i++){
@@ -764,26 +808,48 @@ public class TriangleActivity extends AppCompatActivity {
                 for (int i =0; i<pointBB.size(); i++){
                     if (pointBB.get(i).equals(Image1Points)){
                         Log.w(TAG, "第"+i+"個三角形相同");
-                        imagecase = TWO_TRIANGLE;
+                        //imagecase = TWO_TRIANGLE;
+                        imagecase = TWO_TRIANGLE_OVERLAP;
                         bFindMatch=true;
                     }else{
                         if (!bFindMatch) {
-                            Log.w(TAG, "沒有一個符合");
-                            imagecase = TARGET_IMAGE_ERROR;
+                            Log.w(TAG, i+"沒有符合");
+                            //imagecase = TARGET_IMAGE_ERROR;
                         }
                     }
                 }
 
                 // 列出文字
-                sb.append("找到2個三角形");
-                for (int i=0; i<total3; i++) {
-                    sb.append("\n");
-                    for (int j = 0; j < pointBB.get(i).size(); j++) {
-                        sb.append(pointBB.get(i).get(j));
+                if (total3>=2 && total7==0) {
+                    sb.append("找到2個三角形");
+                    for (int i = 0; i < total3; i++) {
+                        sb.append("\n");
+                        for (int j = 0; j < pointBB.get(i).size(); j++) {
+                            sb.append(pointBB.get(i).get(j));
+                            sb.append("\n");
+                        }
+                    }
+                }else if (total3==1 && total7>=1){
+                    sb.append("找到1個三角形，1個多邊形\n");
+                    for (int j = 0; j < Image2Points.size(); j++) {
+                        sb.append(Image2Points.get(j));
                         sb.append("\n");
                     }
                 }
             }
+            //else if (total3==1 && total7==1){  // 一個三角，一個多邊
+            //    sb.append("所有點\n");
+            //    for (int i=0; i<pointBB.size(); i++){
+            //        Image2Points.addAll(pointBB.get(i));
+            //    }
+            //    for (int j = 0; j < Image2Points.size(); j++) {
+            //        sb.append(Image2Points.get(j));
+            //        sb.append("\n");
+            //    }
+            //    imagecase = TWO_TRIANGLE;
+            //}
+
+
             else{
                 imagecase = TARGET_IMAGE_ERROR;
                 sb.append("找不到正確圖形\n");
@@ -793,7 +859,7 @@ public class TriangleActivity extends AppCompatActivity {
                 sb.append(total7);
                 sb.append("個");
             }
-        }
+        }*/
         // 畫出頂點的座標
         for (int i=0; i<total3; i++) {
             Imgproc.putText(rgbMat, String.valueOf(pointBB.get(i).get(0)), new Point(pointBB.get(i).get(0).x + 20, pointBB.get(i).get(0).y),
@@ -852,6 +918,7 @@ public class TriangleActivity extends AppCompatActivity {
             temp_double = approxCurve.get(i, 0);
             threePoint.add(new Point(temp_double[0], temp_double[1]));
         }
+        Log.w(TAG, num+"個邊--各點座標為:"+threePoint);
 
         //if (draw){
             for (int i=0; i<num; i++){
