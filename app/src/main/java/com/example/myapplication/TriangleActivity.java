@@ -703,8 +703,8 @@ public class TriangleActivity extends AppCompatActivity {
 
                 if (approxCurve_temp.total()==3)
                     total3++;
-                else
-                    total7++;
+                //else
+                //    total7++;
             }
         }
 
