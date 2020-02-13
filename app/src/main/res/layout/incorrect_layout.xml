@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/input_incourrect"
+    android:id="@+id/pwdincorrectLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#00FFFFFF">
+    android:background="@drawable/background_translate"
+    android:padding="10dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/pwdincorrectLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_translate"
-        android:padding="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/errorimage"
@@ -45,6 +39,6 @@
             app:layout_constraintStart_toEndOf="@+id/errorimage"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -90,7 +90,7 @@ public class SplashActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT);
 
         // 位置
-        toast.setGravity(Gravity.BOTTOM, 0,20);
+        toast.setGravity(Gravity.CENTER, 0,0);
         toast.setView(layout);
         toast.show();
     }
