@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -137,11 +139,40 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity implements V
         radio.getPaint().setUnderlineText(true);    // underline text 2
 
         SeekBar seekBar = findViewById(R.id.seekBar);
-        seekBar.setMax(255);
-        //seekBar.setMin(0);
-        seekBar.setOnSeekBarChangeListener(seekBarOnSeekBarChange);
+        seekBar.setMax(255);    // 設定最大值
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                Log.w(TAG, "onProgressChanged:"+i);
+            }
 
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                Log.w(TAG, "onStartTrackingTouch");
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Log.w(TAG, "onStopTrackingTouch");
+            }
+        });
+
+        SwitchCompat newSwitch=findViewById(R.id.switch1);
+        newSwitch.setOnCheckedChangeListener(TestSW);
+        Switch oldSwitch=findViewById(R.id.switch2);
+        oldSwitch.setOnCheckedChangeListener(TestSW);
     }
+
+    private CompoundButton.OnCheckedChangeListener TestSW= new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            if (R.id.switch1==compoundButton.getId()) {
+                Log.w(TAG, "SwitchCompat:"+b);
+            }else if (R.id.switch2 == compoundButton.getId()){
+                Log.w(TAG, "Switch:"+b);
+            }
+        }
+    };
 
     @Override
     public void onClick(View view) {
@@ -251,21 +282,4 @@ public class CheckBoxRadioBiuttonActivity extends AppCompatActivity implements V
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-
-    private SeekBar.OnSeekBarChangeListener seekBarOnSeekBarChange = new SeekBar.OnSeekBarChangeListener() {
-
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-            Log.w(TAG, "調至:"+i);
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-        }
-    };
 }

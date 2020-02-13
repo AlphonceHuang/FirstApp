@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:buttonTint="#D32F2F"
+        android:buttonTint="#689F38"
         android:text="@string/City1"
         android:textColor="#D32F2F"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +135,7 @@
             android:id="@+id/radioButton1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#D32F2F"
+            android:buttonTint="#2F6BD3"
             android:text="@string/Food1"
             android:textColor="#D32F2F" />
 

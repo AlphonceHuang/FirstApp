@@ -160,20 +160,20 @@ public class TriangleActivity extends AppCompatActivity {
                 case R.id.Threhold_seek:
                     Log.w(TAG, "threshold調至:"+i);
                     Image_threshold=i;
-                    setImageThrehold(Image_threshold);
+                    //setImageThrehold(Image_threshold);
                     Num_threshold.setText(String.valueOf(Image_threshold));
                     break;
 
                 case R.id.pointTolerance_seek:
                     Log.w(TAG, "point tolerance調至:"+i);
                     point_tolerance=i;
-                    setPointTolerance(point_tolerance);
+                    //setPointTolerance(point_tolerance);
                     Num_pointTolerance.setText(String.valueOf(point_tolerance));
                     break;
 
                 case R.id.Tolerance_seek:
                     approx_tolerance=i;
-                    setApproxTolerance(approx_tolerance);
+                    //setApproxTolerance(approx_tolerance);
                     String aproxString=(approx_tolerance/10)+"."+(approx_tolerance%10);
                     Num_approxTolerance.setText(aproxString);
                     Log.w(TAG, "approx tolerance調至:"+aproxString);
@@ -188,6 +188,17 @@ public class TriangleActivity extends AppCompatActivity {
 
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
+            switch(seekBar.getId()){
+                case R.id.Threhold_seek:
+                    setImageThrehold(Image_threshold);
+                    break;
+                case R.id.pointTolerance_seek:
+                    setPointTolerance(point_tolerance);
+                    break;
+                case R.id.Tolerance_seek:
+                    setApproxTolerance(approx_tolerance);
+                    break;
+            }
         }
     };
 
@@ -487,8 +498,8 @@ public class TriangleActivity extends AppCompatActivity {
             //case TWO_TRIANGLE_OVERLAP: // 三角形重疊
                 int removeCount=0;
                 Log.w(TAG, "三角形重疊");
-                int beforeRemovePointNum = Image2Points.size();
-                Boolean bDrawText=false;
+                //int beforeRemovePointNum = Image2Points.size();
+                boolean bDrawText=false;
 
                 for (int i=0; i<Image2Points.size(); i++){
                     for (int j=0; j<Image1Points.size(); j++){
@@ -699,9 +710,10 @@ public class TriangleActivity extends AppCompatActivity {
 
                 // 畫外框
                 //Imgproc.drawContours(rgbMat, contours, idx, new Scalar(0, 255, 0, 255), 2);
+
                 pointBB.add(DrawPoint(pointnum, rgbMat, approxCurve_temp));
 
-                if (approxCurve_temp.total()==3)
+                if (pointnum==3)
                     total3++;
                 //else
                 //    total7++;
@@ -739,13 +751,6 @@ public class TriangleActivity extends AppCompatActivity {
                 }
                 sb.append("\n");
             }
-            /*
-            for (int j = 0; j < Image2Points.size(); j++) {
-                sb.append(Image2Points.get(j));
-                sb.append("\n");
-            }
-             */
-
             imagecase = PROCESS_IMAGE;
         }else{
             sb.append("錯誤判斷");
@@ -881,25 +886,14 @@ public class TriangleActivity extends AppCompatActivity {
 
         Log.w(TAG, "Image1Points:"+Image1Points);
         Log.w(TAG, "Image2Points:"+Image2Points);
-/*
-        // 畫出處理灰階後的圖
-        Bitmap progressBitMap1 = Bitmap.createBitmap(processMat1.width(),processMat1.height(),Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(processMat1, progressBitMap1);
-        proImage1.setImageBitmap(progressBitMap1);
-        proImage1.setVisibility(View.VISIBLE);
 
-        Bitmap progressBitMap2 = Bitmap.createBitmap(processMat2.width(),processMat2.height(),Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(processMat2, progressBitMap2);
-        proImage2.setImageBitmap(progressBitMap2);
-        proImage2.setVisibility(View.VISIBLE);
-*/
         return imagecase;
     }
 
     // 在找到輪廓的中間畫面index數字
     private void DrawNumber(Mat mat, MatOfPoint mp, int index, Scalar color){
         int fontface = Core.FONT_HERSHEY_SIMPLEX;
-        double scale = 2;
+        double scale = 1;
         int thickness = 3;
         int[] baseline = new int[1];
         String label=Integer.toString(index);
