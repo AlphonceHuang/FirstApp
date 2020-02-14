@@ -113,7 +113,8 @@ public class MainActivity extends AppCompatActivity{
 
     private Switch sw_AutoScan;
 
-    private ImageView MyImageView ,MyImageView1, MyImageView2;
+    private ImageView MyImageView;
+    private ImageView MyImageView1;
     //private double BMI, I_Height, I_Weight;
 
     private static final int CUSTOM_DIALOG_DELAY_TIME = 10000;  // 10s
@@ -377,10 +378,10 @@ public class MainActivity extends AppCompatActivity{
 
         MyImageView =  findViewById(R.id.imageView);
         MyImageView1 =  findViewById(R.id.imageView3);
-        MyImageView2 = findViewById(R.id.imageView2);
+        ImageView myImageView2 = findViewById(R.id.imageView2);
         MyImageView.setOnTouchListener(mOnTouchListener);
         MyImageView1.setOnTouchListener(mOnTouchListener);
-        MyImageView2.setOnTouchListener(mOnTouchListener);
+        myImageView2.setOnTouchListener(mOnTouchListener);
 
         //private EditText num_height;
         //private EditText num_weight;
@@ -723,6 +724,7 @@ public class MainActivity extends AppCompatActivity{
     // Button event
     //=======================================================================
     private View.OnClickListener calcBMI = new View.OnClickListener() {
+        @SuppressLint("ApplySharedPref")
         @Override
         public void onClick(View v) {
 
