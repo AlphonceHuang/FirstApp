@@ -541,7 +541,7 @@ public class TriangleActivity extends AppCompatActivity {
 
                 // 移除的點
                 for (int i=0; i<removeCount; i++) {
-                    Imgproc.circle(rgbMat, RemovedPoints.get(i), 15, new Scalar(0, 255, 0, 255), -1);
+                    Imgproc.circle(rgbMat, RemovedPoints.get(i), 10, new Scalar(0, 255, 0, 255), -1);
                 }
 /*
                 // 尋找重要點被移除條件
@@ -735,13 +735,11 @@ public class TriangleActivity extends AppCompatActivity {
         Collections.sort(pp, new Comparator<pointCompare>(){
             public int compare( pointCompare l1, pointCompare l2 )
             {
-                if (l2.pointY < l1.pointY)
-                    return 1;
-                else if (l2.pointY > l1.pointY)
-                    return -1;
-                else{   // y 相同
+                int data = Double.compare(l1.pointY, l2.pointY);
+                if (data==0)
                     return Double.compare(l1.pointX, l2.pointX);
-                }
+                else
+                    return data;
             }
         });
         afterSort.clear();
