@@ -342,7 +342,7 @@ public class TriangleActivity extends AppCompatActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             // 如果是由FileManagerActivity回來這，按back又會至FileManagerActivity,
             // 為避免這個情況，強制回至MainActivity，並且設定FLAG_ACTIVITY_CLEAR_TOP
-            Log.w(TAG, "press back");
+            //Log.w(TAG, "press back");
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -403,10 +403,13 @@ public class TriangleActivity extends AppCompatActivity {
                     pointBB.clear();
                     imagecase=0;
 
+                    // 開始取第一張圖的端點，如符合條件將點儲存在 Image1Points
                     int result = getImagePoints(1, BitmapFactory.decodeFile(getImagePath(1)));
 
                     if (result != SOURCE_IMAGE_ERROR) {
                         pointBB.clear();
+
+                        // 開始取第二張圖的端點，將所有點儲存在 Image2Points
                         getImagePoints(2, BitmapFactory.decodeFile(getImagePath(2)));
 
                         //Log.w(TAG, "2 result="+result);
@@ -508,6 +511,7 @@ public class TriangleActivity extends AppCompatActivity {
                 Log.w(TAG, "image1 size:"+Image1Points.size());
                 Log.w(TAG, "image2 size:"+Image2Points.size());
 
+                // 比較兩張圖的點，移除重覆的，並將重覆的儲存至 RemovedPoints
                 for (int i=0; i<Image2Points.size(); i++){
                     for (int j=0; j<Image1Points.size(); j++){
                         // 完全相同的比較
@@ -531,7 +535,7 @@ public class TriangleActivity extends AppCompatActivity {
                     }
                 }
 
-                // 將重覆的點移除
+                // 將圖二重覆的點移除
                 for (int i=0; i<RemovedPoints.size(); i++) {
                     Image2Points.remove(RemovedPoints.get(i));
                 }
@@ -573,12 +577,17 @@ public class TriangleActivity extends AppCompatActivity {
                     }
                 }
  */
-
-                if (removeCount >= 3) { // 正確重合的話，會有3個點以上被移除
-                    int img1low = Image1Points.size()-1;
+                // 第二張圖片正確的話，會有2個點以上被移除
+                // 1. 重合的話，會有4個點被移除
+                // 2. 兩張圖分開的話，會有4個點被移除
+                // 3. 圖二遮住圖一1個點的話，會有3個點被移除
+                // 4. 圖二遮住圖一2個點的話，會有2個點被移除
+                // 5. 圖一跟圖二點跟點很接近的話，如果tolerance設定太大，會造成兩個點判斷為同一個點，易造成錯誤
+                if (removeCount >= 2) {
+                    int img1low = Image1Points.size()-1;    // Image1Points是已排序過的, index=0為最上面的點，最低的點排在最後面
                     int img2low = Image2Points.size()-1;
 
-                    // 圖一的最高點
+                    // 由Image1Points取出圖一的最高點
                     Imgproc.circle(rgbMat, Image1Points.get(0), 5, new Scalar(0, 0, 255, 255), -1);
                     Imgproc.putText(rgbMat, "1H", new Point(Image1Points.get(0).x + 20, Image1Points.get(0).y),
                             Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
@@ -588,15 +597,20 @@ public class TriangleActivity extends AppCompatActivity {
                     Imgproc.putText(rgbMat, "1L", new Point(Image1Points.get(img1low).x + 20, Image1Points.get(img1low).y),
                             Core.FONT_HERSHEY_SIMPLEX, 1, new Scalar(0, 0, 255, 255), 2);
 
-                    if (Image2Points.size()==0) {    // 圖二的4個點都被移除了
+                    // 扣掉移除的點之後，如果沒有點了，代表兩張圖重合了
+                    if (Image2Points.size()==0) {
                         Log.w(TAG, "完全重合");
+                        showToastIns(getApplicationContext(), "兩張圖完全重合", Toast.LENGTH_SHORT);
                     }else {
 
                         // 尋找重要點被移除條件
                         double diffX, diffY;
                         for (int i = 0; i < removeCount; i++) {
+                            // 移除的點代表圖一仍可被看到的點
+                            // 如果移除的點是圖一的最上面的點，代表目的圖的最上面的點被遮住了
                             if (Check2PointSame(RemovedPoints.get(i), Image1Points.get(0))) {
 
+                                // 計算出圖一的最下面的點跟圖二最下面的點差值，再用圖一最上面的點加上差值找到目的圖最上面的點
                                 diffX = Image1Points.get(img1low).x - Image2Points.get(img2low).x;
                                 diffY = Image1Points.get(img1low).y - Image2Points.get(img2low).y;
                                 newPoint.x = Image1Points.get(0).x - diffX;
@@ -604,7 +618,7 @@ public class TriangleActivity extends AppCompatActivity {
                                 Log.w(TAG, "1. new point:" + newPoint);
                                 addPointCase = ADD_IMAGE2_TOP;
                             }
-
+                            // 如果移除的點是圖一的最下面的點，代表要找的圖的最下面的點被遮住了
                             if (Check2PointSame(RemovedPoints.get(i), Image1Points.get(img1low))) {
 
                                 diffX = Image1Points.get(0).x - Image2Points.get(0).x;
@@ -770,12 +784,14 @@ public class TriangleActivity extends AppCompatActivity {
         String savepath = Environment.getExternalStorageDirectory() + "/DCIM/";
         if (index ==1) {
             try {
+                // 儲存處理後的第一張圖
                 saveMattoBitmapFile(grayMat, "progress1.jpg", savepath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else if (index ==2) {
             try {
+                // 儲存處理後的第二張圖
                 saveMattoBitmapFile(grayMat, "progress2.jpg", savepath);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -801,7 +817,7 @@ public class TriangleActivity extends AppCompatActivity {
             // epsilon = 原始曲线与近似曲线之间的最大距离
             // closed = 曲线是闭合的
             //Imgproc.approxPolyDP(new_mat,approxCurve_temp,contourSize*0.03,true);
-            Imgproc.approxPolyDP(new_mat,approxCurve_temp,approx_tolerance/10,true);
+            Imgproc.approxPolyDP(new_mat,approxCurve_temp,(double) approx_tolerance/10,true);
             Log.w(TAG, "邊:"+approxCurve_temp.total());
 
             //Log.w(TAG, "final_num="+final_num);
@@ -1039,7 +1055,7 @@ public class TriangleActivity extends AppCompatActivity {
         return SortPoints(threePoint);
     }
 
-    public class pointCompare{
+    public static class pointCompare{
 
         private double pointX;
         private double pointY;
