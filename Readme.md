@@ -1,5 +1,7 @@
 #第一支app
 
+第一支app
+
 1. BMI計算
 2. 狀態列通知
 3. Snacker bar通知
@@ -31,5 +33,5 @@
 29. AlertDialog
 
 ![image](https://github.com/AlphonceHuang/FirstApp/blob/master/Screenshot_20200514-150459.png)
-
+![image](https://github.com/AlphonceHuang/FirstApp/blob/master/Screenshot_20200514-150505.png)
 
