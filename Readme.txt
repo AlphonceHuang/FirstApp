@@ -29,3 +29,6 @@
 27. TextClock
 28. DialogFragment
 29. AlertDialog
+
+![image](https://github.com/AlphonceHuang/FirstApp/blob/master/Screenshot_20200514-150459.png)
+![image](https://github.com/AlphonceHuang/FirstApp/blob/master/Screenshot_20200514-150505.png)
